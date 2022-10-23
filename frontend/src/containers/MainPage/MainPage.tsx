@@ -1,6 +1,7 @@
 const MainPage = () => {
     return (
       <>
+
         <h1>This is JJDD MainPage</h1>
 
             <p>
