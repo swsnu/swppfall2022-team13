@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes, Navigate, useNavigate } from 'react-route
 import './App.css';
 import MainPage from './containers/MainPage/MainPage';
 import UserPage from './containers/UserPage/UserPage';
+import SignUpPage from './containers/SignUpPage/SignUpPage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import PetitionListPage from './containers/PetitionListPage/PetitionListPage';
 import PetitionCreatePage from './containers/PetitionCreatePage/PetitionCreatePage';
@@ -34,6 +35,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="/petition" element={<PetitionListPage />} />
           <Route path="/petition/create" element={<PetitionCreatePage />} />
           <Route path="/petition/edit" element={<PetitionEditPage />} />
