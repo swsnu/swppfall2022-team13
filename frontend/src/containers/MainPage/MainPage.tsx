@@ -1,6 +1,7 @@
 import Carousel from "../../components/Carousel";
 import { useState } from "react";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn";
+import UserInfoBtn, { UserInfoBtnType } from "../../components/UserInfoBtn";
 import CarouselComponent, {
   CarouselContentType,
 } from "../../components/CarouselContent";
@@ -49,55 +50,32 @@ const MainPage = () => {
       url: "/politician",
       image:
         "https://media.istockphoto.com/photos/businessman-or-politician-making-speech-behind-the-pulpit-picture-id676327038?k=20&m=676327038&s=612x612&w=0&h=zb0yYF91voE-3-ar00zEjpG_HchV9LlpbCVPrErio1Q=",
-      width: btnSize,
-      height: btnSize,
-      className: "PoliticianBtn",
     },
     {
       url: "/survey",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAZHu9-UJHpRRb8nv9w-LNgNvu6PruDiZ6wQ&usqp=CAU",
-      width: btnSize,
-      height: btnSize,
-      className: "SurveyBtn",
     },
     {
       url: "/news",
       image:
         "https://media.istockphoto.com/photos/breaking-news-world-news-with-map-backgorund-picture-id1182477852?k=20&m=1182477852&s=612x612&w=0&h=I3wdSzT_5h1y9dHq_YpZ9AqdIKg8epthr8Guva8FkPA=",
-      width: btnSize,
-      height: btnSize,
-      className: "NewsBtn",
     },
   ]);
-  const userInfoBtnContent: ImageBtnType = {
+  const userInfoBtnContent: UserInfoBtnType = {
     url: "/user/1",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3qAb5Xu6-hZguic1bPpFbicnmwOlHHIQ_ANoaY1xcLwrHfem6M1mNZkspUnq4u4DgjWs&usqp=CAU",
-    width: userInfoSize,
-    height: userInfoSize,
-    className: "UserInfoBtn",
   };
   return (
     <div className="MainPage">
-      <ImageBtn
-        className={userInfoBtnContent.className}
+      <UserInfoBtn
         url={userInfoBtnContent.url}
         image={userInfoBtnContent.image}
-        width={userInfoBtnContent.width}
-        height={userInfoBtnContent.height}
       />
       <div className="MainBtns">
         {btnContents.map((data) => {
-          return (
-            <ImageBtn
-              className={data.className}
-              url={data.url}
-              image={data.image}
-              width={data.width}
-              height={data.height}
-            />
-          );
+          return <ImageBtn url={data.url} image={data.image} />;
         })}
       </div>
       <Carousel className="Carousel" sliderContents={carouselContents} />

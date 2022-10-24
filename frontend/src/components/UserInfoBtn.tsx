@@ -1,25 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import "./ImageBtn.css";
-export interface ImageBtnType {
+import "./UserInfoBtn.css";
+export interface UserInfoBtnType {
   image?: string;
   url: string;
+  className?: string;
 }
 
-export default function ImageBtn(props: ImageBtnType) {
+export default function ImageBtn(props: UserInfoBtnType) {
   //clickhandler 추가하기
   const navigate = useNavigate();
   const onClickHandler = () => {
     navigate(props.url);
   };
   return (
-    <div className="Btn">
+    <div className="UserInfoBtn">
       <img
-        className="BtnImage"
         src={props.image}
         alt="hmm"
         onClick={onClickHandler}
-        width={150}
-        height={150}
+        width={60}
+        height={60}
       ></img>
     </div>
   );

@@ -1,33 +1,8 @@
-.UserInfoBtn {
-  width: 60px;
-  height: 60px;
-  border-radius: 70%;
-  overflow: hidden;
-  border: 2px solid black;
-  margin-top: 1px;
-  margin-right: 10px;
-  margin-left: auto;
-}
-
-.PoliticianBtn {
-  width: 150px;
-  height: 150px;
-  border-radius: 70%;
-  overflow: hidden;
-}
-
-.SurveyBtn {
+.Btn {
   width: 150px;
   height: 150px;
   margin: 0px 20px;
   border-radius: 70%;
   overflow: hidden;
   border: 2px solid black;
-}
-
-.NewsBtn {
-  width: 150px;
-  height: 150px;
-  border-radius: 70%;
-  overflow: hidden;
 }
