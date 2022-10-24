@@ -1,0 +1,12 @@
+.MainPage {
+  background-color: #f1f2f5;
+}
+
+.MainBtns {
+  display: flex;
+  justify-content: center;
+}
+
+.Carousel {
+  margin: 10px 100px;
+}
