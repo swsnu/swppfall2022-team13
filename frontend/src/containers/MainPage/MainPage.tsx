@@ -7,8 +7,6 @@ import CarouselComponent, {
 } from "../../components/CarouselContent";
 import "./MainPage.css";
 const MainPage = () => {
-  const btnSize = 150;
-  const userInfoSize = 60;
   const [carouselContents, setCarouselContents] = useState<
     CarouselContentType[]
   >([
