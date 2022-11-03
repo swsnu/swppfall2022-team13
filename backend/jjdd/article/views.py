@@ -1,9 +1,10 @@
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from .models import Article
 import json
 
-
+@csrf_exempt
 def article(request):
   if request.method == "GET":
     article_list = [{ 'title': article['title'],
@@ -19,14 +20,17 @@ def article(request):
                      }
                     for article in Article.objects.all().values()]
     return JsonResponse(article_list, safe=False)
-      
+  
+  # post시 {articles: [{}, {}, ...]} 위 형식으로 쏘기
   elif request.method == "POST":
-    req_data = json.loads()
+    req_data = json.loads(request.body.decode())
+    
+    
     
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
   
   
-
+@csrf_exempt
 def article_detail(request, article_id):
   pass
