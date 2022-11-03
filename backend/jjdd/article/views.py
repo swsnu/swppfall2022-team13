@@ -21,11 +21,22 @@ def article(request):
                     for article in Article.objects.all().values()]
     return JsonResponse(article_list, safe=False)
   
-  # post시 {articles: [{}, {}, ...]} 위 형식으로 쏘기
+  # POST format : {articles: [{}, {}, ...]}
   elif request.method == "POST":
     req_data = json.loads(request.body.decode())
-    
-    
+
+    for article in req_data['articles']:
+      Article.objects.create(title = article['title'],
+                             datetime = article['datetime'],
+                             preview_prologue = article['preview_prologue'],
+                             detail_link_postfix = article['detail_link_postfix'],
+                             preview_img_path = article['preview_img_path'],
+                             detail_img_path = article['detail_img_path'],
+                             journal_name = article['journal_name'],
+                             detail_text = article['detail_text']
+                             )
+      
+    return HttpResponse(status=201)
     
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
