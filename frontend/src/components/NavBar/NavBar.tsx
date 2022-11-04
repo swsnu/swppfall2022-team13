@@ -14,10 +14,10 @@ const NavBar = () => {
   return (
     <>
       <Navbar bg='light' expand='lg'>
-        <div className='nav-logo'>
-
+        <div className='navBar-title'>
+        This is JJDD
         </div>
-        <div className='nav-else'>
+        <div className='navBar-userIcon'>
 
         <UserInfoBtn
         url={userInfoBtnContent.url}
