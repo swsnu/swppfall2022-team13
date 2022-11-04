@@ -1,9 +1,9 @@
-.NewsArticle {
-    margin: 0px 10px;
+.NewsArticleLeft {
+    margin: 0px 20px;
     height: 250px;
-    width: 1000px;
+    width: 700px;
     border: 2px solid gray;
-    background-color: white;
+    background-color: rgb(254, 166, 166);
   }
   
   .leftContent {
@@ -15,7 +15,7 @@
   }
   
   .title {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 500;
   }
   

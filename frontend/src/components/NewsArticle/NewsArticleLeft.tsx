@@ -1,7 +1,7 @@
-import "./NewsArticle.css";
+import "./NewsArticleLeft.css";
 import { useNavigate } from "react-router-dom";
 
-export interface NewsArticleType {
+export interface NewsArticleTypeLeft {
   title?: string;
   content?: string;
   url: string;
@@ -11,13 +11,14 @@ export interface NewsArticleType {
   tags?: string[];
 }
 
-export default function NewsArticle(props: NewsArticleType) {
+export default function NewsArticle(props: NewsArticleTypeLeft) {
     const navigate = useNavigate();
     const onClickHandler = () => {
       navigate(props.url);
     };
     return (
-      <div className="NewsArticle" onClick={onClickHandler}>
+      <div className="NewsArticleLeft" onClick={onClickHandler}>
+
         <div className="leftContent">
           <img
             className="image"
