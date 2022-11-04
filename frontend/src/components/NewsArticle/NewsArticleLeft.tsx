@@ -2,6 +2,7 @@ import "./NewsArticleLeft.css";
 import { useNavigate } from "react-router-dom";
 
 export interface NewsArticleTypeLeft {
+  id?: number;
   title?: string;
   content?: string;
   url: string;
