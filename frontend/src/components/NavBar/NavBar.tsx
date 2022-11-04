@@ -15,7 +15,7 @@ const NavBar = () => {
     <>
       <Navbar bg='light' expand='lg'>
         <div className='navBar-title'>
-        This is JJDD
+       <h1>This is JJDD</h1> 
         </div>
         <div className='navBar-userIcon'>
 
