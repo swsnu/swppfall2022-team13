@@ -1,10 +1,12 @@
-import Carousel from "../../components/Carousel";
+import Carousel from "../../components/Carousel/Carousel";
 import { useState } from "react";
-import ImageBtn, { ImageBtnType } from "../../components/ImageBtn";
-import UserInfoBtn, { UserInfoBtnType } from "../../components/UserInfoBtn";
+import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
+import UserInfoBtn, {
+  UserInfoBtnType,
+} from "../../components/UserInfoBtn/UserInfoBtn";
 import CarouselComponent, {
   CarouselContentType,
-} from "../../components/CarouselContent";
+} from "../../components/CarouselContent/CarouselContent";
 import "./MainPage.css";
 const MainPage = () => {
   const [carouselContents, setCarouselContents] = useState<

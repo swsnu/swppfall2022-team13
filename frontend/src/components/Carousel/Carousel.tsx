@@ -2,10 +2,12 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ImageBtn from "./ImageBtn";
+import ImageBtn from "../ImageBtn/ImageBtn";
 import styled from "styled-components";
-import { ImageBtnType } from "./ImageBtn";
-import CarouselComponent, { CarouselContentType } from "./CarouselContent";
+import { ImageBtnType } from "../ImageBtn/ImageBtn";
+import CarouselComponent, {
+  CarouselContentType,
+} from "../CarouselContent/CarouselContent";
 
 const Wrap = styled.div`
   margin: 10% auto;
