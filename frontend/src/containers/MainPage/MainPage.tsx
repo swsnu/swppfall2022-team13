@@ -1,7 +1,7 @@
 import Carousel from "../../components/Carousel";
 import { useState } from "react";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn";
-import UserInfoBtn, { UserInfoBtnType } from "../../components/UserInfoBtn";
+import UserInfoBtn, { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
 import CarouselComponent, {
   CarouselContentType,
 } from "../../components/CarouselContent";
