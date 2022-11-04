@@ -21,7 +21,7 @@ const PoliticianListPage = () => {
       name: "윤석열",
       birthdate: "1960년 12월 18일",
       politicalParty: "국민의힘",
-      electionPrecinct: "제 20대 대통령",
+      position: "제20대 대통령",
     },
     {
       id: 2,
@@ -30,7 +30,7 @@ const PoliticianListPage = () => {
       name: "홍준표",
       birthdate: "1953년 11월 20일",
       politicalParty: "국민의힘",
-      electionPrecinct: "대구광역시장",
+      position: "대구광역시장",
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const PoliticianListPage = () => {
       name: "이재명",
       birthdate: "1963년 12월 8일",
       politicalParty: "더불어민주당",
-      electionPrecinct: "인천 계양구 을",
+      position: "제21대 국회의원",
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ const PoliticianListPage = () => {
       name: "원희룡",
       birthdate: "1964년 2월 14일",
       politicalParty: "국민의힘",
-      electionPrecinct: "제7대 국토교통부장관",
+      position: "제7대 국토교통부장관",
     },
   ]);
   return (
@@ -66,7 +66,7 @@ const PoliticianListPage = () => {
               name={data.name}
               birthdate={data.birthdate}
               politicalParty={data.politicalParty}
-              electionPrecinct={data.electionPrecinct}
+              position={data.position}
             />
           );
         })}

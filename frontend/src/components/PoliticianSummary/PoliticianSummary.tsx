@@ -6,7 +6,7 @@ export interface PoliticianSummaryType {
   name: string;
   birthdate: string;
   politicalParty: string;
-  electionPrecinct: string;
+  position: string;
 }
 
 export default function PoliticianSummary(props: PoliticianSummaryType) {
@@ -32,7 +32,7 @@ export default function PoliticianSummary(props: PoliticianSummaryType) {
           <p>{props.name}</p>
           <p>{props.birthdate}</p>
           <p>{props.politicalParty}</p>
-          <p>{props.electionPrecinct}</p>
+          <p>{props.position}</p>
         </div>
       </div>
     </div>
