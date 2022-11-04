@@ -4,9 +4,11 @@ import {RootState} from "..";
 
 export interface ArticleType {
   id: number;
+  url: string;
+  type: string;
+  image_src: string;
   title: string;
   content: string;
-  done: boolean;
 }
 
 export interface ArticleState {
@@ -29,14 +31,6 @@ export const fetchArticle = createAsyncThunk(
   async (id: ArticleType["id"], { dispatch }) => {
     const response = await axios.get(`/api/article/${id}/`);
     return response.data ?? null;
-  }
-);
-
-export const postArticle = createAsyncThunk(
-  "article/postArticle",
-  async (td: Pick<ArticleType, "title" | "content">, { dispatch }) => {
-    const response = await axios.post("/api/article/", td);
-    dispatch(articleActions.addArticle(response.data));
   }
 );
 
@@ -66,15 +60,6 @@ export const articleSlice = createSlice({
         return article.id !== action.payload.targetId;
       });
     },
-    addArticle: (state, action: PayloadAction<{ title: string; content: string }>) => {
-      const newArticle = {
-        id: state.articles[state.articles.length - 1].id + 1, // temporary
-        title: action.payload.title,
-        content: action.payload.content,
-        done: false,
-      };
-      state.articles.push(newArticle);
-    },
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
@@ -84,9 +69,6 @@ export const articleSlice = createSlice({
     });
     builder.addCase(fetchArticle.fulfilled, (state, action) => {
       state.selectedArticle = action.payload;
-    });
-    builder.addCase(postArticle.rejected, (_state, action) => {
-      console.error(action.error);
     });
   },
 });
