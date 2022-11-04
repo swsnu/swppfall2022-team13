@@ -1,10 +1,23 @@
 import NavBar from '../../components/NavBar/NavBar'
-import { useState } from "react";
+import { useState, useEffect} from "react";
+import {useDispatch, useSelector} from 'react-redux';
+import { AppDispatch } from "../../store";
 import NewsArticleRight, { NewsArticleTypeRight,} from "../../components/NewsArticle/NewsArticleRight";
 import NewsArticleLeft, { NewsArticleTypeLeft,} from "../../components/NewsArticle/NewsArticleLeft";
+import { fetchArticles, selectArticle } from "../../store/slices/article";
 
 
 const NewsListPage = () => {
+  /*
+  const articleState = useSelector(selectArticle);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchArticles());
+  }, []); */   
+  
+  //AFTER PROPER BACKEND
+
 
   const [newsArticlesLeft, setLeftContents] = useState<
     NewsArticleTypeLeft[]

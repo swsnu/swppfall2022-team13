@@ -74,6 +74,6 @@ export const articleSlice = createSlice({
 });
 
 export const articleActions = articleSlice.actions;
-export const selectNews = (state: RootState) => state.article;
+export const selectArticle = (state: RootState) => state.article;
 
 export default articleSlice.reducer;

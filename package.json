@@ -5,5 +5,9 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.24"
+  },
+
+  "scripts": {
+    "backend": "cp backend/api/db.json api/_db.json && json-server --watch api/_db.json --routes api/routes.json --port 8000 --host 0.0.0.0"
   }
 }
