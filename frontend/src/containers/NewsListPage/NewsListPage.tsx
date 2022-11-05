@@ -126,6 +126,7 @@ const NewsListPage = () => {
                 {newsArticlesLeft.map((td: any) => {
                 return (
                   <NewsArticleLeft
+                    key={`${td.id}_todo`}
                     url={td.url}
                     image_src={td.image_src}
                     width={250}
@@ -141,6 +142,7 @@ const NewsListPage = () => {
                   {newsArticlesRight.map((td: any) => {
                   return (
                     <NewsArticleRight
+                      key={`${td.id}_todo`}
                       url={td.url}
                       image_src={td.image_src}
                       width={250}
