@@ -5,10 +5,14 @@ import { RootState } from "..";
 export interface PoliticianType {
   id: number;
   url: string;
-  type: string;
   image_src: string;
-  title: string;
-  content: string;
+  name: string;
+  political_party: string;
+  position: string;
+  election_precinct?: string;
+  birth_date: string;
+  education: string[];
+  brief_histroy: string[];
 }
 
 export interface PoliticianState {
@@ -24,7 +28,7 @@ const initialState: PoliticianState = {
 export const fetchPoliticians = createAsyncThunk(
   "politician/fetchPoliticians",
   async () => {
-    const response = await axios.get<PoliticianType[]>("/api/politician/");
+    const response = await axios.get<PoliticianType[]>("/api/politician");
     return response.data;
   }
 );
@@ -32,7 +36,7 @@ export const fetchPoliticians = createAsyncThunk(
 export const fetchPolitician = createAsyncThunk(
   "politician/fetchPolitician",
   async (id: PoliticianType["id"], { dispatch }) => {
-    const response = await axios.get(`/api/politician/${id}/`);
+    const response = await axios.get(`/api/politician/${id}`);
     return response.data ?? null;
   }
 );
