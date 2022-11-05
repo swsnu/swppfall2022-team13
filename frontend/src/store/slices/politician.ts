@@ -4,7 +4,6 @@ import { RootState } from "..";
 
 export interface PoliticianType {
   id: number;
-  url: string;
   image_src: string;
   name: string;
   political_party: string;
