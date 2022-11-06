@@ -1,4 +1,6 @@
 import NavBar from '../../components/NavBar/NavBar'
+import React from 'react';
+import "./NewsDetailPage.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from 'react-router-dom';
@@ -28,7 +30,8 @@ const NewsDetailPage = () => {
     {
       id: 1,
       url: "/news/1",
-      image_src:
+      journal_name: "한겨레",
+      detail_img_path:
         "https://www.history.com/.image/t_share/MTYwNTU5OTUxMDU4NTc2OTQy/communism-topic-gettyimages-89856241.jpg",
       title:
         "남조선 공산당 전국대표대회",
@@ -38,7 +41,8 @@ const NewsDetailPage = () => {
     {
       id: 2,
       url: "/news/2",
-      image_src:
+      journal_name: "한겨레",
+      detail_img_path:
         "http://www.laborparty.kr/wp-content/uploads/kboard_attached/5/202206/629f103000c8b8121227.jpg",
       title:
         "<노동자정치행동 성명> 화물연대 총파업을 무조건 지지한다!",
@@ -48,17 +52,19 @@ const NewsDetailPage = () => {
     {
       id: 3,
       url: "/news/3",
-      image_src:
+      journal_name: "한겨레",
+      detail_img_path:
         "https://imgnews.pstatic.net/image/001/2022/11/04/PYH2022100507160001300_P4_20221104115612855.jpg?type=w647",
       title:
         "현무 낙탄, '관성항법장치' 또는 '제어장치 통신' 비정상 추정",
       content:
-        "(서울=연합뉴스) 김지헌 기자 = 한 달 전 발생한 육군 현무-2C 탄도미사일 낙탄 사고 원인은 관성항법장치(INS)나 제어계통 장치 간 데이터 통신의 비정상으로 추정됐다.",
+        "(서울=연합뉴스) 김지헌 기자 = 한 달 전 발생한 육군 현무-2C 탄도미사일 낙탄 사고 원인은 관성항법장치(INS)나 제어계통 장치 간 데이터 통신의 비정상으로 추정됐다. 북한이 북중 국경과 가까운 북쪽 지역에서 중국 어선들이 몰려있는 서해상으로 처음 탄도미사일을 발사한 것으로 알려지면서, 그 배경과 의도에 관심이 쏠린다. 6일 군에 따르면 북한은 전날 오전 11시 32분께부터 11시 59분께까지 평안북도 동림 일대에서 북한 서해상으로 단거리 탄도미사일(SRBM) 4발을 발사했다. 이들 미사일은 비행거리 약 130㎞, 고도 약 20㎞, 속도 약 마하 5(음속 5배)로 탐지됐다. 우선 발사 장소부터가 이례적이다. 동림은 중국 단둥에서 고작 20여㎞ 떨어진 장소로, 지금까지 북한의 탄도미사일 발사가 포착된 적이 한 번도 없는 지역이다.중국에서 가까운 지역에서 중국 선박들이 득실대는 서해로 미사일을 발사한 점을 두고는 중국과 북한의 밀착을 보여주는 것 아니냐는 분석이 나온다.북한이 사전에 중국 측과 논의해 발사 장소와 방향을 선정함으로써 북중 밀착을 과시하려 했을 의도가 엿보인다는 것이다.",
     },
     {
       id: 4,
       url: "/news/4",
-      image_src:
+      journal_name: "한겨레",
+      detail_img_path:
         "https://imgnews.pstatic.net/image/661/2022/11/04/0000015488_001_20221104130501743.png?type=w647",
       title:
         "카지노서 사라진 145억.. 핵심 피의자 구속 영장 신청",
@@ -73,7 +79,8 @@ const NewsDetailPage = () => {
     {
       id: 5,
       url: "/news/5",
-      image_src:
+      journal_name: "조선일보",
+      detail_img_path:
         "http://file3.instiz.net/data/file3/2019/10/05/4/c/b/4cb9adbe6cdd8af91cb62d616f3139bc.jpg",
       title:
         "호주 대통령, '한국인, 호주 방문시 환전할 필요 없어'(종합)",
@@ -83,7 +90,8 @@ const NewsDetailPage = () => {
     {
       id: 6,
       url: "/news/6",
-      image_src:
+      journal_name: "조선일보",
+      detail_img_path:
         "https://imgnews.pstatic.net/image/654/2022/10/24/0000023081_001_20221024112205711.jpg?type=w647",
       title:
         "윤 대통령, 레고랜드 사태에 '누가 칼 들고 협박했나?'",
@@ -93,7 +101,8 @@ const NewsDetailPage = () => {
     {
       id: 7,
       url: "/news/7",
-      image_src:
+      journal_name: "조선일보",
+      detail_img_path:
         "https://img.khan.co.kr/news/2018/03/17/l_2018031701002096200165431.webp",
       title:
         "“아버지가 또 태극기집회에 가셨다” 가족갈등과 노인소외",
@@ -103,7 +112,8 @@ const NewsDetailPage = () => {
     {
       id: 8,
       url: "/news/8",
-      image_src:
+      journal_name: "조선일보",
+      detail_img_path:
         "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202202/24/cbd64c06-d6e5-43e6-baaa-1ed06789e6db.jpg",
       title:
         "허경영 '우리도 똑같이 3억 냈어!'…새벽 1시 토론에 극대노",
@@ -141,37 +151,82 @@ const NewsDetailPage = () => {
     article = articleLeft
   } //Only necessary for MOCK DATA
 
+  const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
-
-    return (
-      <>
-      <NavBar />
-
-        <div className="row">
+  const handleCopyClipBoard = async (text: any) => {
+    try {
+      await navigator.clipboard.writeText(text);
       
-        <h1><div className="titleContent" id="article-title">{article?.title}</div></h1>
-      </div>
+      alert('copied into your clipboard');
+    } catch (error) {
+      alert('COPYING FAILED');
+    }
+  };
 
-      <div className="photoimage" id="article-photo">
-        <img
-            className="image"
-            src={article?.image_src}
-            alt="Hmm"
-            width={article?.width}
-            height={article?.height}
-          />
 
+    if (article?.journal_name === "한겨레") {
+      return (
+        <div className = "background_red">
+            <NavBar/>
+          <div className="card">
+            
+          
+          <div className="card-header text-bg-danger mb-3">
+            {article?.journal_name}
+          </div>
+
+          <div className="card-body">
+            <h5 className="card-title">{article?.title}</h5>
+          </div>
+          <img src={article?.detail_img_path} 
+          width = "600px"
+          height = "300px" 
+          object-fit = "cover"
+          className="rounded mx-auto d-block" alt="..."></img>
+
+          <div className="card-body">
+            <p className="card-text">{article?.content}</p>
+            <p>
+            <a href="/news" className="btn btn-primary">Back</a>
+            &nbsp; &nbsp;
+            <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={() => handleCopyClipBoard(article?.content)}>Copy Content</button>
+            </p>
+          </div>
+          </div>
         </div>
+        );
+      } else {
+        return (
+        <div className = "background_blue">
+            <NavBar/>
+          <div className="card">
+            
+          <div className="card-header text-bg-info mb-3">
+            {article?.journal_name}
+          </div>
+    
+          <div className="card-body">
+            <h5 className="card-title">{article?.title}</h5>
+          </div>
+          <img src={article?.detail_img_path} 
+          width = "600px"
+          height = "300px" 
+          object-fit = "cover"
+          className="rounded mx-auto d-block" alt="..."></img>
+    
+          <div className="card-body">
+            <p className="card-text">{article?.content}</p>
+            <p>
+            <a href="/news" className="btn btn-primary">Back</a>
+            &nbsp; &nbsp;
+            <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={() => handleCopyClipBoard(article?.content)}>Copy Content</button>
+            </p>
+          </div>
+          </div>
+          </div>
+        );
 
-        
-      <p></p>
-      <div className="row">
-        <div className="left"><b>Content:</b></div>
-        <div className="contentContent" id="article-content">{article?.content}</div>
-      </div>
-
-      </>
-    );
+      }
   }
   
   export default NewsDetailPage

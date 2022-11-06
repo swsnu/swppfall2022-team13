@@ -1,12 +1,15 @@
-
-import { Navbar } from 'react-bootstrap'
 import { useState } from "react";
 import UserInfoBtn, { UserInfoBtnType } from "../UserInfoBtn/UserInfoBtn"
 import NavBarBtn from "./NavBarBtn";
+import { useNavigate } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import './NavBar.css'
 
 
 const NavBar = () => {
+  const navigate = useNavigate();
 
   const userInfoBtnContent: UserInfoBtnType = {
     url: "/user/1",
@@ -16,19 +19,18 @@ const NavBar = () => {
   
 
 
+return (
+  <>
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="#home">JungJung DangDang</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link href="/main"  >Home</Nav.Link>
+          <Nav.Link href="/news" >News List</Nav.Link>
+          <Nav.Link href="/politician" >Politicians</Nav.Link>
+        </Nav>
+      </Container>
 
-  return (
-    <>
-      <Navbar bg='light' expand='lg'>
-        <div className='navBar-title'>
-       <h1>This is JJDD</h1> 
-        </div>
-
-        <div className="navBar-main-buttons">
-        <NavBarBtn />
-  
-      </div>
-        
       <div className="navBar-userIcon">
         <UserInfoBtn
         url={userInfoBtnContent.url}
@@ -36,9 +38,12 @@ const NavBar = () => {
       />
 
         </div>
-      </Navbar>
-    </>
-  )
+
+    </Navbar>
+    <br />
+
+  </>
+);
 }
 
 export default NavBar

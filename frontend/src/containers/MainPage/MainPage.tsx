@@ -1,4 +1,5 @@
 import Carousel from "../../components/Carousel";
+import NavBar from '../../components/NavBar/NavBar'
 import { useState } from "react";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn";
 import UserInfoBtn, { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
@@ -67,10 +68,7 @@ const MainPage = () => {
   };
   return (
     <div className="MainPage">
-      <UserInfoBtn
-        url={userInfoBtnContent.url}
-        image={userInfoBtnContent.image}
-      />
+      <NavBar/>
       <div className="MainBtns">
         {btnContents.map((data) => {
           return <ImageBtn url={data.url} image={data.image} />;

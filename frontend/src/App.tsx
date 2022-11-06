@@ -20,6 +20,7 @@ import QuoraListPage from './containers/QuoraListPage/QuoraListPage';
 import QuoraDetailPage from './containers/QuoraDetailPage/QuoraDetailPage';
 import PoliticianListPage from './containers/PoliticianListPage/PoliticianListPage';
 import PoliticianDetailPage from './containers/PoliticianDetailPage/PoliticianDetailPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

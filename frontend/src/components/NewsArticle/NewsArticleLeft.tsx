@@ -1,12 +1,16 @@
 import "./NewsArticleLeft.css";
 import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 export interface NewsArticleTypeLeft {
   id?: number;
   title?: string;
   content?: string;
   url: string;
-  image_src?: string;
+  preview_img_path?: string;
+  detail_img_path?: string;
+  journal_name?: string;
   width?: number;
   height?: number;
   tags?: string[];
@@ -23,7 +27,7 @@ export default function NewsArticle(props: NewsArticleTypeLeft) {
         <div className="leftContent">
           <img
             className="image"
-            src={props.image_src}
+            src={props.detail_img_path}
             alt="Hmm"
             width={props.width}
             height={props.height}

@@ -26,7 +26,7 @@ const NewsListPage = () => {
     {
       id: 1,
       url: "/news/1",
-      image_src:
+      detail_img_path:
         "https://www.history.com/.image/t_share/MTYwNTU5OTUxMDU4NTc2OTQy/communism-topic-gettyimages-89856241.jpg",
       title:
         "남조선 공산당 전국대표대회",
@@ -36,7 +36,7 @@ const NewsListPage = () => {
     {
       id: 2,
       url: "/news/2",
-      image_src:
+      detail_img_path:
         "http://www.laborparty.kr/wp-content/uploads/kboard_attached/5/202206/629f103000c8b8121227.jpg",
       title:
         "<노동자정치행동 성명> 화물연대 총파업을 무조건 지지한다!",
@@ -46,7 +46,7 @@ const NewsListPage = () => {
     {
       id: 3,
       url: "/news/3",
-      image_src:
+      detail_img_path:
         "https://imgnews.pstatic.net/image/001/2022/11/04/PYH2022100507160001300_P4_20221104115612855.jpg?type=w647",
       title:
         "현무 낙탄, '관성항법장치' 또는 '제어장치 통신' 비정상 추정",
@@ -56,7 +56,7 @@ const NewsListPage = () => {
     {
       id: 4,
       url: "/news/4",
-      image_src:
+      detail_img_path:
         "https://imgnews.pstatic.net/image/661/2022/11/04/0000015488_001_20221104130501743.png?type=w647",
       title:
         "카지노서 사라진 145억.. 핵심 피의자 구속 영장 신청",
@@ -71,7 +71,7 @@ const NewsListPage = () => {
     {
       id: 5,
       url: "/news/5",
-      image_src:
+      detail_img_path:
         "http://file3.instiz.net/data/file3/2019/10/05/4/c/b/4cb9adbe6cdd8af91cb62d616f3139bc.jpg",
       title:
         "호주 대통령, '한국인, 호주 방문시 환전할 필요 없어'(종합)",
@@ -81,7 +81,7 @@ const NewsListPage = () => {
     {
       id: 6,
       url: "/news/6",
-      image_src:
+      detail_img_path:
         "https://imgnews.pstatic.net/image/654/2022/10/24/0000023081_001_20221024112205711.jpg?type=w647",
       title:
         "윤 대통령, 레고랜드 사태에 '누가 칼 들고 협박했나?'",
@@ -91,7 +91,7 @@ const NewsListPage = () => {
     {
       id: 7,
       url: "/news/7",
-      image_src:
+      detail_img_path:
         "https://img.khan.co.kr/news/2018/03/17/l_2018031701002096200165431.webp",
       title:
         "“아버지가 또 태극기집회에 가셨다” 가족갈등과 노인소외",
@@ -101,7 +101,7 @@ const NewsListPage = () => {
     {
       id: 8,
       url: "/news/8",
-      image_src:
+      detail_img_path:
         "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202202/24/cbd64c06-d6e5-43e6-baaa-1ed06789e6db.jpg",
       title:
         "허경영 '우리도 똑같이 3억 냈어!'…새벽 1시 토론에 극대노",
@@ -128,7 +128,7 @@ const NewsListPage = () => {
                   <NewsArticleLeft
                     key={`${td.id}_todo`}
                     url={td.url}
-                    image_src={td.image_src}
+                    detail_img_path={td.detail_img_path}
                     width={250}
                     height={250}
                     title={td.title}
@@ -144,7 +144,7 @@ const NewsListPage = () => {
                     <NewsArticleRight
                       key={`${td.id}_todo`}
                       url={td.url}
-                      image_src={td.image_src}
+                      detail_img_path={td.detail_img_path}
                       width={250}
                       height={250}
                       title={td.title}
