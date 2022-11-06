@@ -7,8 +7,7 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
 import { fetchArticles, fetchArticle, selectArticle } from "../../store/slices/article";
-import NewsArticleRight, { NewsArticleTypeRight,} from "../../components/NewsArticle/NewsArticleRight";
-import NewsArticleLeft, { NewsArticleTypeLeft,} from "../../components/NewsArticle/NewsArticleLeft";
+import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 const NewsDetailPage = () => {
@@ -25,7 +24,7 @@ const NewsDetailPage = () => {
   console.log("curr id is: " + currArticleId)
 
   const [newsArticlesLeft, setLeftContents] = useState<
-    NewsArticleTypeLeft[]
+    NewsArticleType[]
   >([
     {
       id: 1,
@@ -74,7 +73,7 @@ const NewsDetailPage = () => {
   ]);
 
   const [newsArticlesRight, setRightContents] = useState<
-    NewsArticleTypeRight[]
+    NewsArticleType[]
   >([
     {
       id: 5,

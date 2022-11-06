@@ -5,6 +5,14 @@
     border: 2px solid gray;
     background-color: rgb(254, 166, 166);
   }
+
+  .NewsArticleRight {
+    margin: 0px 20px;
+    height: 250px;
+    width: 700px;
+    border: 2px solid gray;
+    background-color: rgb(182, 219, 254);
+  }
   
   .leftContent {
     float: left;

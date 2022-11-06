@@ -2,8 +2,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import { useState, useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { AppDispatch } from "../../store";
-import NewsArticleRight, { NewsArticleTypeRight,} from "../../components/NewsArticle/NewsArticleRight";
-import NewsArticleLeft, { NewsArticleTypeLeft,} from "../../components/NewsArticle/NewsArticleLeft";
+import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,11 +20,12 @@ const NewsListPage = () => {
 
 
   const [newsArticlesLeft, setLeftContents] = useState<
-    NewsArticleTypeLeft[]
+    NewsArticleType[]
   >([
     {
       id: 1,
       url: "/news/1",
+      journal_name: "한겨레",
       detail_img_path:
         "https://www.history.com/.image/t_share/MTYwNTU5OTUxMDU4NTc2OTQy/communism-topic-gettyimages-89856241.jpg",
       title:
@@ -36,6 +36,7 @@ const NewsListPage = () => {
     {
       id: 2,
       url: "/news/2",
+      journal_name: "한겨레",
       detail_img_path:
         "http://www.laborparty.kr/wp-content/uploads/kboard_attached/5/202206/629f103000c8b8121227.jpg",
       title:
@@ -46,6 +47,7 @@ const NewsListPage = () => {
     {
       id: 3,
       url: "/news/3",
+      journal_name: "한겨레",
       detail_img_path:
         "https://imgnews.pstatic.net/image/001/2022/11/04/PYH2022100507160001300_P4_20221104115612855.jpg?type=w647",
       title:
@@ -56,6 +58,7 @@ const NewsListPage = () => {
     {
       id: 4,
       url: "/news/4",
+      journal_name: "한겨레",
       detail_img_path:
         "https://imgnews.pstatic.net/image/661/2022/11/04/0000015488_001_20221104130501743.png?type=w647",
       title:
@@ -66,11 +69,12 @@ const NewsListPage = () => {
   ]);
 
   const [newsArticlesRight, setRightContents] = useState<
-    NewsArticleTypeRight[]
+    NewsArticleType[]
   >([
     {
       id: 5,
       url: "/news/5",
+      journal_name: "조선일보",
       detail_img_path:
         "http://file3.instiz.net/data/file3/2019/10/05/4/c/b/4cb9adbe6cdd8af91cb62d616f3139bc.jpg",
       title:
@@ -81,6 +85,7 @@ const NewsListPage = () => {
     {
       id: 6,
       url: "/news/6",
+      journal_name: "조선일보",
       detail_img_path:
         "https://imgnews.pstatic.net/image/654/2022/10/24/0000023081_001_20221024112205711.jpg?type=w647",
       title:
@@ -91,6 +96,7 @@ const NewsListPage = () => {
     {
       id: 7,
       url: "/news/7",
+      journal_name: "조선일보",
       detail_img_path:
         "https://img.khan.co.kr/news/2018/03/17/l_2018031701002096200165431.webp",
       title:
@@ -101,6 +107,7 @@ const NewsListPage = () => {
     {
       id: 8,
       url: "/news/8",
+      journal_name: "조선일보",
       detail_img_path:
         "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202202/24/cbd64c06-d6e5-43e6-baaa-1ed06789e6db.jpg",
       title:
@@ -125,9 +132,10 @@ const NewsListPage = () => {
 
                 {newsArticlesLeft.map((td: any) => {
                 return (
-                  <NewsArticleLeft
+                  <NewsArticle
                     key={`${td.id}_todo`}
                     url={td.url}
+                    journal_name={td.journal_name}
                     detail_img_path={td.detail_img_path}
                     width={250}
                     height={250}
@@ -141,9 +149,10 @@ const NewsListPage = () => {
   
                   {newsArticlesRight.map((td: any) => {
                   return (
-                    <NewsArticleRight
+                    <NewsArticle
                       key={`${td.id}_todo`}
                       url={td.url}
+                      journal_name={td.journal_name}
                       detail_img_path={td.detail_img_path}
                       width={250}
                       height={250}
