@@ -25,6 +25,7 @@ export default function NewsArticle(props: NewsArticleType) {
     if(props.journal_name === "한겨레") {
 
       return (
+        
         <div className="NewsArticleLeft" onClick={onClickHandler}>
   
           <div className="leftContent">
