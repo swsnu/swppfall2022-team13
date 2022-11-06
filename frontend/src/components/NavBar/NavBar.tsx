@@ -24,12 +24,9 @@ const NavBar = () => {
        <h1>This is JJDD</h1> 
         </div>
 
-        
-
-        <div className="main-buttons">
-        
+        <div className="navBar-main-buttons">
         <NavBarBtn />
-      
+  
       </div>
         
       <div className="navBar-userIcon">

@@ -1,0 +1,32 @@
+.navBarBtn-main-button {
+    float: left;
+    display: inline;
+    border: 2px solid rgb(242, 76, 57);
+    color: rgb(37, 68, 107);
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    margin: 10 10 10 auto;
+    white-space: nowrap;
+}
+
+.navBarBtn-newsList-button {
+    float: left;
+    display: inline;
+    border: 2px solid rgb(242, 76, 57);
+    color: rgb(37, 68, 107);
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    margin: 10 10 10 auto;
+    white-space: nowrap;
+  }
+
+.navBarBtn-politician-button {
+    float: left;
+    display: inline;
+    border: 2px solid rgb(242, 76, 57);
+    color: rgb(37, 68, 107);
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    margin: 10 10 10 auto;
+    white-space: nowrap;
+  }

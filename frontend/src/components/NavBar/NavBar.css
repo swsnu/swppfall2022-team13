@@ -11,8 +11,8 @@
     float: left;
   }
 
-.main-buttons {
+.navBar-main-buttons {
     float: left;
+    margin: 10 10 10 auto;
     display: flex;
-    justify-content: center;
   }

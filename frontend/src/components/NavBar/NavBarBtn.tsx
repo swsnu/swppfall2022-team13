@@ -16,10 +16,10 @@ export default function NavBarBtn() {
   };
 
   return (
-    <div className="navbar-main-buttons">
-      <button type="button" id="main-button" onClick={() => clickMainHandler()}>Main</button>
-      <button type="button" id="newsList-button" onClick={() => clickNewsListHandler()}>NewsList</button>
-      <button type="button" id="politician-button" onClick={() => clickPoliticianHandler()}>Politician</button>
+    <div className="navbar-main-buttons-tomain">
+      <button className = "navBarBtn-main-button" type="button" id="navBarBtn-main-button" onClick={() => clickMainHandler()}>Main</button>
+      <button className = "navBarBtn-newsList-button" type="button" id="navBarBtn-newsList-button" onClick={() => clickNewsListHandler()}>NewsList</button>
+      <button className = "navBarBtn-politician-button" type="button" id="navBarBtn-politician-button" onClick={() => clickPoliticianHandler()}>Politician</button>
     </div>
   );
 }
