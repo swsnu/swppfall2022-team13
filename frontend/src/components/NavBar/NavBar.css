@@ -1,10 +1,18 @@
 .navBar-userIcon {
     display: flex;
     margin: 0 0 0 auto;
+    float: right;
+    top: 0;
     white-space: nowrap;
     background-color: var(--background-color);
 }
 
 .navBar-title {
     float: left;
+  }
+
+.main-buttons {
+    float: left;
+    display: flex;
+    justify-content: center;
   }

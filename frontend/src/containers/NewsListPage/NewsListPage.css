@@ -1,0 +1,11 @@
+.LeftNews {
+    float: left;
+    display: flex;
+    justify-content: left;
+  }
+
+.RightNews {
+    float: right;
+    display: flex;
+    justify-content: right;
+  }
