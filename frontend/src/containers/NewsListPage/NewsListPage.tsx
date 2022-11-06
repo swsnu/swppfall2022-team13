@@ -5,6 +5,7 @@ import { AppDispatch } from "../../store";
 import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
+import "./NewsListPage.css";
 
 
 const NewsListPage = () => {
@@ -121,48 +122,55 @@ const NewsListPage = () => {
   
     return (
       <>
+      <div className = "background_list">
       <NavBar />
         <h1>BREAKING NEWS LIST</h1>
 
             <p>
             We have some bad news for you
             </p>
+            
+          <div className="row">
+                  <div className="col-sm-6">
+                    <div className="LeftNews">
 
-            <div className="LeftNews">
-
-                {newsArticlesLeft.map((td: any) => {
-                return (
-                  <NewsArticle
-                    key={`${td.id}_todo`}
-                    url={td.url}
-                    journal_name={td.journal_name}
-                    detail_img_path={td.detail_img_path}
-                    width={250}
-                    height={250}
-                    title={td.title}
-                    content={td.content}
-                  />
-                );
-              })}
+                        {newsArticlesLeft.map((td: any) => {
+                        return (
+                          <NewsArticle
+                            key={`${td.id}_todo`}
+                            url={td.url}
+                            journal_name={td.journal_name}
+                            detail_img_path={td.detail_img_path}
+                            width={250}
+                            height={250}
+                            title={td.title}
+                            content={td.content}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+            <div className="col-sm-6">
+                  <div className="RightNews">
+        
+                        {newsArticlesRight.map((td: any) => {
+                        return (
+                          <NewsArticle
+                            key={`${td.id}_todo`}
+                            url={td.url}
+                            journal_name={td.journal_name}
+                            detail_img_path={td.detail_img_path}
+                            width={250}
+                            height={250}
+                            title={td.title}
+                            content={td.content}
+                          />
+                        );
+                      })}   
+                  </div>
+                </div>
             </div>
-            <div className="RightNews">
-  
-                  {newsArticlesRight.map((td: any) => {
-                  return (
-                    <NewsArticle
-                      key={`${td.id}_todo`}
-                      url={td.url}
-                      journal_name={td.journal_name}
-                      detail_img_path={td.detail_img_path}
-                      width={250}
-                      height={250}
-                      title={td.title}
-                      content={td.content}
-                    />
-                  );
-                })}   
-            </div>
-
+      </div>
       </>
     );
   }

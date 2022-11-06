@@ -1,16 +1,18 @@
 .NewsArticleLeft {
+    float: left;
     margin: 0px 20px;
     height: 250px;
-    width: 700px;
-    border: 2px solid gray;
+    width: 680px;
+    border: 2px solid #f1f8f1;
     background-color: rgb(254, 166, 166);
   }
 
   .NewsArticleRight {
+    float: right;
     margin: 0px 20px;
     height: 250px;
-    width: 700px;
-    border: 2px solid gray;
+    width: 680px;
+    border: 2px solid #f1f8f1;
     background-color: rgb(182, 219, 254);
   }
   
