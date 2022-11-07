@@ -1,5 +1,60 @@
 .PoliticianDetailPage {
 }
 
-.Education {
+.left {
+  float: left;
+  margin-left: 10%;
+}
+.right {
+  float: right;
+  margin-right: 10%;
+}
+
+.intro {
+  width: 800px;
+  border-bottom: solid 1px black;
+}
+
+.education-and-career {
+  margin-top: 30px;
+  border-bottom: solid 2px black;
+}
+
+#intro-title {
+  text-align: left;
+}
+
+#intro-education {
+  text-align: left;
+}
+
+#intro-education {
+  margin-bottom: 20px;
+}
+
+#name {
+  text-align: left;
+  color: #580009;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+#birth-date {
+  text-align: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#education-detail {
+  margin-top: 10px;
+  text-align: left;
+}
+
+#career-title {
+  margin-top: 30px;
+}
+
+#career-detail {
+  margin-top: 10px;
+  text-align: left;
 }
