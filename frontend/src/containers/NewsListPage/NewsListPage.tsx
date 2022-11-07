@@ -152,8 +152,8 @@ const NewsListPage = () => {
                       })}
                     </div>
                   </div>
-            <div className="col-sm-6">
-                  <div className="RightNews">
+                    <div className="col-sm-6">
+                      <div className="RightNews">
         
                         {newsArticlesRight.map((td: any) => {
                         return (
