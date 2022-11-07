@@ -25,7 +25,7 @@ export default function PoliticianSummary(props: PoliticianSummaryType) {
             src={props.image}
             alt="Hmm"
             width={200}
-            height={200}
+            height={250}
           />
         </div>
         <div>

@@ -134,11 +134,12 @@ const PoliticianDetailPage = () => {
       <div>
         <div className="left">
           <h2>{politician.name}</h2>
-          <img src={politician.image_src} width={300} height={350} />
+          <img src={politician.image_src} width={300} height={370} />
         </div>
         <div className="right">
           <div className="position">
             <h3>{politician.position}</h3>
+            <h3>{politician.political_party}</h3>
           </div>
           <div className="Education">
             <h3>학력</h3>
