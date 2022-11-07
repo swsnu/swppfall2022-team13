@@ -28,11 +28,11 @@ const NewsListPage = () => {
       url: "/news/1",
       journal_name: "한겨레",
       detail_img_path:
-        "https://www.history.com/.image/t_share/MTYwNTU5OTUxMDU4NTc2OTQy/communism-topic-gettyimages-89856241.jpg",
+        "https://imgnews.pstatic.net/image/079/2022/11/07/0003704132_001_20221107124401245.jpg?type=w647",
       title:
-        "남조선 공산당 전국대표대회",
+        "원희룡 '사고 끊이지 않는 코레일…하나에서 열까지 다 바꿔야'",
       content:
-        "이번 전당대회는 당이 나아갈 미래와 정책 방향을 결정하고 지도부를 결정하는 당내 행사입니다. 중요한 결정은 당 대회가 열리기 전에 이미 대개 만들어지고요. 전체 회의에서는 찬반 정도만 가리는 것으로 알려져 있습니다.",
+        "윤 대통령사우디 해외출장 중 질타…승객불편 최소화·작업자 안전 당부 철도사고 늘어난다며 지난 3일 철도안전 비상대책회의 열었지만 5일 오봉역 코레일 직원 사망사고 이어 연이틀 대형사고 발생은 이날 오전 용산 대통령실에서 국가안전시스템 점검회의를 주재하고 '아들 딸을 잃은 부모의 심경에 감히 비할 바는 아니지만 국민의 생명과 안전을 지켜야 하는 대통령으로서 비통하고 마음이 무겁다'며 이같이 말했다.",
     },
     {
       id: 2,
@@ -76,6 +76,8 @@ const NewsListPage = () => {
       id: 5,
       url: "/news/5",
       journal_name: "조선일보",
+      created_at: "2022.05.08",
+      updated_at: "2022.05.10",
       detail_img_path:
         "http://file3.instiz.net/data/file3/2019/10/05/4/c/b/4cb9adbe6cdd8af91cb62d616f3139bc.jpg",
       title:
@@ -158,19 +160,25 @@ const NewsListPage = () => {
                           <NewsArticle
                             key={`${td.id}_todo`}
                             url={td.url}
-                            journal_name={td.journal_name}
-                            detail_img_path={td.detail_img_path}
+                            journal_name={td?.journal_name}
+                            detail_img_path={td?.detail_img_path}
+                            created_at={td?.created_at}
+                            updated_at={td?.updated_at}
                             width={250}
                             height={250}
-                            title={td.title}
-                            content={td.content}
+                            title={td?.title}
+                            content={td?.content}
                           />
                         );
                       })}   
+         
                   </div>
+                  
                 </div>
             </div>
       </div>
+
+      
       </>
     );
   }

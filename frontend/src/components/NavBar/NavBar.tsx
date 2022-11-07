@@ -1,6 +1,5 @@
 import { useState } from "react";
 import UserInfoBtn, { UserInfoBtnType } from "../UserInfoBtn/UserInfoBtn"
-import NavBarBtn from "./NavBarBtn";
 import { useNavigate } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -25,7 +24,7 @@ return (
       <Container>
         <Navbar.Brand href="#home">JungJung DangDang</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="/main"  >Home</Nav.Link>
+          <Nav.Link href="/main" >Home</Nav.Link>
           <Nav.Link href="/news" >News List</Nav.Link>
           <Nav.Link href="/politician" >Politicians</Nav.Link>
         </Nav>

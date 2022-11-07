@@ -13,6 +13,8 @@ export interface NewsArticleType {
   journal_name?: string;
   width?: number;
   height?: number;
+  created_at?: string;
+  updated_at?: string;
   tags?: string[];
 }
 
@@ -25,6 +27,73 @@ export default function NewsArticle(props: NewsArticleType) {
     if(props.journal_name === "한겨레") {
 
       return (
+        
+        <p>
+          <div className="NewsArticleLeft" onClick={onClickHandler}>
+  
+            <div className="leftContent">
+              <img
+                className="image"
+                src={props.detail_img_path}
+                alt="Hmm"
+                width={props.width}
+                height={props.height}
+              />
+            </div>
+            <div className="rightContent">
+              <div className="title">{props.title}</div>
+              <p className="content">{props.content}</p>
+            
+              <div className="dateContent">
+                <text className="card-text"><small className="text-muted">Created: {props?.created_at}</small></text>
+                &nbsp; &nbsp;
+                <text className="card-text"><small className="text-muted">Last updated: {props?.updated_at}</small></text>
+              </div>
+            </div>
+          </div>
+       </p>
+       
+      );
+
+
+    } else {
+
+      return (
+        <p>
+          <div className="NewsArticleRight" onClick={onClickHandler}>
+  
+            <div className="leftContent">
+              <img
+                className="image"
+                src={props.detail_img_path}
+                alt="Hmm"
+                width={props.width}
+                height={props.height}
+              />
+            </div>
+            <div className="rightContent">
+              <div className="title">{props.title}</div>
+              <p className="content">{props.content}</p>
+              <div className="dateContent">
+                <text className="card-text"><small className="text-muted">Created: {props?.created_at}</small></text>
+                &nbsp; &nbsp;
+                <text className="card-text"><small className="text-muted">Last updated: {props?.updated_at}</small></text>
+              </div>
+            </div>
+          </div>
+    </p>
+      );
+
+
+
+    }
+    
+  }
+
+
+  /*
+
+  return (
         
         <div className="NewsArticleLeft" onClick={onClickHandler}>
   
@@ -45,29 +114,6 @@ export default function NewsArticle(props: NewsArticleType) {
       );
 
 
-    } else {
-
-      return (
-        <div className="NewsArticleRight" onClick={onClickHandler}>
-  
-          <div className="leftContent">
-            <img
-              className="image"
-              src={props.detail_img_path}
-              alt="Hmm"
-              width={props.width}
-              height={props.height}
-            />
-          </div>
-          <div className="rightContent">
-            <div className="title">{props.title}</div>
-            <p className="content">{props.content}</p>
-          </div>
-        </div>
-      );
-
-
-
     }
-    
-  }
+
+    */
