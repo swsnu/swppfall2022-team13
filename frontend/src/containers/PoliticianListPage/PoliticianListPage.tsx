@@ -4,6 +4,7 @@ import { PoliticianSummaryType } from "../../components/PoliticianSummary/Politi
 import UserInfoBtn from "../../components/UserInfoBtn/UserInfoBtn";
 import { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
 import "./PoliticianListPage.css";
+import KitchenSinkExample from "../../components/PoliticianSummary/PoliticianSummary";
 
 const PoliticianListPage = () => {
   const userInfoBtnContent: UserInfoBtnType = {
@@ -60,14 +61,24 @@ const PoliticianListPage = () => {
       <div className="PoliticianSummarys">
         {PoliticianSummarys.map((data) => {
           return (
-            <PoliticianSummary
-              id={data.id}
-              image={data.image}
-              name={data.name}
-              birthdate={data.birthdate}
-              politicalParty={data.politicalParty}
-              position={data.position}
-            />
+            <div className="SummaryComponent">
+              <KitchenSinkExample
+                id={data.id}
+                image={data.image}
+                name={data.name}
+                birthdate={data.birthdate}
+                politicalParty={data.politicalParty}
+                position={data.position}
+              />
+            </div>
+            // <PoliticianSummary
+            // id={data.id}
+            // image={data.image}
+            // name={data.name}
+            // birthdate={data.birthdate}
+            // politicalParty={data.politicalParty}
+            // position={data.position}
+            // />
           );
         })}
       </div>
