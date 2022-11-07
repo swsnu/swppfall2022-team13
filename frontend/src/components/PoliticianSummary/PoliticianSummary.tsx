@@ -12,7 +12,7 @@ export interface PoliticianSummaryType {
   position: string;
 }
 
-function KitchenSinkExample(props: PoliticianSummaryType) {
+function PoliticianSummary(props: PoliticianSummaryType) {
   const navigate = useNavigate();
   const url = "/politician/" + String(props.id);
   const onClickHandler = () => {
@@ -41,4 +41,4 @@ function KitchenSinkExample(props: PoliticianSummaryType) {
   );
 }
 
-export default KitchenSinkExample;
+export default PoliticianSummary;
