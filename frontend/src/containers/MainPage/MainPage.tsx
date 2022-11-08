@@ -4,6 +4,7 @@ import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
 import UserInfoBtn, {
   UserInfoBtnType,
 } from "../../components/UserInfoBtn/UserInfoBtn";
+import NavBar from "../../components/NavBar/NavBar";
 import CarouselComponent, {
   CarouselContentType,
 } from "../../components/CarouselContent/CarouselContent";
@@ -69,10 +70,7 @@ const MainPage = () => {
   };
   return (
     <div className="MainPage">
-      <UserInfoBtn
-        url={userInfoBtnContent.url}
-        image={userInfoBtnContent.image}
-      />
+      <NavBar />
       <div className="MainBtns">
         {btnContents.map((data) => {
           return <ImageBtn url={data.url} image={data.image} />;

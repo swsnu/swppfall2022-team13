@@ -1,10 +1,10 @@
-import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
 import { useState } from "react";
 import { PoliticianSummaryType } from "../../components/PoliticianSummary/PoliticianSummary";
 import UserInfoBtn from "../../components/UserInfoBtn/UserInfoBtn";
 import { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
 import "./PoliticianListPage.css";
-import KitchenSinkExample from "../../components/PoliticianSummary/PoliticianSummary";
+import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
+import NavBar from "../../components/NavBar/NavBar";
 
 const PoliticianListPage = () => {
   const userInfoBtnContent: UserInfoBtnType = {
@@ -54,15 +54,12 @@ const PoliticianListPage = () => {
   ]);
   return (
     <div className="PoliticianListPage">
-      <UserInfoBtn
-        url={userInfoBtnContent.url}
-        image={userInfoBtnContent.image}
-      />
+      <NavBar />
       <div className="PoliticianSummarys">
         {PoliticianSummarys.map((data) => {
           return (
             <div className="SummaryComponent">
-              <KitchenSinkExample
+              <PoliticianSummary
                 id={data.id}
                 image={data.image}
                 name={data.name}

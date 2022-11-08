@@ -14,7 +14,7 @@ import UserInfoBtn from "../../components/UserInfoBtn/UserInfoBtn";
 import "./PoliticianDetailPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Figure from "react-bootstrap/Figure";
+import NavBar from "../../components/NavBar/NavBar";
 
 const PoliticianDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -130,10 +130,7 @@ const PoliticianDetailPage = () => {
   const politician = politicianContents[Number(id) - 1];
   return (
     <div className="PoliticianDetailPage">
-      <UserInfoBtn
-        url={userInfoBtnContent.url}
-        image={userInfoBtnContent.image}
-      />
+      <NavBar />
       <div>
         <div className="left">
           <img src={politician.image_src} width={300} height={370} />
