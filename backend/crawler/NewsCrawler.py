@@ -5,6 +5,7 @@ from IPython.display import clear_output #Ipython 환경에서만 필요
 from abc import *
 from bs4 import BeautifulSoup
 import requests  
+import pprint
 
 class NewsCrawler(metaclass=ABCMeta):
     @classmethod
@@ -65,6 +66,7 @@ class NaverCrawler(NewsCrawler):
         except BaseException as e:
             print("Error occured at ...")
             print(article_json)
+            print(e)
             raise e
                     
     @classmethod
@@ -77,12 +79,12 @@ class NaverCrawler(NewsCrawler):
             article_json = cls._bs4_element2article_json(article_element)
             if article_json['journal_name'] in ['한겨레', '조선일보']:
               articles_list.append(article_json)
+              print(f"Crawled {len(articles_list)} / {max_num} articles.")
 
             # progress checker
             # os.system('clear') # for pycharm, vscode etc...
             clear_output(wait=True) # for Ipython
-            print(f"Crawled {len(articles_list)} / {max_num} articles.")
-
+            
             if len(articles_list) >= max_num:
                 raise StopIteration
                 
@@ -98,10 +100,10 @@ class NaverCrawler(NewsCrawler):
 
 if __name__ == "__main__":
   try:
-    number_of_articles = sys.argv[1]
+    number_of_articles = int(sys.argv[1])
   except:
     print("인자로 받을 개수를 적어야 합니다.")
     quit()
   
-  crawling_result = NaverCrawler.crawl(5)
-  print(crawling_result)
+  crawling_result = NaverCrawler.crawl(number_of_articles)
+  pprint.pprint(crawling_result)
