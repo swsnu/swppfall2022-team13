@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from .models import Politician
 import json
@@ -48,4 +49,20 @@ def politician(request):
   
 @csrf_exempt
 def politician_detail(request, politician_id):
-  pass
+    if request.method=='GET':
+        politician = get_object_or_404(Politician, id=politician_id)
+        response_data = {'name': politician.name,
+                     'birth_date': politician.birth_date,
+                     'job': politician.job,
+                     'political_party': politician.political_party,
+                     'election_precinct': politician.election_precinct,
+                     'committee': politician.committee,
+                     'committees': politician.committees,
+                     'reelection': politician.reelection,
+                     'election_units': politician.election_units,
+                     'email': politician.email,
+                     'career_summary': politician.career_summary,
+                     'mona_code': politician.mona_code}    
+        return JsonResponse(response_data, status=200)
+    else :
+      return HttpResponseNotAllowed(['GET'])
