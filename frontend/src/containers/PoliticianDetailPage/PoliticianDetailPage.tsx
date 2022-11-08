@@ -80,7 +80,7 @@ const PoliticianDetailPage = () => {
       id: 3,
       name: "이재명",
       political_party: "더불어민주당",
-      position: "제21대 국회의원, 제6대 더불어민주당 대표",
+      position: "제21대 국회의원",
       birth_date: "1963년 12월 8일",
       education: [
         "1976.2. 삼계국민학교 졸업",
@@ -136,29 +136,28 @@ const PoliticianDetailPage = () => {
       />
       <div>
         <div className="left">
-          <h2>{politician.name}</h2>
           <img src={politician.image_src} width={300} height={370} />
+          <h4 id="name">{politician.name + " " + politician.position}</h4>
+          <p id="birth-date">{politician.birth_date}</p>
         </div>
         <div className="right">
-          <div className="position">
-            <h3>{politician.position}</h3>
-            <h3>{politician.political_party}</h3>
+          <div className="intro">
+            <h2 id="intro-title">의원소개</h2>
           </div>
-          <div className="Education">
-            <h3>학력</h3>
-            <ul>
-              {politician.education.map((edu) => {
-                return <li>{edu}</li>;
-              })}
-            </ul>
+          <div className="education-and-career">
+            <h4 id="intro-education">학력 및 경력</h4>
           </div>
-          <div className="Careers">
-            <h3>경력</h3>
-            <ul>
-              {politician.brief_histroy.map((car) => {
-                return <li>{car}</li>;
-              })}
-            </ul>
+          <div id="education-detail">
+            <p id="education-title">[학력]</p>
+            {politician.education.map((td) => {
+              return <li>{td}</li>;
+            })}
+          </div>
+          <div id="career-detail">
+            <p id="career-title">[경력]</p>
+            {politician.brief_histroy.map((td) => {
+              return <li>{td}</li>;
+            })}
           </div>
         </div>
       </div>
