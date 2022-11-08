@@ -1,0 +1,38 @@
+dist: bionic
+jobs:
+  include:
+    - language: node_js
+      node_js: 14
+      python: "3.9.6"
+      install:
+        - cd backend
+        - pip install -r requirements.txt
+      script:
+        - pylint **/*.py --load-plugins pylint_django
+    - language: node_js
+      node_js: 14
+      addons:
+        sonarcloud:
+          organization: "swsnu"
+          token:
+            secure: "Ij+A+QKpgvOYvINU1LE2fubCqWxh3OQ4Om6eT+QAgpeTBES2v+zk2zfPifqzpFeQ/yhgR6xTIb45Uh4xT7+v/SyG+wJ3Z0Hr5i8uJFzlHgd53jXxbFfiiZX8sIdWBRE1jKDglpoGipafhGaVZZQReEZocwbKxou0vDwE/JsZUQ5od15+zXvJnu3omLdnqipIGHchDIid7t8Eo50V04esunYgYKoJS8T2ey62S3OLZ+Ipmayg5xvrS1Duf3CO8OekNRNr5KY/I7STfTn02keUP8CA9R9NmD08duhidpBnjSPK8xrKeDq1qIDnTdUuWVxi/BKVG6W7rqXXAuXbVeRnJBUqok9d4+Z+R90JXsZaVEe4MKYzL1kuq06IqofuOUKKE2pXc78z1JcWJvlAjtIxE7ibROgTbTufQvXkfdf/AJ8ZCppQvGHmj/r11CbtG3WJwyMvAhOxDlzB2OkzGDPCzMbHWbNlFCQZkrijjDZKOGYFdXHypT50jZqlmfLS+XjK2/HJlrtsP5OryDqTI7IqS5oG1QHKcb74xtfcWgEfrTDlq0KoNM71pewRzOnVc3sLuuOC2vIMz6/r5HHWQFVV8ocaS5k/CSGqmrHtHXys+vf2bA6hoD/TF6rgvjIFap7KHU5lMgCGv0K729EoRyxubHJB6KIhmNwlboSKMDWDGGk="
+      install:
+        - source ~/virtualenv/python3.9.6/bin/activate
+        - python --version
+        - pip --version
+        - pip install -r backend/requirements.txt
+        - pip install coveralls
+        - yarn global add coveralls
+        - gem install coveralls-lcov
+        - cd frontend
+        - yarn install
+      script:
+        - ./node_modules/.bin/eslint src
+        - yarn test --coverage --watchAll=false
+        - coveralls-lcov -v -n coverage/lcov.info > coverage.json
+        - cd ../backend
+        - pylint **/*.py --load-plugins pylint django
+        - coverage run --source='.' manage.py test
+        - coverage xml
+        - sonar-scanner
+        - coveralls --merge=./frontend/coverage.json
