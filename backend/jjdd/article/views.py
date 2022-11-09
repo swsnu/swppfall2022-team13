@@ -7,7 +7,8 @@ import json
 @csrf_exempt
 def article(request):
   if request.method == "GET":
-    article_list = [{ 'title': article['title'],
+    article_list = [{ 'id': article['id'],
+                     'title': article['title'],
                      'datetime': article['datetime'],
                      'preview_prologue': article['preview_prologue'],
                      'detail_link_postfix': article['detail_link_postfix'],

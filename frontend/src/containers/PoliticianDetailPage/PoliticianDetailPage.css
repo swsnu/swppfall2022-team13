@@ -1,0 +1,64 @@
+li {
+  list-style: none;
+}
+.left {
+  float: left;
+  margin-left: 10%;
+}
+.right {
+  float: right;
+  margin-right: 10%;
+}
+
+.intro {
+  width: 800px;
+  border-bottom: solid 1px black;
+}
+
+.education-and-career-header {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: solid 2px black;
+}
+
+.education-and-career-body {
+  text-align: left;
+}
+#intro-title {
+  text-align: left;
+}
+
+#intro-education-and-career {
+  text-align: left;
+}
+
+#mini-title {
+  margin-top: 20px;
+}
+
+#name {
+  text-align: left;
+  color: #580009;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+#birth-date {
+  text-align: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#education-detail {
+  margin-top: 10px;
+  text-align: left;
+}
+
+#career-title {
+  margin-top: 30px;
+}
+
+#career-detail {
+  margin-top: 10px;
+  text-align: left;
+}
