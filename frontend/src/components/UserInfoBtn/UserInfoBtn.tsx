@@ -6,7 +6,7 @@ export interface UserInfoBtnType {
   className?: string;
 }
 
-export default function ImageBtn(props: UserInfoBtnType) {
+export default function UserInfoBtn(props: UserInfoBtnType) {
   //clickhandler 추가하기
   const navigate = useNavigate();
   const onClickHandler = () => {

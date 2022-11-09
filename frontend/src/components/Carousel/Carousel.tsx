@@ -2,10 +2,12 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ImageBtn from "./ImageBtn";
+import ImageBtn from "../ImageBtn/ImageBtn";
 import styled from "styled-components";
-import { ImageBtnType } from "./ImageBtn";
-import CarouselComponent, { CarouselContentType } from "./CarouselContent";
+import { ImageBtnType } from "../ImageBtn/ImageBtn";
+import CarouselComponent, {
+  CarouselContentType,
+} from "../CarouselContent/CarouselContent";
 
 const Wrap = styled.div`
   margin: 10% auto;
@@ -50,9 +52,9 @@ export default function Carousel(props: IProps) {
             return (
               <CarouselComponent
                 url={data.url}
-                image_src={data.image_src}
+                detail_img_path={data.detail_img_path}
                 width={250}
-                height={250}
+                height={246}
                 title={data.title}
                 content={data.content}
               />
