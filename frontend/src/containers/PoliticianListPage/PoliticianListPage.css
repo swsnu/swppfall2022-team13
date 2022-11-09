@@ -1,0 +1,15 @@
+.PoliticianSummarys {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.PoliticianListPage {
+  background-color: #f1f2f5;
+  width: 100%;
+  height: 1000px;
+}
+
+.SummaryComponent {
+  margin: 15px;
+}
