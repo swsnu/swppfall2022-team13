@@ -187,7 +187,7 @@ const NewsDetailPage = () => {
           className="rounded mx-auto d-block" alt="..."></img>
 
           <div className="card-body">
-            <p className="card-text">{article?.content}</p>
+            <p className="card-text">{article?.detail_text}</p>
             <p>
             <a href="/news" className="btn btn-primary">Back</a>
             &nbsp; &nbsp;
