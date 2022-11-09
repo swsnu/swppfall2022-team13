@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { PoliticianSummaryType } from "../../components/PoliticianSummary/PoliticianSummary";
-import UserInfoBtn from "../../components/UserInfoBtn/UserInfoBtn";
-import { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
 import "./PoliticianListPage.css";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
 import NavBar from "../../components/NavBar/NavBar";

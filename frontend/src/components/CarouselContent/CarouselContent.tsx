@@ -2,10 +2,11 @@ import "./CarouselContent.css";
 import { useNavigate } from "react-router-dom";
 
 export interface CarouselContentType {
+  id?: number;
   title?: string;
   content?: string;
   url: string;
-  image_src?: string;
+  detail_img_path?: string;
   width?: number;
   height?: number;
   tags?: string[];
@@ -20,7 +21,7 @@ export default function CarouselComponent(props: CarouselContentType) {
       <div className="leftContent">
         <img
           className="image"
-          src={props.image_src}
+          src={props.detail_img_path}
           alt="Hmm"
           width={props.width}
           height={props.height}

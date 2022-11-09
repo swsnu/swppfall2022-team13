@@ -52,7 +52,7 @@ export default function Carousel(props: IProps) {
             return (
               <CarouselComponent
                 url={data.url}
-                image_src={data.image_src}
+                detail_img_path={data.detail_img_path}
                 width={250}
                 height={246}
                 title={data.title}
