@@ -54,7 +54,7 @@ export default function Carousel(props: IProps) {
                 url={data.url}
                 image_src={data.image_src}
                 width={250}
-                height={250}
+                height={246}
                 title={data.title}
                 content={data.content}
               />

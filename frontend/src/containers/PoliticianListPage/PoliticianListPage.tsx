@@ -12,11 +12,6 @@ const PoliticianListPage = () => {
   const onChangeHandler = (e: any) => {
     setSearch(e.target.value);
   };
-  const userInfoBtnContent: UserInfoBtnType = {
-    url: "/user/1",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3qAb5Xu6-hZguic1bPpFbicnmwOlHHIQ_ANoaY1xcLwrHfem6M1mNZkspUnq4u4DgjWs&usqp=CAU",
-  };
   const [PoliticianSummarys, setPoliticianSummarys] = useState<
     PoliticianSummaryType[]
   >([
@@ -57,9 +52,12 @@ const PoliticianListPage = () => {
       position: "제7대 국토교통부장관",
     },
   ]);
-  const filterName = PoliticianSummarys.filter((p) => {
+  let filterName = PoliticianSummarys.filter((p) => {
     return p.name.replace(" ", "").includes(search.replace(" ", ""));
   });
+  if (filterName.length > 4) {
+    filterName = filterName.slice(0, 4);
+  }
   return (
     <div className="PoliticianListPage">
       <NavBar />
@@ -79,14 +77,6 @@ const PoliticianListPage = () => {
                 position={data.position}
               />
             </div>
-            // <PoliticianSummary
-            // id={data.id}
-            // image={data.image}
-            // name={data.name}
-            // birthdate={data.birthdate}
-            // politicalParty={data.politicalParty}
-            // position={data.position}
-            // />
           );
         })}
       </div>
