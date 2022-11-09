@@ -1,8 +1,11 @@
 import Carousel from "../../components/Carousel/Carousel";
+import NavBar from '../../components/NavBar/NavBar'
 import { useState } from "react";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
-import NavBar from "../../components/NavBar/NavBar";
-import { CarouselContentType } from "../../components/CarouselContent/CarouselContent";
+import UserInfoBtn, { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
+import CarouselComponent, {
+  CarouselContentType,
+} from "../../components/CarouselContent/CarouselContent";
 import "./MainPage.css";
 const MainPage = () => {
   const [carouselContents, setCarouselContents] = useState<
@@ -68,7 +71,7 @@ const MainPage = () => {
   ]);
   return (
     <div className="MainPage">
-      <NavBar />
+      <NavBar/>
       <div className="MainBtns">
         {btnContents.map((data) => {
           return <ImageBtn url={data.url} image={data.image} />;

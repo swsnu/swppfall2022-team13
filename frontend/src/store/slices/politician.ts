@@ -3,6 +3,30 @@ import axios from "axios";
 import { RootState } from "..";
 
 export interface PoliticianType {
+<<<<<<< HEAD
+  // id: number;
+  // name: string;
+  // birth_date: string;
+  // job: string;
+  // political_party: string;
+  // election_precinct: string;
+  // committee: string;
+  // committees: string;
+  // reelection: string;
+  // election_units: string;
+  // email: string;
+  // career_summary: string;
+  // mona_code: string;
+  id: number;
+  image_src: string;
+  name: string;
+  political_party: string;
+  position: string;
+  election_precinct?: string;
+  birth_date: string;
+  education: string[];
+  brief_histroy: string[];
+=======
   id: number;
   name: string;
   birth_date: string;
@@ -26,6 +50,7 @@ export interface PoliticianType {
   // birth_date: string;
   // education: string[];
   // brief_histroy: string[];
+>>>>>>> f7f29bfb2c8c350b8d634f9604627bff28c1aefb
 }
 
 export interface PoliticianState {
@@ -84,4 +109,8 @@ export const politicianSlice = createSlice({
 export const politicianActions = politicianSlice.actions;
 export const selectPolitician = (state: RootState) => state.politician;
 
+<<<<<<< HEAD
 export default politicianSlice.reducer;
+=======
+export default politicianSlice.reducer;
+>>>>>>> f7f29bfb2c8c350b8d634f9604627bff28c1aefb
