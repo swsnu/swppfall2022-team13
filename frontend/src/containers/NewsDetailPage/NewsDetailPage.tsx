@@ -191,7 +191,7 @@ const NewsDetailPage = () => {
             <p>
             <a href="/news" className="btn btn-primary">Back</a>
             &nbsp; &nbsp;
-            <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={() => handleCopyClipBoard(article?.content)}>Copy Content</button>
+            <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={() => handleCopyClipBoard(article?.detail_text)}>Copy Content</button>
             </p>
           </div>
           </div>
@@ -221,7 +221,7 @@ const NewsDetailPage = () => {
             <p>
             <a href="/news" className="btn btn-primary">Back</a>
             &nbsp; &nbsp;
-            <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={() => handleCopyClipBoard(article?.content)}>Copy Content</button>
+            <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={() => handleCopyClipBoard(article?.detail_text)}>Copy Content</button>
             </p>
           </div>
           </div>
