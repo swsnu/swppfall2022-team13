@@ -12,7 +12,7 @@ export interface NewsArticleType {
   detail_link_postfix?: string;
   preview_img_path?: string;
   detail_img_path?: string;
-  journal_name?: string;
+  journal_name: string;
   detail_text?: string;
   created_at?: any;
   updated_at?: any;
@@ -26,7 +26,7 @@ export interface NewsArticleType {
 export default function NewsArticle(props: NewsArticleType) {
     const navigate = useNavigate();
     const onClickHandler = () => {
-      navigate(props.url);
+      navigate("/news/" + props.id);
     };
 
     if(props.journal_name === "한겨레") {
@@ -47,10 +47,10 @@ export default function NewsArticle(props: NewsArticleType) {
             </div>
             <div className="rightContent">
               <div className="title">{props.title}</div>
-              <p className="content">{props.content}</p>
+              <p className="content">{props.preview_prologue}</p>
             
               <div className="dateContent">
-                <text className="card-text"><small className="text-muted">Created: {props?.created_at}</small></text>
+                <text className="card-text"><small className="text-muted">Created: {props?.datetime_str}</small></text>
                 &nbsp; &nbsp;
                 <text className="card-text"><small className="text-muted">Last updated: {props?.updated_at}</small></text>
               </div>
@@ -78,9 +78,9 @@ export default function NewsArticle(props: NewsArticleType) {
             </div>
             <div className="rightContent">
               <div className="title">{props.title}</div>
-              <p className="content">{props.content}</p>
+              <p className="content">{props.preview_prologue}</p>
               <div className="dateContent">
-                <text className="card-text"><small className="text-muted">Created: {props?.created_at}</small></text>
+                <text className="card-text"><small className="text-muted">Created: {props?.datetime_str}</small></text>
                 &nbsp; &nbsp;
                 <text className="card-text"><small className="text-muted">Last updated: {props?.updated_at}</small></text>
               </div>

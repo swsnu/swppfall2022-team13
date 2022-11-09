@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios";
 import {RootState} from "..";
@@ -20,23 +19,6 @@ export interface ArticleType {
 
 export interface ArticleState {
     articles: ArticleType[];
-=======
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
-import { RootState } from "..";
-
-export interface ArticleType {
-  id: number;
-  url: string;
-  type: string;
-  image_src: string;
-  title: string;
-  content: string;
-}
-
-export interface ArticleState {
-  articles: ArticleType[];
->>>>>>> f7f29bfb2c8c350b8d634f9604627bff28c1aefb
   selectedArticle: ArticleType | null;
 }
 
@@ -45,20 +27,13 @@ const initialState: ArticleState = {
   selectedArticle: null,
 };
 
-<<<<<<< HEAD
-export const fetchArticles = createAsyncThunk("article/fetchArticles", async () => {
-  const response = await axios.get<ArticleType[]>("/api/article/");
-  return response.data;
-});
-=======
 export const fetchArticles = createAsyncThunk(
   "article/fetchArticles",
   async () => {
-    const response = await axios.get<ArticleType[]>("/api/article/");
+    const response = await axios.get<ArticleType[]>("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/");
     return response.data;
   }
 );
->>>>>>> f7f29bfb2c8c350b8d634f9604627bff28c1aefb
 
 export const fetchArticle = createAsyncThunk(
   "article/fetchArticle",
@@ -76,10 +51,6 @@ export const deleteArticle = createAsyncThunk(
   }
 );
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f7f29bfb2c8c350b8d634f9604627bff28c1aefb
 export const articleSlice = createSlice({
   name: "article",
   initialState,
@@ -113,8 +84,4 @@ export const articleSlice = createSlice({
 export const articleActions = articleSlice.actions;
 export const selectArticle = (state: RootState) => state.article;
 
-<<<<<<< HEAD
 export default articleSlice.reducer;
-=======
-export default articleSlice.reducer;
->>>>>>> f7f29bfb2c8c350b8d634f9604627bff28c1aefb

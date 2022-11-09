@@ -15,6 +15,7 @@ const NewsListPage = () => {
 
   useEffect(() => {
     dispatch(fetchArticles());
+    console.log("this is state: " + articleState)
   }, []);  
   
   //AFTER PROPER BACKEND
@@ -120,6 +121,7 @@ const NewsListPage = () => {
     },
   ]);
 
+
   return (
     <>
     <div className = "background_list">
@@ -135,26 +137,57 @@ const NewsListPage = () => {
                   <div className="LeftNews">
 
                       {articleState.articles.map((td: any) => {
-                        
-                          return (
-                            <NewsArticle
-                              key={`${td.id}_todo`}
-                              url={td.url}
-                              id={td.id}
-                              datetime_str={td.datetime_str}
-                              detail_link_postfix={td.detail_link_postfix}
-                              preview_prologue={td.preview_prologue}
-                              journal_name={td.journal_name}
-                              preview_img_path={td.preview_img_path}
-                              detail_img_path={td.detail_img_path}
-                              width={250}
-                              height={250}
-                              title={td.title}
-                              detail_text={td.content}
-                            />
-                          );
- 
+                          if(td.journal_name === '한겨레') {
+                            return (
+                              <NewsArticle
+                                key={`${td.id}_todo`}
+                                url={td.url}
+                                id={td.id}
+                                datetime_str={td.datetime_str}
+                                detail_link_postfix={td.detail_link_postfix}
+                                preview_prologue={td.preview_prologue}
+                                journal_name={td.journal_name}
+                                preview_img_path={td.preview_img_path}
+                                detail_img_path={td.detail_img_path}
+                                width={250}
+                                height={250}
+                                title={td.title}
+                                detail_text={td.content}
+                              />
+                            );
+
+                          }
+
                     })}
+                    </div>
+                  </div>
+
+                      <div className="col-sm-6">
+                      <div className="RightNews">
+
+                        {articleState.articles.map((td: any) => {
+                          if(td.journal_name !== '한겨레') {
+                            return (
+                              <NewsArticle
+                                key={`${td.id}_todo`}
+                                url={td.url}
+                                id={td.id}
+                                datetime_str={td.datetime_str}
+                                detail_link_postfix={td.detail_link_postfix}
+                                preview_prologue={td.preview_prologue}
+                                journal_name={td.journal_name}
+                                preview_img_path={td.preview_img_path}
+                                detail_img_path={td.detail_img_path}
+                                width={250}
+                                height={250}
+                                title={td.title}
+                                detail_text={td.content}
+                              />
+                            );
+
+                          }
+
+                    })} 
                   
                 </div>
               </div>
