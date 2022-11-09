@@ -17,7 +17,7 @@ export default function CarouselComponent(props: CarouselContentType) {
     navigate(props.url);
   };
   return (
-    <div className="CarouselComponent" onClick={onClickHandler}>
+    <div className="CarouselComponent" onClick={onClickHandler} key={props.id}>
       <div className="leftContent">
         <img
           className="image"

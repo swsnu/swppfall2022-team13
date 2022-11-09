@@ -1,13 +1,8 @@
 import Carousel from "../../components/Carousel/Carousel";
 import { useState } from "react";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
-import UserInfoBtn, {
-  UserInfoBtnType,
-} from "../../components/UserInfoBtn/UserInfoBtn";
 import NavBar from "../../components/NavBar/NavBar";
-import CarouselComponent, {
-  CarouselContentType,
-} from "../../components/CarouselContent/CarouselContent";
+import { CarouselContentType } from "../../components/CarouselContent/CarouselContent";
 import "./MainPage.css";
 const MainPage = () => {
   const [carouselContents, setCarouselContents] = useState<
@@ -57,24 +52,6 @@ const MainPage = () => {
       title: "윤 대통령, 레고랜드 사태에 '누가 칼 들고 협박했나?'",
       content:
         "최근 강원도가 레고랜드 테마파크 조성을 위해 발행한 2050억원 규모 프로젝트파이낸싱(PF). 시장안정 조치 신속 집행…약탈적 불법사금융, 무관용 원칙 강력단속",
-    },
-    {
-      id: 7,
-      url: "/news/7",
-      detail_img_path:
-        "https://img.khan.co.kr/news/2018/03/17/l_2018031701002096200165431.webp",
-      title: "“아버지가 또 태극기집회에 가셨다” 가족갈등과 노인소외",
-      content:
-        "“어디 감히 국민의 손으로 뽑은 대통령을 자기네 마음대로 쫓아내! 문재인도 대화합을 위해 지금이라도 물러나고….” 어머니가 다급하게 말리신다. 어머니 배모씨(67)는 “내가 당신이 밖에서 무슨 짓을 하고 다니든 뭐라고 한 적이 있냐”며 “제발 집안에서는 큰소리 안 나게 얼른 나가라”고 했다.",
-    },
-    {
-      id: 8,
-      url: "/news/8",
-      detail_img_path:
-        "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202202/24/cbd64c06-d6e5-43e6-baaa-1ed06789e6db.jpg",
-      title: "허경영 '우리도 똑같이 3억 냈어!'…새벽 1시 토론에 극대노",
-      content:
-        "국가혁명당 허경영 후보가 지난 22일 열린 군소정당 후보의 대선 방송토론회를 앞두고 방송 시간에 대해 거세게 항의했다. 이날 토론은 22일 오후 11시 시작돼 다음 날 오전 1시까지 두 시간가량 진행됐다. 허 후보는 “누가 1시에 토론하랬냐. 당신은 취침 시간도 모르냐”고 성토했다.",
     },
   ]);
   const [btnContents, setBtnContents] = useState<ImageBtnType[]>([
