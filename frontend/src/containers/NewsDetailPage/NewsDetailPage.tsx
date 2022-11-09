@@ -12,9 +12,9 @@ import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 const NewsDetailPage = () => {
 
-  //const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  //const articleState = useSelector(selectArticle);
+  const articleState = useSelector(selectArticle);
   const { id } = useParams(); //fetch number from current url
 
   var currArticleId:number = 1;
@@ -126,29 +126,32 @@ const NewsDetailPage = () => {
 
   
   
-        /* 
+        
   useEffect(() => {  //fetch all articles and save them to articleState
     dispatch(fetchArticles());
-  }, []); */
+  }, []); 
 
-  //const article = articleState.articles.find((value:any) => value.id === currArticleId); //find article with same id 
+  const article = articleState.articles.find((value:any) => value.id === currArticleId); //find article with same id 
                                                                                          //this page should display THIS article
-
+  /*
   var articleLeft = newsArticlesLeft[currArticleId - 1]; //Only necessary for MOCK DATA
 
   if (articleLeft === undefined) {
     var articleRight = newsArticlesRight.find((value:any) => value.id === currArticleId)
-  } //Only necessary for MOCK DATA
+  } //Only necessary for MOCK DATA 
+  */
 
-  if(!articleLeft && !articleRight) { //if there is no article found with the id, go back to newsList (wrong URL)
+  if(!article) { //if there is no article found with the id, go back to newsList (wrong URL)
     navigate ("/news")
   }
 
+  /*
   if (articleLeft === undefined) {
     var article = articleRight
   } else {
     article = articleLeft
-  } //Only necessary for MOCK DATA
+  } //Only necessary for MOCK DATA 
+  */
 
   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 

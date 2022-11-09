@@ -4,15 +4,15 @@ import {RootState} from "..";
 
 export interface ArticleType {
   id: number;
-  title?: string;
+  title: string;
   content?: string;
-  datetime?: any;
-  preview_prologue?: string;
-  detail_link_postfix?: string;
-  preview_img_path?: string;
-  journal_name?: string;
-  detail_text?: string;
-  detail_img_path?: string;
+  datetime_str: any;
+  preview_prologue: string;
+  detail_link_postfix: string;
+  preview_img_path: string;
+  detail_img_path: string;
+  journal_name: string;
+  detail_text: string;
   created_at?: any;
   updated_at?: any;
 }
