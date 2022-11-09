@@ -3,28 +3,29 @@ import axios from "axios";
 import { RootState } from "..";
 
 export interface PoliticianType {
-  // id: number;
-  // name: string;
-  // birth_date: string;
-  // job: string;
-  // political_party: string;
-  // election_precinct: string;
-  // committee: string;
-  // committees: string;
-  // reelection: string;
-  // election_units: string;
-  // email: string;
-  // career_summary: string;
-  // mona_code: string;
   id: number;
-  image_src: string;
   name: string;
-  political_party: string;
-  position: string;
-  election_precinct?: string;
   birth_date: string;
-  education: string[];
-  brief_histroy: string[];
+  job: string;
+  image_src: string;
+  political_party: string;
+  election_precinct: string;
+  committee: string;
+  committees: string;
+  reelection: string;
+  election_units: string;
+  email: string;
+  career_summary: string;
+  mona_code: string;
+  // id: number;
+  // image_src: string;
+  // name: string;
+  // political_party: string;
+  // position: string;
+  // election_precinct?: string;
+  // birth_date: string;
+  // education: string[];
+  // brief_histroy: string[];
 }
 
 export interface PoliticianState {

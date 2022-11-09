@@ -27,7 +27,12 @@ function PoliticianSummary(props: PoliticianSummaryType) {
         body={true}
         text="primary"
       >
-        <Card.Img variant="top" src={props.image} width={150} height={300} />
+        <Card.Img
+          variant="top"
+          src="https://media.istockphoto.com/photos/businessman-or-politician-making-speech-behind-the-pulpit-picture-id676327038?k=20&m=676327038&s=612x612&w=0&h=zb0yYF91voE-3-ar00zEjpG_HchV9LlpbCVPrErio1Q="
+          width={150}
+          height={300}
+        />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
           <Card.Text>{props.position}</Card.Text>

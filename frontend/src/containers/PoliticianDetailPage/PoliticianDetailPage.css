@@ -15,21 +15,25 @@
   border-bottom: solid 1px black;
 }
 
-.education-and-career {
+.education-and-career-header {
   margin-top: 30px;
+  margin-bottom: 10px;
   border-bottom: solid 2px black;
 }
 
+.education-and-career-body {
+  text-align: left;
+}
 #intro-title {
   text-align: left;
 }
 
-#intro-education {
+#intro-education-and-career {
   text-align: left;
 }
 
-#intro-education {
-  margin-bottom: 20px;
+#mini-title {
+  margin-top: 20px;
 }
 
 #name {

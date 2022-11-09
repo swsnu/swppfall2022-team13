@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { PoliticianSummaryType } from "../../components/PoliticianSummary/PoliticianSummary";
 import "./PoliticianListPage.css";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { AppDispatch } from "../../store";
+import {
+  fetchPoliticians,
+  selectPolitician,
+} from "../../store/slices/politician";
 
 const PoliticianListPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const politicianState = useSelector(selectPolitician);
+
   const [search, setSearch] = useState("");
   const onChangeHandler = (e: any) => {
     setSearch(e.target.value);
   };
+
+  useEffect(() => {
+    dispatch(fetchPoliticians());
+  }, []);
   const [PoliticianSummarys, setPoliticianSummarys] = useState<
     PoliticianSummaryType[]
   >([
@@ -50,7 +63,7 @@ const PoliticianListPage = () => {
       position: "제7대 국토교통부장관",
     },
   ]);
-  let filterName = PoliticianSummarys.filter((p) => {
+  let filterName = politicianState.politicians.filter((p) => {
     return p.name.replace(" ", "").includes(search.replace(" ", ""));
   });
   if (filterName.length > 4) {
@@ -68,11 +81,11 @@ const PoliticianListPage = () => {
             <div className="SummaryComponent">
               <PoliticianSummary
                 id={data.id}
-                image={data.image}
+                //image={data.image}
                 name={data.name}
-                birthdate={data.birthdate}
-                politicalParty={data.politicalParty}
-                position={data.position}
+                birthdate={data.birth_date}
+                politicalParty={data.political_party}
+                position={data.job}
               />
             </div>
           );
