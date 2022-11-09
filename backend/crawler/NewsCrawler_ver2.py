@@ -50,15 +50,16 @@ class NaverCrawler(NewsCrawler):
     def _bs4_element2article_json(cls, bs4_element):
         try:
             article_json = {}
-            article_json["datetime"] = bs4_element.select_one("span.date").text if bs4_element.select_one("span.date") else None
+            article_json["datetime"] = bs4_element.select_one("span.date").text.replace('.', '-') if bs4_element.select_one("span.date") else None
+            # print(article_json["datetime"].replace('.', '-'))
             article_json["preview_prologue"] = bs4_element.select_one("span.lede").text if bs4_element.select_one("span.lede") else None
-            article_json["detail_link"] = bs4_element.select_one("dt.photo a")["href"] if bs4_element.select_one("dt.photo a") else None
+            article_json["detail_link_postfix"] = bs4_element.select_one("dt.photo a")["href"] if bs4_element.select_one("dt.photo a") else None
             article_json["preview_img_path"] = bs4_element.select_one("dt.photo a img")["src"] if bs4_element.select_one("dt.photo a img") else None
             article_json["journal_name"] = bs4_element.select_one("span.writing").text if bs4_element.select_one("span.writing") else None
 
             
-            detail_url_str = article_json["detail_link"]
-            if article_json["detail_link"] is not None:
+            detail_url_str = article_json["detail_link_postfix"]
+            if article_json["detail_link_postfix"] is not None:
                 soup = NewsCrawler.url2soup(detail_url_str)
 
                 article_json["title"] = soup.select_one(".media_end_head_title .media_end_head_headline").text if soup.select_one(".media_end_head_title .media_end_head_headline") else None
@@ -84,7 +85,7 @@ class NaverCrawler(NewsCrawler):
         
         for article_element in article_element_list:
             article_json = cls._bs4_element2article_json(article_element)
-            if article_json['journal_name'] in ['한겨레', '조선일보'] and article_json["detail_link"] is not None:
+            if article_json['journal_name'] in ['한겨레', '조선일보'] and article_json["detail_link_postfix"] is not None:
               articles_list.append(article_json)
               os.system('clear') # for pycharm, vscode etc...
               print(f"Crawled {len(articles_list)} / {max_num} articles.")
