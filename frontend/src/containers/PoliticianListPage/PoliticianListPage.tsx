@@ -5,8 +5,13 @@ import { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
 import "./PoliticianListPage.css";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
 import NavBar from "../../components/NavBar/NavBar";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const PoliticianListPage = () => {
+  const [search, setSearch] = useState("");
+  const onChangeHandler = (e: any) => {
+    setSearch(e.target.value);
+  };
   const userInfoBtnContent: UserInfoBtnType = {
     url: "/user/1",
     image:
@@ -52,11 +57,17 @@ const PoliticianListPage = () => {
       position: "제7대 국토교통부장관",
     },
   ]);
+  const filterName = PoliticianSummarys.filter((p) => {
+    return p.name.replace(" ", "").includes(search.replace(" ", ""));
+  });
   return (
     <div className="PoliticianListPage">
       <NavBar />
+      <div className="SearchBar">
+        <SearchBar onChange={onChangeHandler} search={search} />
+      </div>
       <div className="PoliticianSummarys">
-        {PoliticianSummarys.map((data) => {
+        {filterName.map((data) => {
           return (
             <div className="SummaryComponent">
               <PoliticianSummary
