@@ -1,6 +1,6 @@
-.PoliticianDetailPage {
+li {
+  list-style: none;
 }
-
 .left {
   float: left;
   margin-left: 10%;
