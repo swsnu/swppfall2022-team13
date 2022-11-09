@@ -17,8 +17,8 @@ export default function CarouselComponent(props: CarouselContentType) {
     navigate(props.url);
   };
   return (
-    <div className="CarouselComponent" onClick={onClickHandler} key={props.id}>
-      <div className="leftContent">
+    <div id="CarouselComponent" onClick={onClickHandler} key={props.id}>
+      <div id="leftContent">
         <img
           className="image"
           src={props.detail_img_path}
@@ -27,7 +27,7 @@ export default function CarouselComponent(props: CarouselContentType) {
           height={props.height}
         />
       </div>
-      <div className="rightContent">
+      <div id="rightContent">
         <div className="title">{props.title}</div>
         <p className="content">{props.content}</p>
       </div>

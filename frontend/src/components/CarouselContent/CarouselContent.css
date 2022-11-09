@@ -1,4 +1,4 @@
-.CarouselComponent {
+#CarouselComponent {
   margin: 0px 10px;
   height: 250px;
   width: 400px;
@@ -6,19 +6,19 @@
   background-color: white;
 }
 
-.leftContent {
+#leftContent {
   float: left;
 }
 
-.rightContent {
+#rightContent {
   margin-left: 0px;
 }
 
-.title {
+#title {
   font-size: 20px;
   font-weight: 500;
 }
 
-.content {
+#content {
   font-size: 14px;
 }
