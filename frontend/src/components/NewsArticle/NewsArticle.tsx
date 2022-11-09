@@ -7,14 +7,19 @@ export interface NewsArticleType {
   id?: number;
   title?: string;
   content?: string;
-  url: string;
+  datetime?: any;
+  preview_prologue?: string;
+  detail_link_postfix?: string;
   preview_img_path?: string;
-  detail_img_path?: string;
   journal_name?: string;
+  detail_text?: string;
+  detail_img_path?: string;
+  created_at?: any;
+  updated_at?: any;
+  
+  url: string;
   width?: number;
   height?: number;
-  created_at?: string;
-  updated_at?: string;
   tags?: string[];
 }
 
