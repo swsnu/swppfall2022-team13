@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import { AppDispatch } from "../../store";
 import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
-import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import "./NewsListPage.css";
 
 
