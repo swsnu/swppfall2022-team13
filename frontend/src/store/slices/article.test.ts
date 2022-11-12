@@ -20,20 +20,7 @@ describe('book reducer', () => {
         created_at: "ang gimochi",
         updated_at: "ang gimochi",
     }
-    const fakeArticle2 = {
-        id: 2,
-        title: "ang gimochi",
-        content: "ang gimochi",
-        datetime_str: "ang gimochi",
-        preview_prologue: "ang gimochi",
-        detail_link_postfix: "ang gimochi",
-        preview_img_path: "ang gimochi",
-        detail_img_path: "ang gimochi",
-        journal_name: "ang gimochi",
-        detail_text: "ang gimochi",
-        created_at: "ang gimochi",
-        updated_at: "ang gimochi",
-    }
+
     beforeAll(() => {
       store = configureStore({ reducer: { article: reducer } })
     })
@@ -49,5 +36,23 @@ describe('book reducer', () => {
       await store.dispatch(fetchArticle(1))
       expect(store.getState().article.selectedArticle).toEqual([fakeArticle1])
     })
+
+    it("should handle fetchArticles", async () => {
+      axios.get = jest.fn().mockResolvedValue({ data: [fakeArticle1] });
+      await store.dispatch(fetchArticles());
+      expect(store.getState().article.articles).toEqual([fakeArticle1]);
+    });
+
+    it("should handle deleteArticle", async () => {
+      axios.delete = jest.fn().mockResolvedValue({ data: null });
+      await store.dispatch(deleteArticle(1));
+      expect(store.getState().article.articles).toEqual([]);
+    });
+
+    it("should handle null on fetchArticle", async () => {
+      axios.get = jest.fn().mockResolvedValue({ data: null });
+      await store.dispatch(fetchArticle(1));
+      expect(store.getState().article.selectedArticle).toEqual(null);
+    });
  
   })
