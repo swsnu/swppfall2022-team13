@@ -31,17 +31,17 @@ describe('book reducer', () => {
         selectedArticle: null
       })
     })
-    it('should handle fetchArticle', async () => {
-      axios.get = jest.fn().mockResolvedValue({ data: [fakeArticle1] })
-      await store.dispatch(fetchArticle(1))
-      expect(store.getState().article.selectedArticle).toEqual([fakeArticle1])
-    })
 
     it("should handle fetchArticles", async () => {
       axios.get = jest.fn().mockResolvedValue({ data: [fakeArticle1] });
       await store.dispatch(fetchArticles());
       expect(store.getState().article.articles).toEqual([fakeArticle1]);
     });
+    it('should handle fetchArticle', async () => {
+      axios.get = jest.fn().mockResolvedValue({ data: fakeArticle1 })
+      await store.dispatch(fetchArticle(1))
+      expect(store.getState().article.selectedArticle).toEqual(fakeArticle1)
+    })
 
     it("should handle deleteArticle", async () => {
       axios.delete = jest.fn().mockResolvedValue({ data: null });
@@ -52,6 +52,12 @@ describe('book reducer', () => {
     it("should handle null on fetchArticle", async () => {
       axios.get = jest.fn().mockResolvedValue({ data: null });
       await store.dispatch(fetchArticle(1));
+      expect(store.getState().article.selectedArticle).toEqual(null);
+    });
+
+    it("should handle null on fetchArticle", async () => {
+      axios.get = jest.fn().mockResolvedValue({ data: null });
+      await store.dispatch(fetchArticle(2));
       expect(store.getState().article.selectedArticle).toEqual(null);
     });
  

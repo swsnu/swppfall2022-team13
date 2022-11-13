@@ -130,7 +130,7 @@ describe("<NewsListPage />", () => {
   it("should render todos", () => {
     render(articleList);
     const articles = screen.getAllByTestId("spyArticle");
-    expect(articles).toHaveLength(1);
+    expect(articles).toHaveLength(2);
   });
   it("should handle click", () => {
     render(articleList);
