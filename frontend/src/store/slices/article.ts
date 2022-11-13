@@ -54,14 +54,15 @@ export const deleteArticle = createAsyncThunk(
 export const articleSlice = createSlice({
   name: "article",
   initialState,
-  reducers: {
+  reducers: {  //IS THIS UNNECESSARY?
+    /*
     getAll: (state, action: PayloadAction<{ articles: ArticleType[] }>) => {},
     getArticle: (state, action: PayloadAction<{ targetId: number }>) => {
       const target = state.articles.find(
-        (td) => td.id === action.payload.targetId
+        (article) => article.id === action.payload.targetId
       );
       state.selectedArticle = target ?? null;
-    },
+    },*/
 
     deleteArticle: (state, action: PayloadAction<{ targetId: number }>) => {
       state.articles = state.articles.filter((article) => {

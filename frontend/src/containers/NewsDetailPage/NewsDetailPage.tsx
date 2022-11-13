@@ -8,7 +8,6 @@ import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
 import { fetchArticles, fetchArticle, selectArticle } from "../../store/slices/article";
 import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
-import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 const NewsDetailPage = () => {
 
