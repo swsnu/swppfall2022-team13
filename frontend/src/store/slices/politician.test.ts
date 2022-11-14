@@ -56,10 +56,4 @@ describe("politician reducer", () => {
     await store.dispatch(fetchPolitician(1));
     expect(store.getState().politician.selectedPolitician).toEqual(null);
   });
-
-  it("should handle null on fetchPolitician", async () => {
-    axios.get = jest.fn().mockResolvedValue({ data: null });
-    await store.dispatch(fetchPolitician(2));
-    expect(store.getState().politician.selectedPolitician).toEqual(null);
-  });
 });
