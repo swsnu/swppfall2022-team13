@@ -34,6 +34,18 @@ describe('<NavBar />', () => {
         expect(button).toBeInTheDocument();
       });
 
+      it("should render nav", () => {
+        render(<NavBar />);
+        const button = screen.getByText("Petition");
+        expect(button).toBeInTheDocument();
+      });
+
+      it("should render nav", () => {
+        render(<NavBar />);
+        const button = screen.getByText("Quora");
+        expect(button).toBeInTheDocument();
+      });
+
       it("should render done mark when done is true", () => {
         render(<NavBar />);
         const image = screen.getByTestId('spyUserInfoButton')

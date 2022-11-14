@@ -26,6 +26,8 @@ return (
           <Nav.Link id='to-main' href="/main" >Home</Nav.Link>
           <Nav.Link id='to-news' href="/news" >News List</Nav.Link>
           <Nav.Link id='to-politician' href="/politician" >Politicians</Nav.Link>
+          <Nav.Link id='to-petition' href="/petition" >Petition</Nav.Link>
+          <Nav.Link id='to-quora' href="/quora" >Quora</Nav.Link>
         </Nav>
       </Container>
 

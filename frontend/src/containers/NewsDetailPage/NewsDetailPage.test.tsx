@@ -4,6 +4,8 @@ import { MemoryRouter, Navigate, Route, Routes } from "react-router";
 import { renderWithProviders } from "../../test-utils/mock";
 import { ArticleState } from "../../store/slices/article";
 import { PoliticianState } from "../../store/slices/politician";
+import { PetitionState } from "../../store/slices/petition";
+import { QuoraState } from "../../store/slices/quora";
 import { getMockStore } from "../../test-utils/mock";
 import NewsDetailPage from "./NewsDetailPage";
 import { fetchArticles, fetchArticle, selectArticle } from "../../store/slices/article";
@@ -108,6 +110,31 @@ const renderNewsDetailPage = () => {
             ],
             selectedPolitician: null,
         },
+
+        petition: {
+          petitions: [
+              {
+                id: 1,
+                title: "ang gimochi",
+                content: "ang gimochi",
+                author: 1,
+                vote: 1,
+              },
+          ],
+          selectedPetition: null,
+      },
+
+      quora: {
+        quoras: [
+            {
+                id: 1,
+                title: "ang gimochi",
+                content: "ang gimochi",
+                author: 1,
+            },
+        ],
+        selectedQuora: null,
+    },
       },
     }
   );
@@ -164,6 +191,31 @@ const renderNewsDetailPage2 = () => {
               ],
               selectedPolitician: null,
           },
+
+          petition: {
+            petitions: [
+                {
+                  id: 1,
+                  title: "ang gimochi",
+                  content: "ang gimochi",
+                  author: 1,
+                  vote: 1,
+                },
+            ],
+            selectedPetition: null,
+        },
+  
+        quora: {
+          quoras: [
+              {
+                  id: 1,
+                  title: "ang gimochi",
+                  content: "ang gimochi",
+                  author: 1,
+              },
+          ],
+          selectedQuora: null,
+      },
         },
       }
     );

@@ -9,7 +9,6 @@ import SignUpPage from './containers/SignUpPage/SignUpPage';
 import LoginPage from './containers/LoginPage/LoginPage';
 import PetitionListPage from './containers/PetitionListPage/PetitionListPage';
 import PetitionCreatePage from './containers/PetitionCreatePage/PetitionCreatePage';
-import PetitionEditPage from './containers/PetitionEditPage/PetitionEditPage';
 import PetitionDetailPage from './containers/PetitionDetailPage/PetitionDetailPage';
 import SurveyListPage from './containers/SurveyListPage/SurveyListPage';
 import SurveyCreatePage from './containers/SurveyCreatePage/SurveyCreatePage';
@@ -37,7 +36,6 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/petition" element={<PetitionListPage />} />
           <Route path="/petition/create" element={<PetitionCreatePage />} />
-          <Route path="/petition/edit" element={<PetitionEditPage />} />
           <Route path="/petition/:id" element={<PetitionDetailPage />} />
           <Route path="/survey" element={<SurveyListPage />} />
           <Route path="/survey/create" element={<SurveyCreatePage />} />

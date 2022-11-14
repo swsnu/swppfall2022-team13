@@ -10,12 +10,12 @@ export interface PetitionType {
   vote: number;
 }
 
-export interface QuoraState {
+export interface PetitionState {
     petitions: PetitionType[];
   selectedPetition: PetitionType | null;
 }
 
-const initialState: QuoraState = {
+const initialState: PetitionState = {
     petitions: [],
   selectedPetition: null,
 };
