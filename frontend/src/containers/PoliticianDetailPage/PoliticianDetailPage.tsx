@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
 import { useParams } from "react-router";
 import { UserInfoBtnType } from "../../components/UserInfoBtn/UserInfoBtn";
 import {
@@ -10,7 +9,6 @@ import {
 } from "../../store/slices/politician";
 import { selectPolitician } from "../../store/slices/politician";
 import { AppDispatch } from "../../store";
-import UserInfoBtn from "../../components/UserInfoBtn/UserInfoBtn";
 import "./PoliticianDetailPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,7 +16,6 @@ import NavBar from "../../components/NavBar/NavBar";
 
 const PoliticianDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
 
   const { id } = useParams();
   useEffect(() => {
@@ -31,7 +28,6 @@ const PoliticianDetailPage = () => {
   useEffect(() => {
     dispatch(fetchPoliticians());
   }, []);
-  // const politician = politicianContents[Number(id) - 1];
   return (
     <div className="PoliticianDetailPage">
       <NavBar />
@@ -67,18 +63,6 @@ const PoliticianDetailPage = () => {
                 })}
             </p>
           </div>
-          {/* <div id="education-detail">
-            <p id="education-title">[학력]</p>
-            {politician.education.map((td) => {
-              return <li>{td}</li>;
-            })}
-          </div>
-          <div id="career-detail">
-            <p id="career-title">[경력]</p>
-            {politician.brief_histroy.map((td) => {
-              return <li>{td}</li>;
-            })}
-          </div> */}
         </div>
       </div>
     </div>

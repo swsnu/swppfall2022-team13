@@ -5,7 +5,9 @@ import { ArticleState } from "../../store/slices/article";
 import { PoliticianState } from "../../store/slices/politician";
 import { getMockStore } from "../../test-utils/mock";
 import NewsListPage from "./NewsListPage";
-import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
+import NewsArticle, {
+  NewsArticleType,
+} from "../../components/NewsArticle/NewsArticle";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -18,96 +20,109 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockDispatch,
 }));
 
-jest.mock("../../components/NewsArticle/NewsArticle", () => (props: NewsArticleType) => (
-    <div data-testid="spyArticle">
-    <p>
-    <div className="NewsArticleLeft" onClick={mockNavigate}>
+jest.mock(
+  "../../components/NewsArticle/NewsArticle",
+  () => (props: NewsArticleType) =>
+    (
+      <div data-testid="spyArticle">
+        <p>
+          <div className="NewsArticleLeft" onClick={mockNavigate}>
+            <div className="leftContent">
+              <img
+                className="image"
+                src={props.detail_img_path}
+                alt="Hmm"
+                width={props.width}
+                height={props.height}
+              />
+            </div>
+            <div className="rightContent">
+              <div className="title">{props.title}</div>
+              <p className="content">{props.preview_prologue}</p>
 
-      <div className="leftContent">
-        <img
-          className="image"
-          src={props.detail_img_path}
-          alt="Hmm"
-          width={props.width}
-          height={props.height}
-        />
+              <div className="dateContent">
+                <text className="card-text">
+                  <small className="text-muted">
+                    Created: {props?.datetime_str}
+                  </small>
+                </text>
+                &nbsp; &nbsp;
+                <text className="card-text">
+                  <small className="text-muted">
+                    Last updated: {props?.updated_at}
+                  </small>
+                </text>
+              </div>
+            </div>
+          </div>
+        </p>
       </div>
-      <div className="rightContent">
-        <div className="title">{props.title}</div>
-        <p className="content">{props.preview_prologue}</p>
-      
-        <div className="dateContent">
-          <text className="card-text"><small className="text-muted">Created: {props?.datetime_str}</small></text>
-          &nbsp; &nbsp;
-          <text className="card-text"><small className="text-muted">Last updated: {props?.updated_at}</small></text>
-        </div>
-      </div>
-    </div>
- </p>
- </div>
-));
+    )
+);
 
 const stubInitialState: ArticleState = {
   articles: [
     {
-        id: 1,
-        title: "ang gimochi",
-        content: "ang gimochi",
-        datetime_str: "ang gimochi",
-        preview_prologue: "ang gimochi",
-        detail_link_postfix: "ang gimochi",
-        preview_img_path: "ang gimochi",
-        detail_img_path: "ang gimochi",
-        journal_name: "한겨레",
-        detail_text: "ang gimochi",
-        created_at: "ang gimochi",
-        updated_at: "ang gimochi",
+      id: 1,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      datetime_str: "ang gimochi",
+      preview_prologue: "ang gimochi",
+      detail_link_postfix: "ang gimochi",
+      preview_img_path: "ang gimochi",
+      detail_img_path: "ang gimochi",
+      journal_name: "한겨레",
+      detail_text: "ang gimochi",
+      created_at: "ang gimochi",
+      updated_at: "ang gimochi",
     },
     {
-        id: 2,
-        title: "ang gimochi",
-        content: "ang gimochi",
-        datetime_str: "ang gimochi",
-        preview_prologue: "ang gimochi",
-        detail_link_postfix: "ang gimochi",
-        preview_img_path: "ang gimochi",
-        detail_img_path: "ang gimochi",
-        journal_name: "조선일보",
-        detail_text: "ang gimochi",
-        created_at: "ang gimochi",
-        updated_at: "ang gimochi",
+      id: 2,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      datetime_str: "ang gimochi",
+      preview_prologue: "ang gimochi",
+      detail_link_postfix: "ang gimochi",
+      preview_img_path: "ang gimochi",
+      detail_img_path: "ang gimochi",
+      journal_name: "조선일보",
+      detail_text: "ang gimochi",
+      created_at: "ang gimochi",
+      updated_at: "ang gimochi",
     },
   ],
   selectedArticle: null,
-}
+};
 
 const stubInitialState2: PoliticianState = {
-    politicians: [
-        {
-            id: 1,
-            name: "ang gimochi",
-            birth_date: "ang gimochi",
-            job: "ang gimochi",
-            image_src: "ang gimochi",
-            political_party: "ang gimochi",
-            election_precinct: "ang gimochi",
-            committee: "ang gimochi",
-            committees: "ang gimochi",
-            reelection: "ang gimochi",
-            election_units: "ang gimochi",
-            email: "ang gimochi",
-            career_summary: "ang gimochi",
-            mona_code: "ang gimochi",
-        },
-    ],
-    selectedPolitician: null,
-    
-}
+  politicians: [
+    {
+      id: 1,
+      name: "ang gimochi",
+      birth_date: "ang gimochi",
+      job: "ang gimochi",
+      image_src: "ang gimochi",
+      political_party: "ang gimochi",
+      election_precinct: "ang gimochi",
+      committee: "ang gimochi",
+      committees: "ang gimochi",
+      reelection: "ang gimochi",
+      election_units: "ang gimochi",
+      email: "ang gimochi",
+      career_summary: "ang gimochi",
+      mona_code: "ang gimochi",
+    },
+  ],
+  selectedPolitician: null,
+};
 
-const mockStore = getMockStore({ article: stubInitialState, politician: stubInitialState2 });
+const mockStore = getMockStore({
+  article: stubInitialState,
+  politician: stubInitialState2,
+});
 
-const spyNavBar = () => <p>NavBar</p>
-jest.mock('../../components/NavBar/NavBar', () => spyNavBar)
+const spyNavBar = () => <p>NavBar</p>;
+jest.mock("../../components/NavBar/NavBar", () => spyNavBar);
 
 describe("<NewsListPage />", () => {
   let articleList: JSX.Element;
@@ -140,5 +155,4 @@ describe("<NewsListPage />", () => {
     fireEvent.click(todo!);
     expect(mockNavigate).toHaveBeenCalledTimes(0);
   });
-
 });
