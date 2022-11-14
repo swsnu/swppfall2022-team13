@@ -17,15 +17,6 @@ export interface PoliticianType {
   email: string;
   career_summary: string;
   mona_code: string;
-  // id: number;
-  // image_src: string;
-  // name: string;
-  // political_party: string;
-  // position: string;
-  // election_precinct?: string;
-  // birth_date: string;
-  // education: string[];
-  // brief_histroy: string[];
 }
 
 export interface PoliticianState {
@@ -41,7 +32,9 @@ const initialState: PoliticianState = {
 export const fetchPoliticians = createAsyncThunk(
   "politician/fetchPoliticians",
   async () => {
-    const response = await axios.get<PoliticianType[]>("/api/politician");
+    const response = await axios.get<PoliticianType[]>(
+      "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician"
+    );
     return response.data;
   }
 );
@@ -49,7 +42,9 @@ export const fetchPoliticians = createAsyncThunk(
 export const fetchPolitician = createAsyncThunk(
   "politician/fetchPolitician",
   async (id: PoliticianType["id"], { dispatch }) => {
-    const response = await axios.get(`/api/politician/${id}`);
+    const response = await axios.get(
+      `http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/${id}`
+    );
     return response.data ?? null;
   }
 );
@@ -58,16 +53,16 @@ export const politicianSlice = createSlice({
   name: "politician",
   initialState,
   reducers: {
-    getAll: (
-      state,
-      action: PayloadAction<{ politicians: PoliticianType[] }>
-    ) => {},
-    getPolitician: (state, action: PayloadAction<{ targetId: number }>) => {
-      const target = state.politicians.find(
-        (td) => td.id === action.payload.targetId
-      );
-      state.selectedPolitician = target ?? null;
-    },
+    // getAll: (
+    //   state,
+    //   action: PayloadAction<{ politicians: PoliticianType[] }>
+    // ) => {},
+    // getPolitician: (state, action: PayloadAction<{ targetId: number }>) => {
+    //   const target = state.politicians.find(
+    //     (td) => td.id === action.payload.targetId
+    //   );
+    //   state.selectedPolitician = target ?? null;
+    // },
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
