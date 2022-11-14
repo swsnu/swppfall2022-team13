@@ -78,7 +78,7 @@ const PoliticianListPage = () => {
       <div className="PoliticianSummarys">
         {filterName.map((data) => {
           return (
-            <div className="SummaryComponent">
+            <div className="SummaryComponent" key={data.id}>
               <PoliticianSummary
                 id={data.id}
                 //image={data.image}

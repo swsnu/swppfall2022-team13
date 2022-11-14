@@ -6,9 +6,6 @@ import { ArticleState } from "../../store/slices/article";
 import { PoliticianState } from "../../store/slices/politician";
 import { getMockStore } from "../../test-utils/mock";
 import PoliticianDetailPage from "./PoliticianDetailPage";
-import NewsArticle, {
-  NewsArticleType,
-} from "../../components/NewsArticle/NewsArticle";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
