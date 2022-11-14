@@ -22,7 +22,7 @@ def politician(request):
                      'mona_code': politician['mona_code'],
                      }
                     for politician in Politician.objects.all().values()]
-    return JsonResponse(politician_list, safe=False)
+    return JsonResponse(politician_list, safe=False, status = 200)
   
   # POST format : {politicians: [{}, {}, ...]}
   elif request.method == "POST":
