@@ -1,6 +1,7 @@
-from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
+from django.http import HttpResponse, HttpResponseNotAllowed,JsonResponse,HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+from json import JSONDecodeError
 from .models import Petition
 import json
 
@@ -45,6 +46,22 @@ def petition_detail(request, petition_id=""):
   if(request.method == 'DELETE'):
         Petition.objects.filter(id=petition_id).delete()
         return HttpResponse(status=200)
+
+  elif request.method == 'PUT':
+
+    if petition_id is None:
+        return HttpResponseBadRequest('petitionID is not specified.')
+    try:
+        petition = Petition.objects.get(id=petition_id)
+
+        petition.vote = petition.vote + 1
+       # petition.vote = petition.vote - 1
+  
+        petition.save()
+        return HttpResponse(status=204)
+    except KeyError as e:
+        return HttpResponseBadRequest('PetitionID does not exist: {}'.format(petition_id))
+
   else :
         return HttpResponseNotAllowed(['DELETE'])
-  
+

@@ -49,11 +49,41 @@ export const deletePetition = createAsyncThunk(
   }
 );
 
+export const voteUp = createAsyncThunk(
+  "petition/voteUp",
+  async (id: PetitionType["id"], { dispatch }) => {
+    await axios.put(`/api/petition/${id}/`);
+    dispatch(petitionActions.voteUp({ targetId: id }));
+  }
+);
+
+/*
+export const voteDown = createAsyncThunk(
+  "petition/voteDown",
+  async (id: PetitionType["id"], { dispatch }) => {
+    await axios.put(`/api/petition/${id}/`);
+    dispatch(petitionActions.voteDown({ targetId: id }));
+  }
+); */
+
 
 export const petitionSlice = createSlice({
   name: "petition",
   initialState,
   reducers: {
+    voteUp: (state, action: PayloadAction<{ targetId: number }>) => {
+      const petition = state.petitions.find((value) => value.id === action.payload.targetId);
+      if (petition) {
+        petition.vote = petition.vote + 1;
+      }
+    },
+    /*
+    voteDown: (state, action: PayloadAction<{ targetId: number }>) => {
+      const petition = state.petitions.find((value) => value.id === action.payload.targetId);
+      if (petition) {
+        petition.vote = petition.vote - 1;
+      }
+    },*/
     getAll: (state, action: PayloadAction<{ petitions: PetitionType[] }>) => {},
     getPetition: (state, action: PayloadAction<{ targetId: number }>) => {
       const target = state.petitions.find(

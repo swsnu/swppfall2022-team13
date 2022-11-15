@@ -10,7 +10,7 @@ export interface QuoraType {
 }
 
 export interface QuoraState {
-    quoras: QuoraType[];
+  quoras: QuoraType[];
   selectedQuora: QuoraType | null;
 }
 
@@ -40,7 +40,7 @@ export const postQuora = createAsyncThunk(
   }
 );
 
-export const deletePetition = createAsyncThunk(
+export const deleteQuora = createAsyncThunk(
   "quora/deleteQuora",
   async (id: QuoraType["id"], { dispatch }) => {
     await axios.delete(`/api/quora/${id}/`);

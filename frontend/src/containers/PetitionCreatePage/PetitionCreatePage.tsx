@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
-import { Button, Form, Row } from 'react-bootstrap'
+import { Button, Form, InputGroup, Row } from 'react-bootstrap'
 import { useDispatch,  } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { postPetition } from "../../store/slices/petition";

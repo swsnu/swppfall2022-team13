@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
-import { fetchPetitions, fetchPetition, selectPetition, deletePetition } from "../../store/slices/petition";
+import { fetchPetitions, voteUp, selectPetition, deletePetition } from "../../store/slices/petition";
 import Petition, { PetitionType,} from "../../components/Petition/Petition";
 
 
@@ -33,15 +33,23 @@ const PetitionDetailPage = () => {
     navigate ("/petition")
   }
 
-  const handleDelete = async () => {
+  const handleDelete = async () => { //When User Implemented, this should be ONLY FOR CREATOR
 
     if (window.confirm("Are you sure? This is irreversible!")) {
       if(petition !== null && petition !== undefined) {
         dispatch(deletePetition(petition.id));
       }
-      navigate("/petition");
     } else {
     }
+
+  };
+
+  const handleVote = async () => {
+      if(petition !== null && petition !== undefined) {
+        dispatch(voteUp(petition.id));
+        const msg = ['Voting Successful!']
+        alert(msg)
+      }
 
   };
 
@@ -54,7 +62,7 @@ const PetitionDetailPage = () => {
         
       
       <div className="card-header text-bg-danger mb-3">
-        {petition?.title}
+        Current Vote Counts: {petition?.vote}
       </div>
 
       <div className="card-body">
@@ -67,6 +75,8 @@ const PetitionDetailPage = () => {
         <a href="/petition" className="btn btn-primary">Back</a>
         &nbsp; &nbsp;
         <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={handleDelete}>Delete Petition</button>
+        &nbsp; &nbsp;
+        <button type="button" className="btn btn-primary" id="voteBtn" onClick={handleVote}>Vote!</button>
         </p>
       </div>
       </div>
