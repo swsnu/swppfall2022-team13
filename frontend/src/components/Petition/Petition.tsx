@@ -19,9 +19,9 @@ export default function Petition(props: PetitionType) {
     return (
         <div className="PetitionsEach">
           
-          <div className="PetitionId">{props?.id}</div>
-          <div className="authorName">{props?.author}</div>
-          <button className="petitonTitle" type="button" id={props.title} onClick={onClickHandler}><b>{props.title}</b></button>
+          <div className="PetitionId">{props?.title}</div>
+          <div className="authorName">{props?.content}</div>
+          <button className="petitonTitle" type="button" id={props.title} onClick={onClickHandler}><b>Details</b></button>
           
           <p></p>
           

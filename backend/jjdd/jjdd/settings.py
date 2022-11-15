@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'user',
     'article',
     'politician',
-    'petitoin',
-    'quora',
+    'petition',
 ]
 
 MIDDLEWARE = [

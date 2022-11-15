@@ -21,5 +21,5 @@ urlpatterns = [
     path('api/article/', include('article.urls')),
     path('api/politician/', include('politician.urls')),
     path('api/petition/', include('petition.urls')),
-    path('api/quora/', include('quora.urls')),
+    #path('api/quora/', include('quora.urls')),
 ]

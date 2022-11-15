@@ -5,7 +5,7 @@ from .models import Petition
 import json
 
 @csrf_exempt
-def article(request):
+def petition(request):
   if request.method == "GET":
     petition_list = [{ 'id': petition['id'],
                      'title': petition['title'],
@@ -16,24 +16,25 @@ def article(request):
                     for petition in Petition.objects.all().values()]
     return JsonResponse(petition_list, safe=False)
   
-  # POST format : {articles: [{}, {}, ...]}
   elif request.method == "POST":
-    req_data = json.loads(request.body.decode())
+    body = json.loads(request.body.decode())
+    title = body['title']
+    content = body['content']
+    author = body['author']
+    vote = body ['vote']
 
-    for petition in req_data['petitions']:
-      Petition.objects.create(title = petition['title'],
-                             content = petition['content'],
-                             author = petition['author'],
-                             vote = petition['vote']
-                             )
-      
-    return HttpResponse(status=201)
-    
+    newPetition = Petition(title = title, content=content, author=author, vote=vote)
+    newPetition.save()
+
+    newPetitionId = newPetition.id
+    response_dict = {'title':title,'content':content, 'author':author, 'vote': vote, 'id':newPetitionId}
+    return JsonResponse(response_dict, status=201)
+
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
 
-  
-def petition_info(request, petition_id=""):
+@csrf_exempt
+def petition_detail(request, petition_id=""):
   if not Petition.objects.filter(id=petition_id).values():
       return HttpResponse(status=404)
   else:
@@ -47,7 +48,3 @@ def petition_info(request, petition_id=""):
   else :
         return HttpResponseNotAllowed(['DELETE'])
   
-  
-@csrf_exempt
-def petition_detail(request, petition_id):
-  pass
