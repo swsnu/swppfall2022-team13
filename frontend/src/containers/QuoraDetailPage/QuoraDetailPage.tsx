@@ -6,6 +6,12 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
 import { fetchQuoras, selectQuora, deleteQuora } from "../../store/slices/quora";
+import { selectPolitician } from "../../store/slices/politician";
+import {
+  fetchPolitician,
+  PoliticianType,
+  fetchPoliticians,
+} from "../../store/slices/politician";
 import Quora, { QuoraType,} from "../../components/Quora/Quora";
 
 
@@ -15,6 +21,17 @@ const QuoraDetailPage = () => {
   const navigate = useNavigate();
   const quoraState = useSelector(selectQuora);
   const { id } = useParams(); //fetch number from current url
+
+  useEffect(() => {
+    dispatch(fetchPolitician(Number(id)));
+  }, [id]);
+  const politicianState = useSelector(selectPolitician);
+  const politician = politicianState.politicians.find((p) => {
+    return p.id === Number(id);
+  });
+  useEffect(() => {
+    dispatch(fetchPoliticians());
+  }, []);
 
   var currQuoraId:number = 1;
       if(id !== undefined) {
