@@ -53,8 +53,8 @@ def petition_detail(request, petition_id=""):
         return HttpResponseBadRequest('petitionID is not specified.')
     try:
         petition = Petition.objects.get(id=petition_id)
-
-        petition.vote = petition.vote + 1
+        body = json.loads(request.body.decode())
+        petition.vote = petition.vote + body
        # petition.vote = petition.vote - 1
   
         petition.save()
