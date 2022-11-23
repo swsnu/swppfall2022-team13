@@ -46,6 +46,10 @@ const PetitionCreatePage = () => {
       vote: 0,
       photo_url: photo_url
     }
+    
+    if(photo_url==='') {
+      petitionData.photo_url = 'http://monthly.chosun.com/upload/2109/2109_386.jpg'
+    }
 
     const responsePetition = await dispatch(postPetition(petitionData))
 

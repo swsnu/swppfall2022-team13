@@ -114,6 +114,7 @@ const stubInitialState3: PetitionState = {
           content: "ang gimochi",
           author: 1,
           vote: 1,
+          photo_url: "test",
       },
   ],
   selectedPetition: null,

@@ -65,6 +65,12 @@ const PetitionDetailPage = () => {
         Current Vote Counts: {petition?.vote}
       </div>
 
+      <img src={petition?.photo_url} 
+          width = "600px"
+          height = "300px" 
+          object-fit = "cover"
+          className="rounded mx-auto d-block" alt="..."></img>
+
       <div className="card-body">
         <h5 className="card-title">{petition?.title}</h5>
       </div>

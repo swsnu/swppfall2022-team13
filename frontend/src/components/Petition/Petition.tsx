@@ -1,5 +1,7 @@
 import "./Petition.css";
 import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 export interface PetitionType {
@@ -18,15 +20,17 @@ export default function Petition(props: PetitionType) {
     };
 
     return (
-        <div className="PetitionsEach">
-          
-          <div className="PetitionTitle">{props?.title}</div>
-          <div className="PetitionContent">{props?.content}</div>
-          <button className="petitonTitle" type="button" id={props.title} onClick={onClickHandler}><b>Details</b></button>
-          
-          <p></p>
-          
-        </div>
-      );
+      <Card style={{ width: '18rem', height: '25rem', float: 'left'}}>
+        <Card.Img style={{ width: '18rem', height: '10rem', display: 'inline-block'}} variant="top" src={props.photo_url} />
+        <Card.Body>
+          <Card.Title>Raised By: {props?.author}</Card.Title>
+          <Card.Text>
+          {props?.title}
+          </Card.Text>
+          <Button variant="primary" onClick={onClickHandler} >Details</Button>
+        </Card.Body>
+      </Card>
+      
+    );
 
   }

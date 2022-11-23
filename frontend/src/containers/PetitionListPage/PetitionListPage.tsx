@@ -57,11 +57,9 @@ const PetitionListPage = () => {
           <p>
           We have some petitions for you
           </p>
-          <button className="petitonTitle" type="button" onClick={onClickRaise}><b>Raise Petition</b></button>
+          <p><button className="petitonTitle" type="button" onClick={onClickRaise}><b>Raise Petition</b></button></p>
           
-        <div className="row">
-                <div className="col-sm-6">
-                  <div className="LeftNews">
+                  <div className="petitionsMap">
 
                       {petitionState.petitions.map((td: any) => {
                             return (
@@ -79,10 +77,9 @@ const PetitionListPage = () => {
 
                     })}
                     </div>
+                   
                   </div>
 
-          </div>
-    </div>
 
     
     </>
