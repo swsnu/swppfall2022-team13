@@ -19,7 +19,7 @@ const PetitionCreatePage = () => {
   const logged_in = true //Until Proper user Implementation
 
 
-  const clickConfirmCreateHanler = async () => {
+  const clickCreateHanler = async () => {
     if (!logged_in) {
       navigate('/login')
       return
@@ -89,7 +89,7 @@ const PetitionCreatePage = () => {
             <br />
 
             <Form.Group as={Row} className="input-url-class" id="url-input-form">
-              <Form.Label id="url-text"><h5>Title</h5>
+              <Form.Label id="url-text"><h5>Image</h5>
               <div>
                 <Form.Control
                   id='url-input'
@@ -99,7 +99,10 @@ const PetitionCreatePage = () => {
               </div>
               </Form.Label>
             </Form.Group>
-            <br />
+
+              <img src={photo_url} 
+                  width = "600px"
+                  className="rounded mx-auto d-block" alt="..."></img>
             <br />
 
             <Form.Group as={Row} className='input-class' id='content-input-form'>
@@ -116,10 +119,13 @@ const PetitionCreatePage = () => {
             </Form.Group>
  
         </Form>
+
+        <a href="/petition" className="btn btn-primary">Back</a>
+        &nbsp; &nbsp;
         <Button
           id='confirm-button'
           type="button"
-          onClick={() => clickConfirmCreateHanler()}>
+          onClick={() => clickCreateHanler()}>
           Create
         </Button>
       </div>
