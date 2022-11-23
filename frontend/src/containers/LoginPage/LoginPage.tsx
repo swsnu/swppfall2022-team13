@@ -3,7 +3,7 @@ const LoginPage = () => {
       <>
         <h1>This is JJDD LoginPage</h1>
 
-            <p>
+            <p>npm i --save-dev @types/styled-components
             "i" is lowercase hehe :D
             </p>
 
