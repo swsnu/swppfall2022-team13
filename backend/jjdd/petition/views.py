@@ -13,6 +13,7 @@ def petition(request):
                      'content': petition['content'],
                      'author': petition['author'],
                      'vote': petition['vote'],
+                     'photo_url' : petition['photo_url'],
                      }
                     for petition in Petition.objects.all().values()]
     return JsonResponse(petition_list, safe=False)
@@ -23,12 +24,13 @@ def petition(request):
     content = body['content']
     author = body['author']
     vote = body ['vote']
+    photo_url = body ['photo_url']
 
-    newPetition = Petition(title = title, content=content, author=author, vote=vote)
+    newPetition = Petition(title = title, content=content, author=author, vote=vote, photo_url=photo_url)
     newPetition.save()
 
     newPetitionId = newPetition.id
-    response_dict = {'title':title,'content':content, 'author':author, 'vote': vote, 'id':newPetitionId}
+    response_dict = {'title':title,'content':content, 'author':author, 'vote': vote, 'photo_url': photo_url, 'id':newPetitionId}
     return JsonResponse(response_dict, status=201)
 
   else:

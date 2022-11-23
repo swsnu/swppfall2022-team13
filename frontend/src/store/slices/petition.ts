@@ -8,6 +8,7 @@ export interface PetitionType {
   content: string;
   author: number;
   vote: number;
+  photo_url?: string;
 }
 
 export interface PetitionState {
@@ -35,7 +36,7 @@ export const fetchPetition = createAsyncThunk(
 
 export const postPetition = createAsyncThunk(
   "petition/postPetition",
-  async (td: Pick<PetitionType, "title" | "content" | "author" | "vote">, { dispatch }) => {
+  async (td: Pick<PetitionType, "title" | "content" | "author" | "vote" | "photo_url">, { dispatch }) => {
     const response = await axios.post("/api/petition/", td);
     dispatch(petitionActions.addPetition(response.data));
   }
@@ -96,13 +97,14 @@ export const petitionSlice = createSlice({
         return petition.id !== action.payload.targetId;
       });
     },
-    addPetition: (state, action: PayloadAction<{ title: string; content: string; author: number; vote: number}>) => {
+    addPetition: (state, action: PayloadAction<{ title: string; content: string; author: number; vote: number; photo_url: string}>) => {
       const newPetition = {
         id: state.petitions[state.petitions.length - 1].id + 1, // temporary
         title: action.payload.title,
         content: action.payload.content,
         author: action.payload.author,
         vote: action.payload.vote,
+        photo_url: action.payload.photo_url,
       };
       state.petitions.push(newPetition);
     },

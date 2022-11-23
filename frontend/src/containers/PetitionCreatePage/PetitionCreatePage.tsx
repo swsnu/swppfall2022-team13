@@ -10,6 +10,7 @@ import { AppDispatch } from "../../store";
 const PetitionCreatePage = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [photo_url, setURL] = useState('')
   const [author, setAuthor] = useState(1) //Until Proper user Implementation
 
   const dispatch = useDispatch<AppDispatch>()
@@ -42,7 +43,8 @@ const PetitionCreatePage = () => {
       title,
       content,
       author: 1, //Until Proper User Implementation
-      vote: 0
+      vote: 0,
+      photo_url: photo_url
     }
 
     const responsePetition = await dispatch(postPetition(petitionData))
@@ -75,6 +77,20 @@ const PetitionCreatePage = () => {
                   id='title-input'
                   type="text" placeholder="fill in your petition title"
                   value={title} onChange={event => setTitle(event.target.value)}
+                />
+              </div>
+              </Form.Label>
+            </Form.Group>
+            <br />
+            <br />
+
+            <Form.Group as={Row} className="input-url-class" id="url-input-form">
+              <Form.Label id="url-text"><h5>Title</h5>
+              <div>
+                <Form.Control
+                  id='url-input'
+                  type="text" placeholder="fill in your photo's URL"
+                  value={photo_url} onChange={event => setURL(event.target.value)}
                 />
               </div>
               </Form.Label>

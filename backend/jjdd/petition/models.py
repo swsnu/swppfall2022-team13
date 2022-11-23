@@ -5,3 +5,4 @@ class Petition(models.Model):
   content = models.TextField()
   author = models.IntegerField()
   vote = models.IntegerField()
+  photo_url = models.TextField(null=True)

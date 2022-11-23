@@ -8,6 +8,7 @@ export interface PetitionType {
   content?: string;
   author?: number;
   vote?: number;
+  photo_url?: string;
 }
 
 export default function Petition(props: PetitionType) {
@@ -19,8 +20,8 @@ export default function Petition(props: PetitionType) {
     return (
         <div className="PetitionsEach">
           
-          <div className="PetitionId">{props?.title}</div>
-          <div className="authorName">{props?.content}</div>
+          <div className="PetitionTitle">{props?.title}</div>
+          <div className="PetitionContent">{props?.content}</div>
           <button className="petitonTitle" type="button" id={props.title} onClick={onClickHandler}><b>Details</b></button>
           
           <p></p>

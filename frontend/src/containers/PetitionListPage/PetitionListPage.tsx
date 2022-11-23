@@ -72,6 +72,7 @@ const PetitionListPage = () => {
                                 content={td.content}
                                 author={td.author}
                                 vote={td.vote}
+                                photo_url={td?.photo_url}
 
                               />
                             );
