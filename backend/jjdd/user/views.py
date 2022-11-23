@@ -1,47 +1,67 @@
-from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
-from django.contrib.auth.models import User
-from django.shortcuts import HttpResponsePermanentRedirect
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.contrib.auth import authenticate, login, logout
+
+from json.decoder import JSONDecodeError
 import json
+from django.http import HttpResponse, HttpResponseNotAllowed
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.http.response import HttpResponseBadRequest, JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.http import require_http_methods
+
 
 @ensure_csrf_cookie
 def token(request):
-    if request.method == 'GET':
+    if request.method == "GET":
         return HttpResponse(status=204)
     else:
-        return HttpResponseNotAllowed(['GET'])
+        return HttpResponseNotAllowed(["GET"])
 
+
+@require_http_methods(["POST"])
+@ensure_csrf_cookie
 def signup(request):
-    if request.method == 'POST':
+    try:
         req_data = json.loads(request.body.decode())
-        username = req_data['username']
-        # print(username);
-        password = req_data['password']
-        User.objects.create_user(username=username, password=password)
-        return HttpResponse(status=201)
-    else:
-        return HttpResponseNotAllowed(['POST'])
-      
+        email = req_data["email"]
+        password = req_data["password"]
+        first_name = req_data["first_name"]
+        last_name = req_data["last_name"]
+    except (KeyError, JSONDecodeError):
+        return HttpResponseBadRequest()
+
+    User.objects.create_user(
+        username=email, password=password, first_name=first_name, last_name=last_name
+    )
+    return HttpResponse(status=201)
+
+
+@require_http_methods(["POST"])
+@ensure_csrf_cookie
 def signin(request):
-    if request.method == 'POST':
-        req_data = json.loads(request.body.decode())
-        username = req_data['username']
-        password = req_data['password']
-        user = authenticate(request, username=username, password=password)
-        
-        if user != None:
-            login(request, user)
-            return HttpResponse(status=200)
-        else:
-            return HttpResponse(status=401)
-    
-    else:
-        return HttpResponseNotAllowed(['POST'])
-  
+    req_data = json.loads(request.body.decode())
+    email = req_data["email"]
+    password = req_data["password"]
+    user = authenticate(request, username=email, password=password)
+    if user is not None:
+        login(request, user)
+        return HttpResponse(status=204)
+    return HttpResponse(status=401)
+
+
+@require_http_methods(["GET"])
+@ensure_csrf_cookie
 def signout(request):
-    if request.method == 'GET':
+    if request.user.is_authenticated:
         logout(request)
-        return HttpResponse(status=200)
+        return HttpResponse(status=204)
     else:
-        return HttpResponseNotAllowed(['GET'])
+        return HttpResponse("Unauthorized", status=401)
+
+
+@require_http_methods(["GET"])
+@ensure_csrf_cookie
+def isLogin(request):
+    if request.user.is_authenticated:
+        return JsonResponse({"status": True, "id": request.user.id}, status=200)
+    else:
+        return JsonResponse({"status": False, "id": 0}, status=200)
