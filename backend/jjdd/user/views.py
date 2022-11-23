@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.shortcuts import HttpResponsePermanentRedirect
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth import authenticate, login, logout
-from .models import Article, Comment
 import json
 
 @ensure_csrf_cookie
