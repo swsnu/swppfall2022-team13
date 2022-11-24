@@ -8,9 +8,12 @@ import json
 @csrf_exempt
 def politician(request):
   if request.method == "GET":
-    politician_list = [{ 'name': politician['name'],
+    politician_list = [{ 
+      'id' : politician['id'],
+      'name': politician['name'],
                      'birth_date': politician['birth_date'],
                      'job': politician['job'],
+                     'image_src' : politician['image_src'],
                      'political_party': politician['political_party'],
                      'election_precinct': politician['election_precinct'],
                      'committee': politician['committee'],
@@ -20,6 +23,7 @@ def politician(request):
                      'email': politician['email'],
                      'career_summary': politician['career_summary'],
                      'mona_code': politician['mona_code'],
+                     'proposals': politician['proposals'],
                      }
                     for politician in Politician.objects.all().values()]
     return JsonResponse(politician_list, safe=False, status = 200)
@@ -28,9 +32,9 @@ def politician(request):
   elif request.method == "POST":
     req_data = json.loads(request.body.decode())
     for politician in req_data['politicians']:
-      print(politician)
       Politician.objects.create(name = politician['name'],
                              birth_date = politician['birth_date'],
+                             image_src=politician['image_src'],
                              job = politician['job'],
                              political_party = politician['political_party'],
                              election_precinct = politician['election_precinct'],
@@ -41,6 +45,7 @@ def politician(request):
                              email=politician['email'],
                              career_summary=politician['career_summary'],
                              mona_code=politician['mona_code'],
+                             proposals=politician['proposals'],
                              )
     return HttpResponse(status=201)
   else:
@@ -51,9 +56,12 @@ def politician(request):
 def politician_detail(request, politician_id):
     if request.method=='GET':
         politician = get_object_or_404(Politician, id=politician_id)
-        response_data = {'name': politician.name,
+        response_data = {
+          'id' : politician.id,
+          'name': politician.name,
                      'birth_date': politician.birth_date,
                      'job': politician.job,
+                     'image_src':politician.image_src,
                      'political_party': politician.political_party,
                      'election_precinct': politician.election_precinct,
                      'committee': politician.committee,
@@ -62,7 +70,9 @@ def politician_detail(request, politician_id):
                      'election_units': politician.election_units,
                      'email': politician.email,
                      'career_summary': politician.career_summary,
-                     'mona_code': politician.mona_code}    
+                     'mona_code': politician.mona_code,
+                     'proposals': politician.proposals,
+                     }    
         return JsonResponse(response_data, status=200)
     else :
       return HttpResponseNotAllowed(['GET'])

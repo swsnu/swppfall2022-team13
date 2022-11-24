@@ -68,35 +68,36 @@ const renderPoliticianDetailPage = () => {
               email: "test",
               career_summary: "학력\r\n 상문고등학교\r\n 서울대학교 \r\n",
               mona_code: "test",
+              proposals: "test",
             },
           ],
           selectedPolitician: null,
         },
         petition: {
           petitions: [
-              {
-                id: 1,
-                title: "ang gimochi",
-                content: "ang gimochi",
-                author: 1,
-                vote: 1,
-                photo_url: "test",
-              },
+            {
+              id: 1,
+              title: "ang gimochi",
+              content: "ang gimochi",
+              author: 1,
+              vote: 1,
+              photo_url: "test",
+            },
           ],
           selectedPetition: null,
-      },
+        },
 
-      quora: {
-        quoras: [
+        quora: {
+          quoras: [
             {
-                id: 1,
-                title: "ang gimochi",
-                content: "ang gimochi",
-                author: 1,
+              id: 1,
+              title: "ang gimochi",
+              content: "ang gimochi",
+              author: 1,
             },
-        ],
-        selectedQuora: null,
-    },
+          ],
+          selectedQuora: null,
+        },
       },
     }
   );
@@ -121,6 +122,7 @@ describe("<PoliticianDetailPage />", () => {
           email: "test",
           career_summary: "학력\r\n 상문고등학교\r\n 서울대학교 \r\n",
           mona_code: "test",
+          proposals: "test",
         },
       });
     });

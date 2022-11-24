@@ -13,3 +13,8 @@
 .SummaryComponent {
   margin: 15px;
 }
+
+.FilterAndSearchBar {
+  display: flex;
+  justify-content: center;
+}

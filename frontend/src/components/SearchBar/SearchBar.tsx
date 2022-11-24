@@ -11,7 +11,7 @@ function SearchBar(props: SearchBarInterface) {
       <input
         className="input"
         type="text"
-        placeholder="Search name.."
+        placeholder="Search .."
         value={props.search}
         onChange={props.onChange}
       />

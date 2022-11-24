@@ -13,6 +13,7 @@ describe("<PoliticianSummary />", () => {
       <PoliticianSummary
         id={1}
         name="test_name"
+        elect="test_elect"
         birthdate="test_birthdate"
         politicalParty="test_pp"
         position="test_position"

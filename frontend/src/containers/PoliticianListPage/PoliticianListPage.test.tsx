@@ -43,6 +43,7 @@ const politicianStubInitialState: PoliticianState = {
       email: "test",
       career_summary: "test",
       mona_code: "test",
+      proposals: "test",
     },
     {
       id: 2,
@@ -59,6 +60,7 @@ const politicianStubInitialState: PoliticianState = {
       email: "test",
       career_summary: "test",
       mona_code: "test",
+      proposals: "test",
     },
     {
       id: 3,
@@ -75,6 +77,7 @@ const politicianStubInitialState: PoliticianState = {
       email: "test",
       career_summary: "test",
       mona_code: "test",
+      proposals: "test",
     },
     {
       id: 4,
@@ -91,6 +94,7 @@ const politicianStubInitialState: PoliticianState = {
       email: "test",
       career_summary: "test",
       mona_code: "test",
+      proposals: "test",
     },
     {
       id: 5,
@@ -107,6 +111,7 @@ const politicianStubInitialState: PoliticianState = {
       email: "test",
       career_summary: "test",
       mona_code: "test",
+      proposals: "test",
     },
   ],
   selectedPolitician: null,

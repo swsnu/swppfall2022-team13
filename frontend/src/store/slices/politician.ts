@@ -17,6 +17,7 @@ export interface PoliticianType {
   email: string;
   career_summary: string;
   mona_code: string;
+  proposals: string;
 }
 
 export interface PoliticianState {
@@ -33,7 +34,7 @@ export const fetchPoliticians = createAsyncThunk(
   "politician/fetchPoliticians",
   async () => {
     const response = await axios.get<PoliticianType[]>(
-      "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician"
+      "http://127.0.0.1:8000/api/politician/"
     );
     return response.data;
   }
@@ -43,7 +44,7 @@ export const fetchPolitician = createAsyncThunk(
   "politician/fetchPolitician",
   async (id: PoliticianType["id"], { dispatch }) => {
     const response = await axios.get(
-      `http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/${id}`
+      `http://127.0.0.1:8000/api/politician/${id}`
     );
     return response.data ?? null;
   }

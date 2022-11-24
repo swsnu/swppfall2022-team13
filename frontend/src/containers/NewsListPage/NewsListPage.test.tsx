@@ -113,40 +113,43 @@ const stubInitialState2: PoliticianState = {
       email: "ang gimochi",
       career_summary: "ang gimochi",
       mona_code: "ang gimochi",
+      proposals: "test",
     },
   ],
   selectedPolitician: null,
 };
 const stubInitialState3: PetitionState = {
   petitions: [
-      {
-          id: 1,
-          title: "ang gimochi",
-          content: "ang gimochi",
-          author: 1,
-          vote: 1,
-          photo_url: "test",
-      },
+    {
+      id: 1,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      author: 1,
+      vote: 1,
+      photo_url: "test",
+    },
   ],
   selectedPetition: null,
-  
-}
+};
 
 const stubInitialState4: QuoraState = {
   quoras: [
-      {
-        id: 1,
-        title: "ang gimochi",
-        content: "ang gimochi",
-        author: 1,
-      },
+    {
+      id: 1,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      author: 1,
+    },
   ],
   selectedQuora: null,
-  
-}
+};
 
-const mockStore = getMockStore({ article: stubInitialState, politician: stubInitialState2, petition: stubInitialState3, quora: stubInitialState4 });
-
+const mockStore = getMockStore({
+  article: stubInitialState,
+  politician: stubInitialState2,
+  petition: stubInitialState3,
+  quora: stubInitialState4,
+});
 
 const spyNavBar = () => <p>NavBar</p>;
 jest.mock("../../components/NavBar/NavBar", () => spyNavBar);
