@@ -6,30 +6,65 @@ li {
   margin-left: 10%;
 }
 .right {
-  float: right;
+  float: left;
+  margin-left: 80px;
   margin-right: 10%;
 }
 
 .intro {
-  width: 800px;
+  width: 750px;
   border-bottom: solid 1px black;
 }
 
 .education-and-career-header {
+  display: flex;
   margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: solid 2px black;
+}
+
+.proposals-header {
+  margin-top: 30px;
+  display: flex;
+  text-align: left;
   margin-bottom: 10px;
   border-bottom: solid 2px black;
 }
 
 .education-and-career-body {
   text-align: left;
+  height: 100%;
 }
+
+.none {
+  text-align: left;
+  height: 0px;
+  visibility: collapse;
+}
+
+.proposals-body {
+  text-align: left;
+}
+#na-image {
+  float: left;
+}
+
 #intro-title {
   text-align: left;
 }
 
+#number-intro-header {
+  text-align: left;
+  margin-top: 15px;
+}
+
 #intro-education-and-career {
   text-align: left;
+}
+
+#number-intro-body {
+  display: flex;
+  justify-content: left;
 }
 
 #mini-title {
@@ -47,6 +82,17 @@ li {
   text-align: left;
   margin-left: 5px;
   margin-top: 5px;
+}
+#political-party-right {
+  text-align: left;
+  margin-left: 60px;
+}
+#political-party-title {
+  font-size: 14px;
+  color: chocolate;
+}
+#political-party-name {
+  margin-left: 15px;
 }
 
 #education-detail {

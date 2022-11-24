@@ -4,6 +4,7 @@ from django.utils import timezone
 class Politician(models.Model):
     name = models.TextField(null=True, blank=True)
     birth_date = models.TextField(null=True, blank=True)
+    image_src = models.TextField(null=True, blank=True)
     job = models.TextField(null=True, blank=True)
     political_party = models.TextField(null=True, blank=True)
     election_precinct = models.TextField(null=True, blank=True)
@@ -14,6 +15,7 @@ class Politician(models.Model):
     email = models.TextField(null=True, blank=True)
     career_summary = models.TextField(null=True, blank=True)
     mona_code = models.TextField(null=True, blank=True)
+    proposals = models.TextField(null=True, blank=True)
     
 
 

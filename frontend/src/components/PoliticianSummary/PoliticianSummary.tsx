@@ -5,10 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export interface PoliticianSummaryType {
   id: number;
-  image?: string;
+  image_src?: string;
   name: string;
   birthdate: string;
   politicalParty: string;
+  elect: string;
   position: string;
 }
 
@@ -21,25 +22,20 @@ function PoliticianSummary(props: PoliticianSummaryType) {
   return (
     <div onClick={() => onClickHandler()}>
       <Card
-        style={{ width: "18rem" }}
+        style={{ width: "13rem", height: "26rem" }}
         bg="light"
         border="dark"
         body={true}
         text="primary"
       >
-        <Card.Img
-          variant="top"
-          src="https://media.istockphoto.com/photos/businessman-or-politician-making-speech-behind-the-pulpit-picture-id676327038?k=20&m=676327038&s=612x612&w=0&h=zb0yYF91voE-3-ar00zEjpG_HchV9LlpbCVPrErio1Q="
-          width={150}
-          height={300}
-        />
+        <img src={props.image_src} width={160} height={190} />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
           <Card.Text>{props.position}</Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroup.Item>{props.politicalParty}</ListGroup.Item>
-          <ListGroup.Item>{props.birthdate}</ListGroup.Item>
+          <ListGroup.Item>{props.elect}</ListGroup.Item>
         </ListGroup>
       </Card>
     </div>
