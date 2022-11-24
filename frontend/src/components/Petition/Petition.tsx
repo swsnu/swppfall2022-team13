@@ -27,7 +27,7 @@ export default function Petition(props: PetitionType) {
           <Card.Text>
           {props?.title}
           </Card.Text>
-          <Button variant="primary" onClick={onClickHandler} >Details</Button>
+          <Button id= "detail-button" variant="primary" onClick={onClickHandler} >Details</Button>
         </Card.Body>
       </Card>
       
