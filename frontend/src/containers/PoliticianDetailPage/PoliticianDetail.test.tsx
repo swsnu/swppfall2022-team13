@@ -72,6 +72,31 @@ const renderPoliticianDetailPage = () => {
           ],
           selectedPolitician: null,
         },
+        petition: {
+          petitions: [
+              {
+                id: 1,
+                title: "ang gimochi",
+                content: "ang gimochi",
+                author: 1,
+                vote: 1,
+                photo_url: "test",
+              },
+          ],
+          selectedPetition: null,
+      },
+
+      quora: {
+        quoras: [
+            {
+                id: 1,
+                title: "ang gimochi",
+                content: "ang gimochi",
+                author: 1,
+            },
+        ],
+        selectedQuora: null,
+    },
       },
     }
   );
