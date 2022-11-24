@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'user',
     'article',
     'politician',
+    'corsheaders',
 ]
 
 
@@ -52,6 +53,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+# 리액트 3000 포트
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000"
 ]
 
 ROOT_URLCONF = 'jjdd.urls'
