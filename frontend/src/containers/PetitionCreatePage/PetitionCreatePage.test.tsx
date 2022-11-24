@@ -51,29 +51,5 @@ describe("<PetitionCreatePage />", () => {
     screen.getByText("Back");
   });
 
-  it("should alert error when submitted", async () => {
-    const mockPostPetition = jest.spyOn(petitionSlice, "postPetition");
-    window.alert = jest.fn();
-    console.error = jest.fn();
-    jest.spyOn(axios, "post").mockRejectedValueOnce(new Error("ERROR"));
-    renderWithProviders(<PetitionCreatePage />);
-    const titleInput = screen.getByLabelText("Title");
-    const contentInput = screen.getByLabelText("Content");
-    const submitButton = screen.getByText("Create");
-    fireEvent.change(titleInput, { target: { value: "TITLE" } });
-    fireEvent.change(contentInput, { target: { value: "CONTENT" } });
-
-    await screen.findByDisplayValue("TITLE");
-    await screen.findByDisplayValue("CONTENT");
-    fireEvent.click(submitButton);
-
-    expect(mockPostPetition).toHaveBeenCalledWith({
-      title: "TITLE",
-      content: "CONTENT",
-      //author_id: 1,
-    });
-    await waitFor(() => expect(mockNavigate).not.toHaveBeenCalled());
-    //await waitFor(() => expect(window.alert).toHaveBeenCalledWith("Error on post Todo"));
-  });
 
 });
