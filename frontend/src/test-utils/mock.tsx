@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import { AppStore, RootState } from '../store'
 import articleReducer from '../store/slices/article'
 import politicianReducer from '../store/slices/politician'
+import petitionReducer from '../store/slices/petition'
+import quoraReducer from '../store/slices/quora'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>
@@ -23,6 +25,16 @@ export const rootInitialState: RootState = {
     selectedPolitician: null
   },
 
+  petition: {
+    petitions: [],
+    selectedPetition: null
+  },
+
+  quora: {
+    quoras: [],
+    selectedQuora: null
+  },
+
 }
 
 export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
@@ -30,6 +42,8 @@ export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
     reducer: {
       article: articleReducer,
       politician: politicianReducer,
+      petition: petitionReducer,
+      quora: quoraReducer,
     },
     preloadedState
   })

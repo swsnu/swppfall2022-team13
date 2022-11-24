@@ -3,6 +3,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router";
 import { ArticleState } from "../../store/slices/article";
 import { PoliticianState } from "../../store/slices/politician";
+import { PetitionState } from "../../store/slices/petition";
+import { QuoraState } from "../../store/slices/quora";
 import { getMockStore } from "../../test-utils/mock";
 import NewsListPage from "./NewsListPage";
 import NewsArticle, {
@@ -115,11 +117,36 @@ const stubInitialState2: PoliticianState = {
   ],
   selectedPolitician: null,
 };
+const stubInitialState3: PetitionState = {
+  petitions: [
+      {
+          id: 1,
+          title: "ang gimochi",
+          content: "ang gimochi",
+          author: 1,
+          vote: 1,
+          photo_url: "test",
+      },
+  ],
+  selectedPetition: null,
+  
+}
 
-const mockStore = getMockStore({
-  article: stubInitialState,
-  politician: stubInitialState2,
-});
+const stubInitialState4: QuoraState = {
+  quoras: [
+      {
+        id: 1,
+        title: "ang gimochi",
+        content: "ang gimochi",
+        author: 1,
+      },
+  ],
+  selectedQuora: null,
+  
+}
+
+const mockStore = getMockStore({ article: stubInitialState, politician: stubInitialState2, petition: stubInitialState3, quora: stubInitialState4 });
+
 
 const spyNavBar = () => <p>NavBar</p>;
 jest.mock("../../components/NavBar/NavBar", () => spyNavBar);
