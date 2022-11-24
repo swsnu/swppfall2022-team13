@@ -10,9 +10,6 @@ import LoginPage from './containers/LoginPage/LoginPage';
 import PetitionListPage from './containers/PetitionListPage/PetitionListPage';
 import PetitionCreatePage from './containers/PetitionCreatePage/PetitionCreatePage';
 import PetitionDetailPage from './containers/PetitionDetailPage/PetitionDetailPage';
-import SurveyListPage from './containers/SurveyListPage/SurveyListPage';
-import SurveyCreatePage from './containers/SurveyCreatePage/SurveyCreatePage';
-import SurveyDetailPage from './containers/SurveyDetailPage/SurveyDetailPage';
 import NewsListPage from './containers/NewsListPage/NewsListPage';
 import NewsDetailPage from './containers/NewsDetailPage/NewsDetailPage';
 import QuoraListPage from './containers/QuoraListPage/QuoraListPage';
@@ -37,9 +34,6 @@ function App() {
           <Route path="/petition" element={<PetitionListPage />} />
           <Route path="/petition/create" element={<PetitionCreatePage />} />
           <Route path="/petition/:id" element={<PetitionDetailPage />} />
-          <Route path="/survey" element={<SurveyListPage />} />
-          <Route path="/survey/create" element={<SurveyCreatePage />} />
-          <Route path="/survey/:id" element={<SurveyDetailPage />} />
           <Route path="/news" element={<NewsListPage />} />
           <Route path="/news/:id" element={<NewsDetailPage />} />
           <Route path="/quora" element={<QuoraListPage />} />
