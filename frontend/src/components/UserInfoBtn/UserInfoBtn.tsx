@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./UserInfoBtn.css";
 export interface UserInfoBtnType {
@@ -9,8 +10,18 @@ export interface UserInfoBtnType {
 export default function UserInfoBtn(props: UserInfoBtnType) {
   //clickhandler 추가하기
   const navigate = useNavigate();
-  const onClickHandler = () => {
-    navigate(props.url);
+  const onClickHandler = async () => {
+    const response = await axios.get("http://127.0.0.1:8000/api/user/islogin/");
+    // console.log(response);
+    const isLogin = response['data']['status'];
+
+    if(isLogin){
+      const user_id = response['data']['id'];
+      navigate('/login/'+ user_id.toString() + '/');
+    }
+    else{
+      navigate('/login');
+    }
   };
   return (
     <div className="UserInfoBtn">
