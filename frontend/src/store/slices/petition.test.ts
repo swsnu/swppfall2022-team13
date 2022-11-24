@@ -15,6 +15,15 @@ describe('book reducer', () => {
       photo_url: "ang gimochi",
     }
 
+    const fakePetition2 = {
+      author: 1,
+      content: "ang gimochi",
+      id: 1,
+      photo_url: "ang gimochi",
+      title: "ang gimochi",
+      vote: 1,
+    }
+
     beforeAll(() => {
       store = configureStore({ reducer: { petition: reducer } })
     })
@@ -70,7 +79,7 @@ describe('book reducer', () => {
         data: fakePetition1,
       });
       await store.dispatch(postPetition({ title: "ang gimochi", content: "ang gimochi", author: 1, vote: 1, photo_url: "ang gimochi"}));
-      //expect(store.getState().petition.petitions).toEqual([fakePetition1]);
+      expect(store.getState().petition.petitions).toEqual([]);
     });
 
     it("should handle voteUp", async () => {
