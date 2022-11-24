@@ -24,13 +24,12 @@ def signup(request):
         req_data = json.loads(request.body.decode())
         email = req_data["email"]
         password = req_data["password"]
-        first_name = req_data["first_name"]
-        last_name = req_data["last_name"]
+        username = req_data["username"]
     except (KeyError, JSONDecodeError):
         return HttpResponseBadRequest()
 
     User.objects.create_user(
-        username=email, password=password, first_name=first_name, last_name=last_name
+        email=email, password=password, username=username
     )
     return HttpResponse(status=201)
 
