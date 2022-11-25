@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'article',
     'politician',
     'corsheaders',
+    'rest_framework',
 ]
 
 
@@ -57,11 +58,19 @@ MIDDLEWARE = [
 ]
 
 # 리액트 3000 포트
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000"
+CORS_ORIGIN_WHITELIST = [    
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000"
 ]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000"
+]
 
 ROOT_URLCONF = 'jjdd.urls'
 

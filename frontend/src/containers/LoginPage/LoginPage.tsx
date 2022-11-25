@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid'; // 김경모 bitch //
+import Box from '@mui/material/Box'; // 개같은 소개원실 //
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -35,8 +35,14 @@ export default function SignIn() {
     //   email: data.get('email'),
     //   password: data.get('password'),
     // });
+    // const token = await axios.get("http://127.0.0.1:8000/api/user/token/");
+    // console.log(token);
 
-    const response = await axios.post("http://127.0.0.1:8000/api/user/signin/", {
+    // TEST!!
+    // const response = await axios.get("/api/user/islogin/");
+    // console.log(response);
+
+    const response = await axios.post("api/user/signin/", {
       "email": data.get('email'),
       "password": data.get('password')
     })
@@ -45,6 +51,7 @@ export default function SignIn() {
   };
 
   return (
+    <div>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -98,5 +105,6 @@ export default function SignIn() {
         </Box>
       </Container>
     </ThemeProvider>
+    </div>
   );
 }
