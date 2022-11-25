@@ -2237,6 +2237,13 @@
   "resolved" "https://registry.npmjs.org/@types/aria-query/-/aria-query-4.2.2.tgz"
   "version" "4.2.2"
 
+"@types/axios@^0.14.0":
+  "integrity" "sha512-KqQnQbdYE54D7oa/UmYVMZKq7CO4l8DEENzOKc4aBRwxCXSlJXGz83flFx5L7AWrOQnmuN3kVsRdt+GZPPjiVQ=="
+  "resolved" "https://registry.npmjs.org/@types/axios/-/axios-0.14.0.tgz"
+  "version" "0.14.0"
+  dependencies:
+    "axios" "*"
+
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.14", "@types/babel__core@^7.1.7", "@types/babel__core@^7.1.9":
   "integrity" "sha512-PVb6Bg2QuscZ30FvOU7z4guG6c926D9YRvOxEaelzndpMsvP+YM74Q/dAFASpg2l6+XLalxSGxcq/lrgYWZtyQ=="
   "resolved" "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.1.20.tgz"
@@ -3637,7 +3644,7 @@
   "resolved" "https://registry.npmjs.org/axe-core/-/axe-core-4.5.1.tgz"
   "version" "4.5.1"
 
-"axios@^0.27.2":
+"axios@*", "axios@^0.27.2":
   "integrity" "sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ=="
   "resolved" "https://registry.npmjs.org/axios/-/axios-0.27.2.tgz"
   "version" "0.27.2"
