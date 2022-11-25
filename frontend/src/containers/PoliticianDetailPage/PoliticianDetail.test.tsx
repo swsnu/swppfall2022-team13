@@ -2,9 +2,6 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
 import { MemoryRouter, Navigate, Route, Routes } from "react-router";
 import { renderWithProviders } from "../../test-utils/mock";
-import { ArticleState } from "../../store/slices/article";
-import { PoliticianState } from "../../store/slices/politician";
-import { getMockStore } from "../../test-utils/mock";
 import PoliticianDetailPage from "./PoliticianDetailPage";
 
 const mockNavigate = jest.fn();
@@ -21,12 +18,12 @@ jest.mock("react-redux", () => ({
 const spyNavBar = () => <p>NavBar</p>;
 jest.mock("../../components/NavBar/NavBar", () => spyNavBar);
 
-const renderPoliticianDetailPage = () => {
+const renderPoliticianDetailPage = (id: string) => {
   renderWithProviders(
     <MemoryRouter>
       <Routes>
         <Route path="/politician/:id" element={<PoliticianDetailPage />} />
-        <Route path="*" element={<Navigate to={"/politician/3"} />} />
+        <Route path="*" element={<Navigate to={"/politician/" + id} />} />
       </Routes>
     </MemoryRouter>,
     {
@@ -54,6 +51,40 @@ const renderPoliticianDetailPage = () => {
         politician: {
           politicians: [
             {
+              id: 1,
+              name: "test",
+              birth_date: "test",
+              job: "test",
+              image_src: "test",
+              political_party: "test",
+              election_precinct: "test",
+              committee: "test",
+              committees: "test",
+              reelection: "초선",
+              election_units: "test",
+              email: "test",
+              career_summary: "학력\r\n 상문고등학교\r\n 서울대학교 \r\n",
+              mona_code: "test",
+              proposals: "test",
+            },
+            {
+              id: 2,
+              name: "test",
+              birth_date: "test",
+              job: "test",
+              image_src: "test",
+              political_party: "test",
+              election_precinct: "test",
+              committee: "test",
+              committees: "test",
+              reelection: "재선",
+              election_units: "test",
+              email: "test",
+              career_summary: "학력\r\n 상문고등학교\r\n 서울대학교 \r\n",
+              mona_code: "test",
+              proposals: "test",
+            },
+            {
               id: 3,
               name: "test",
               birth_date: "test",
@@ -63,7 +94,7 @@ const renderPoliticianDetailPage = () => {
               election_precinct: "test",
               committee: "test",
               committees: "test",
-              reelection: "test",
+              reelection: "3선",
               election_units: "test",
               email: "test",
               career_summary: "학력\r\n 상문고등학교\r\n 서울대학교 \r\n",
@@ -126,14 +157,27 @@ describe("<PoliticianDetailPage />", () => {
         },
       });
     });
-    renderPoliticianDetailPage();
+    renderPoliticianDetailPage("3");
     await screen.findAllByText("test");
     await screen.findByText("상문고등학교");
   });
 
-  it("should not render if there is no politician", async () => {
-    renderPoliticianDetailPage();
-    jest.spyOn(axios, "get").mockImplementationOnce(() => Promise.reject());
-    expect(screen.queryAllByText("test")).toHaveLength(1);
+  it("test when reelection = 2", async () => {
+    renderPoliticianDetailPage("2");
+    await screen.findAllByText("test");
+    await screen.findByText("상문고등학교");
+  });
+
+  it("test when reelection = 1", async () => {
+    renderPoliticianDetailPage("1");
+    await screen.findAllByText("test");
+    await screen.findByText("상문고등학교");
+  });
+  it("test career and props", async () => {
+    renderPoliticianDetailPage("1");
+    const career = screen.getByAltText("career");
+    const props = screen.getByAltText("props");
+    fireEvent.click(career);
+    fireEvent.click(props);
   });
 });

@@ -113,6 +113,40 @@ const politicianStubInitialState: PoliticianState = {
       mona_code: "test",
       proposals: "test",
     },
+    {
+      id: 6,
+      name: "test",
+      birth_date: "test",
+      job: "test",
+      image_src: "test",
+      political_party: "test",
+      election_precinct: "test",
+      committee: "test",
+      committees: "test",
+      reelection: "test",
+      election_units: "test",
+      email: "test",
+      career_summary: "test",
+      mona_code: "test",
+      proposals: "test",
+    },
+    {
+      id: 7,
+      name: "test",
+      birth_date: "test",
+      job: "test",
+      image_src: "test",
+      political_party: "test",
+      election_precinct: "test",
+      committee: "test",
+      committees: "test",
+      reelection: "test",
+      election_units: "test",
+      email: "test",
+      career_summary: "test",
+      mona_code: "test",
+      proposals: "test",
+    },
   ],
   selectedPolitician: null,
 };
@@ -167,37 +201,35 @@ const articleStubInitialState: ArticleState = {
 
 const stubInitialState3: PetitionState = {
   petitions: [
-      {
-          id: 1,
-          title: "ang gimochi",
-          content: "ang gimochi",
-          author: 1,
-          vote: 1,
-          photo_url: "test",
-      },
+    {
+      id: 1,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      author: 1,
+      vote: 1,
+      photo_url: "test",
+    },
   ],
   selectedPetition: null,
-  
-}
+};
 
 const stubInitialState4: QuoraState = {
   quoras: [
-      {
-        id: 1,
-        title: "ang gimochi",
-        content: "ang gimochi",
-        author: 1,
-      },
+    {
+      id: 1,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      author: 1,
+    },
   ],
   selectedQuora: null,
-  
-}
+};
 
 const mockStore = getMockStore({
   article: articleStubInitialState,
   politician: politicianStubInitialState,
   petition: stubInitialState3,
-  quora: stubInitialState4
+  quora: stubInitialState4,
 });
 
 describe("<PoliticianListPage />", () => {
@@ -220,7 +252,13 @@ describe("<PoliticianListPage />", () => {
   });
   it("should handle searchBar input", () => {
     render(politicianList);
-    const search = screen.getByPlaceholderText("Search name..");
-    fireEvent.change(search, { target: { value: "hello" } });
+    const search = screen.getByPlaceholderText("Search ..");
+    fireEvent.change(search, { target: { value: "test" } });
+  });
+  it("should handle filter input", () => {
+    render(politicianList);
+    const filter = screen.getByPlaceholderText("filter");
+    fireEvent.change(filter, { target: { value: "선거구로 검색" } });
+    fireEvent.change(filter, { target: { value: "이름으로 검색" } });
   });
 });

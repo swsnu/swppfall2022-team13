@@ -7,11 +7,9 @@ import { PetitionState } from "../../store/slices/petition";
 import { QuoraState } from "../../store/slices/quora";
 import { getMockStore } from "../../test-utils/mock";
 import QuoraListPage from "./QuoraListPage";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Quora, {
-  QuoraType,
-} from "../../components/Quora/Quora";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Quora, { QuoraType } from "../../components/Quora/Quora";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -23,7 +21,6 @@ jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockDispatch,
 }));
-
 
 const stubInitialState: ArticleState = {
   articles: [
@@ -76,40 +73,43 @@ const stubInitialState2: PoliticianState = {
       email: "ang gimochi",
       career_summary: "ang gimochi",
       mona_code: "ang gimochi",
+      proposals: "test",
     },
   ],
   selectedPolitician: null,
 };
 const stubInitialState3: PetitionState = {
   petitions: [
-      {
-          id: 1,
-          title: "ang gimochi",
-          content: "ang gimochi",
-          author: 1,
-          vote: 1,
-          photo_url: "test",
-      },
+    {
+      id: 1,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      author: 1,
+      vote: 1,
+      photo_url: "test",
+    },
   ],
   selectedPetition: null,
-  
-}
+};
 
 const stubInitialState4: QuoraState = {
   quoras: [
-      {
-        id: 1,
-        title: "ang gimochi",
-        content: "ang gimochi",
-        author: 1,
-      },
+    {
+      id: 1,
+      title: "ang gimochi",
+      content: "ang gimochi",
+      author: 1,
+    },
   ],
   selectedQuora: null,
-  
-}
+};
 
-const mockStore = getMockStore({ article: stubInitialState, politician: stubInitialState2, petition: stubInitialState3, quora: stubInitialState4 });
-
+const mockStore = getMockStore({
+  article: stubInitialState,
+  politician: stubInitialState2,
+  petition: stubInitialState3,
+  quora: stubInitialState4,
+});
 
 const spyNavBar = () => <p>NavBar</p>;
 jest.mock("../../components/NavBar/NavBar", () => spyNavBar);
