@@ -8,8 +8,12 @@ import { PetitionState } from "../../store/slices/petition";
 import { QuoraState } from "../../store/slices/quora";
 import { getMockStore } from "../../test-utils/mock";
 import PetitionDetailPage from "./PetitionDetailPage";
-import { fetchPetitions, fetchPetition, selectPetition } from "../../store/slices/petition";
-import Petition, { PetitionType,} from "../../components/Petition/Petition";
+import {
+  fetchPetitions,
+  fetchPetition,
+  selectPetition,
+} from "../../store/slices/petition";
+import Petition, { PetitionType } from "../../components/Petition/Petition";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -22,15 +26,10 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockDispatch,
 }));
 
-
-const spyNavBar = () => <p>NavBar</p>
-jest.mock('../../components/NavBar/NavBar', () => spyNavBar)
-
-
-
+const spyNavBar = () => <p>NavBar</p>;
+jest.mock("../../components/NavBar/NavBar", () => spyNavBar);
 
 const renderPetitionDetailPage = () => {
-
   renderWithProviders(
     <MemoryRouter>
       <Routes>
@@ -42,161 +41,161 @@ const renderPetitionDetailPage = () => {
       preloadedState: {
         article: {
           articles: [
-            { id: 3,
-                title: "ang gimochi",
-                content: "ang gimochi2",
-                datetime_str: "ang gimochi",
-                preview_prologue: "ang gimochi",
-                detail_link_postfix: "ang gimochi",
-                preview_img_path: "ang gimochi",
-                detail_img_path: "ang gimochi",
-                journal_name: "한겨레",
-                detail_text: "ang gimochi2",
-                created_at: "ang gimochi",
-                updated_at: "ang gimochi",
-             },
+            {
+              id: 3,
+              title: "ang gimochi",
+              content: "ang gimochi2",
+              datetime_str: "ang gimochi",
+              preview_prologue: "ang gimochi",
+              detail_link_postfix: "ang gimochi",
+              preview_img_path: "ang gimochi",
+              detail_img_path: "ang gimochi",
+              journal_name: "한겨레",
+              detail_text: "ang gimochi2",
+              created_at: "ang gimochi",
+              updated_at: "ang gimochi",
+            },
           ],
           selectedArticle: null,
         },
 
         politician: {
-            politicians: [
-                {
-                    id: 1,
-                    name: "ang gimochi",
-                    birth_date: "ang gimochi",
-                    job: "ang gimochi",
-                    image_src: "ang gimochi",
-                    political_party: "ang gimochi",
-                    election_precinct: "ang gimochi",
-                    committee: "ang gimochi",
-                    committees: "ang gimochi",
-                    reelection: "ang gimochi",
-                    election_units: "ang gimochi",
-                    email: "ang gimochi",
-                    career_summary: "ang gimochi",
-                    mona_code: "ang gimochi",
-                },
-            ],
-            selectedPolitician: null,
+          politicians: [
+            {
+              id: 1,
+              name: "ang gimochi",
+              birth_date: "ang gimochi",
+              job: "ang gimochi",
+              image_src: "ang gimochi",
+              political_party: "ang gimochi",
+              election_precinct: "ang gimochi",
+              committee: "ang gimochi",
+              committees: "ang gimochi",
+              reelection: "ang gimochi",
+              election_units: "ang gimochi",
+              email: "ang gimochi",
+              career_summary: "ang gimochi",
+              mona_code: "ang gimochi",
+              proposals: "test",
+            },
+          ],
+          selectedPolitician: null,
         },
 
         petition: {
           petitions: [
-              {
-                id: 3,
-                title: "ang gimochi",
-                content: "ang gimochi",
-                author: 1,
-                vote: 1,
-                photo_url: "test",
-              },
+            {
+              id: 3,
+              title: "ang gimochi",
+              content: "ang gimochi",
+              author: 1,
+              vote: 1,
+              photo_url: "test",
+            },
           ],
           selectedPetition: null,
-      },
+        },
 
-      quora: {
-        quoras: [
+        quora: {
+          quoras: [
             {
-                id: 1,
-                title: "ang gimochi",
-                content: "ang gimochi",
-                author: 1,
+              id: 1,
+              title: "ang gimochi",
+              content: "ang gimochi",
+              author: 1,
             },
-        ],
-        selectedQuora: null,
-    },
+          ],
+          selectedQuora: null,
+        },
       },
     }
   );
 };
 
 const renderPetitionDetailPage2 = () => {
-
-    renderWithProviders(
-      <MemoryRouter>
-        <Routes>
-          <Route path="/petition/:id" element={<PetitionDetailPage />} />
-          <Route path="*" element={<Navigate to={"/petition/2"} />} />
-        </Routes>
-      </MemoryRouter>,
-      {
-        preloadedState: {
-          article: {
-            articles: [
-              { id: 3,
-                  title: "ang gimochi",
-                  content: "ang gimochi2",
-                  datetime_str: "ang gimochi",
-                  preview_prologue: "ang gimochi",
-                  detail_link_postfix: "ang gimochi",
-                  preview_img_path: "ang gimochi",
-                  detail_img_path: "ang gimochi",
-                  journal_name: "한겨레",
-                  detail_text: "ang gimochi2",
-                  created_at: "ang gimochi",
-                  updated_at: "ang gimochi",
-               },
-            ],
-            selectedArticle: null,
-          },
-  
-          politician: {
-              politicians: [
-                  {
-                      id: 1,
-                      name: "ang gimochi",
-                      birth_date: "ang gimochi",
-                      job: "ang gimochi",
-                      image_src: "ang gimochi",
-                      political_party: "ang gimochi",
-                      election_precinct: "ang gimochi",
-                      committee: "ang gimochi",
-                      committees: "ang gimochi",
-                      reelection: "ang gimochi",
-                      election_units: "ang gimochi",
-                      email: "ang gimochi",
-                      career_summary: "ang gimochi",
-                      mona_code: "ang gimochi",
-                  },
-              ],
-              selectedPolitician: null,
-          },
-
-          petition: {
-            petitions: [
-                {
-                  id: 3,
-                  title: "ang gimochi",
-                  content: "ang gimochi",
-                  author: 1,
-                  vote: 1,
-                  photo_url: "test",
-                },
-            ],
-            selectedPetition: null,
+  renderWithProviders(
+    <MemoryRouter>
+      <Routes>
+        <Route path="/petition/:id" element={<PetitionDetailPage />} />
+        <Route path="*" element={<Navigate to={"/petition/2"} />} />
+      </Routes>
+    </MemoryRouter>,
+    {
+      preloadedState: {
+        article: {
+          articles: [
+            {
+              id: 3,
+              title: "ang gimochi",
+              content: "ang gimochi2",
+              datetime_str: "ang gimochi",
+              preview_prologue: "ang gimochi",
+              detail_link_postfix: "ang gimochi",
+              preview_img_path: "ang gimochi",
+              detail_img_path: "ang gimochi",
+              journal_name: "한겨레",
+              detail_text: "ang gimochi2",
+              created_at: "ang gimochi",
+              updated_at: "ang gimochi",
+            },
+          ],
+          selectedArticle: null,
         },
-  
+
+        politician: {
+          politicians: [
+            {
+              id: 1,
+              name: "ang gimochi",
+              birth_date: "ang gimochi",
+              job: "ang gimochi",
+              image_src: "ang gimochi",
+              political_party: "ang gimochi",
+              election_precinct: "ang gimochi",
+              committee: "ang gimochi",
+              committees: "ang gimochi",
+              reelection: "ang gimochi",
+              election_units: "ang gimochi",
+              email: "ang gimochi",
+              career_summary: "ang gimochi",
+              mona_code: "ang gimochi",
+              proposals: "test",
+            },
+          ],
+          selectedPolitician: null,
+        },
+
+        petition: {
+          petitions: [
+            {
+              id: 3,
+              title: "ang gimochi",
+              content: "ang gimochi",
+              author: 1,
+              vote: 1,
+              photo_url: "test",
+            },
+          ],
+          selectedPetition: null,
+        },
+
         quora: {
           quoras: [
-              {
-                  id: 1,
-                  title: "ang gimochi",
-                  content: "ang gimochi",
-                  author: 1,
-              },
+            {
+              id: 1,
+              title: "ang gimochi",
+              content: "ang gimochi",
+              author: 1,
+            },
           ],
           selectedQuora: null,
-      },
         },
-      }
-    );
-  };
+      },
+    }
+  );
+};
 
 describe("<PetitionDetailPage />", () => {
-
-    
-
   it("should render without errors", async () => {
     jest.spyOn(axios, "get").mockImplementation(() => {
       return Promise.resolve({
@@ -277,7 +276,4 @@ describe("<PetitionDetailPage />", () => {
     const delButton = await screen.findByText("Delete Petition");
     fireEvent.click(delButton);
   });
-
-
-  
 });

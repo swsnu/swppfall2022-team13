@@ -48,7 +48,7 @@ const PoliticianListPage = () => {
     <div className="PoliticianListPage">
       <NavBar />
       <div className="FilterAndSearchBar">
-        <select onChange={onFilterChangeHandler}>
+        <select onChange={onFilterChangeHandler} placeholder="filter">
           <option value="name">이름으로 검색</option>
           <option value="elect-precinct">선거구로 검색</option>
         </select>

@@ -99,6 +99,7 @@ const PoliticianDetailPage = () => {
               width={30}
               height={30}
               onClick={onCareerClickHandler}
+              alt="career"
             ></img>
           </div>
           <div className={career ? "education-and-career-body" : "none"}>
@@ -128,6 +129,7 @@ const PoliticianDetailPage = () => {
               }
               width={30}
               height={30}
+              alt="props"
               onClick={onPropClickHandler}
             ></img>
           </div>
