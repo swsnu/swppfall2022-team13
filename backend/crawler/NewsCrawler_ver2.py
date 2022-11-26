@@ -38,25 +38,34 @@ class NewsCrawler(metaclass=ABCMeta):
     @staticmethod
     def url2soup(url):
         req = requests.get(url, headers={'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'})
-        
         html = req.text
         return BeautifulSoup(html, "html.parser")
     
 
 class NaverCrawler(NewsCrawler):
     home_url = "https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=100"
-    
+    left_journals = ["오마이뉴스", "한겨레", "프레시안", "경향신문", "머니투데이", "이데일리"]
+    right_journals = ["조선일보", "중앙일보", "동아일보", "문화일보", "한국경제", "매일경제"]
+
     @classmethod
-    def _bs4_element2article_json(cls, bs4_element):
+    def _bs4_element2article_json(cls, bs4_element, topic_id):
         try:
             article_json = {}
+            article_json["journal_name"] = bs4_element.select_one("span.writing").text if bs4_element.select_one("span.writing") else None
+            
+            if article_json["journal_name"] in cls.left_journals:
+                article_json["bias"] = "left"
+            elif article_json["journal_name"] in cls.right_journals:
+                article_json["bias"] = "right"
+            else:
+                return None
+            
+            article_json["topic_id"] = topic_id
             article_json["datetime"] = bs4_element.select_one("span.date").text.replace('.', '-') if bs4_element.select_one("span.date") else None
-            # print(article_json["datetime"].replace('.', '-'))
             article_json["preview_prologue"] = bs4_element.select_one("span.lede").text if bs4_element.select_one("span.lede") else None
             article_json["detail_link_postfix"] = bs4_element.select_one("dt.photo a")["href"] if bs4_element.select_one("dt.photo a") else None
             article_json["preview_img_path"] = bs4_element.select_one("dt.photo a img")["src"] if bs4_element.select_one("dt.photo a img") else None
-            article_json["journal_name"] = bs4_element.select_one("span.writing").text if bs4_element.select_one("span.writing") else None
-
+            
             
             detail_url_str = article_json["detail_link_postfix"]
             if article_json["detail_link_postfix"] is not None:
@@ -74,25 +83,22 @@ class NaverCrawler(NewsCrawler):
         except BaseException as e:
             print("Error occured at ...")
             print(article_json)
-            print(e)
             raise e
                     
     @classmethod
-    def _crawl_from_page(cls, url_str, max_num, articles_list):    #TODO : add press 'see more'
+    def _crawl_from_page(cls, url_str, max_num, articles_list, topic_id):
         soup = NewsCrawler.url2soup(url_str)
         
         article_element_list = soup.select(".type06_headline li dl")
         
         for article_element in article_element_list:
-            article_json = cls._bs4_element2article_json(article_element)
-            if article_json['journal_name'] in ['한겨레', '조선일보'] and article_json["detail_link_postfix"] is not None:
-              articles_list.append(article_json)
-              os.system('clear') # for pycharm, vscode etc...
-              print(f"Crawled {len(articles_list)} / {max_num} articles.")
-
-            # progress checker
-            
-            # clear_output(wait=True) # for Ipython
+            article_json = cls._bs4_element2article_json(article_element, topic_id)
+            if article_json is not None:
+                articles_list.append(article_json)
+                # progress checker
+                # clear_output(wait=True) # for Ipython
+                os.system('clear') # for pycharm, vscode etc...
+                print(f"Crawled {len(articles_list)} / {max_num} articles.")
             
             if len(articles_list) >= max_num:
                 raise StopIteration
@@ -102,9 +108,12 @@ class NaverCrawler(NewsCrawler):
         soup = NewsCrawler.url2soup(cls.home_url)
         elements = soup.select("div.cluster_group .cluster_foot a")
         
+        topic_id = 0
         for element in elements:
+            topic_id += 1
             articles_page_url = "https://news.naver.com" + element["href"]
-            cls._crawl_from_page(articles_page_url, max_num, articles_list)
+            cls._crawl_from_page(articles_page_url, max_num, articles_list, topic_id)
+
 
 
 if __name__ == "__main__":
