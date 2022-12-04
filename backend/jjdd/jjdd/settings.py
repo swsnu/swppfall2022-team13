@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'politician',
     'petition',
     'quora',
+    'corsheaders',
     'rest_framework',
 ]
 
