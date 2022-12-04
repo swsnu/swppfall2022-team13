@@ -6,6 +6,9 @@ WORKDIR /app
 
 COPY . .
 
+RUN pip install django-cors-headers
+RUN pip install djangorestframework
+
 # Environment variables for django deployment
 ENV DEBUG=False
 ENV SECRET_KEY=anythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganythinganything
