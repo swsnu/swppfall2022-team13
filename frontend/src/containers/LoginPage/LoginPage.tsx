@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../asset/image/logo1_cropped.png';
 import axios from 'axios';
+import NavBar from '../../components/NavBar/NavBar';
 
 const theme = createTheme();
 
@@ -39,6 +40,7 @@ export default function SignIn() {
 
   return (
     <div>
+    <NavBar></NavBar>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />

@@ -11,7 +11,7 @@ export default function UserInfoBtn(props: UserInfoBtnType) {
   //clickhandler 추가하기
   const navigate = useNavigate();
   const onClickHandler = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/api/user/islogin/");
+    const response = await axios.get("/api/user/islogin/");
     // console.log(response);
     const isLogin = response['data']['status'];
 

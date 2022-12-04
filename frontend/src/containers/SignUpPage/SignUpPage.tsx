@@ -13,33 +13,21 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../asset/image/logo1_cropped.png';
 import axios from 'axios';
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import NavBar from '../../components/NavBar/NavBar';
 
 const theme = createTheme();
+
+const token = axios.get("/api/user/token/");
+console.log(token);
 
 export default function SignUp() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    //   "username": data.get('username')
-    // });
 
-    const response = await axios.post("http://127.0.0.1:8000/api/user/signup/", {
+    
+
+    const response = await axios.post("/api/user/signup/", {
       "email": data.get('email'),
       "password": data.get('password'),
       "username": data.get('username')
@@ -49,6 +37,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
+      <NavBar></NavBar>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
