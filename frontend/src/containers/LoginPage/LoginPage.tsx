@@ -22,23 +22,11 @@ export default function SignIn() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-    // const token = await axios.get("http://127.0.0.1:8000/api/user/token/");
-    // console.log(token);
-
-    // TEST!!
-    // const response = await axios.get("/api/user/islogin/");
-    // console.log(response);
-
     const response = await axios.post("api/user/signin/", {
       "email": data.get('email'),
       "password": data.get('password')
-    })
-    console.log(response);
-
+    });
+    
   };
 
   return (
