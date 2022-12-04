@@ -4,6 +4,7 @@ import { MemoryRouter, Route, Routes } from "react-router";
 import { ArticleState } from "../../store/slices/article";
 import { PoliticianState } from "../../store/slices/politician";
 import { PetitionState } from "../../store/slices/petition";
+import { UserType } from "../../store/slices/user";
 import { QuoraState } from "../../store/slices/quora";
 import { getMockStore } from "../../test-utils/mock";
 import NewsListPage from "./NewsListPage";
@@ -144,11 +145,18 @@ const stubInitialState4: QuoraState = {
   selectedQuora: null,
 };
 
+const stubInitialState5: UserType = {
+    email: "",
+    pw: ""
+}
+
 const mockStore = getMockStore({
   article: stubInitialState,
   politician: stubInitialState2,
   petition: stubInitialState3,
   quora: stubInitialState4,
+  user: stubInitialState5
+  }
 });
 
 const spyNavBar = () => <p>NavBar</p>;

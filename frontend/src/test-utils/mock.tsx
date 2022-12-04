@@ -8,6 +8,7 @@ import articleReducer from '../store/slices/article'
 import politicianReducer from '../store/slices/politician'
 import petitionReducer from '../store/slices/petition'
 import quoraReducer from '../store/slices/quora'
+import userReducer from '../store/slices/user'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>
@@ -34,6 +35,10 @@ export const rootInitialState: RootState = {
     quoras: [],
     selectedQuora: null
   },
+  user: {
+    email: "",
+    pw: ""
+  }
 
 }
 
@@ -44,6 +49,7 @@ export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
       politician: politicianReducer,
       petition: petitionReducer,
       quora: quoraReducer,
+      user: userReducer
     },
     preloadedState
   })

@@ -149,6 +149,10 @@ const renderNewsDetailPage = () => {
           ],
           selectedQuora: null,
         },
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );
@@ -232,6 +236,10 @@ const renderNewsDetailPage2 = () => {
           ],
           selectedQuora: null,
         },
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );

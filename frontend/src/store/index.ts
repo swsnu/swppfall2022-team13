@@ -3,6 +3,7 @@ import articleReducer from "./slices/article";
 import politicianReducer from "./slices/politician";
 import petitionReducer from "./slices/petition";
 import quoraReducer from "./slices/quora";
+import userReducer from "./slices/user";
 
 export const store = configureStore({
   reducer: {
@@ -10,9 +11,10 @@ export const store = configureStore({
     politician: politicianReducer,
     petition: petitionReducer,
     quora: quoraReducer,
+    user: userReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export type AppStore = typeof store
+export type AppStore = typeof store;
