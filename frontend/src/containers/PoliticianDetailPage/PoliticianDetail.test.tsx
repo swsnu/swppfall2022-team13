@@ -129,6 +129,10 @@ const renderPoliticianDetailPage = (id: string) => {
           ],
           selectedQuora: null,
         },
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );

@@ -4,6 +4,7 @@ import { MemoryRouter, Navigate, Route, Routes } from "react-router";
 import { renderWithProviders } from "../../test-utils/mock";
 import { ArticleState } from "../../store/slices/article";
 import { PoliticianState } from "../../store/slices/politician";
+import { UserType } from "../../store/slices/user";
 import { getMockStore } from "../../test-utils/mock";
 import PoliticianListPage from "./PoliticianListPage";
 import { PoliticianSummaryType } from "../../components/PoliticianSummary/PoliticianSummary";
@@ -225,11 +226,17 @@ const stubInitialState4: QuoraState = {
   selectedQuora: null,
 };
 
+const stubInitialState5: UserType = {
+  email: "",
+  pw: ""
+}
+
 const mockStore = getMockStore({
   article: articleStubInitialState,
   politician: politicianStubInitialState,
   petition: stubInitialState3,
   quora: stubInitialState4,
+  user: stubInitialState5
 });
 
 describe("<PoliticianListPage />", () => {

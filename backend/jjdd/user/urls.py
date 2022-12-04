@@ -1,9 +1,10 @@
 from django.urls import path
-from user import views
+from user.views import token, signup, signin, signout, isLogin
 
 urlpatterns = [
-    path('token/', views.token, name='token'),
-    path('signup/', views.signup, name='signup'),
-    path('signin/', views.signin, name='signin'),
-    path('signout/', views.signout, name='signout'),
+    path("token/", token, name="token"),
+    path("signup/", signup, name="signup"),
+    path("signin/", signin, name="signin"),
+    path("signout/", signout, name="signout"),
+    path("islogin/", isLogin, name="isLogin"),
 ]
