@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'petition',
     'quora',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
