@@ -22,6 +22,28 @@ export default function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [email, setEmail] = React.useState("");
+  const [emailWarning, setEmailWarning] = React.useState(true);
+
+  const isEmail = () => {
+    const emailRegex =
+    /^\S+@\S+\.\S+$/;
+
+    return emailRegex.test(email);
+  };
+
+  // for email validation check
+  const handleChangeEmail = (e: any) => {
+    setEmail(e.target.value);
+    const is_email: boolean = isEmail();
+    if(!is_email){
+      setEmailWarning(false);
+    }
+    else{
+      setEmailWarning(true);
+    }
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -30,14 +52,10 @@ export default function SignUp() {
       "password": data.get('password'),
       "username": data.get('username')
     })
-    // Signup 성공 시: 로그인 된 상태로 main으로 이동
+    // when signup success
     if(response.status === 201){
       dispatch(userActions.postEmailPw({email: data.get('username').toString(), pw: data.get('password').toString()}))
       navigate('/login/');
-    }
-    // TODO: 회원가입 실패 시 처리
-    else{
-
     }
   };
 
@@ -69,7 +87,10 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={handleChangeEmail}
                 />
+                <span className='email-warning' hidden={emailWarning || email===""}>Email 형식에 맞게 입력해주세요!</span>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -98,6 +119,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!emailWarning}
             >
               Sign Up
             </Button>
