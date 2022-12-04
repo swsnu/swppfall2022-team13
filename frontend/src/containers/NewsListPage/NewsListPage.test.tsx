@@ -119,6 +119,10 @@ const stubInitialState2: PoliticianState = {
 const mockStore = getMockStore({
   article: stubInitialState,
   politician: stubInitialState2,
+  user: {
+    email: "",
+    pw: ""
+  }
 });
 
 const spyNavBar = () => <p>NavBar</p>;

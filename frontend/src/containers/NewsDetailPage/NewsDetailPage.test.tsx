@@ -120,6 +120,11 @@ const renderNewsDetailPage = () => {
           ],
           selectedPolitician: null,
         },
+
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );
@@ -176,6 +181,10 @@ const renderNewsDetailPage2 = () => {
           ],
           selectedPolitician: null,
         },
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );

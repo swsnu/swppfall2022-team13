@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { AppStore, RootState } from '../store'
 import articleReducer from '../store/slices/article'
 import politicianReducer from '../store/slices/politician'
+import userReducer from '../store/slices/user'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>
@@ -23,6 +24,11 @@ export const rootInitialState: RootState = {
     selectedPolitician: null
   },
 
+  user: {
+    email: "",
+    pw: ""
+  }
+
 }
 
 export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
@@ -30,6 +36,7 @@ export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
     reducer: {
       article: articleReducer,
       politician: politicianReducer,
+      user: userReducer
     },
     preloadedState
   })

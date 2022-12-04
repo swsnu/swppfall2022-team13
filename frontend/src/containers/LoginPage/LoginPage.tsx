@@ -12,13 +12,23 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../asset/image/logo1_cropped.png';
 import axios from 'axios';
 import NavBar from '../../components/NavBar/NavBar';
+import { useSelector } from "react-redux";
+import { selectUser } from "../../store/slices/user";
 import CSRFToken from '../../csrftoken';
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn(props: { email: string; pw: string; }) {
+  const userState = {
+    email: props.email,
+    pw: props.pw
+  }
+  const reduxUserState = useSelector(selectUser);
+  userState.email = reduxUserState.email;
+  userState.pw = reduxUserState.pw;
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -60,6 +70,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={userState.email}
             />
             <TextField
               margin="normal"
@@ -70,6 +81,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={userState.pw}
             />
             <Button
               type="submit"
@@ -90,4 +102,9 @@ export default function SignIn() {
     </ThemeProvider>
     </div>
   );
+}
+
+SignIn.defaultProps = {
+  email: '',
+  pw: ''
 }

@@ -14,8 +14,6 @@ const NavBar = () => {
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3qAb5Xu6-hZguic1bPpFbicnmwOlHHIQ_ANoaY1xcLwrHfem6M1mNZkspUnq4u4DgjWs&usqp=CAU",
   };
-  
-
 
 return (
   <>

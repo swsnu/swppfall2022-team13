@@ -161,6 +161,10 @@ const articleStubInitialState: ArticleState = {
 const mockStore = getMockStore({
   article: articleStubInitialState,
   politician: politicianStubInitialState,
+  user: {
+    email: "",
+    pw: ""
+  }
 });
 
 describe("<PoliticianListPage />", () => {

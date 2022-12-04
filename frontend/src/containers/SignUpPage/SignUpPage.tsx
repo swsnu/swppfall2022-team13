@@ -3,8 +3,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,13 +12,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../asset/image/logo1_cropped.png';
 import axios from 'axios';
 import NavBar from '../../components/NavBar/NavBar';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/slices/user";
 
 const theme = createTheme();
 
-const token = axios.get("/api/user/token/");
-console.log(token);
-
 export default function SignUp() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -29,10 +30,17 @@ export default function SignUp() {
       "password": data.get('password'),
       "username": data.get('username')
     })
-    console.log(response);
+    // Signup 성공 시: 로그인 된 상태로 main으로 이동
+    if(response.status === 201){
+      dispatch(userActions.postEmailPw({email: data.get('email').toString(), pw: data.get('password').toString()}))
+      navigate('/login/');
+    }
+    // TODO: 회원가입 실패 시 처리
+    else{
+
+    }
   };
 
-  // TODO: Signup후에 바로 로그인 된 것처럼 하기!
 
   return (
     <ThemeProvider theme={theme}>

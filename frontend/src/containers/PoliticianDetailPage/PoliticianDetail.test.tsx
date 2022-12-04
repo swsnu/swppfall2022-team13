@@ -72,6 +72,10 @@ const renderPoliticianDetailPage = () => {
           ],
           selectedPolitician: null,
         },
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );
