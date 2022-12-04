@@ -20,15 +20,16 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 const theme = createTheme();
 
-export default function SignIn(props: { email: string; pw: string; }) {
-  const userState = {
-    email: props.email,
-    pw: props.pw
-  }
+export default function SignIn() {
   const reduxUserState = useSelector(selectUser);
-  userState.email = reduxUserState.email;
-  userState.pw = reduxUserState.pw;
+  const [emailState, setEmailState] = React.useState("");
+  const [pwState, setPwState] = React.useState("");
 
+  React.useEffect(() => {
+    setEmailState(reduxUserState.email);
+    setPwState(reduxUserState.pw);
+  }, [])
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -70,7 +71,8 @@ export default function SignIn(props: { email: string; pw: string; }) {
               name="email"
               autoComplete="email"
               autoFocus
-              value={userState.email}
+              value={emailState}
+              onChange={(e) => setEmailState(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -81,7 +83,8 @@ export default function SignIn(props: { email: string; pw: string; }) {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={userState.pw}
+              value={pwState}
+              onChange={(e) => setPwState(e.target.value)}
             />
             <Button
               type="submit"
@@ -102,9 +105,4 @@ export default function SignIn(props: { email: string; pw: string; }) {
     </ThemeProvider>
     </div>
   );
-}
-
-SignIn.defaultProps = {
-  email: '',
-  pw: ''
 }

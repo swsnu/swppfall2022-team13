@@ -12,7 +12,7 @@ export default function UserInfoBtn(props: UserInfoBtnType) {
   const navigate = useNavigate();
   const onClickHandler = async () => {
     const response = await axios.get("/api/user/islogin/");
-    console.log(response);
+    console.log("Login status: ", response.data);
     const isLogin = response['data']['status'];
 
     if(isLogin && response.data.id !== 2){
