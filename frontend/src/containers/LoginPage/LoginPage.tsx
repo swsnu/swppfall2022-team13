@@ -26,7 +26,9 @@ export default function SignIn() {
       "email": data.get('email'),
       "password": data.get('password')
     });
-    
+    if(response.status !== 204){
+      console.log(response.data);
+    }
   };
 
   return (

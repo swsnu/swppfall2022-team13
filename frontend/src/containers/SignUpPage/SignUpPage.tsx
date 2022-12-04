@@ -24,9 +24,6 @@ export default function SignUp() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-    
-
     const response = await axios.post("/api/user/signup/", {
       "email": data.get('email'),
       "password": data.get('password'),
@@ -34,6 +31,8 @@ export default function SignUp() {
     })
     console.log(response);
   };
+
+  // TODO: Signup후에 바로 로그인 된 것처럼 하기!
 
   return (
     <ThemeProvider theme={theme}>

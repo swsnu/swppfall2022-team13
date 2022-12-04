@@ -44,7 +44,7 @@ def signin(request):
     if user is not None:
         login(request, user)
         return HttpResponse(status=204)
-    return HttpResponse(status=401)
+    return HttpResponse("Wrong ID or Password")
 
 
 @require_http_methods(["GET"])
