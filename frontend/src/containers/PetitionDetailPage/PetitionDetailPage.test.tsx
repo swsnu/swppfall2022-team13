@@ -107,6 +107,11 @@ const renderPetitionDetailPage = () => {
           ],
           selectedQuora: null,
         },
+
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );
@@ -190,6 +195,11 @@ const renderPetitionDetailPage2 = () => {
           ],
           selectedQuora: null,
         },
+
+        user: {
+          email: "",
+          pw: ""
+        }
       },
     }
   );
