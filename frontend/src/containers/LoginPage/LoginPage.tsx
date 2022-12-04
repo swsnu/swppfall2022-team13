@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../asset/image/logo1_cropped.png';
 import axios from 'axios';
 import NavBar from '../../components/NavBar/NavBar';
+import CSRFToken from '../../csrftoken';
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 const theme = createTheme();
 
@@ -41,6 +44,7 @@ export default function SignIn() {
   return (
     <div>
     <NavBar></NavBar>
+    <CSRFToken></CSRFToken>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />

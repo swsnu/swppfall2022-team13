@@ -22,13 +22,9 @@ import PoliticianListPage from './containers/PoliticianListPage/PoliticianListPa
 import PoliticianDetailPage from './containers/PoliticianDetailPage/PoliticianDetailPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 function App() {
-
   return (
     <div className="App">
-      
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
