@@ -14,6 +14,7 @@ import axios from 'axios';
 import NavBar from '../../components/NavBar/NavBar';
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/slices/user";
+import { useNavigate } from 'react-router-dom';
 import CSRFToken from '../../csrftoken';
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -21,6 +22,7 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 const theme = createTheme();
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const reduxUserState = useSelector(selectUser);
   const [emailState, setEmailState] = React.useState("");
   const [pwState, setPwState] = React.useState("");
@@ -33,12 +35,15 @@ export default function SignIn() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const response = await axios.post("api/user/signin/", {
-      "email": data.get('email'),
+    const response = await axios.post("/api/user/signin/", {
+      "email": data.get('username'),
       "password": data.get('password')
     });
     if(response.status !== 204){
       console.log(response.data);
+    }
+    else{
+      navigate("/main/");
     }
   };
 
@@ -66,10 +71,11 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="UserName"
+              type="username"
+              name="username"
+              autoComplete="current-username"
               autoFocus
               value={emailState}
               onChange={(e) => setEmailState(e.target.value)}

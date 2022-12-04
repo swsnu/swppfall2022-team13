@@ -32,7 +32,7 @@ export default function SignUp() {
     })
     // Signup 성공 시: 로그인 된 상태로 main으로 이동
     if(response.status === 201){
-      dispatch(userActions.postEmailPw({email: data.get('email').toString(), pw: data.get('password').toString()}))
+      dispatch(userActions.postEmailPw({email: data.get('username').toString(), pw: data.get('password').toString()}))
       navigate('/login/');
     }
     // TODO: 회원가입 실패 시 처리
