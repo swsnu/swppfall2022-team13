@@ -12,6 +12,7 @@ jobs:
         - cd backend
         - pip install -r requirements.txt
         - pip install coveralls
+        - pip install djangorestframework
         - cd ../frontend
         - yarn install
         - yarn global add coveralls
