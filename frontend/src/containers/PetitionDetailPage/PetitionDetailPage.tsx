@@ -36,28 +36,57 @@ const PetitionDetailPage = () => {
     navigate ("/petition")
   }
 
-  const handleDelete = async () => { //When User Implemented, this should be ONLY FOR CREATOR
+  const handleDelete = async () => {
 
-    if (window.confirm("Are you sure? This is irreversible!")) {
-      if(petition !== null && petition !== undefined) {
-        dispatch(deletePetition(petition.id));
+    const response = await axios.get("/api/user/islogin/");
+    console.log("Login status: ", response.data);
+    const isLogin = response['data']['status'];
+
+    if(isLogin && response.data.id !== 2){
+      const user_id = response['data']['id'];
+
+      if(petition.author === user_id) {
+        if (window.confirm("Are you sure? This is irreversible!")) {
+          if(petition !== null && petition !== undefined) {
+            dispatch(deletePetition(petition.id));
+          }
+        } else {
+        }
+      } else {
+        const msg = ['Access denied! : not an author']
+      alert(msg)
+
       }
-    } else {
+    } else{
+      const msg = ['Login Required']
+      alert(msg)
+      navigate('/login');
     }
 
   };
 
   const handleVote = async () => {
+
+    const response = await axios.get("/api/user/islogin/");
+    console.log("Login status: ", response.data);
+    const isLogin = response['data']['status'];
+
+    if(isLogin && response.data.id !== 2){
+      const user_id = response['data']['id'];
+      //navigate('/user/'+ user_id.toString() + '/');
       if(petition !== null && petition !== undefined) {
         dispatch(voteUp(petition.id));
         const msg = ['Voting Successful!']
         alert(msg)
       }
-
+    } else{
+      const msg = ['Login Required']
+      alert(msg)
+      navigate('/login');
+    }
   };
 
-
-
+  
   return (
     <div className = "background_red">
         <NavBar/>

@@ -1,6 +1,11 @@
 import Carousel from "../../components/Carousel/Carousel";
 import NavBar from "../../components/NavBar/NavBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useParams } from "react-router";
+import { AppDispatch } from "../../store";
+import { fetchPetitions, voteUp, selectPetition, deletePetition } from "../../store/slices/petition";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
 import UserInfoBtn, {
   UserInfoBtnType,
@@ -10,6 +15,36 @@ import CarouselComponent, {
 } from "../../components/CarouselContent/CarouselContent";
 import "./MainPage.css";
 const MainPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const petitionState = useSelector(selectPetition);
+  var currPetitionId = 1; //fetch number from current url
+  //const [petitionTitle, setPetitionTitle] = useState("");
+  //const [petitionId, setPetitionId] = useState(0);
+  //const [petitionUrl, setPetitionUrl] = useState("");
+
+  
+
+  useEffect(() => {  //fetch all articles and save them to articleState
+    dispatch(fetchPetitions());
+    
+  }, []); 
+
+
+   //fetch all articles and save them to articleState
+    
+  
+
+  /*
+  useEffect(() => {  //fetch all articles and save them to articleState
+    petition = petitionState.petitions.find((value:any) => value.id === currPetitionId)
+    while(!petition && currPetitionId<100) {
+      currPetitionId++
+      petition = petitionState.petitions.find((value:any) => value.id === currPetitionId);
+    }
+  });*/
+
+
   const [carouselContents, setCarouselContents] = useState<
     CarouselContentType[]
   >([
@@ -51,12 +86,12 @@ const MainPage = () => {
     },
     {
       id: 6,
-      url: "/news/6",
+      url: "/petition/",
       detail_img_path:
-        "https://imgnews.pstatic.net/image/654/2022/10/24/0000023081_001_20221024112205711.jpg?type=w647",
-      title: "윤 대통령, 레고랜드 사태에'",
+        "",
+      title: "temp",
       content:
-        "최근 강원도가 레고랜드 테마파크 조성을 위해 발행한 2050억원 규모 프로젝트파이낸싱(PF). 시장안정 조치 신속 집행…약탈적 불법사금융, 무관용 원칙 강력단속",
+        "Click here fore Petition Details",
     },
   ]);
   const [btnContents, setBtnContents] = useState<ImageBtnType[]>([
