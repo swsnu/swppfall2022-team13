@@ -157,7 +157,7 @@ const mockStore = getMockStore({
   quora: stubInitialState4,
   user: stubInitialState5
   }
-});
+);
 
 const spyNavBar = () => <p>NavBar</p>;
 jest.mock("../../components/NavBar/NavBar", () => spyNavBar);

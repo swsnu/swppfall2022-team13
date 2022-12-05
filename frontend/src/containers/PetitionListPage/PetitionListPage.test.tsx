@@ -6,6 +6,7 @@ import { PoliticianState } from "../../store/slices/politician";
 import { PetitionState } from "../../store/slices/petition";
 import { QuoraState } from "../../store/slices/quora";
 import { getMockStore } from "../../test-utils/mock";
+import { UserType } from "../../store/slices/user";
 import PetitionListPage from "./PetitionListPage";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -104,12 +105,19 @@ const stubInitialState4: QuoraState = {
   selectedQuora: null,
 };
 
+const stubInitialState5: UserType = {
+  email: "",
+  pw: ""
+}
+
 const mockStore = getMockStore({
-  article: stubInitialState,
-  politician: stubInitialState2,
-  petition: stubInitialState3,
-  quora: stubInitialState4,
-});
+article: stubInitialState,
+politician: stubInitialState2,
+petition: stubInitialState3,
+quora: stubInitialState4,
+user: stubInitialState5
+}
+);
 
 const spyNavBar = () => <p>NavBar</p>;
 jest.mock("../../components/NavBar/NavBar", () => spyNavBar);
