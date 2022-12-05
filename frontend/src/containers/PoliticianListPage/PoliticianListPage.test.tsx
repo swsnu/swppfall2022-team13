@@ -12,6 +12,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import { Provider } from "react-redux";
 import { PetitionState } from "../../store/slices/petition";
 import { QuoraState } from "../../store/slices/quora";
+import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5 } from "../../test-utils/initialState";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -200,6 +201,7 @@ const articleStubInitialState: ArticleState = {
   selectedArticle: null,
 };
 
+/*
 const stubInitialState3: PetitionState = {
   petitions: [
     {
@@ -229,7 +231,7 @@ const stubInitialState4: QuoraState = {
 const stubInitialState5: UserType = {
   email: "",
   pw: ""
-}
+}*/
 
 const mockStore = getMockStore({
   article: articleStubInitialState,

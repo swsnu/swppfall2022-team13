@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
-import { fetchPetitions, voteUp, selectPetition, deletePetition } from "../../store/slices/petition";
+import { fetchPetitions, voteUp, selectPetition } from "../../store/slices/petition";
+import { fetchArticles, selectArticle } from "../../store/slices/article";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
 import UserInfoBtn, {
   UserInfoBtnType,
@@ -27,14 +28,12 @@ const MainPage = () => {
 
   useEffect(() => {  //fetch all articles and save them to articleState
     dispatch(fetchPetitions());
-    
+    dispatch(fetchArticles());
   }, []); 
 
 
    //fetch all articles and save them to articleState
     
-  
-
   /*
   useEffect(() => {  //fetch all articles and save them to articleState
     petition = petitionState.petitions.find((value:any) => value.id === currPetitionId)

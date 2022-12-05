@@ -11,6 +11,7 @@ import NewsListPage from "./NewsListPage";
 import NewsArticle, {
   NewsArticleType,
 } from "../../components/NewsArticle/NewsArticle";
+import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5 } from "../../test-utils/initialState";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -63,6 +64,7 @@ jest.mock(
     )
 );
 
+/*
 const stubInitialState: ArticleState = {
   articles: [
     {
@@ -148,7 +150,7 @@ const stubInitialState4: QuoraState = {
 const stubInitialState5: UserType = {
     email: "",
     pw: ""
-}
+} */
 
 const mockStore = getMockStore({
   article: stubInitialState,

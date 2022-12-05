@@ -11,6 +11,7 @@ import QuoraListPage from "./QuoraListPage";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Quora, { QuoraType } from "../../components/Quora/Quora";
+import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5 } from "../../test-utils/initialState";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -23,6 +24,7 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockDispatch,
 }));
 
+/*
 const stubInitialState: ArticleState = {
   articles: [
     {
@@ -108,7 +110,7 @@ const stubInitialState4: QuoraState = {
 const stubInitialState5: UserType = {
   email: "",
   pw: ""
-}
+} */
 
 const mockStore = getMockStore({
 article: stubInitialState,
