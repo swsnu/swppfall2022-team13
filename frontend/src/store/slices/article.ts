@@ -40,7 +40,7 @@ export const fetchArticles = createAsyncThunk(
 export const fetchArticle = createAsyncThunk(
   "article/fetchArticle",
   async (id: ArticleType["id"], { dispatch }) => {
-    const response = await axios.get(`/api/article/${id}/`);
+    const response = await axios.get(`http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/${id}/`);
     return response.data ?? null;
   }
 );
