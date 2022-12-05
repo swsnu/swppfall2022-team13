@@ -23,7 +23,7 @@ export default function Petition(props: PetitionType) {
       <Card style={{ width: '18rem', height: '25rem', float: 'left'}}>
         <Card.Img style={{ width: '18rem', height: '10rem', display: 'inline-block'}} variant="top" src={props.photo_url} />
         <Card.Body>
-          <Card.Title>Raised By: {props?.author}</Card.Title>
+          <Card.Title>Current Vote: {props?.vote}</Card.Title>
           <Card.Text>
           {props?.title}
           </Card.Text>
