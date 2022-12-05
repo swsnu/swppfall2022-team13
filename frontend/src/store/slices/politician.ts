@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export interface PoliticianType {
   id: number;
@@ -32,12 +32,13 @@ const initialState: PoliticianState = {
   selectedPolitician: null,
 };
 
+const politician_url =
+  "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/";
+
 export const fetchPoliticians = createAsyncThunk(
   "politician/fetchPoliticians",
   async () => {
-    const response = await axios.get<PoliticianType[]>(
-      "http://127.0.0.1:8000/api/politician/"
-    );
+    const response = await axios.get<PoliticianType[]>(politician_url);
     return response.data;
   }
 );
@@ -45,9 +46,7 @@ export const fetchPoliticians = createAsyncThunk(
 export const fetchPolitician = createAsyncThunk(
   "politician/fetchPolitician",
   async (id: PoliticianType["id"], { dispatch }) => {
-    const response = await axios.get(
-      `http://127.0.0.1:8000/api/politician/${id}`
-    );
+    const response = await axios.get(`${politician_url}${id}`);
     return response.data ?? null;
   }
 );
