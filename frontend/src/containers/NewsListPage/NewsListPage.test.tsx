@@ -156,7 +156,6 @@ const mockStore = getMockStore({
   petition: stubInitialState3,
   quora: stubInitialState4,
   user: stubInitialState5
-  }
 });
 
 const spyNavBar = () => <p>NavBar</p>;
