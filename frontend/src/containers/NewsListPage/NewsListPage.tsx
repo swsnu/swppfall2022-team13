@@ -3,8 +3,9 @@ import { useState, useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { AppDispatch } from "../../store";
 import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
-import { fetchArticles, selectArticle } from "../../store/slices/article";
+import { postArticle, fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsListPage.css";
+import axios from 'axios';
 
 
 const NewsListPage = () => {
@@ -13,6 +14,25 @@ const NewsListPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+
+
+    const petitionData = {
+                           title: "test title",
+                            content: "test content",
+                            datetime: "2015/11/13",
+                             preview_prologue: "test prologue",
+                             detail_link_postfix:  "test link",
+                             preview_img_path: "https://imgnews.pstatic.net/image/079/2022/11/07/0003704132_001_20221107124401245.jpg?type=w647",
+                             detail_img_path: "https://imgnews.pstatic.net/image/079/2022/11/07/0003704132_001_20221107124401245.jpg?type=w647",
+                             journal_name: "한겨레",
+                             detail_text:  "test detail text",
+                             created_at: "test",
+                            updated_at: "test",
+    }
+    
+    const responsePetition = dispatch(postArticle(petitionData))
+    
+    //axios.post("/api/article/", td);
     dispatch(fetchArticles());
     console.log("this is state: " + articleState)
   }, []);  

@@ -36,6 +36,7 @@ def article(request):
                              journal_name = article['journal_name'],
                              detail_text = article['detail_text']
                              )
+
       
     return HttpResponse(status=201)
     

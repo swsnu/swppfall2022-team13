@@ -34,7 +34,7 @@ const renderPoliticianDetailPage = (id: string) => {
               id: 3,
               title: "test",
               content: "test2",
-              datetime_str: "test",
+              datetime: "test",
               preview_prologue: "test",
               detail_link_postfix: "test",
               preview_img_path: "test",

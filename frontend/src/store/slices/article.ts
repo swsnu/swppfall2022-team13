@@ -8,7 +8,7 @@ export interface ArticleType {
   id: number;
   title: string;
   content?: string;
-  datetime_str: any;
+  datetime: any;
   preview_prologue: string;
   detail_link_postfix: string;
   preview_img_path: string;
@@ -28,6 +28,7 @@ const initialState: ArticleState = {
   articles: [],
   selectedArticle: null,
 };
+
 
 export const fetchArticles = createAsyncThunk(
   "article/fetchArticles",
@@ -72,6 +73,7 @@ export const articleSlice = createSlice({
       });
     },
   },
+  
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchArticles.fulfilled, (state, action) => {
@@ -82,6 +84,7 @@ export const articleSlice = createSlice({
       state.selectedArticle = action.payload;
     });
   },
+  
 });
 
 export const articleActions = articleSlice.actions;
