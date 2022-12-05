@@ -7,6 +7,9 @@ import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
 import { fetchPetitions, voteUp, selectPetition, deletePetition } from "../../store/slices/petition";
 import Petition, { PetitionType,} from "../../components/Petition/Petition";
+import axios from 'axios';
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 
 
