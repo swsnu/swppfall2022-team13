@@ -1,0 +1,79 @@
+.NewsArticleLeft {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    margin: 0px 20px;
+    height: 250px;
+    width: 680px;
+    border: 2px solid #f1f8f1;
+    background-color: rgb(254, 166, 166);
+  }
+
+  .NewsArticleRight {
+    position: relative;
+    cursor: pointer;
+    float: right;
+    margin: 0px 20px;
+    height: 250px;
+    width: 680px;
+    border: 2px solid #f1f8f1;
+    background-color: rgb(182, 219, 254);
+  }
+
+  .NewsArticleLeft:hover {
+
+    box-shadow: 0 10px 20px rgb(254, 166, 166), 0 6px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .NewsArticleRight:hover {
+
+    box-shadow: 0 10px 20px rgb(182, 219, 254), 0 6px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .leftContent {
+    float: left;
+  }
+  
+  .rightContent {
+    margin-left: 0px;
+    height: 220px;
+    width: 676px;
+    background-color: rgb(255, 255, 255);
+    
+  }
+
+
+  .dateContent {
+    float: right;
+    font-size: 14px;
+    position: absolute;  
+    bottom: 0;
+    left: 200pt;
+  }
+  
+  .title {
+    font-size: 25px;
+    font-weight: 500;
+  }
+  
+  .content {
+    font-size: 14px;
+  }
+
+  .card_right {
+    width: 40rem;
+  }
+
+  .card_right_contents {
+    background-color: rgb(182, 219, 254);
+  }
+
+  .card_left {
+    width: 40rem;
+  }
+
+  .card_left_contents {
+    background-color: rgb(254, 166, 166);
+  }
+
+  

@@ -1,0 +1,24 @@
+#CarouselComponent {
+  margin: 0px 10px;
+  height: 250px;
+  width: 400px;
+  border: 2px solid gray;
+  background-color: white;
+}
+
+#leftContent {
+  float: left;
+}
+
+#rightContent {
+  margin-left: 0px;
+}
+
+#title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#content {
+  font-size: 14px;
+}

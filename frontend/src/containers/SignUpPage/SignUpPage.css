@@ -1,0 +1,10 @@
+.logo {
+  /* height: 400px;
+  width: 400px; */
+  margin-bottom: 20px; 
+}
+
+.email-warning {
+  color: brown;
+  font-weight:bold;
+}

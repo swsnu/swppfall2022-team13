@@ -1,0 +1,12 @@
+.background_red{
+    background-color: #fad4d4;
+  }
+
+.background_blue{
+    background-color: #e2f4fe;
+  }
+
+.card{
+    width: 80rem;
+    margin: auto;
+}
