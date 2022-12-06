@@ -28,12 +28,6 @@ export default function Petition(props: PetitionType) {
       navigate("/petition/" + props.id);
     };
 
-    const [user_id, userIdChanger] = useState(0);
-
-  useEffect(() => {
-
-  },[]);
-
     return (
       <Card style={{ width: '18rem', height: '25rem', float: 'left'}}>
         <Card.Img style={{ width: '18rem', height: '10rem', display: 'inline-block'}} variant="top" src={props.photo_url} />

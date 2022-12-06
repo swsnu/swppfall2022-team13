@@ -111,18 +111,20 @@ const QuoraDetailPage = () => {
   /*
   useEffect(() => {
     dispatch(fetchPolitician(Number(id)));
-  }, [id]);
+  }, [id]);*/
+  
   const politicianState = useSelector(selectPolitician);
+  useEffect(() => {
+    dispatch(fetchPoliticians());
+  }, []); 
   const politician = politicianState.politicians.find((p) => {
     return p.id === quora.author; //quora.author <- politician id is stored
   });
-  useEffect(() => {
-    dispatch(fetchPoliticians());
-  }, []); */
-
+  
+  /*
   const politician = politicianContents.find((p) => {
     return p.id === quora.author; //quora.author <- politician id is stored
-  });
+  });*/
 
 
   if(!quora) { //if there is no petition found with the id, go back to petitionList (wrong URL)
@@ -374,7 +376,7 @@ const QuoraDetailPage = () => {
           <input type="text" id ="new-comment-content-input" value={title} onChange={(event) => setCommentContent(event.target.value)} />
         </label>
           &nbsp; &nbsp;
-        <button type="button" id="confirm-create-comment-button" disabled={!text} onClick={() => postCommentHandler()}>Confirm Comment</button>
+        <button type="button" id="confirm-create-comment-button" disabled={!text} onClick={() => postCommentHandler()}>Post Remark</button>
         <p></p>
         </div>
 
