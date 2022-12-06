@@ -12,7 +12,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import { Provider } from "react-redux";
 import { PetitionState } from "../../store/slices/petition";
 import { QuoraState } from "../../store/slices/quora";
-import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5 } from "../../test-utils/initialState";
+import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5, stubInitialState6 } from "../../test-utils/initialState";
 
 
 const mockNavigate = jest.fn();
@@ -208,7 +208,8 @@ const mockStore = getMockStore({
   politician: politicianStubInitialState,
   petition: stubInitialState3,
   quora: stubInitialState4,
-  user: stubInitialState5
+  user: stubInitialState5,
+  comment: stubInitialState6
 });
 
 describe("<PoliticianListPage />", () => {

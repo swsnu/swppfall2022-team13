@@ -4,6 +4,7 @@ import politicianReducer from "./slices/politician";
 import petitionReducer from "./slices/petition";
 import quoraReducer from "./slices/quora";
 import userReducer from "./slices/user";
+import commentReducer from "./slices/comment";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     petition: petitionReducer,
     quora: quoraReducer,
     user: userReducer,
+    comment: commentReducer,
   },
 });
 

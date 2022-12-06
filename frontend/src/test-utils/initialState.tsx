@@ -7,6 +7,7 @@ import { PoliticianState } from "../store/slices/politician";
 import { PetitionState } from "../store/slices/petition";
 import { UserType } from "../store/slices/user";
 import { QuoraState } from "../store/slices/quora";
+import { CommentState } from "../store/slices/comment";
 import { getMockStore } from "../test-utils/mock";
 
 
@@ -98,11 +99,24 @@ export const stubInitialState: ArticleState = {
       pw: ""
   }
   
+  export const stubInitialState6: CommentState = {
+    comments: [
+      {
+        id: 1,
+        quora_id: 1,
+        author_id: 1,
+        content: "ang gimochi",
+      },
+    ],
+    selectedComment: null,
+  };
+
   export const mockStore = getMockStore({
     article: stubInitialState,
     politician: stubInitialState2,
     petition: stubInitialState3,
     quora: stubInitialState4,
-    user: stubInitialState5
+    user: stubInitialState5,
+    comment: stubInitialState6
     }
   );

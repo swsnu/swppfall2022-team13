@@ -11,7 +11,7 @@ import QuoraListPage from "./QuoraListPage";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Quora, { QuoraType } from "../../components/Quora/Quora";
-import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5 } from "../../test-utils/initialState";
+import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5, stubInitialState6 } from "../../test-utils/initialState";
 
 
 const mockNavigate = jest.fn();
@@ -30,7 +30,8 @@ article: stubInitialState,
 politician: stubInitialState2,
 petition: stubInitialState3,
 quora: stubInitialState4,
-user: stubInitialState5
+user: stubInitialState5,
+comment: stubInitialState6
 });
 
 const spyNavBar = () => <p>NavBar</p>;

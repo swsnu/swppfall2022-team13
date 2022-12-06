@@ -9,6 +9,7 @@ import politicianReducer from '../store/slices/politician'
 import petitionReducer from '../store/slices/petition'
 import quoraReducer from '../store/slices/quora'
 import userReducer from '../store/slices/user'
+import commentReducer from '../store/slices/comment'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>
@@ -38,7 +39,11 @@ export const rootInitialState: RootState = {
   user: {
     email: "",
     pw: ""
-  }
+  },
+  comment: {
+    comments: [],
+    selectedComment: null
+  },
 
 }
 
@@ -49,7 +54,8 @@ export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
       politician: politicianReducer,
       petition: petitionReducer,
       quora: quoraReducer,
-      user: userReducer
+      user: userReducer,
+      comment: commentReducer
     },
     preloadedState
   })
