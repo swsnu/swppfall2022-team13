@@ -6,26 +6,27 @@ import { useDispatch,  } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { postPetition } from "../../store/slices/petition";
 import { AppDispatch } from "../../store";
+import axios from 'axios';
 
 const PetitionCreatePage = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [photo_url, setURL] = useState('')
-  const [author, setAuthor] = useState(1) //Until Proper user Implementation
 
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
-  const logged_in = true //Until Proper user Implementation
 
 
   const clickCreateHanler = async () => {
-    if (!logged_in) {
-      navigate('/login')
-      return
-    }
+    const response = await axios.get("/api/user/islogin/");
+    console.log("Login status: ", response.data);
+    const isLogin = response['data']['status'];
 
-    const validationCheckList = [title, content]
+    if(isLogin && response.data.id !== 2){
+      const user_id = response['data']['id'];
+
+      const validationCheckList = [title, content]
     const validationMessages = ['title', 'content']
 
     if (validationCheckList.some(value => !value)) {
@@ -42,9 +43,9 @@ const PetitionCreatePage = () => {
     const petitionData = {
       title,
       content,
-      author: 1, //Until Proper User Implementation
+      author: user_id, 
       vote: 0,
-      photo_url: photo_url
+      photo_url: photo_url,
     }
     
     if(photo_url==='') {
@@ -59,6 +60,14 @@ const PetitionCreatePage = () => {
       navigate("/petition")
   }
   navigate("/petition")
+
+    } else{
+      const msg = ['Login Required']
+      alert(msg)
+      navigate('/login');
+    }
+
+    
 }
 
 

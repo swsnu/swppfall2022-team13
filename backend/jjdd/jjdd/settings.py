@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'quora',
     'corsheaders',
     'rest_framework',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
