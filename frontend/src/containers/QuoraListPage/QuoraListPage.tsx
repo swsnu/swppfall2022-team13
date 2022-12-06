@@ -69,7 +69,7 @@ const QuoraListPage = () => {
           const QuoraData = {
             title: politicianName,
             content: "This is online Quora of: " + politicianName,
-            author: user_id, //Until Proper User Implementation
+            author: politician.id, //Until Proper User Implementation
           }
       
           const responseQuora = await dispatch(postQuora(QuoraData))
