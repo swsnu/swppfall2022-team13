@@ -11,7 +11,7 @@ import NewsListPage from "./NewsListPage";
 import NewsArticle, {
   NewsArticleType,
 } from "../../components/NewsArticle/NewsArticle";
-import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5 } from "../../test-utils/initialState";
+import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5, stubInitialState6 } from "../../test-utils/initialState";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -70,7 +70,8 @@ const mockStore = getMockStore({
   politician: stubInitialState2,
   petition: stubInitialState3,
   quora: stubInitialState4,
-  user: stubInitialState5
+  user: stubInitialState5,
+  comment: stubInitialState6
 });
 
 const spyNavBar = () => <p>NavBar</p>;

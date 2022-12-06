@@ -129,6 +129,18 @@ const renderPoliticianDetailPage = (id: string) => {
           ],
           selectedQuora: null,
         },
+        comment: {
+          comments: [
+            {
+              id: 1,
+              quora_id: 1,
+              author_id: 1,
+              content: "ang gimochi",
+            },
+          ],
+          selectedComment: null,
+        },
+        
         user: {
           email: "",
           pw: ""

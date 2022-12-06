@@ -16,6 +16,8 @@ import {
   fetchPoliticians,
 } from "../../store/slices/politician";
 import Quora, { QuoraType,} from "../../components/Quora/Quora";
+import Comment from "../../components/Comment/Comment";
+import { selectComment, postComment} from "../../store/slices/comment";
 
 
 
@@ -23,11 +25,16 @@ const QuoraDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const quoraState = useSelector(selectQuora);
+  const commentState = useSelector(selectComment);
   const { id } = useParams(); //fetch number from current url
   const [career, setCareer] = useState(false);
   const [prop, setProp] = useState(false);
   const onCareerClickHandler = () => setCareer(!career);
   const onPropClickHandler = () => setProp(!prop);
+  const [newCommentContent, setCommentContent] = useState<string>("");
+  const [text, enableButton] = useState("");
+  var title: string;
+  var content: string;
 
   var currQuoraId:number = 1;
       if(id !== undefined) {
@@ -100,6 +107,45 @@ const QuoraDetailPage = () => {
   };
 
   const authorName = politician.name //When User Implemented, this should be find names based on ID
+
+
+  const postCommentHandler = async () => {
+
+      const response = await axios.get("/api/user/islogin/");
+      console.log("Login status: ", response.data);
+      const isLogin = response['data']['status'];
+
+      if(isLogin && response.data.id !== 2){
+      const user_email = response['data']['email'];
+      const user_id = response['data']['id'];
+      const data = { author_id: user_id, quora_id: currQuoraId, content: newCommentContent };
+      const result = await dispatch(postComment(data));
+
+        if (result.type === `${postComment.typePrefix}/fulfilled`) {
+          //setPath
+          //setSubmitted(true);
+          console.log("Comment Submitted with Comment ID:" + id)
+          //dispatch(fetchUser(data.author_id));
+          //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
+        } else {
+          console.log("Error on posting article");
+        }
+
+      } else {
+        const msg = ['Login Required!']
+        alert(msg)
+        navigate("/login")
+      }
+        
+  };
+
+  useEffect(() => {
+    if(newCommentContent !== "") {
+      enableButton(newCommentContent);
+    } else {
+      enableButton("");
+    }
+  }, [newCommentContent]);
 
 
   return ( //POLITICIAN LIST랑 연동하여 사진, 정보 등 가져오기!!!
@@ -229,6 +275,44 @@ const QuoraDetailPage = () => {
         <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={handleDelete}>Close Quora</button>
         </p>
       </div>
+
+
+      {commentState.comments.map((td: any) => {
+          //console.log("comment's article id is:" + td.article_id)
+          if(id !== undefined) {
+            if (td.quora_id === currQuoraId ) {
+            console.log('MATCH ID FOUND')
+            return (
+              <Comment
+                key={`${td.id}_todo`}
+                id={td.id}
+                quora_id={td.author_id}
+                author_id = {td.article_id}
+                content={td.content}
+                //clickDetail={() => clickTodoHandler(td)}
+                //clickDone={() => dispatch(toggleDone(td.id))}
+                //clickDelete={() => dispatch(deleteArticle(td.id))}
+              />
+              
+            );
+          }
+          }
+        
+          })}
+
+        <div className="NewComment">
+        <p></p>
+        <label>
+          Add a Comment:
+          &nbsp; &nbsp;
+          <input type="text" id ="new-comment-content-input" value={title} onChange={(event) => setCommentContent(event.target.value)} />
+        </label>
+          &nbsp; &nbsp;
+        <button type="button" id="confirm-create-comment-button" disabled={!text} onClick={() => postCommentHandler()}>Confirm Comment</button>
+        <p></p>
+        </div>
+
+
       </div>
     </div>
     );

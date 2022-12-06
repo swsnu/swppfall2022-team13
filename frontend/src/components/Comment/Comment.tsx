@@ -27,7 +27,7 @@ export interface IProps {
     
     
     useEffect(() => {
-        async function fetchAndSetUser() { 1
+        async function fetchAndSetUser() {
             const response = await axios.get("/api/user/islogin/");
             console.log("Login status: ", response.data);
             const isLogin = response['data']['status'];
