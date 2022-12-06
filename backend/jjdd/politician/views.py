@@ -76,3 +76,17 @@ def politician_detail(request, politician_id):
         return JsonResponse(response_data, status=200)
     else :
       return HttpResponseNotAllowed(['GET'])
+
+@csrf_exempt
+def is_politician(request):
+  if request.method == "POST":
+    req_data = json.loads(request.body.decode())
+    username = req_data["username"]
+    email = req_data["email"]
+    politician = Politician.objects.filter(name=username)
+    if len(politician) != 0 and politician[0].email.replace(" ", "") == email:
+      return JsonResponse({"isPolitician":True, "name":username}, status = 200)
+    else :
+      return JsonResponse({"isPolitician":False}, safe=False, status = 200)
+  else :
+    return HttpResponseNotAllowed(["POST"])

@@ -1,25 +1,25 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export interface PoliticianType {
-  id: number;
-  name: string;
-  birth_date: string;
-  job: string;
-  image_src: string;
-  political_party: string;
-  election_precinct: string;
-  committee: string;
-  committees: string;
-  reelection: string;
-  election_units: string;
-  email: string;
-  career_summary: string;
-  mona_code: string;
-  proposals: string;
+  id?: number;
+  name?: string;
+  birth_date?: string;
+  job?: string;
+  image_src?: string;
+  political_party?: string;
+  election_precinct?: string;
+  committee?: string;
+  committees?: string;
+  reelection?: string;
+  election_units?: string;
+  email?: string;
+  career_summary?: string;
+  mona_code?: string;
+  proposals?: string;
 }
 
 export interface PoliticianState {
@@ -48,6 +48,17 @@ export const fetchPolitician = createAsyncThunk(
   async (id: PoliticianType["id"], { dispatch }) => {
     const response = await axios.get(`${politician_url}${id}`);
     return response.data ?? null;
+  }
+);
+
+export const isPolitician = createAsyncThunk(
+  "politician/isPolician",
+  async (td: Pick<PoliticianType, "name" | "email">, { dispatch }) => {
+    const response = await axios.post(
+      "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/",
+      td
+    );
+    return response.data;
   }
 );
 
