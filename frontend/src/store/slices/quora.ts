@@ -20,14 +20,14 @@ const initialState: QuoraState = {
 };
 
 export const fetchQuoras = createAsyncThunk("quora/fetchQuoras", async () => {
-  const response = await axios.get<QuoraType[]>("/api/quora/");
+  const response = await axios.get<QuoraType[]>("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/quora/");
   return response.data;
 });
 
 export const fetchQuora = createAsyncThunk(
   "quora/fetchQuora",
   async (id: QuoraType["id"], { dispatch }) => {
-    const response = await axios.get(`/api/quora/${id}/`);
+    const response = await axios.get(`http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/quora/${id}/`);
     return response.data ?? null;
   }
 );
@@ -35,7 +35,7 @@ export const fetchQuora = createAsyncThunk(
 export const postQuora = createAsyncThunk(
   "quora/postQuora",
   async (td: Pick<QuoraType, "title" | "content" | "author">, { dispatch }) => {
-    const response = await axios.post("/api/quora/", td);
+    const response = await axios.post("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/quora/", td);
     dispatch(quoraActions.addQuora(response.data));
   }
 );
