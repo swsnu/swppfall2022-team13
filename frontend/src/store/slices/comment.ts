@@ -27,7 +27,7 @@ export const fetchComments = createAsyncThunk("comment/fetchComments", async () 
 export const fetchComment = createAsyncThunk(
   "comment/fetchComment",
   async (id: CommentType["id"], { dispatch }) => {
-    const response = await axios.get(`/api/comment/${id}/`);
+    const response = await axios.get(`http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/comment/${id}/`);
     return response.data ?? null;
   }
 );

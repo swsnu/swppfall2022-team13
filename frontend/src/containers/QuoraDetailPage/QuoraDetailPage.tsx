@@ -137,12 +137,13 @@ const QuoraDetailPage = () => {
       const isLogin = response['data']['status'];
 
       if(isLogin && response.data.id !== 2){
-      const user_email = response['data']['email'];
+      //const user_email = response['data']['email'];
       const user_id = response['data']['id'];
 
-      if(user_email === politician.email) {
+      if(user_id === quora.author) {
           if(quora !== null && quora !== undefined) {
             dispatch(deleteQuora(quora.id));
+            navigate("/quora")
           }
       } else {
         const msg = ['Access denied! : you are not the owner of this quora']
