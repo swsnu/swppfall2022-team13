@@ -7,6 +7,7 @@ COPY package.json .
 COPY src/ src/
 COPY public/ public/
 COPY run_frontend.sh .
+COPY tsconfig.json .
 
 RUN npm install --silent
 RUN npm run build --prod --silent
