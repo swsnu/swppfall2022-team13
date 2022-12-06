@@ -192,6 +192,7 @@ const QuoraDetailPage = () => {
           console.log("Comment Submitted")
           //dispatch(fetchUser(data.author_id));
           //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
+          navigate("/quora/" + currQuoraId)
         } else {
           console.log("Error on posting comment");
         }
@@ -350,7 +351,7 @@ const QuoraDetailPage = () => {
               <Comment
                 key={`${td.id}_todo`}
                 id={td.id}
-                quora_id={td.author_id}
+                quora_id={td.quora_id}
                 author_id = {td.author_id}
                 content={td.content}
                 //clickDetail={() => clickTodoHandler(td)}
