@@ -95,6 +95,17 @@ const renderPetitionDetailPage = () => {
           ],
           selectedPetition: null,
         },
+        comment: {
+          comments: [
+            {
+              id: 1,
+              quora_id: 1,
+              author_id: 1,
+              content: "ang gimochi",
+            },
+          ],
+          selectedComment: null,
+        },
 
         quora: {
           quoras: [
@@ -182,6 +193,17 @@ const renderPetitionDetailPage2 = () => {
             },
           ],
           selectedPetition: null,
+        },
+        comment: {
+          comments: [
+            {
+              id: 1,
+              quora_id: 1,
+              author_id: 1,
+              content: "ang gimochi",
+            },
+          ],
+          selectedComment: null,
         },
 
         quora: {

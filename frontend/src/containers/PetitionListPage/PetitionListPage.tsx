@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Petition, {PetitionType,} from "../../components/Petition/Petition";
 import { fetchPetitions, selectPetition, deletePetition, postPetition } from "../../store/slices/petition";
 import { AppDispatch } from "../../store";
+import axios from 'axios';
 
   
 const PetitionListPage = () => {
@@ -43,8 +44,20 @@ const PetitionListPage = () => {
 
   ]);
 
-  const onClickRaise = () => {
-    navigate("/petition/create");
+  const onClickRaise = async () => {
+
+    const response = await axios.get("/api/user/islogin/");
+    console.log("Login status: ", response.data);
+    const isLogin = response['data']['status'];
+
+    if(isLogin && response.data.id !== 2){
+      const user_id = response['data']['id'];
+      navigate("/petition/create");
+    } else{
+      const msg = ['Login Required']
+      alert(msg)
+      navigate('/login');
+    }
   };
 
 

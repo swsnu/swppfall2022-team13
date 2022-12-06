@@ -22,14 +22,14 @@ const initialState: PetitionState = {
 };
 
 export const fetchPetitions = createAsyncThunk("petition/fetchPetitions", async () => {
-  const response = await axios.get<PetitionType[]>("/api/petition/");
+  const response = await axios.get<PetitionType[]>("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/");
   return response.data;
 });
 
 export const fetchPetition = createAsyncThunk(
   "petition/fetchPetition",
   async (id: PetitionType["id"], { dispatch }) => {
-    const response = await axios.get(`/api/petition/${id}/`);
+    const response = await axios.get(`http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/${id}/`);
     return response.data ?? null;
   }
 );
@@ -37,7 +37,7 @@ export const fetchPetition = createAsyncThunk(
 export const postPetition = createAsyncThunk(
   "petition/postPetition",
   async (td: Pick<PetitionType, "title" | "content" | "author" | "vote" | "photo_url">, { dispatch }) => {
-    const response = await axios.post("/api/petition/", td);
+    const response = await axios.post("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/", td);
     dispatch(petitionActions.addPetition(response.data));
   }
 );
@@ -45,7 +45,7 @@ export const postPetition = createAsyncThunk(
 export const deletePetition = createAsyncThunk(
   "petition/deletePetition",
   async (id: PetitionType["id"], { dispatch }) => {
-    await axios.delete(`/api/petition/${id}/`);
+    await axios.delete(`http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/${id}/`);
     dispatch(petitionActions.deletePetition({ targetId: id }));
   }
 );
@@ -53,7 +53,7 @@ export const deletePetition = createAsyncThunk(
 export const voteUp = createAsyncThunk(
   "petition/voteUp",
   async (id: PetitionType["id"], { dispatch }) => {
-    await axios.put(`/api/petition/${id}/`, 1);
+    await axios.put(`http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/${id}/`, 1);
     dispatch(petitionActions.voteUp({ targetId: id }));
   }
 );
@@ -61,7 +61,7 @@ export const voteUp = createAsyncThunk(
 export const voteDown = createAsyncThunk(
   "petition/voteDown",
   async (id: PetitionType["id"], { dispatch }) => {
-    await axios.put(`/api/petition/${id}/`, -1);
+    await axios.put(`http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/${id}/`, -1);
     dispatch(petitionActions.voteDown({ targetId: id }));
   }
 ); 

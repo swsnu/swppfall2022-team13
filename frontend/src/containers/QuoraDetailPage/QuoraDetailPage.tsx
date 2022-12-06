@@ -5,14 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
+import axios from 'axios';
 import { fetchQuoras, selectQuora, deleteQuora } from "../../store/slices/quora";
 import { selectPolitician } from "../../store/slices/politician";
+import NumberInfo from "../../components/NumberInfo/NumberInfo";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   fetchPolitician,
   PoliticianType,
   fetchPoliticians,
 } from "../../store/slices/politician";
 import Quora, { QuoraType,} from "../../components/Quora/Quora";
+import Comment from "../../components/Comment/Comment";
+import { selectComment, postComment, fetchComments} from "../../store/slices/comment";
 
 
 
@@ -20,18 +25,75 @@ const QuoraDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const quoraState = useSelector(selectQuora);
+  const commentState = useSelector(selectComment);
   const { id } = useParams(); //fetch number from current url
+  const [career, setCareer] = useState(false);
+  const [prop, setProp] = useState(false);
+  const onCareerClickHandler = () => setCareer(!career);
+  const onPropClickHandler = () => setProp(!prop);
+  const [newCommentContent, setCommentContent] = useState<string>("");
+  const [text, enableButton] = useState("");
+  var title: string;
+  var content: string;
 
-  useEffect(() => {
-    dispatch(fetchPolitician(Number(id)));
-  }, [id]);
-  const politicianState = useSelector(selectPolitician);
-  const politician = politicianState.politicians.find((p) => {
-    return p.id === Number(id);
-  });
-  useEffect(() => {
-    dispatch(fetchPoliticians());
-  }, []);
+  interface PoliticianType {
+    id: number;
+    name: string;
+    birth_date: string;
+    job: string;
+    image_src: string;
+    political_party: string;
+    election_precinct: string;
+    committee: string;
+    committees: string;
+    reelection: string;
+    election_units: string;
+    email: string;
+    career_summary: string;
+    mona_code: string;
+    proposals: string;
+  }
+
+  const [politicianContents, setPoliticianContents] = useState<
+    PoliticianType[]
+  >([
+    {
+      id: 1,
+      name: "허경영",
+      birth_date: "2000.01.01",
+      job: "정치인",
+      image_src: "https://w.namu.la/s/14e1843a32f5d0dcdb2b4b75542e6a3931df2ec5252c4885748195325aa370d7ab4183025596cd8ec590eaca681f24d380f813a87a979a25c18e8a0dd6900059da06acec10dc747ec1088bedfecbaea840f4d2e54d5563417c7947cf3de9810e3f0bf91471efbfd7a7a0a250edb5b4a7",
+      political_party: "공화당",
+      election_precinct: "강남",
+      committee: "test",
+      committees: "test",
+      reelection: "test",
+      election_units: "test",
+      email: "hky@naver.com",
+      career_summary: "test",
+      mona_code: "test",
+      proposals: "test",
+    },
+    {
+      id: 1,
+      name: "이경영",
+      birth_date: "2002.01.01",
+      job: "정치인",
+      image_src: "https://w.namu.la/s/1f33f691edf9c3203926030559385e7ff17c86d12374e822d1bbb4d2050d854ad08ff9aa36e66535de473cca6acf22f7360e37ed9803c344a07a4eb4b7436cd5dc40d7befa5fa176d4406f0f5b9e020b0e979466b57b1dde8c217b4eab7164ee",
+      political_party: "진행당",
+      election_precinct: "진행",
+      committee: "test2",
+      committees: "test2",
+      reelection: "test2",
+      election_units: "test2",
+      email: "iky@naver.com",
+      career_summary: "test2",
+      mona_code: "test2",
+      proposals: "test2",
+    },
+  ]);
+
+
 
   var currQuoraId:number = 1;
       if(id !== undefined) {
@@ -41,10 +103,27 @@ const QuoraDetailPage = () => {
 
   useEffect(() => {  //fetch all articles and save them to articleState
     dispatch(fetchQuoras());
+    dispatch(fetchComments());
   }, []); 
 
-  const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId); //find petition with same id 
-                                                                                         //this page should display THIS petition
+  const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
+
+  /*
+  useEffect(() => {
+    dispatch(fetchPolitician(Number(id)));
+  }, [id]);
+  const politicianState = useSelector(selectPolitician);
+  const politician = politicianState.politicians.find((p) => {
+    return p.id === quora.author; //quora.author <- politician id is stored
+  });
+  useEffect(() => {
+    dispatch(fetchPoliticians());
+  }, []); */
+
+  const politician = politicianContents.find((p) => {
+    return p.id === quora.author; //quora.author <- politician id is stored
+  });
+
 
   if(!quora) { //if there is no petition found with the id, go back to petitionList (wrong URL)
     navigate ("/quora")
@@ -53,20 +132,196 @@ const QuoraDetailPage = () => {
   const handleDelete = async () => { //When User Implemented, this should be ONLY FOR CREATOR
 
     if (window.confirm("Are you sure? This is irreversible!")) {
-      if(quora !== null && quora !== undefined) {
-        dispatch(deleteQuora(quora.id));
+      const response = await axios.get("/api/user/islogin/");
+      console.log("Login status: ", response.data);
+      const isLogin = response['data']['status'];
+
+      if(isLogin && response.data.id !== 2){
+      //const user_email = response['data']['email'];
+      const user_id = response['data']['id'];
+
+      if(user_id === quora.author) {
+          if(quora !== null && quora !== undefined) {
+            dispatch(deleteQuora(quora.id));
+            navigate("/quora")
+          }
+      } else {
+        const msg = ['Access denied! : you are not the owner of this quora']
+        alert(msg)
       }
     } else {
+      const msg = ['Login Required!']
+            alert(msg)
+            navigate("/login")
     }
+  } else {
+
+  }
+
 
   };
 
-  const authorName = "허경영" //When User Implemented, this should be find names based on ID
+  const getElectedNumber = (elected: string) => {
+    if (elected == "초선") {
+      return 1;
+    } else if (elected == "재선") {
+      return 2;
+    } else {
+      return elected.replace("선", "");
+    }
+  };
+
+  const authorName = politician.name //When User Implemented, this should be find names based on ID
+
+
+  const postCommentHandler = async () => {
+
+      const response = await axios.get("/api/user/islogin/");
+      console.log("Login status: ", response.data);
+      const isLogin = response['data']['status'];
+
+      if(isLogin && response.data.id !== 2){
+      const user_email = response['data']['email'];
+      const user_id = response['data']['id'];
+      console.log("curr user id is: " + user_id)
+      const data = { author_id: user_id, quora_id: currQuoraId, content: newCommentContent };
+      const result = await dispatch(postComment(data));
+
+        if (result.type === `${postComment.typePrefix}/fulfilled`) {
+          //setPath
+          //setSubmitted(true);
+          console.log("Comment Submitted")
+          //dispatch(fetchUser(data.author_id));
+          //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
+          navigate("/quora/" + currQuoraId)
+        } else {
+          console.log("Error on posting comment");
+        }
+
+      } else {
+        const msg = ['Login Required!']
+        alert(msg)
+        navigate("/login")
+      }
+        
+  };
+
+  useEffect(() => {
+    if(newCommentContent !== "") {
+      enableButton(newCommentContent);
+    } else {
+      enableButton("");
+    }
+  }, [newCommentContent]);
 
 
   return ( //POLITICIAN LIST랑 연동하여 사진, 정보 등 가져오기!!!
+  
     <div className = "background_red">
         <NavBar/>
+
+        <div className="PoliticianDetailPage">
+      <div>
+        <div className="left">
+          <img src={politician.image_src} width={200} height={250} />
+          <h4 id="name">{politician.name + " " + politician.job}</h4>
+          <p id="birth-date">{politician.birth_date}</p>
+          <div className="political-party">
+            <div>
+              <img
+                id="na-image"
+                src="http://www.mcnews.co.kr/imgdata/mcnews_kr/201404/20140408_161951_1f37cd4.jpg"
+                width={50}
+                height={50}
+              ></img>
+            </div>
+            <div id="political-party-right">
+              <span id="political-party-title">정당</span>
+              <p id="polticial-party-name">{politician.political_party}</p>
+            </div>
+          </div>
+        </div>
+        <div className="right">
+          <div className="intro">
+            <h2 id="intro-title">의원소개</h2>
+          </div>
+          <div className="number-intro-header">
+            <h4 id="number-intro-header">숫자로 보는 정보</h4>
+          </div>
+          <div id="number-intro-body">
+            <NumberInfo
+              num={getElectedNumber(politician.reelection)}
+              category="당선횟수"
+              detail={politician.election_units}
+            ></NumberInfo>
+            <NumberInfo
+              num={politician.proposals.split("\n").length}
+              category="법안발의수"
+              detail="21대 국회내 통계"
+            ></NumberInfo>
+            <NumberInfo
+              num="temp"
+              category="관심랭킹"
+              detail="관심의원등록수"
+            ></NumberInfo>
+          </div>
+          <div className="education-and-career-header">
+            <h4 id="intro-education-and-career">학력 및 경력</h4>
+            <img
+              src={
+                career
+                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
+                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
+              }
+              width={30}
+              height={30}
+              onClick={onCareerClickHandler}
+              alt="career"
+            ></img>
+          </div>
+          <div className={career ? "education-and-career-body" : "none"}>
+            <p>
+              {politician.career_summary
+                .replaceAll("&middot;", ", ")
+                .replaceAll("&#039", ", ")
+                .replaceAll("&bull;", ", ")
+                .split("\r\n")
+                .map((td) => {
+                  if (td === "") return;
+                  if (td.includes("학력") || td.includes("경력")) {
+                    return <p id="mini-title">{td}</p>;
+                  } else {
+                    return <li>{td}</li>;
+                  }
+                })}
+            </p>
+          </div>
+          <div className="proposals-header">
+            <h4 id="proposals-header">발의안</h4>
+            <img
+              src={
+                prop
+                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
+                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
+              }
+              width={30}
+              height={30}
+              alt="props"
+              onClick={onPropClickHandler}
+            ></img>
+          </div>
+          <div className={prop ? "proposals-body" : "none"}>
+            <p>
+              {politician.proposals.split("\n").map((td) => {
+                if (td != "") return <li>- {td}</li>;
+              })}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
       <div className="card">
         
       
@@ -86,6 +341,44 @@ const QuoraDetailPage = () => {
         <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={handleDelete}>Close Quora</button>
         </p>
       </div>
+
+
+      {commentState.comments.map((td: any) => {
+          //console.log("comment's article id is:" + td.article_id)
+          if(id !== undefined) {
+            if (td.quora_id === currQuoraId ) {
+            console.log('MATCH ID FOUND')
+            return (
+              <Comment
+                key={`${td.id}_todo`}
+                id={td.id}
+                quora_id={td.quora_id}
+                author_id = {td.author_id}
+                content={td.content}
+                //clickDetail={() => clickTodoHandler(td)}
+                //clickDone={() => dispatch(toggleDone(td.id))}
+                //clickDelete={() => dispatch(deleteArticle(td.id))}
+              />
+              
+            );
+          }
+          }
+        
+          })}
+
+        <div className="NewComment">
+        <p></p>
+        <label>
+          Add a Remark:
+          &nbsp; &nbsp;
+          <input type="text" id ="new-comment-content-input" value={title} onChange={(event) => setCommentContent(event.target.value)} />
+        </label>
+          &nbsp; &nbsp;
+        <button type="button" id="confirm-create-comment-button" disabled={!text} onClick={() => postCommentHandler()}>Confirm Comment</button>
+        <p></p>
+        </div>
+
+
       </div>
     </div>
     );

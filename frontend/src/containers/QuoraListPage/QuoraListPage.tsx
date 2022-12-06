@@ -5,16 +5,25 @@ import {useDispatch, useSelector} from 'react-redux';
 import Quora, {QuoraType,} from "../../components/Quora/Quora";
 import { fetchQuoras, selectQuora, deleteQuora, postQuora } from "../../store/slices/quora";
 import { AppDispatch } from "../../store";
+import axios from 'axios';
+import {
+  fetchPoliticians,
+  selectPolitician,
+} from "../../store/slices/politician";
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
   
 const QuoraListPage = () => {
   const navigate = useNavigate();
   const quoraState = useSelector(selectQuora);
   const dispatch = useDispatch<AppDispatch>();
+  const politicianState = useSelector(selectPolitician);
 
   useEffect(() => {
     dispatch(fetchQuoras());
     console.log("this is state: " + quoraState)
+    
   }, []);  
   
   //AFTER PROPER BACKEND
@@ -42,21 +51,51 @@ const QuoraListPage = () => {
   ]);
 
   const clickOpenQuoraHandler = async () => {
-    if (window.confirm("Are you sure?")) { //Until Proper User Implementation -> only POLITICIAN should create
-      const politicianName = "허경영" //Until Proper User Implementation -> find politician name based on ID
-      const QuoraData = {
-        title: politicianName,
-        content: "This is online Quora of: " + politicianName,
-        author: 1, //Until Proper User Implementation
+    if (window.confirm("Are you sure?")) { 
+
+      const response = await axios.get("/api/user/islogin/");
+      console.log("Login status: ", response.data);
+      const isLogin = response['data']['status'];
+
+      if(isLogin && response.data.id !== 2){
+      const user_email = response['data']['email'];
+      const user_id = response['data']['id'];
+      console.log(user_email)
+      const isPolitician = true //SHOULD BE IMPROVED WHEN POLITICIAN IS MADE
+      const politician = politicianState.politicians.find((value:any) => value.email === user_email);
+
+        if (isPolitician) { //SHOULD BE IMPROVED WHEN POLITICIAN IS MADE
+
+          //const politicianName = politician.name 
+          const QuoraData = {
+            //title: politicianName,
+            //content: "This is online Quora of: " + politicianName,
+            //author: politician.id,
+
+            title: "허경영",
+            content: "This is online Quora of: " + "허경영",
+            author: 1,
+          }
+      
+          const responseQuora = await dispatch(postQuora(QuoraData))
+      
+          if (responseQuora.type === `${postQuora.typePrefix}/fulfilled`) {
+            const msg2 = ['Quora Opened!']
+            alert(msg2)
+            navigate("/quora")
+          } 
+
+        } else {
+          const msg = ['Politician ID Required']
+          alert(msg)
+          navigate("/quora")
+        }
+      } else {
+        const msg = ['Login Required']
+        alert(msg)
+        navigate("/login")
       }
-  
-      const responseQuora = await dispatch(postQuora(QuoraData))
-  
-      if (responseQuora.type === `${postQuora.typePrefix}/fulfilled`) {
-        const msg2 = ['Quora Opened!']
-        alert(msg2)
-        navigate("/quora")
-    } 
+      
     }
   };
 
@@ -65,10 +104,10 @@ const QuoraListPage = () => {
     <>
     <div className = "background_list">
     <NavBar />
-      <h1>PETITIONS LIST</h1>
+      <h1>QUORA LIST</h1>
 
           <p>
-          We have some petitions for you
+          This is our list of Opened Quoras!
           </p>
           <button className="quoraTitle" type="button" onClick={clickOpenQuoraHandler}><b>Open Quora</b></button>
           

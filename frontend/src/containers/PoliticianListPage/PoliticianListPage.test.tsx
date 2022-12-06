@@ -12,6 +12,8 @@ import { Card, ListGroup } from "react-bootstrap";
 import { Provider } from "react-redux";
 import { PetitionState } from "../../store/slices/petition";
 import { QuoraState } from "../../store/slices/quora";
+import {stubInitialState, stubInitialState2, stubInitialState3, stubInitialState4, stubInitialState5, stubInitialState6 } from "../../test-utils/initialState";
+
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({
@@ -200,43 +202,14 @@ const articleStubInitialState: ArticleState = {
   selectedArticle: null,
 };
 
-const stubInitialState3: PetitionState = {
-  petitions: [
-    {
-      id: 1,
-      title: "ang gimochi",
-      content: "ang gimochi",
-      author: 1,
-      vote: 1,
-      photo_url: "test",
-    },
-  ],
-  selectedPetition: null,
-};
-
-const stubInitialState4: QuoraState = {
-  quoras: [
-    {
-      id: 1,
-      title: "ang gimochi",
-      content: "ang gimochi",
-      author: 1,
-    },
-  ],
-  selectedQuora: null,
-};
-
-const stubInitialState5: UserType = {
-  email: "",
-  pw: ""
-}
 
 const mockStore = getMockStore({
   article: articleStubInitialState,
   politician: politicianStubInitialState,
   petition: stubInitialState3,
   quora: stubInitialState4,
-  user: stubInitialState5
+  user: stubInitialState5,
+  comment: stubInitialState6
 });
 
 describe("<PoliticianListPage />", () => {

@@ -19,7 +19,7 @@ return (
   <>
     <Navbar id='nav-bar' bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand id='to-logo' href="#home">JungJung DangDang</Navbar.Brand>
+        <Navbar.Brand id='to-logo' href="/main">JungJung DangDang</Navbar.Brand>
         <Nav id='navbar-buttons' className="me-auto">
           <Nav.Link id='to-main' href="/main" >Home</Nav.Link>
           <Nav.Link id='to-news' href="/news" >News List</Nav.Link>

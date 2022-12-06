@@ -5,6 +5,7 @@ import { AppDispatch } from "../../store";
 import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsListPage.css";
+import axios from 'axios';
 
 
 const NewsListPage = () => {
@@ -13,6 +14,8 @@ const NewsListPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    
+    //axios.post("/api/article/", td);
     dispatch(fetchArticles());
     console.log("this is state: " + articleState)
   }, []);  
