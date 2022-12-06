@@ -16,7 +16,7 @@ const initialState: UserType = {
 };
 
 export const isPolitician = createAsyncThunk(
-  "politician/isPolician",
+  "politician/isPolitician",
   async (td: Pick<PoliticianType, "name" | "email">, { dispatch }) => {
     const response = await axios.post(
       "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/isPolitician/",
