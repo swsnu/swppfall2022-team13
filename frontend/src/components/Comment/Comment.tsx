@@ -4,6 +4,7 @@ import { AppDispatch } from "../../store";
 import { selectUser} from "../../store/slices/user";
 import { deleteComment } from "../../store/slices/comment";
 import axios from 'axios';
+import { SystemSecurityUpdate } from "@mui/icons-material";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -24,6 +25,8 @@ export interface IProps {
     const [user_email, setUserEmail] = useState("");
     const [user_id, setUserId] = useState(0);
 
+    console.log("current comment id is: " + props.id + " and current author id is: " + props.author_id + " and current quora id is: " + props.quora_id)
+
     
     
     useEffect(() => {
@@ -33,7 +36,7 @@ export interface IProps {
             const isLogin = response['data']['status'];
 
             if(isLogin && response.data.id !== 2){
-            setUserEmail(response['data']['email']);
+            //setUserEmail(response['data']['email']);
             setUserId(response['data']['id']);
             }
 
@@ -49,7 +52,7 @@ export interface IProps {
     if(user_id === props.author_id) {
       return (
         <div className="CommentsEach">
-          <div className="commentorName" id="comment-author">{user_email}</div>
+          <div className="commentorName" id="comment-author">{user_id}</div>
           <b><div className="commentContent" id="comment-content">{commentDisplay}</div></b>
           <p></p>
           <button type="button" id="delete-comment-button" onClick={clickDelete}>delete comment</button>
@@ -60,7 +63,7 @@ export interface IProps {
     } else {
       return (
         <div className="CommentsEach">
-          <div className="commentorName" id="comment-author">{user_email}</div>
+          <div className="commentorName" id="comment-author">{user_id}</div>
           <b><div className="commentContent" id="comment-content">{commentDisplay}</div></b>
           <p></p>
         </div>

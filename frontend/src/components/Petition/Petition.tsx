@@ -22,7 +22,8 @@ export interface PetitionType {
 
 export default function Petition(props: PetitionType) {
     const navigate = useNavigate();
-
+    //const reduxUserState = useSelector(selectUser);
+    //console.log(reduxUserState.email)
     const onClickHandler = () => {
       navigate("/petition/" + props.id);
     };

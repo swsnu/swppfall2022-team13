@@ -61,15 +61,20 @@ const QuoraListPage = () => {
       const user_email = response['data']['email'];
       const user_id = response['data']['id'];
       console.log(user_email)
+      const isPolitician = true //SHOULD BE IMPROVED WHEN POLITICIAN IS MADE
       const politician = politicianState.politicians.find((value:any) => value.email === user_email);
 
-        if (politician) {
+        if (isPolitician) { //SHOULD BE IMPROVED WHEN POLITICIAN IS MADE
 
-          const politicianName = politician.name 
+          //const politicianName = politician.name 
           const QuoraData = {
-            title: politicianName,
-            content: "This is online Quora of: " + politicianName,
-            author: politician.id, //Until Proper User Implementation
+            //title: politicianName,
+            //content: "This is online Quora of: " + politicianName,
+            //author: politician.id,
+
+            title: "허경영",
+            content: "This is online Quora of: " + "허경영",
+            author: 1,
           }
       
           const responseQuora = await dispatch(postQuora(QuoraData))

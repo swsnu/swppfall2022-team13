@@ -17,7 +17,7 @@ import {
 } from "../../store/slices/politician";
 import Quora, { QuoraType,} from "../../components/Quora/Quora";
 import Comment from "../../components/Comment/Comment";
-import { selectComment, postComment} from "../../store/slices/comment";
+import { selectComment, postComment, fetchComments} from "../../store/slices/comment";
 
 
 
@@ -36,6 +36,65 @@ const QuoraDetailPage = () => {
   var title: string;
   var content: string;
 
+  interface PoliticianType {
+    id: number;
+    name: string;
+    birth_date: string;
+    job: string;
+    image_src: string;
+    political_party: string;
+    election_precinct: string;
+    committee: string;
+    committees: string;
+    reelection: string;
+    election_units: string;
+    email: string;
+    career_summary: string;
+    mona_code: string;
+    proposals: string;
+  }
+
+  const [politicianContents, setPoliticianContents] = useState<
+    PoliticianType[]
+  >([
+    {
+      id: 1,
+      name: "허경영",
+      birth_date: "2000.01.01",
+      job: "정치인",
+      image_src: "https://w.namu.la/s/14e1843a32f5d0dcdb2b4b75542e6a3931df2ec5252c4885748195325aa370d7ab4183025596cd8ec590eaca681f24d380f813a87a979a25c18e8a0dd6900059da06acec10dc747ec1088bedfecbaea840f4d2e54d5563417c7947cf3de9810e3f0bf91471efbfd7a7a0a250edb5b4a7",
+      political_party: "공화당",
+      election_precinct: "강남",
+      committee: "test",
+      committees: "test",
+      reelection: "test",
+      election_units: "test",
+      email: "hky@naver.com",
+      career_summary: "test",
+      mona_code: "test",
+      proposals: "test",
+    },
+    {
+      id: 1,
+      name: "이경영",
+      birth_date: "2002.01.01",
+      job: "정치인",
+      image_src: "https://w.namu.la/s/1f33f691edf9c3203926030559385e7ff17c86d12374e822d1bbb4d2050d854ad08ff9aa36e66535de473cca6acf22f7360e37ed9803c344a07a4eb4b7436cd5dc40d7befa5fa176d4406f0f5b9e020b0e979466b57b1dde8c217b4eab7164ee",
+      political_party: "진행당",
+      election_precinct: "진행",
+      committee: "test2",
+      committees: "test2",
+      reelection: "test2",
+      election_units: "test2",
+      email: "iky@naver.com",
+      career_summary: "test2",
+      mona_code: "test2",
+      proposals: "test2",
+    },
+  ]);
+
+
+
   var currQuoraId:number = 1;
       if(id !== undefined) {
         currQuoraId = parseInt(id) //current url number is stored into currArticleId
@@ -44,11 +103,12 @@ const QuoraDetailPage = () => {
 
   useEffect(() => {  //fetch all articles and save them to articleState
     dispatch(fetchQuoras());
-
+    dispatch(fetchComments());
   }, []); 
 
   const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
 
+  /*
   useEffect(() => {
     dispatch(fetchPolitician(Number(id)));
   }, [id]);
@@ -58,7 +118,11 @@ const QuoraDetailPage = () => {
   });
   useEffect(() => {
     dispatch(fetchPoliticians());
-  }, []);
+  }, []); */
+
+  const politician = politicianContents.find((p) => {
+    return p.id === quora.author; //quora.author <- politician id is stored
+  });
 
 
   if(!quora) { //if there is no petition found with the id, go back to petitionList (wrong URL)
@@ -118,17 +182,18 @@ const QuoraDetailPage = () => {
       if(isLogin && response.data.id !== 2){
       const user_email = response['data']['email'];
       const user_id = response['data']['id'];
+      console.log("curr user id is: " + user_id)
       const data = { author_id: user_id, quora_id: currQuoraId, content: newCommentContent };
       const result = await dispatch(postComment(data));
 
         if (result.type === `${postComment.typePrefix}/fulfilled`) {
           //setPath
           //setSubmitted(true);
-          console.log("Comment Submitted with Comment ID:" + id)
+          console.log("Comment Submitted")
           //dispatch(fetchUser(data.author_id));
           //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
         } else {
-          console.log("Error on posting article");
+          console.log("Error on posting comment");
         }
 
       } else {
@@ -154,7 +219,6 @@ const QuoraDetailPage = () => {
         <NavBar/>
 
         <div className="PoliticianDetailPage">
-      <NavBar />
       <div>
         <div className="left">
           <img src={politician.image_src} width={200} height={250} />
@@ -287,7 +351,7 @@ const QuoraDetailPage = () => {
                 key={`${td.id}_todo`}
                 id={td.id}
                 quora_id={td.author_id}
-                author_id = {td.article_id}
+                author_id = {td.author_id}
                 content={td.content}
                 //clickDetail={() => clickTodoHandler(td)}
                 //clickDone={() => dispatch(toggleDone(td.id))}
@@ -303,7 +367,7 @@ const QuoraDetailPage = () => {
         <div className="NewComment">
         <p></p>
         <label>
-          Add a Comment:
+          Add a Remark:
           &nbsp; &nbsp;
           <input type="text" id ="new-comment-content-input" value={title} onChange={(event) => setCommentContent(event.target.value)} />
         </label>

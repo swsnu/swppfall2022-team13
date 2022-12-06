@@ -10,7 +10,7 @@ export interface CommentType {
 }
 
 export interface CommentState {
-    comments: CommentType[];
+  comments: CommentType[];
   selectedComment: CommentType | null;
 }
 
@@ -69,7 +69,7 @@ export const commentSlice = createSlice({
     },
     addComment: (state, action: PayloadAction<{ quora_id: number; author_id: number; content: string;}>) => {
       const newComment = {
-        id: state.comments[state.comments.length - 1].id + 1, // temporary
+        id: state.comments[state.comments.length - 1].id + 1,
         quora_id: action.payload.quora_id,
         author_id: action.payload.author_id,
         content: action.payload.content,

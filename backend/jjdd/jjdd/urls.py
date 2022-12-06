@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/politician/', include('politician.urls')),
     path('api/petition/', include('petition.urls')),
     path('api/quora/', include('quora.urls')),
+    path('api/comment/', include('comment.urls')),
 ]
