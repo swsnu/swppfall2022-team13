@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
 import { AppDispatch } from "../../store";
-import { fetchPetitions, voteUp, selectPetition, deletePetition } from "../../store/slices/petition";
+import { fetchPetitions, voteUp, voteDown, selectPetition, deletePetition } from "../../store/slices/petition";
 import Petition, { PetitionType,} from "../../components/Petition/Petition";
 import axios from 'axios';
 axios.defaults.xsrfCookieName = 'csrftoken';
@@ -75,9 +75,19 @@ const PetitionDetailPage = () => {
       const user_id = response['data']['id'];
       //navigate('/user/'+ user_id.toString() + '/');
       if(petition !== null && petition !== undefined) {
-        dispatch(voteUp(petition.id));
-        const msg = ['Voting Successful!']
-        alert(msg)
+
+        if (!localStorage.getItem("vote" + petition.id)) {
+          dispatch(voteUp(petition.id));
+          localStorage.setItem("vote" + petition.id, "true")
+          const msg = ['Voting Successful!']
+          alert(msg)
+        } else {
+          dispatch(voteDown(petition.id));
+          localStorage.removeItem("vote" + petition.id)
+          const msg = ['Unvote Successful!']
+          alert(msg)
+        }
+        
       }
     } else{
       const msg = ['Login Required']
