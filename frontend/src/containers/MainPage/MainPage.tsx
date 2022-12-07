@@ -164,6 +164,20 @@ const MainPage = () => {
     currCarouselContents.push(temp)
   } 
 
+  const quora2 = quoraState.quoras.at(quoraState.quoras.length-2)
+  if(quora2) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/quora/" + quora2.id,
+      detail_img_path:
+      "https://bitnine.net/wp-content/uploads/2016/11/How-to-win-a-debate-according-to-Harvard%E2%80%99s-world-champion-debate-team-2.jpg",
+      title: "Quora of: " + quora2.title,
+      content:
+        "Click here to visit our latest quora",
+    }
+    currCarouselContents.push(temp)
+  } 
+
   const politician1 = politicianState.politicians.at(politicianState.politicians.length-1)
   if(politician1) {
     const temp: CarouselContentType = {
@@ -172,6 +186,34 @@ const MainPage = () => {
       detail_img_path:
       politician1.image_src,
       title: "Visit: " + politician1.name,
+      content:
+        "Click here to check out this politician",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const politician2 = politicianState.politicians.at(politicianState.politicians.length-2)
+  if(politician2) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/politician/" + politician2.id,
+      detail_img_path:
+      politician2.image_src,
+      title: "Visit: " + politician2.name,
+      content:
+        "Click here to check out this politician",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const politician3 = politicianState.politicians.at(politicianState.politicians.length-3)
+  if(politician3) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/politician/" + politician3.id,
+      detail_img_path:
+      politician3.image_src,
+      title: "Visit: " + politician3.name,
       content:
         "Click here to check out this politician",
     }

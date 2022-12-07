@@ -33,8 +33,7 @@ const initialState: PoliticianState = {
 };
 
 const politician_url =
-  //"http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/";
-  "/api/politician/";
+  "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/";
 
 export const fetchPoliticians = createAsyncThunk(
   "politician/fetchPoliticians",
