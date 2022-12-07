@@ -22,6 +22,7 @@ const QuoraListPage = () => {
 
   useEffect(() => {
     dispatch(fetchQuoras());
+    dispatch(fetchPoliticians());
     console.log("this is state: " + quoraState)
     
   }, []);  
@@ -58,28 +59,34 @@ const QuoraListPage = () => {
       const isLogin = response['data']['status'];
 
       if(isLogin && response.data.id !== 2){
-      const user_email = response['data']['email'];
+      const user_email = response.data.email;
       const user_id = response['data']['id'];
       console.log(user_email)
       const isPolitician = true //SHOULD BE IMPROVED WHEN POLITICIAN IS MADE
       const politician = politicianState.politicians.find((value:any) => value.email === user_email);
+      //const politician2 = politicianState.politicians.at(politicianState.politicians.length-1);
+      //console.log("politician email :" + politician2.email)
+      console.log("politician match? :" + politician)
 
-        if (isPolitician) { //SHOULD BE IMPROVED WHEN POLITICIAN IS MADE
+        if (politician) { //SHOULD BE IMPROVED WHEN POLITICIAN IS MADE
 
           //const politicianName = politician.name 
           const QuoraData = {
-            //title: politicianName,
-            //content: "This is online Quora of: " + politicianName,
-            //author: politician.id,
+            title: politician.name,
+            content: "This is online Quora of: " + politician.name,
+            author: user_id,
+            author_politicianId: politician.id,
 
-            title: "허경영",
-            content: "This is online Quora of: " + "허경영",
-            author: 1,
+            //title: "허경영",
+            //content: "This is online Quora of: " + "허경영",
+            //author: 1,
           }
+          console.log("quora opened with politician id:" + politician.id)
       
           const responseQuora = await dispatch(postQuora(QuoraData))
       
           if (responseQuora.type === `${postQuora.typePrefix}/fulfilled`) {
+            
             const msg2 = ['Quora Opened!']
             alert(msg2)
             navigate("/quora")
@@ -123,6 +130,7 @@ const QuoraListPage = () => {
                                 title={td.title}
                                 content={td.content}
                                 author={td.author}
+                                author_politicianId={td.author_politicianId}
 
                               />
                             );

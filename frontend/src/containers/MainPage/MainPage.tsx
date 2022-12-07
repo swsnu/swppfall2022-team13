@@ -1,64 +1,199 @@
 import Carousel from "../../components/Carousel/Carousel";
 import NavBar from "../../components/NavBar/NavBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
+import { AppDispatch } from "../../store";
 import UserInfoBtn, {
   UserInfoBtnType,
 } from "../../components/UserInfoBtn/UserInfoBtn";
 import CarouselComponent, {
   CarouselContentType,
 } from "../../components/CarouselContent/CarouselContent";
+import axios from 'axios';
+import { fetchQuoras, selectQuora, deleteQuora, postQuora } from "../../store/slices/quora";
+import { fetchPetitions, selectPetition, deletePetition, postPetition } from "../../store/slices/petition";
+import {
+  fetchPoliticians,
+  selectPolitician,
+} from "../../store/slices/politician";
+import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./MainPage.css";
+
 const MainPage = () => {
-  const [carouselContents, setCarouselContents] = useState<
-    CarouselContentType[]
-  >([
+
+  const navigate = useNavigate();
+  const quoraState = useSelector(selectQuora);
+  const petitionState = useSelector(selectPetition);
+  const articleState = useSelector(selectArticle);
+  const politicianState = useSelector(selectPolitician);
+  const dispatch = useDispatch<AppDispatch>();
+
+  //const [petition, setPetition] = useState();
+
+  const currCarouselContents: CarouselContentType[] = [
     {
       id: 1,
-      url: "/news/1",
+      url: "/news/",
       detail_img_path:
         "https://imgnews.pstatic.net/image/079/2022/11/07/0003704132_001_20221107124401245.jpg?type=w647",
-      title: "원희룡 '사고 끊이지 않는 코레일...'",
+      title: "Link to NewsList",
       content:
-        "윤 대통령사우디 해외출장 중 질타…승객불편 최소화·작업자 안전 당부 철도사고 늘어난다며 지난 3일 철도안전 비상대책회의 열었지만 5일 오봉역 코레일 직원",
+        "Click here to see more detail",
     },
-    {
-      id: 2,
-      url: "/news/2",
+  ]
+
+  useEffect(() => {
+    dispatch(fetchQuoras());
+    dispatch(fetchPetitions());
+    dispatch(fetchPoliticians());
+    dispatch(fetchArticles());
+
+    
+  }, []);  
+
+  const article1 = articleState.articles.at(articleState.articles.length-1)
+  if(article1) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/article/" + article1.id,
       detail_img_path:
-        "http://www.laborparty.kr/wp-content/uploads/kboard_attached/5/202206/629f103000c8b8121227.jpg",
-      title: "<노동자정치행동 성명> 화물연대 총파...",
+      article1.detail_img_path,
+      title: article1.title,
       content:
-        "화물연대는 '화물노동자의 최저임금제' 격인 안전운임제의 일몰제 폐지와 적용 품목 확대 등을 요구하고 있다. 안전운임제는 화물노동자들의 과로 과속 과적",
-    },
-    {
-      id: 3,
-      url: "/news/3",
+        "Our Latest News!: Click here for more detail",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const article2 = articleState.articles.at(articleState.articles.length-2)
+  if(article2) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/article/" + article2.id,
       detail_img_path:
-        "https://imgnews.pstatic.net/image/001/2022/11/04/PYH2022100507160001300_P4_20221104115612855.jpg?type=w647",
-      title: "현무 낙탄, '관성항법장치' 또는 '제어장치'",
+      article2.detail_img_path,
+      title: article2.title,
       content:
-        "(서울=연합뉴스) 김지헌 기자 = 한 달 전 발생한 육군 현무-2C 탄도미사일 낙탄 사고 원인은 관성항법장치(INS)나 제어계통 장치 간 데이터 통신의 비정상으",
-    },
-    {
-      id: 5,
-      url: "/news/5",
+        "Our Latest News!: Click here for more detail",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const article3 = articleState.articles.at(articleState.articles.length-3)
+  if(article3) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/article/" + article3.id,
       detail_img_path:
-        "http://file3.instiz.net/data/file3/2019/10/05/4/c/b/4cb9adbe6cdd8af91cb62d616f3139bc.jpg",
-      title: "호주 대통령, '한국인, 호주 방문시",
+      article3.detail_img_path,
+      title: article3.title,
       content:
-        "(뉴저지=우리뉴스) 한가인 특파원 = 호주 대통령 메이는 14일(현지시간) 한국인들이 호주 방문시 환전이 필요없다고 선언하며 빠르면 올 9월부터 한국인들은",
-    },
-    {
-      id: 6,
-      url: "/news/6",
+        "Our Latest News!: Click here for more detail",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const petition1 = petitionState.petitions.find((value:any) => value.vote > 10)
+  if(petition1) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/petition/" + petition1.id,
       detail_img_path:
-        "https://imgnews.pstatic.net/image/654/2022/10/24/0000023081_001_20221024112205711.jpg?type=w647",
-      title: "윤 대통령, 레고랜드 사태에'",
+      petition1.photo_url,
+      title: petition1.title,
       content:
-        "최근 강원도가 레고랜드 테마파크 조성을 위해 발행한 2050억원 규모 프로젝트파이낸싱(PF). 시장안정 조치 신속 집행…약탈적 불법사금융, 무관용 원칙 강력단속",
-    },
-  ]);
+        "Trending Petition!\n" + "Current Vote: " + petition1.vote,
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const petition2 = petitionState.petitions.at(petitionState.petitions.length-1)
+  if(petition2) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/petition/" + petition2.id,
+      detail_img_path:
+      petition2.photo_url,
+      title: petition2.title,
+      content:
+        "Our Latest Petition!\n" + "Current Vote: " + petition2.vote,
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const quora1 = quoraState.quoras.at(quoraState.quoras.length-1)
+  if(quora1) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/quora/" + quora1.id,
+      detail_img_path:
+      "https://bitnine.net/wp-content/uploads/2016/11/How-to-win-a-debate-according-to-Harvard%E2%80%99s-world-champion-debate-team-2.jpg",
+      title: "Quora of: " + quora1.title,
+      content:
+        "Click here to visit our latest quora",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const quora2 = quoraState.quoras.at(quoraState.quoras.length-2)
+  if(quora2) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/quora/" + quora2.id,
+      detail_img_path:
+      "https://bitnine.net/wp-content/uploads/2016/11/How-to-win-a-debate-according-to-Harvard%E2%80%99s-world-champion-debate-team-2.jpg",
+      title: "Quora of: " + quora2.title,
+      content:
+        "Click here to visit our latest quora",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const politician1 = politicianState.politicians.at(politicianState.politicians.length-1)
+  if(politician1) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/politician/" + politician1.id,
+      detail_img_path:
+      politician1.image_src,
+      title: "Visit: " + politician1.name,
+      content:
+        "Click here to check out this politician",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const politician2 = politicianState.politicians.at(politicianState.politicians.length-2)
+  if(politician2) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/politician/" + politician2.id,
+      detail_img_path:
+      politician2.image_src,
+      title: "Visit: " + politician2.name,
+      content:
+        "Click here to check out this politician",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+  const politician3 = politicianState.politicians.at(politicianState.politicians.length-3)
+  if(politician3) {
+    const temp: CarouselContentType = {
+      id: currCarouselContents.length,
+      url: "/politician/" + politician3.id,
+      detail_img_path:
+      politician3.image_src,
+      title: "Visit: " + politician3.name,
+      content:
+        "Click here to check out this politician",
+    }
+    currCarouselContents.push(temp)
+  } 
+
+
   const [btnContents, setBtnContents] = useState<ImageBtnType[]>([
     {
       url: "/politician",
@@ -79,7 +214,7 @@ const MainPage = () => {
           return <ImageBtn url={data.url} image={data.image} />;
         })}
       </div>
-      <Carousel className="Carousel" sliderContents={carouselContents} />
+      <Carousel className="Carousel" sliderContents={currCarouselContents} />
     </div>
   );
 };

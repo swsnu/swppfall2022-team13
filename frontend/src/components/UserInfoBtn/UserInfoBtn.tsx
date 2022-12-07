@@ -17,9 +17,12 @@ export default function UserInfoBtn(props: UserInfoBtnType) {
 
     if(isLogin && response.data.id !== 2){
       const user_id = response['data']['id'];
+      console.log("navigating..." + '/user/'+ user_id.toString() + '/')
+      console.log(response.data.email)
       navigate('/user/'+ user_id.toString() + '/');
     }
     else{
+      console.log('not logged in')
       navigate('/login');
     }
   };

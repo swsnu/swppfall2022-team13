@@ -7,10 +7,12 @@ export interface QuoraType {
   title?: string;
   content?: string;
   author?: number;
+  author_politicianId?: number;
 }
 
 export default function Quora(props: QuoraType) {
     const navigate = useNavigate();
+    console.log(props.author_politicianId)
     const onClickHandler = () => {
       navigate("/quora/" + props.id);
     };

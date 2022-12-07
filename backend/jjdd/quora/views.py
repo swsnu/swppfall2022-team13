@@ -12,6 +12,7 @@ def quora(request):
                      'title': quora['title'],
                      'content': quora['content'],
                      'author': quora['author'],
+                     'author_politicianId': quora['author_politicianId'],
                      }
                     for quora in Quora.objects.all().values()]
     return JsonResponse(petition_list, safe=False)
@@ -21,12 +22,13 @@ def quora(request):
     title = body['title']
     content = body['content']
     author = body['author']
+    author_politicianId = body['author_politicianId']
 
-    newQuora = Quora(title = title, content=content, author=author)
+    newQuora = Quora(title = title, content=content, author=author, author_politicianId=author_politicianId)
     newQuora.save()
 
     newQuoraId = newQuora.id
-    response_dict = {'title':title,'content':content, 'author':author,'id':newQuoraId}
+    response_dict = {'title':title,'content':content, 'author':author, 'author_politicianId':author_politicianId, 'id':newQuoraId}
     return JsonResponse(response_dict, status=201)
 
   else:

@@ -125,6 +125,7 @@ const renderPoliticianDetailPage = (id: string) => {
               title: "ang gimochi",
               content: "ang gimochi",
               author: 1,
+              author_politicianId: 1,
             },
           ],
           selectedQuora: null,
