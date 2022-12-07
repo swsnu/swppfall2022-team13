@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import {
   fetchPolitician,
   fetchPoliticians,
@@ -90,17 +92,13 @@ const PoliticianDetailPage = () => {
           </div>
           <div className="education-and-career-header">
             <h4 id="intro-education-and-career">학력 및 경력</h4>
-            <img
-              src={
-                career
-                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
-                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
-              }
-              width={30}
-              height={30}
-              onClick={onCareerClickHandler}
-              alt="career"
-            ></img>
+            {career ? (
+              <ArrowDropUpIcon onClick={onCareerClickHandler}></ArrowDropUpIcon>
+            ) : (
+              <ArrowDropDownIcon
+                onClick={onCareerClickHandler}
+              ></ArrowDropDownIcon>
+            )}
           </div>
           <div className={career ? "education-and-career-body" : "none"}>
             <p>
@@ -121,17 +119,13 @@ const PoliticianDetailPage = () => {
           </div>
           <div className="proposals-header">
             <h4 id="proposals-header">발의안</h4>
-            <img
-              src={
-                prop
-                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
-                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
-              }
-              width={30}
-              height={30}
-              alt="props"
-              onClick={onPropClickHandler}
-            ></img>
+            {prop ? (
+              <ArrowDropUpIcon onClick={onPropClickHandler}></ArrowDropUpIcon>
+            ) : (
+              <ArrowDropDownIcon
+                onClick={onPropClickHandler}
+              ></ArrowDropDownIcon>
+            )}
           </div>
           <div className={prop ? "proposals-body" : "none"}>
             <p>
