@@ -36,64 +36,6 @@ const QuoraDetailPage = () => {
   var title: string;
   var content: string;
 
-  interface PoliticianType {
-    id: number;
-    name: string;
-    birth_date: string;
-    job: string;
-    image_src: string;
-    political_party: string;
-    election_precinct: string;
-    committee: string;
-    committees: string;
-    reelection: string;
-    election_units: string;
-    email: string;
-    career_summary: string;
-    mona_code: string;
-    proposals: string;
-  }
-
-  const [politicianContents, setPoliticianContents] = useState<
-    PoliticianType[]
-  >([
-    {
-      id: 1,
-      name: "허경영",
-      birth_date: "2000.01.01",
-      job: "정치인",
-      image_src: "https://w.namu.la/s/14e1843a32f5d0dcdb2b4b75542e6a3931df2ec5252c4885748195325aa370d7ab4183025596cd8ec590eaca681f24d380f813a87a979a25c18e8a0dd6900059da06acec10dc747ec1088bedfecbaea840f4d2e54d5563417c7947cf3de9810e3f0bf91471efbfd7a7a0a250edb5b4a7",
-      political_party: "공화당",
-      election_precinct: "강남",
-      committee: "test",
-      committees: "test",
-      reelection: "test",
-      election_units: "test",
-      email: "hky@naver.com",
-      career_summary: "test",
-      mona_code: "test",
-      proposals: "test",
-    },
-    {
-      id: 1,
-      name: "이경영",
-      birth_date: "2002.01.01",
-      job: "정치인",
-      image_src: "https://w.namu.la/s/1f33f691edf9c3203926030559385e7ff17c86d12374e822d1bbb4d2050d854ad08ff9aa36e66535de473cca6acf22f7360e37ed9803c344a07a4eb4b7436cd5dc40d7befa5fa176d4406f0f5b9e020b0e979466b57b1dde8c217b4eab7164ee",
-      political_party: "진행당",
-      election_precinct: "진행",
-      committee: "test2",
-      committees: "test2",
-      reelection: "test2",
-      election_units: "test2",
-      email: "iky@naver.com",
-      career_summary: "test2",
-      mona_code: "test2",
-      proposals: "test2",
-    },
-  ]);
-
-
 
   var currQuoraId:number = 1;
       if(id !== undefined) {
@@ -104,21 +46,23 @@ const QuoraDetailPage = () => {
   useEffect(() => {  //fetch all articles and save them to articleState
     dispatch(fetchQuoras());
     dispatch(fetchComments());
+    dispatch(fetchPoliticians());
   }, []); 
 
   const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
+  console.log("author politician id: " + quora.author_politicianId)
 
   /*
   useEffect(() => {
     dispatch(fetchPolitician(Number(id)));
   }, [id]);*/
-  
+
   const politicianState = useSelector(selectPolitician);
   useEffect(() => {
     dispatch(fetchPoliticians());
   }, []); 
   const politician = politicianState.politicians.find((p) => {
-    return p.id === quora.author; //quora.author <- politician id is stored
+    return p.id === quora.author_politicianId; //quora.author <- politician id is stored
   });
   
   /*

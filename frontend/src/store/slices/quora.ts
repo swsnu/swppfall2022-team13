@@ -7,6 +7,7 @@ export interface QuoraType {
   title: string;
   content: string;
   author: number;
+  author_politicianId: number;
 }
 
 export interface QuoraState {
@@ -34,7 +35,7 @@ export const fetchQuora = createAsyncThunk(
 
 export const postQuora = createAsyncThunk(
   "quora/postQuora",
-  async (td: Pick<QuoraType, "title" | "content" | "author">, { dispatch }) => {
+  async (td: Pick<QuoraType, "title" | "content" | "author" | "author_politicianId">, { dispatch }) => {
     const response = await axios.post("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/quora/", td);
     dispatch(quoraActions.addQuora(response.data));
   }
@@ -66,12 +67,13 @@ export const quoraSlice = createSlice({
         return quora.id !== action.payload.targetId;
       });
     },
-    addQuora: (state, action: PayloadAction<{ title: string; content: string; author: number}>) => {
+    addQuora: (state, action: PayloadAction<{ title: string; content: string; author: number; author_politicianId: number;}>) => {
       const newQuora = {
         id: state.quoras[state.quoras.length - 1].id + 1, // temporary
         title: action.payload.title,
         content: action.payload.content,
         author: action.payload.author,
+        author_politicianId: action.payload.author_politicianId,
       };
       state.quoras.push(newQuora);
     },

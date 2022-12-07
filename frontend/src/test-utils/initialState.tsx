@@ -89,6 +89,7 @@ export const stubInitialState: ArticleState = {
         title: "ang gimochi",
         content: "ang gimochi",
         author: 1,
+        author_politicianId: 1,
       },
     ],
     selectedQuora: null,
