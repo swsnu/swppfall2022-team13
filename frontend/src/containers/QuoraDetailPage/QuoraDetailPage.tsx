@@ -61,6 +61,7 @@ const QuoraDetailPage = () => {
   useEffect(() => {
     dispatch(fetchPoliticians());
   }, []); 
+  
   const politician = politicianState.politicians.find((p) => {
     return p.id === quora.author_politicianId; //quora.author <- politician id is stored
   });
