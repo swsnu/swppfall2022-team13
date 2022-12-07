@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import "./SearchBar.css";
+import SearchIcon from "@mui/icons-material/Search";
 export interface SearchBarInterface {
   search?: string;
   onChange?: (e: any) => void;
@@ -8,6 +9,7 @@ export interface SearchBarInterface {
 function SearchBar(props: SearchBarInterface) {
   return (
     <div className="SearchBar">
+      <SearchIcon></SearchIcon>
       <input
         className="input"
         type="text"

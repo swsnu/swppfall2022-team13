@@ -2,5 +2,12 @@
   padding: 6px;
   border: none;
   font-size: 20px;
-  border-radius: 10%;
+  border-radius: 5%;
+  margin-left: 10px;
+  background-color: white;
+}
+
+.input {
+  margin-left: 10px;
+  border: none;
 }
