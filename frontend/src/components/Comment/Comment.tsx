@@ -14,8 +14,8 @@ export interface IProps {
     quora_id: number
     author_id: number
     content: string
-    clickDetail?: () => void; // Defined by React
-    clickDelete?: () => void;
+    //clickDetail?: () => void; // Defined by React
+    //clickDelete?: () => void;
   }
   
   const Comment = (props: IProps) => {

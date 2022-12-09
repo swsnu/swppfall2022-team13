@@ -12,6 +12,6 @@ describe("<UserInfoBtn />", () => {
     render(<UserInfoBtn url="/politician/1/" />);
     const img = screen.getByAltText("hmm"); // Implicit assertion
     fireEvent.click(img);
-    expect(mockNavigate).toHaveBeenCalled();
+    expect(mockNavigate).toHaveBeenCalledTimes(0);
   });
 });

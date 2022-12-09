@@ -10,7 +10,7 @@ import { QuoraState } from "../store/slices/quora";
 import { CommentState } from "../store/slices/comment";
 import { getMockStore } from "../test-utils/mock";
 
-
+//yarn test --coverage --watchAll=false
 
 export const stubInitialState: ArticleState = {
     articles: [

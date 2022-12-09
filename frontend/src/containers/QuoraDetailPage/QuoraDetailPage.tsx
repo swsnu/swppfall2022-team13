@@ -50,7 +50,7 @@ const QuoraDetailPage = () => {
   }, []); 
 
   const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
-  console.log("author politician id: " + quora.author_politicianId)
+  //console.log("author politician id: " + quora.author_politicianId)
 
   /*
   useEffect(() => {

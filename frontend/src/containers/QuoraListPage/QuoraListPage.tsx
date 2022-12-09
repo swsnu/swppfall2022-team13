@@ -116,7 +116,7 @@ const QuoraListPage = () => {
           <p>
           This is our list of Opened Quoras!
           </p>
-          <button className="quoraTitle" type="button" onClick={clickOpenQuoraHandler}><b>Open Quora</b></button>
+          <button id="open" className="quoraTitle" type="button" onClick={clickOpenQuoraHandler}><b>Open Quora</b></button>
           
         <div className="row">
                 <div className="col-sm-6">
