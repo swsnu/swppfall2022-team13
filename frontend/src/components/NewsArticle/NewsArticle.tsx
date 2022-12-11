@@ -29,7 +29,12 @@ export default function NewsArticle(props: NewsArticleType) {
     navigate("/news/" + props.id);
   };
 
-  if (props.journal_name === "한겨레") {
+  if (
+    props.journal_name === "한겨레" ||
+    props.journal_name === "매일경제" ||
+    props.journal_name === "머니투데이" ||
+    props.journal_name === "경향신문"
+  ) {
     return (
       <p>
         <div className="NewsArticleLeft" onClick={onClickHandler}>
@@ -98,30 +103,3 @@ export default function NewsArticle(props: NewsArticleType) {
     );
   }
 }
-
-/*
-
-  return (
-        
-        <div className="NewsArticleLeft" onClick={onClickHandler}>
-  
-          <div className="leftContent">
-            <img
-              className="image"
-              src={props.detail_img_path}
-              alt="Hmm"
-              width={props.width}
-              height={props.height}
-            />
-          </div>
-          <div className="rightContent">
-            <div className="title">{props.title}</div>
-            <p className="content">{props.content}</p>
-          </div>
-        </div>
-      );
-
-
-    }
-
-    */
