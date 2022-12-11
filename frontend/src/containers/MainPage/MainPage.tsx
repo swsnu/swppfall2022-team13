@@ -17,25 +17,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
+import Diversity1Icon from '@mui/icons-material/Diversity1';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import logo from '../../asset/image/logo1_cropped.png';
 import { useNavigate } from 'react-router-dom';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      // Purple and green play nicely together.
-      main: '#11cb5f',
-      //main: '#FFE9D8'
-    },
-    secondary: {
-      // This is green.A700 as hex.
-      main: '#11cb5f',
-    },
-  },
-});
 
 const drawerWidth = 240;
 
@@ -153,7 +141,7 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Political News', 'Politicians', 'Petition', 'Quora'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -169,7 +157,10 @@ export default function MiniDrawer() {
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index === 0 ? <NewspaperIcon /> : 
+                  index === 1 ? <Diversity1Icon /> :
+                  index === 2 ? <ThumbUpAltOutlinedIcon /> :
+                  <ForumRoundedIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -178,7 +169,7 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash'].map((text, index) => (
+          {['Account'].map((text) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -194,7 +185,7 @@ export default function MiniDrawer() {
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <AccountCircleIcon />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
