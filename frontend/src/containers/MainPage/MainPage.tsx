@@ -1,222 +1,235 @@
-import Carousel from "../../components/Carousel/Carousel";
-import NavBar from "../../components/NavBar/NavBar";
-import { useEffect, useState } from "react";
-import { useNavigate, Link, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import ImageBtn, { ImageBtnType } from "../../components/ImageBtn/ImageBtn";
-import { AppDispatch } from "../../store";
-import UserInfoBtn, {
-  UserInfoBtnType,
-} from "../../components/UserInfoBtn/UserInfoBtn";
-import CarouselComponent, {
-  CarouselContentType,
-} from "../../components/CarouselContent/CarouselContent";
-import axios from 'axios';
-import { fetchQuoras, selectQuora, deleteQuora, postQuora } from "../../store/slices/quora";
-import { fetchPetitions, selectPetition, deletePetition, postPetition } from "../../store/slices/petition";
-import {
-  fetchPoliticians,
-  selectPolitician,
-} from "../../store/slices/politician";
-import { fetchArticles, selectArticle } from "../../store/slices/article";
-import "./MainPage.css";
+import './MainPage.css';
+import * as React from 'react';
+import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import MuiDrawer from '@mui/material/Drawer';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from '../../asset/image/logo1_cropped.png';
 
-const MainPage = () => {
-
-  const navigate = useNavigate();
-  const quoraState = useSelector(selectQuora);
-  const petitionState = useSelector(selectPetition);
-  const articleState = useSelector(selectArticle);
-  const politicianState = useSelector(selectPolitician);
-  const dispatch = useDispatch<AppDispatch>();
-
-  //const [petition, setPetition] = useState();
-
-  const currCarouselContents: CarouselContentType[] = [
-    {
-      id: 1,
-      url: "/news/",
-      detail_img_path:
-        "https://imgnews.pstatic.net/image/079/2022/11/07/0003704132_001_20221107124401245.jpg?type=w647",
-      title: "Link to NewsList",
-      content:
-        "Click here to see more detail",
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#11cb5f',
+      //main: '#FFE9D8'
     },
-  ]
-
-  useEffect(() => {
-    dispatch(fetchQuoras());
-    dispatch(fetchPetitions());
-    dispatch(fetchPoliticians());
-    dispatch(fetchArticles());
-
-    
-  }, []);  
-
-  const article1 = articleState.articles.at(articleState.articles.length-1)
-  if(article1) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/article/" + article1.id,
-      detail_img_path:
-      article1.detail_img_path,
-      title: article1.title,
-      content:
-        "Our Latest News!: Click here for more detail",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const article2 = articleState.articles.at(articleState.articles.length-2)
-  if(article2) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/article/" + article2.id,
-      detail_img_path:
-      article2.detail_img_path,
-      title: article2.title,
-      content:
-        "Our Latest News!: Click here for more detail",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const article3 = articleState.articles.at(articleState.articles.length-3)
-  if(article3) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/article/" + article3.id,
-      detail_img_path:
-      article3.detail_img_path,
-      title: article3.title,
-      content:
-        "Our Latest News!: Click here for more detail",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const petition1 = petitionState.petitions.find((value:any) => value.vote > 10)
-  if(petition1) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/petition/" + petition1.id,
-      detail_img_path:
-      petition1.photo_url,
-      title: petition1.title,
-      content:
-        "Trending Petition!\n" + "Current Vote: " + petition1.vote,
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const petition2 = petitionState.petitions.at(petitionState.petitions.length-1)
-  if(petition2) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/petition/" + petition2.id,
-      detail_img_path:
-      petition2.photo_url,
-      title: petition2.title,
-      content:
-        "Our Latest Petition!\n" + "Current Vote: " + petition2.vote,
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const quora1 = quoraState.quoras.at(quoraState.quoras.length-1)
-  if(quora1) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/quora/" + quora1.id,
-      detail_img_path:
-      "https://bitnine.net/wp-content/uploads/2016/11/How-to-win-a-debate-according-to-Harvard%E2%80%99s-world-champion-debate-team-2.jpg",
-      title: "Quora of: " + quora1.title,
-      content:
-        "Click here to visit our latest quora",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const quora2 = quoraState.quoras.at(quoraState.quoras.length-2)
-  if(quora2) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/quora/" + quora2.id,
-      detail_img_path:
-      "https://bitnine.net/wp-content/uploads/2016/11/How-to-win-a-debate-according-to-Harvard%E2%80%99s-world-champion-debate-team-2.jpg",
-      title: "Quora of: " + quora2.title,
-      content:
-        "Click here to visit our latest quora",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const politician1 = politicianState.politicians.at(politicianState.politicians.length-1)
-  if(politician1) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/politician/" + politician1.id,
-      detail_img_path:
-      politician1.image_src,
-      title: "Visit: " + politician1.name,
-      content:
-        "Click here to check out this politician",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const politician2 = politicianState.politicians.at(politicianState.politicians.length-2)
-  if(politician2) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/politician/" + politician2.id,
-      detail_img_path:
-      politician2.image_src,
-      title: "Visit: " + politician2.name,
-      content:
-        "Click here to check out this politician",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-  const politician3 = politicianState.politicians.at(politicianState.politicians.length-3)
-  if(politician3) {
-    const temp: CarouselContentType = {
-      id: currCarouselContents.length,
-      url: "/politician/" + politician3.id,
-      detail_img_path:
-      politician3.image_src,
-      title: "Visit: " + politician3.name,
-      content:
-        "Click here to check out this politician",
-    }
-    currCarouselContents.push(temp)
-  } 
-
-
-  const [btnContents, setBtnContents] = useState<ImageBtnType[]>([
-    {
-      url: "/politician",
-      image:
-        "https://media.istockphoto.com/photos/businessman-or-politician-making-speech-behind-the-pulpit-picture-id676327038?k=20&m=676327038&s=612x612&w=0&h=zb0yYF91voE-3-ar00zEjpG_HchV9LlpbCVPrErio1Q=",
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
     },
-    {
-      url: "/news",
-      image:
-        "https://media.istockphoto.com/photos/breaking-news-world-news-with-map-backgorund-picture-id1182477852?k=20&m=1182477852&s=612x612&w=0&h=I3wdSzT_5h1y9dHq_YpZ9AqdIKg8epthr8Guva8FkPA=",
-    },
-  ]);
+  },
+});
+
+const drawerWidth = 240;
+
+const openedMixin = (theme: Theme): CSSObject => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme: Theme): CSSObject => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean;
+}
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<AppBarProps>(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
+
+export default function MiniDrawer() {
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="MainPage">
-      <NavBar />
-      <div className="MainBtns">
-        {btnContents.map((data) => {
-          return <ImageBtn url={data.url} image={data.image} />;
-        })}
-      </div>
-      <Carousel className="Carousel" sliderContents={currCarouselContents} />
-    </div>
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar style={{ background: '#DCC4B2' }} position="fixed" open={open}>
+        <Toolbar className='Toolbar'>
+          <IconButton
+            // style={{ color: '#000000' }}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{
+              marginRight: 5,
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <img className='Logo' src={logo} alt='Logo'></img>
+          {/* <Typography variant="h6" noWrap component="div">
+            JJDD Logo
+          </Typography> */}
+        </Toolbar>
+      </AppBar>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash'].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
+        <Typography paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
+          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
+          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
+          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
+          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
+          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
+          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
+          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
+          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
+          sapien faucibus et molestie ac.
+        </Typography>
+        <Typography paragraph>
+          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
+          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
+          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
+          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
+          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
+          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
+          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
+          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
+          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
+          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
+          posuere sollicitudin aliquam ultrices sagittis orci a.
+        </Typography>
+      </Box>
+    </Box>
   );
-};
-
-export default MainPage;
+}

@@ -1,4 +1,4 @@
-.MainPage {
+/* .MainPage {
   background-color: #f1f2f5;
   height: 1000px;
 }
@@ -11,4 +11,9 @@
 
 .Carousel {
   margin: 10px 100px;
+} */
+
+.Logo {
+  width: 12%;
+  height: auto;
 }
