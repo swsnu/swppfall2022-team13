@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import { AppDispatch } from "../../store";
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -14,6 +15,7 @@ import {
   selectPolitician,
 } from "../../store/slices/politician";
 import "./PoliticianListPage.css";
+import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined';
 
 const PoliticianListPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -53,27 +55,40 @@ const PoliticianListPage = () => {
     <div className="PoliticianListPage">
       {/* <NavBar /> */}
       <div className="FilterAndSearchBar">
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">검색 기준</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={filter}
-                label="검색 기준"
-                onChange={handleChange}
-              >
-                <MenuItem value={10}>이름으로 검색</MenuItem>
-                <MenuItem value={20}>선거구로 검색</MenuItem>
-              </Select>
-          </FormControl>
+          <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            '& > :not(style)': {
+              m: 1,
+              width: 1000,
+              height: 100,
+            },
+          }}
+        >
+          <Paper className="Search-paper" elevation={1} variant="outlined">
+              <PersonSearchOutlinedIcon className="Search-Icon" sx={{ fontSize: 50 }}></PersonSearchOutlinedIcon>
+              <FormControl className="Search-option">
+              <InputLabel id="demo-simple-select-label">검색 기준</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={filter}
+                  label="검색 기준"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>이름으로 검색</MenuItem>
+                  <MenuItem value={20}>선거구로 검색</MenuItem>
+                </Select>
+            </FormControl>
+            <SearchBar onChange={onSearchBarChangeHandler} search={search} />
+          </Paper>
         </Box>
 
         {/* <select onChange={onFilterChangeHandler} placeholder="filter">
           <option value="name">이름으로 검색</option>
           <option value="elect-precinct">선거구로 검색</option>
         </select> */}
-        <SearchBar onChange={onSearchBarChangeHandler} search={search} />
       </div>
       <div className="PoliticianSummarys">
         {filter === "name"

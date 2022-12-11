@@ -18,3 +18,23 @@
   display: flex;
   justify-content: center;
 }
+
+.Search-paper {
+  display: flex;
+  justify-content:baseline;
+  align-items: center;
+}
+
+.Search-option {
+  width: 200px;
+}
+
+.margin {
+  margin-left: 20px;
+}
+
+.Search-Icon{
+  margin-left: 25px;
+  margin-right: 20px;
+  /* font-size: 100px; */
+}
