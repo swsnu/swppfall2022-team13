@@ -109,8 +109,8 @@ const QuoraListPage = () => {
 
   return (
     <>
-    <div className = "background_list">
-    <NavBar />
+    <div>
+    {/* <NavBar /> */}
       <h1>QUORA LIST</h1>
 
           <p>

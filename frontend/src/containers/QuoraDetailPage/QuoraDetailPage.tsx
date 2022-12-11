@@ -165,7 +165,7 @@ const QuoraDetailPage = () => {
   return ( //POLITICIAN LIST랑 연동하여 사진, 정보 등 가져오기!!!
   
     <div className = "background_red">
-        <NavBar/>
+        {/* <NavBar/> */}
 
         <div className="PoliticianDetailPage">
       <div>

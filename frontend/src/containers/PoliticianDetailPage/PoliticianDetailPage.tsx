@@ -45,7 +45,7 @@ const PoliticianDetailPage = () => {
   }, []);
   return (
     <div className="PoliticianDetailPage">
-      <NavBar />
+      {/* <NavBar /> */}
       <div>
         <div className="left">
           <img src={politician.image_src} width={200} height={250} />

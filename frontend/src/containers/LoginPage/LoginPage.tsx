@@ -49,7 +49,7 @@ export default function SignIn() {
 
   return (
     <div>
-    <NavBar></NavBar>
+    {/* <NavBar></NavBar> */}
     <CSRFToken></CSRFToken>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -62,7 +62,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <img src={logo} alt="logo" className='logo' />
+          {/* <img src={logo} alt="logo" className='logo' /> */}
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>

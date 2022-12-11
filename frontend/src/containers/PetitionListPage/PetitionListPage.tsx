@@ -63,8 +63,8 @@ const PetitionListPage = () => {
 
   return (
     <>
-    <div className = "background_list">
-    <NavBar />
+    <div>
+    {/* <NavBar /> */}
       <h1>PETITIONS LIST</h1>
 
           <p>

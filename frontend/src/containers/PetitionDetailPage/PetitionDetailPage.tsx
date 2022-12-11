@@ -99,7 +99,7 @@ const PetitionDetailPage = () => {
   
   return (
     <div className = "background_red">
-        <NavBar/>
+        {/* <NavBar/> */}
       <div className="card">
         
       

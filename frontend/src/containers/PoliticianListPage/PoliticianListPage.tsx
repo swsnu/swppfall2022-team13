@@ -46,7 +46,7 @@ const PoliticianListPage = () => {
   }
   return (
     <div className="PoliticianListPage">
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="FilterAndSearchBar">
         <select onChange={onFilterChangeHandler} placeholder="filter">
           <option value="name">이름으로 검색</option>

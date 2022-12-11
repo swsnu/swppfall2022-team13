@@ -158,7 +158,7 @@ const NewsDetailPage = () => {
     if (article?.journal_name === "한겨레") {
       return (
         <div className = "background_red">
-            <NavBar/>
+            {/* <NavBar/> */}
           <div className="card">
             
           

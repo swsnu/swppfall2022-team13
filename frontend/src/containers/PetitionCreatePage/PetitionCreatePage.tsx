@@ -73,9 +73,9 @@ const PetitionCreatePage = () => {
 
     return (
     <>
-      <div className='navBar'>
+      {/* <div className='navBar'>
         <NavBar />
-      </div>
+      </div> */}
       <p/>
       <h1>Petition Create Page</h1>
       <p/>

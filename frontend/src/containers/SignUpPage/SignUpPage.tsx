@@ -62,7 +62,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavBar></NavBar>
+      {/* <NavBar></NavBar> */}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -73,7 +73,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <img src={logo} alt="logo" className='logo' />
+          {/* <img src={logo} alt="logo" className='logo' /> */}
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
