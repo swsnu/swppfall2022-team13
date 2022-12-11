@@ -1,13 +1,11 @@
+import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar';
 import NewsArticle, { NewsArticleType, } from "../../components/NewsArticle/NewsArticle";
 import { AppDispatch } from "../../store";
-import axios from 'axios';
-import { fetchArticles, fetchArticle, selectArticle, ArticleType } from "../../store/slices/article";
-import { Identity } from '@mui/base';
+import { fetchArticles, selectArticle } from "../../store/slices/article";
 
 const NewsDetailPage = () => {
 
@@ -16,10 +14,8 @@ const NewsDetailPage = () => {
   const articleState = useSelector(selectArticle);
   const { id } = useParams(); //fetch number from current url
   //const relatedArticleContents: NewsArticleType[] = []
-  const [relatedArticleContents, setRelatedArticleContents] = useState<NewsArticleType[]>([]);
   const [related_article_list, set_related_article_list] = useState([]);
   const [err, setErr] = useState(false);
-  var length = 0
 
   var currArticleId:number = 1;
       if(id !== undefined) {
@@ -80,11 +76,6 @@ const NewsDetailPage = () => {
       alert('COPYING FAILED');
     }
   };
-
-
-
-  
-
 
     if (article?.journal_name === "한겨레") {
       return (
