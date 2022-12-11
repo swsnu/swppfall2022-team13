@@ -12,3 +12,4 @@ class Article(models.Model):
   detail_text = models.TextField()
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+  related_articles = models.TextField(null=True, default="[]")
