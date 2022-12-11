@@ -125,7 +125,7 @@ export default function MiniDrawer() {
       <AppBar style={{ background: '#DCC4B2' }} position="fixed" open={open}>
         <Toolbar className='Toolbar'>
           <IconButton
-            // style={{ color: '#000000' }}
+            style={{ color: '#684a3f' }}
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
