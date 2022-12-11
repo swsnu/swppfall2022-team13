@@ -9,6 +9,7 @@ import { AppDispatch } from "../../store";
 import axios from 'axios';
 import { fetchArticles, fetchArticle, selectArticle, ArticleType } from "../../store/slices/article";
 import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
+import { Identity } from '@mui/base';
 
 const NewsDetailPage = () => {
 
@@ -16,7 +17,10 @@ const NewsDetailPage = () => {
   const navigate = useNavigate();
   const articleState = useSelector(selectArticle);
   const { id } = useParams(); //fetch number from current url
-  const relatedArticleContents: ArticleType[] = []
+  //const relatedArticleContents: NewsArticleType[] = []
+  const [relatedArticleContents, setRelatedArticleContents] = useState<NewsArticleType[]>([]);
+  const [related_article_list, set_related_article_list] = useState([]);
+  var length = 0
 
   var currArticleId:number = 1;
       if(id !== undefined) {
@@ -28,23 +32,48 @@ const NewsDetailPage = () => {
   useEffect(() => {  //fetch all articles and save them to articleState
     dispatch(fetchArticles());
     const getRelatedArticle = async () => {
-      //await axios.post("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/related/2/",{article_id: [1]});
+      
       const related_article_json = await axios.get("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/related/" + currArticleId + "/");
-      const related_article_list = related_article_json.data
+      console.log(related_article_json.data)
+      set_related_article_list (related_article_json.data)
+
+      if(related_article_list.length === 0) {
+        set_related_article_list ([1])
+      }
+
+
+      
+      //set_related_article_list (related_article_json.data)
+      //set_related_article_list ([1, 6])
       console.log("related article list follows: " + related_article_list)
       var i = 0
 
       while (i<related_article_list.length) {
         var curr_id = related_article_list[i]
         const tempRelatedArticle = articleState.articles.find((value:any) => value.id === curr_id);
-        relatedArticleContents.push(tempRelatedArticle)
-        console.log("related article list pushed with: " + tempRelatedArticle.id)
+        const tempNewsArticle: NewsArticleType = {
+          id: tempRelatedArticle.id,
+          url: "/news/"+ tempRelatedArticle.id,
+          journal_name: tempRelatedArticle.journal_name,
+          detail_img_path:
+            tempRelatedArticle.detail_img_path,
+          title:
+            tempRelatedArticle.title,
+          detail_text:
+            tempRelatedArticle.detail_text,
+          preview_prologue:
+            tempRelatedArticle.preview_prologue
+        }
+        setRelatedArticleContents(relatedArticleContents => [...relatedArticleContents, tempNewsArticle]);
+
         i++
       }
     };
-
+  
     getRelatedArticle()
   }, []); 
+  
+  
 
   const article = articleState.articles.find((value:any) => value.id === currArticleId); //find article with same id 
                                                                                          //this page should display THIS article
@@ -81,7 +110,6 @@ const NewsDetailPage = () => {
   };
 
 
-  
 
   
 
@@ -118,15 +146,15 @@ const NewsDetailPage = () => {
             <p></p>
             <div className="compare_news_articles">
             <h2>We have found these related articles :</h2>
-
             
 
-            {relatedArticleContents.map((related_article: any) => {
-              console.log("related display:" + related_article.id)
+            {related_article_list.map((id: any) => {
+
+              const related_article = articleState.articles.find((value:any) => value.id === id)
               return (
                 <NewsArticle
-                  key={`${related_article.id}_todo`}
-                  url={related_article.url}
+                  key={`${related_article.id}_relate`}
+                  url={'/news/' + related_article.id}
                   id={related_article.id}
                   datetime_str={related_article.datetime_str}
                   detail_link_postfix={related_article.detail_link_postfix}
@@ -179,13 +207,13 @@ const NewsDetailPage = () => {
             <div className="compare_news_articles">
             <h2>We have found these related articles :</h2>
 
+            {related_article_list.map((id: any) => {
 
-            {relatedArticleContents.map((related_article: any) => {
-              console.log("related display:" + related_article.id)
+              const related_article = articleState.articles.find((value:any) => value.id === id)
               return (
                 <NewsArticle
-                  key={`${related_article.id}_todo`}
-                  url={related_article.url}
+                  key={`${related_article.id}_relate`}
+                  url={'/news/' + related_article.id}
                   id={related_article.id}
                   datetime_str={related_article.datetime_str}
                   detail_link_postfix={related_article.detail_link_postfix}
