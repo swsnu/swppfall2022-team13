@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { AppDispatch } from "../../store";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {
   fetchPoliticians,
   selectPolitician,
@@ -17,10 +23,6 @@ const PoliticianListPage = () => {
   const [filter, setFilter] = useState("name");
   const onSearchBarChangeHandler = (e: any) => {
     setSearch(e.target.value);
-  };
-
-  const onFilterChangeHandler = (e: any) => {
-    setFilter(e.target.value);
   };
 
   useEffect(() => {
@@ -42,18 +44,39 @@ const PoliticianListPage = () => {
   if (filterElect.length > 6) {
     filterElect = filterElect.slice(0, 6);
   }
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setFilter(event.target.value as string);
+  };
+
   return (
     <div className="PoliticianListPage">
       {/* <NavBar /> */}
       <div className="FilterAndSearchBar">
-        <select onChange={onFilterChangeHandler} placeholder="filter">
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">검색 기준</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={filter}
+                label="검색 기준"
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>이름으로 검색</MenuItem>
+                <MenuItem value={20}>선거구로 검색</MenuItem>
+              </Select>
+          </FormControl>
+        </Box>
+
+        {/* <select onChange={onFilterChangeHandler} placeholder="filter">
           <option value="name">이름으로 검색</option>
           <option value="elect-precinct">선거구로 검색</option>
-        </select>
+        </select> */}
         <SearchBar onChange={onSearchBarChangeHandler} search={search} />
       </div>
       <div className="PoliticianSummarys">
-        {filter == "name"
+        {filter === "name"
           ? filterName.map((data) => {
               return (
                 <div className="SummaryComponent" key={data.id}>
