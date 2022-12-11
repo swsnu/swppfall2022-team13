@@ -29,9 +29,8 @@ const NewsDetailPage = () => {
     dispatch(fetchArticles());
     const getRelatedArticle = async () => {
       //await axios.post("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/related/2/",{article_id: [1]});
-      //const related_article_json = await axios.get("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/related/" + currArticleId + "/");
-      //const related_article_list = related_article_json.data
-      const related_article_list = [1,2]
+      const related_article_json = await axios.get("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/related/" + currArticleId + "/");
+      const related_article_list = related_article_json.data
       console.log("related article list follows: " + related_article_list)
       var i = 0
 
