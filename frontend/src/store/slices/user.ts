@@ -19,7 +19,7 @@ export const isPolitician = createAsyncThunk(
   "politician/isPolitician",
   async (td: Pick<PoliticianType, "name" | "email">, { dispatch }) => {
     const response = await axios.post(
-      "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/isPolitician/",
+      "/api/politician/isPolitician/",
       td
     );
     return userActions.postIsPolitician(response.data);

@@ -20,7 +20,7 @@ const initialState: CommentState = {
 };
 
 export const fetchComments = createAsyncThunk("comment/fetchComments", async () => {
-  const response = await axios.get<CommentType[]>("https://jungjungdangdang.shop/api/comment/");
+  const response = await axios.get<CommentType[]>("/api/comment/");
   //const response = await axios.get<CommentType[]>("/api/comment/");
   return response.data;
 });
@@ -28,7 +28,7 @@ export const fetchComments = createAsyncThunk("comment/fetchComments", async () 
 export const fetchComment = createAsyncThunk(
   "comment/fetchComment",
   async (id: CommentType["id"], { dispatch }) => {
-    const response = await axios.get(`https://jungjungdangdang.shop/api/comment/${id}/`);
+    const response = await axios.get(`/api/comment/${id}/`);
     return response.data ?? null;
   }
 );
@@ -36,7 +36,7 @@ export const fetchComment = createAsyncThunk(
 export const postComment = createAsyncThunk(
   "comment/postComment",
   async (td: Pick<CommentType, "quora_id" | "author_id" | "content">, { dispatch }) => {
-    const response = await axios.post("https://jungjungdangdang.shop//api/comment/", td);
+    const response = await axios.post("/api/comment/", td);
     //const response = await axios.post("/api/comment/", td);
     dispatch(commentActions.addComment(response.data));
   }
@@ -45,7 +45,7 @@ export const postComment = createAsyncThunk(
 export const deleteComment = createAsyncThunk(
   "comment/deleteCOmment",
   async (id: CommentType["id"], { dispatch }) => {
-    await axios.delete(`https://jungjungdangdang.shop//api/comment/${id}/`);
+    await axios.delete(`/api/comment/${id}/`);
     //await axios.delete(`/api/comment/${id}/`);
     dispatch(commentActions.deleteComment({ targetId: id }));
   }
