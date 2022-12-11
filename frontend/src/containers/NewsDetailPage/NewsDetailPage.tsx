@@ -35,7 +35,6 @@ const NewsDetailPage = () => {
     const getRelatedArticle = async () => {
       
       const related_article_json = await axios.get("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/related/" + currArticleId + "/");
-      console.log(related_article_json.data)
       set_related_article_list (related_article_json.data)
 
       if(related_article_list.length === 0) {
