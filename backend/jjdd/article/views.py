@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Article
 import json
 
-@ensure_csrf_cookie
+@csrf_exempt
 def article(request):
   if request.method == "GET":
     article_list = [{ 'id': article['id'],
@@ -43,7 +43,7 @@ def article(request):
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
 
-@ensure_csrf_cookie
+@csrf_exempt
 def related_articles(request, article_id):
   if request.method == "GET":
     related_article_list = Article.objects.get(pk=article_id).related_articles
