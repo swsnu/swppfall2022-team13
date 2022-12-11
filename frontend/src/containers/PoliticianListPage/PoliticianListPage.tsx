@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PoliticianSummaryType } from "../../components/PoliticianSummary/PoliticianSummary";
-import "./PoliticianListPage.css";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
-import NavBar from "../../components/NavBar/NavBar";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { AppDispatch } from "../../store";
 import {
   fetchPoliticians,
   selectPolitician,
 } from "../../store/slices/politician";
+import "./PoliticianListPage.css";
 
 const PoliticianListPage = () => {
   const dispatch = useDispatch<AppDispatch>();

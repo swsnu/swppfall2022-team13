@@ -1,15 +1,14 @@
-import { useNavigate, Link, Navigate } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar'
-import { useState, useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import Quora, {QuoraType,} from "../../components/Quora/Quora";
-import { fetchQuoras, selectQuora, deleteQuora, postQuora } from "../../store/slices/quora";
-import { AppDispatch } from "../../store";
 import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Quora, { QuoraType, } from "../../components/Quora/Quora";
+import { AppDispatch } from "../../store";
 import {
   fetchPoliticians,
   selectPolitician,
 } from "../../store/slices/politician";
+import { fetchQuoras, postQuora, selectQuora } from "../../store/slices/quora";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 

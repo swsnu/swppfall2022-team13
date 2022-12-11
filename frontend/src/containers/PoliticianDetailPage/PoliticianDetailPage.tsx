@@ -1,20 +1,18 @@
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import NumberInfo from "../../components/NumberInfo/NumberInfo";
+import { AppDispatch } from "../../store";
 import {
   fetchPolitician,
   fetchPoliticians,
+  selectPolitician,
 } from "../../store/slices/politician";
-import { selectPolitician } from "../../store/slices/politician";
-import { AppDispatch } from "../../store";
-import NumberInfo from "../../components/NumberInfo/NumberInfo";
 import "./PoliticianDetailPage.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-import NavBar from "../../components/NavBar/NavBar";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const PoliticianDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -1,11 +1,9 @@
-import NavBar from '../../components/NavBar/NavBar'
-import { useState, useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import NewsArticle, { NewsArticleType, } from "../../components/NewsArticle/NewsArticle";
 import { AppDispatch } from "../../store";
-import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsListPage.css";
-import axios from 'axios';
 
 
 const NewsListPage = () => {

@@ -1,13 +1,12 @@
-import NavBar from '../../components/NavBar/NavBar'
-import React from 'react';
-import "./NewsDetailPage.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
+import { useNavigate } from 'react-router-dom';
+import NavBar from '../../components/NavBar/NavBar';
+import NewsArticle, { NewsArticleType, } from "../../components/NewsArticle/NewsArticle";
 import { AppDispatch } from "../../store";
-import { fetchArticles, fetchArticle, selectArticle } from "../../store/slices/article";
-import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
+import { fetchArticles, selectArticle } from "../../store/slices/article";
+import "./NewsDetailPage.css";
 
 const NewsDetailPage = () => {
 

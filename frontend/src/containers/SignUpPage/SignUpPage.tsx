@@ -1,20 +1,18 @@
-import './SignUpPage.css';
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import logo from '../../asset/image/logo1_cropped.png';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import axios from 'axios';
-import NavBar from '../../components/NavBar/NavBar';
-import { useNavigate } from 'react-router-dom';
+import * as React from 'react';
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { userActions } from "../../store/slices/user";
+import './SignUpPage.css';
 
 const theme = createTheme();
 

@@ -1,12 +1,11 @@
 
+import axios from 'axios'
 import { useState } from 'react'
-import NavBar from '../../components/NavBar/NavBar'
-import { Button, Form, InputGroup, Row } from 'react-bootstrap'
-import { useDispatch,  } from 'react-redux'
+import { Button, Form, Row } from 'react-bootstrap'
+import { useDispatch, } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { postPetition } from "../../store/slices/petition";
-import { AppDispatch } from "../../store";
-import axios from 'axios';
+import { AppDispatch } from "../../store"
+import { postPetition } from "../../store/slices/petition"
 
 const PetitionCreatePage = () => {
   const [title, setTitle] = useState('')
