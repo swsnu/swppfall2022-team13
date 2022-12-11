@@ -25,12 +25,13 @@ const NewsListPage = () => {
     <>
       <div className="background_list">
         <NavBar />
-        <h1>BREAKING NEWS LIST</h1>
-
-        <p>We have some bad news for you</p>
 
         <div className="row">
           <div className="col-sm-6">
+            <div id="header-left">
+              아래는 진보적 성향인 언론사들의 뉴스입니다.
+            </div>
+
             <div className="LeftNews">
               {articleState.articles.map((td: any) => {
                 if (
@@ -38,7 +39,8 @@ const NewsListPage = () => {
                   td.journal_name === "매일경제" ||
                   td.journal_name === "경향신문" ||
                   td.journal_name === "머니투데이" ||
-                  td.journal_name === "오마이뉴스"
+                  td.journal_name === "오마이뉴스" ||
+                  td.journal_name === "프레시안"
                 ) {
                   return (
                     <NewsArticle
@@ -51,8 +53,8 @@ const NewsListPage = () => {
                       journal_name={td.journal_name}
                       preview_img_path={td.preview_img_path}
                       detail_img_path={td.detail_img_path}
-                      width={250}
-                      height={250}
+                      width={190}
+                      height={150}
                       title={td.title}
                       detail_text={td.content}
                     />
@@ -63,6 +65,10 @@ const NewsListPage = () => {
           </div>
 
           <div className="col-sm-6">
+            <div id="header-right">
+              아래는 보수적 성향인 언론사들의 뉴스입니다.
+            </div>
+
             <div className="RightNews">
               {articleState.articles.map((td: any) => {
                 if (
@@ -70,7 +76,8 @@ const NewsListPage = () => {
                   td.journal_name !== "매일경제" &&
                   td.journal_name !== "경향신문" &&
                   td.journal_name !== "머니투데이" &&
-                  td.journal_name !== "오마이뉴스"
+                  td.journal_name !== "오마이뉴스" &&
+                  td.journal_name !== "프레시안"
                 ) {
                   return (
                     <NewsArticle
@@ -83,8 +90,8 @@ const NewsListPage = () => {
                       journal_name={td.journal_name}
                       preview_img_path={td.preview_img_path}
                       detail_img_path={td.detail_img_path}
-                      width={250}
-                      height={250}
+                      width={190}
+                      height={150}
                       title={td.title}
                       detail_text={td.content}
                     />
