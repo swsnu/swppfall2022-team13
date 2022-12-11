@@ -156,7 +156,7 @@ const NewsDetailPage = () => {
 
     if (article?.journal_name === "한겨레") {
       return (
-        <div className = "background_red">
+        <div>
             {/* <NavBar/> */}
           <div className="card">
             
@@ -187,8 +187,8 @@ const NewsDetailPage = () => {
         );
       } else {
         return (
-        <div className = "background_blue">
-            <NavBar/>
+        <div>
+            {/* <NavBar/> */}
           <div className="card">
             
           <div className="card-header text-bg-info mb-3">
