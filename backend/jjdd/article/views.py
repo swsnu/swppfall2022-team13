@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.shortcuts import render
 from .models import Article
 import json
@@ -18,6 +18,7 @@ def article(request):
                      'detail_text': article['detail_text'],
                      'created_at': article['created_at'],
                      'updated_at': article['updated_at'],
+                     'related_articlees': article['related_articles']
                      }
                     for article in Article.objects.all().values()]
     return JsonResponse(article_list, safe=False)
@@ -41,8 +42,26 @@ def article(request):
     
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
-  
-  
+
 @csrf_exempt
+def related_articles(request, article_id):
+  if request.method == "GET":
+    related_article_list = Article.objects.get(pk=article_id).related_articles
+    return JsonResponse(related_article_list, safe=False)
+    
+  elif request.method == "POST":
+    # POST format : {article_id: [1, 2, 3, ... ]}
+    req_data = json.loads(request.body.decode())
+    for key in req_data.keys():
+      article = Article.objects.get(pk=key)
+      article.related_articles = req_data[key]
+      article.save()
+    
+    return HttpResponse(status=201)        
+    
+  else:
+    return HttpResponseNotAllowed(["GET", "POST"])
+  
+  
 def article_detail(request, article_id):
   pass
