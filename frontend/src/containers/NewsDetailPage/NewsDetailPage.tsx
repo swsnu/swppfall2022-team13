@@ -7,7 +7,6 @@ import NewsArticle, { NewsArticleType, } from "../../components/NewsArticle/News
 import { AppDispatch } from "../../store";
 import axios from 'axios';
 import { fetchArticles, fetchArticle, selectArticle, ArticleType } from "../../store/slices/article";
-import NewsArticle, { NewsArticleType,} from "../../components/NewsArticle/NewsArticle";
 import { Identity } from '@mui/base';
 
 const NewsDetailPage = () => {
