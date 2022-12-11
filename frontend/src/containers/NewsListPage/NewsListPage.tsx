@@ -33,7 +33,13 @@ const NewsListPage = () => {
           <div className="col-sm-6">
             <div className="LeftNews">
               {articleState.articles.map((td: any) => {
-                if (td.journal_name === "한겨레") {
+                if (
+                  td.journal_name === "한겨레" ||
+                  td.journal_name === "매일경제" ||
+                  td.journal_name === "경향신문" ||
+                  td.journal_name === "머니투데이" ||
+                  td.journal_name === "오마이뉴스"
+                ) {
                   return (
                     <NewsArticle
                       key={`${td.id}_todo`}
@@ -59,7 +65,13 @@ const NewsListPage = () => {
           <div className="col-sm-6">
             <div className="RightNews">
               {articleState.articles.map((td: any) => {
-                if (td.journal_name !== "한겨레") {
+                if (
+                  td.journal_name !== "한겨레" &&
+                  td.journal_name !== "매일경제" &&
+                  td.journal_name !== "경향신문" &&
+                  td.journal_name !== "머니투데이" &&
+                  td.journal_name !== "오마이뉴스"
+                ) {
                   return (
                     <NewsArticle
                       key={`${td.id}_todo`}
