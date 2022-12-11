@@ -124,7 +124,7 @@ const NewsListPage = () => {
 
   return (
     <>
-    <div className = "background_list">
+    <div>
     {/* <NavBar /> */}
       <h1>BREAKING NEWS LIST</h1>
 
