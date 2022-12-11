@@ -128,9 +128,6 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <img className='Logo' src={logo} alt='Logo' onClick={() => navigate('/main/')}></img>
-          {/* <Typography variant="h6" noWrap component="div">
-            JJDD Logo
-          </Typography> */}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
