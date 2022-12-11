@@ -21,6 +21,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../asset/image/logo1_cropped.png';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -110,6 +111,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -137,7 +139,7 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <img className='Logo' src={logo} alt='Logo'></img>
+          <img className='Logo' src={logo} alt='Logo' onClick={() => navigate('/main/')}></img>
           {/* <Typography variant="h6" noWrap component="div">
             JJDD Logo
           </Typography> */}
