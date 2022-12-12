@@ -16,7 +16,7 @@ export interface NewsArticleType {
   detail_text?: string;
   created_at?: any;
   updated_at?: any;
-
+  article_type?: string;
   url: string;
   width?: number;
   height?: number;
@@ -75,82 +75,85 @@ export default function NewsArticle(props: NewsArticleType) {
       image_url:
         "https://mimgnews.pstatic.net/image/upload/office_logo/002/2017/12/21/logo_002_41_20171221154621.jpg?type=u144_144",
     },
+    {
+      journal_name: "한국경제",
+      image_url:
+        "https://imgnews.pstatic.net/image/upload/spubs/uuG0000015/logo/2020/12/07/A_144542084.jpg?type=u144_144",
+    },
+    {
+      journal_name: "매일경제",
+      image_url:
+        "https://mimgnews.pstatic.net/image/upload/office_logo/009/2017/12/21/logo_009_41_20171221155521.jpg?type=u144_144",
+    },
+    {
+      journal_name: "문화일보",
+      image_url:
+        "https://imgnews.pstatic.net/image/upload/spubs/xEG0000021/logo/2022/07/29/A_135629519.png?type=u144_144",
+    },
   ];
   const target_url: string = image_urls.find(
     (url) => url.journal_name === props.journal_name
   ).image_url;
-
-  if (
-    props.journal_name === "한겨레" ||
-    props.journal_name === "매일경제" ||
-    props.journal_name === "머니투데이" ||
-    props.journal_name === "경향신문" ||
-    props.journal_name === "오마이뉴스" ||
-    props.journal_name === "프레시안"
-  ) {
+  if (props.article_type === "relatedNews") {
     return (
       <p>
-        <div id="NewsArticleLeft" onClick={onClickHandler}>
+        <div id="relatedNews" onClick={onClickHandler}>
           <div id="ArticleHeader">
             <div id="journal_name">
               <img id="header_image" src={target_url}></img>
               {props.journal_name}
             </div>
           </div>
-          <div id="leftContent">
-            <img
-              id="image"
-              src={props.detail_img_path}
-              alt="Hmm"
-              width={props.width}
-              height={props.height}
-            />
-          </div>
-          <div id="rightContent">
-            <div id="title">{props.title}</div>
-            <p id="content">{props.preview_prologue}</p>
-
-            {/* <div id="dateContent">
-              <text id="card-text">
-                <small id="text-muted">
-                  Created: {props?.datetime_str}
-                </small>
-              </text>
-              &nbsp; &nbsp;
-              <text id="card-text">
-                <small id="text-muted">
-                  Last updated: {props?.updated_at}
-                </small>
-              </text>
-            </div> */}
+          <div id="contents">
+            <div id="leftContent">
+              <img
+                id="image"
+                src={props.detail_img_path}
+                alt="Hmm"
+                width={props.width}
+                height={props.height}
+              />
+            </div>
+            <div id="relatedRightContent">
+              <div id="related_title">{props.title}</div>
+            </div>
           </div>
         </div>
       </p>
     );
   } else {
-    return (
-      <p>
-        <div id="NewsArticleRight" onClick={onClickHandler}>
-          <div id="ArticleHeader">
-            <div id="journal_name">
-              <img id="header_image" src={target_url}></img>
-              {props.journal_name}
+    if (
+      props.journal_name === "한겨레" ||
+      props.journal_name === "매일경제" ||
+      props.journal_name === "머니투데이" ||
+      props.journal_name === "경향신문" ||
+      props.journal_name === "오마이뉴스" ||
+      props.journal_name === "프레시안"
+    ) {
+      return (
+        <p>
+          <div id="NewsArticleLeft" onClick={onClickHandler}>
+            <div id="ArticleHeader">
+              <div id="journal_name">
+                <img id="header_image" src={target_url}></img>
+                {props.journal_name}
+              </div>
             </div>
-          </div>
+            <div id="contents">
+              <div id="leftContent">
+                <img
+                  id="image"
+                  src={props.detail_img_path}
+                  alt="Hmm"
+                  width={props.width}
+                  height={props.height}
+                />
+              </div>
+              <div id="rightContent">
+                <div id="title">{props.title}</div>
+                <p id="content">{props.preview_prologue}</p>
 
-          <div id="leftContent">
-            <img
-              id="image"
-              src={props.detail_img_path}
-              alt="Hmm"
-              width={props.width}
-              height={props.height}
-            />
-          </div>
-          <div id="rightContent">
-            <div id="title">{props.title}</div>
-            <p id="content">{props.preview_prologue}</p>
-            {/* <div id="dateContent">
+                {/* <div id="dateContent">
               <text id="card-text">
                 <small id="text-muted">
                   Created: {props?.datetime_str}
@@ -163,9 +166,39 @@ export default function NewsArticle(props: NewsArticleType) {
                 </small>
               </text>
             </div> */}
+              </div>
+            </div>
           </div>
-        </div>
-      </p>
-    );
+        </p>
+      );
+    } else {
+      return (
+        <p>
+          <div id="NewsArticleRight" onClick={onClickHandler}>
+            <div id="ArticleHeader">
+              <div id="journal_name">
+                <img id="header_image" src={target_url}></img>
+                {props.journal_name}
+              </div>
+            </div>
+            <div id="contents">
+              <div id="leftContent">
+                <img
+                  id="image"
+                  src={props.detail_img_path}
+                  alt="Hmm"
+                  width={props.width}
+                  height={props.height}
+                />
+              </div>
+              <div id="rightContent">
+                <div id="title">{props.title}</div>
+                <p id="content">{props.preview_prologue}</p>
+              </div>
+            </div>
+          </div>
+        </p>
+      );
+    }
   }
 }

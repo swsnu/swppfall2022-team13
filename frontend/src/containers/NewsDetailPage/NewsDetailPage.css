@@ -37,9 +37,16 @@
 }
 
 .compare_news_articles {
-  margin-left: 30px;
+  margin-left: 40px;
 }
 
 .whole_article {
   display: flex;
+}
+
+#header {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 10px;
 }
