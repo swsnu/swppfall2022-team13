@@ -29,7 +29,7 @@ const NewsDetailPage = () => {
     dispatch(fetchArticles());
     const getRelatedArticle = async () => {
       const related_article_json = await axios.get(
-        "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/related/" +
+        "/api/article/related/" +
           currArticleId +
           "/"
       );
