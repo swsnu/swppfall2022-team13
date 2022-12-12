@@ -32,13 +32,7 @@ const initialState: ArticleState = {
 export const fetchArticles = createAsyncThunk(
   "article/fetchArticles",
   async () => {
-<<<<<<< HEAD
     const response = await axios.get<ArticleType[]>("/api/article/");
-=======
-    const response = await axios.get<ArticleType[]>(
-      "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/"
-    );
->>>>>>> main
     return response.data;
   }
 );

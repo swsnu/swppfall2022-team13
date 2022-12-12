@@ -7,7 +7,6 @@ import NewsArticle, { NewsArticleType, } from "../../components/NewsArticle/News
 import { AppDispatch } from "../../store";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsDetailPage.css";
-import axios from "axios";
 
 const NewsDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
