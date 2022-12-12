@@ -17,7 +17,6 @@ import NewsArticle, {
   NewsArticleType,
 } from "../../components/NewsArticle/NewsArticle";
 import { Identity } from "@mui/base";
-import { type } from "os";
 
 const NewsDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
