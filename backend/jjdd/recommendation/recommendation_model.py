@@ -39,7 +39,7 @@ class Recommendation_Model:
         topic_cluster = defaultdict(list)
 
         for article_json in articles_DB:
-            topic_id, article_id, bias = article_json["topic_id"], article_json["article_id"], article_json["bias"]
+            topic_id, article_id, bias = article_json["topic_id"], article_json["id"], article_json["bias"]
             topic_cluster[topic_id].append((article_id, bias))
 
         return topic_cluster
@@ -55,7 +55,7 @@ class Recommendation_Model:
             self.update_topic_cluster()
         
         recommendation_article_id = None
-        topic_id, article_id, bias = article_json["topic_id"], article_json["article_id"], article_json["bias"]
+        topic_id, article_id, bias = article_json["topic_id"], article_json["id"], article_json["bias"]
         
         for target_article_id, target_bias in self.topic_cluster[topic_id]:
             if target_bias != bias:
@@ -75,7 +75,7 @@ class Recommendation_Model:
             self.update_embedding()
         
         recommendation_article_id_list = None
-        article_id, detail_text = article_json["article_id"], article_json["detail_text"]
+        article_id, detail_text = article_json["id"], article_json["detail_text"]
         
         query_embedding = self.embedder.encode(detail_text, convert_to_tensor=True)
         cos_scores = util.pytorch_cos_sim(query_embedding, self.article_embeddings)[0]
@@ -97,7 +97,7 @@ class Recommendation_Model:
         recommendation_per_article = 3
         
         for article_json in self.articles_DB:
-            article_id = article_json["article_id"]
+            article_id = article_json["id"]
             
             recommendation_by_topic = self.recommend_by_topic(article_json)
             if recommendation_by_topic:
