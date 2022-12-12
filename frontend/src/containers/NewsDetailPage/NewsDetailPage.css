@@ -1,12 +1,52 @@
-.background_red{
-    background-color: #fad4d4;
-  }
+#article_title {
+  font-size: 27px;
+  font-weight: 700;
+  text-align: left;
+}
 
-.background_blue{
-    background-color: #e2f4fe;
-  }
+#article_detail {
+  margin-left: 50px;
+  width: 750px;
+  border-right: 1px solid #efeff0;
+}
 
-.card{
-    width: 80rem;
-    margin: auto;
+#journal_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+#img_div {
+  text-align: left;
+}
+#main_img {
+  margin-top: 15px;
+  margin-right: 620px;
+  margin-bottom: 15px;
+}
+
+#btns {
+  margin-right: 80px;
+}
+#detail_text {
+  width: 700px;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: left;
+  line-height: 170%;
+}
+
+.compare_news_articles {
+  margin-left: 40px;
+}
+
+.whole_article {
+  display: flex;
+}
+
+#header {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 10px;
 }

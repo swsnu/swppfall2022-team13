@@ -82,11 +82,6 @@ const PoliticianDetailPage = () => {
               category="법안발의수"
               detail="21대 국회내 통계"
             ></NumberInfo>
-            <NumberInfo
-              num="temp"
-              category="관심랭킹"
-              detail="관심의원등록수"
-            ></NumberInfo>
           </div>
           <div className="education-and-career-header">
             <h4 id="intro-education-and-career">학력 및 경력</h4>

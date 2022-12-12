@@ -1,8 +1,8 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import {RootState} from "..";
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+import { RootState } from "..";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export interface ArticleType {
   id: number;
@@ -20,7 +20,7 @@ export interface ArticleType {
 }
 
 export interface ArticleState {
-    articles: ArticleType[];
+  articles: ArticleType[];
   selectedArticle: ArticleType | null;
 }
 
@@ -32,7 +32,9 @@ const initialState: ArticleState = {
 export const fetchArticles = createAsyncThunk(
   "article/fetchArticles",
   async () => {
-    const response = await axios.get<ArticleType[]>("http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/");
+    const response = await axios.get<ArticleType[]>(
+      "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/"
+    );
     return response.data;
   }
 );
@@ -56,7 +58,8 @@ export const deleteArticle = createAsyncThunk(
 export const articleSlice = createSlice({
   name: "article",
   initialState,
-  reducers: {  //IS THIS UNNECESSARY?
+  reducers: {
+    //IS THIS UNNECESSARY?
     /*
     getAll: (state, action: PayloadAction<{ articles: ArticleType[] }>) => {},
     getArticle: (state, action: PayloadAction<{ targetId: number }>) => {
