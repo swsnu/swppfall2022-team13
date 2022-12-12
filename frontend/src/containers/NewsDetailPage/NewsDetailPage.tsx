@@ -100,6 +100,21 @@ const NewsDetailPage = () => {
       image_url:
         "https://mimgnews.pstatic.net/image/upload/office_logo/002/2017/12/21/logo_002_41_20171221154621.jpg?type=u144_144",
     },
+    {
+      journal_name: "한국경제",
+      image_url:
+        "https://imgnews.pstatic.net/image/upload/spubs/uuG0000015/logo/2020/12/07/A_144542084.jpg?type=u144_144",
+    },
+    {
+      journal_name: "매일경제",
+      image_url:
+        "https://mimgnews.pstatic.net/image/upload/office_logo/009/2017/12/21/logo_009_41_20171221155521.jpg?type=u144_144",
+    },
+    {
+      journal_name: "문화일보",
+      image_url:
+        "https://imgnews.pstatic.net/image/upload/spubs/xEG0000021/logo/2022/07/29/A_135629519.png?type=u144_144",
+    },
   ];
 
   const article = articleState.articles.find(
@@ -189,7 +204,7 @@ const NewsDetailPage = () => {
           </div>
         </div>
         <div className="compare_news_articles">
-          {/* <div>{related_article_list}</div> */}
+          <div id="header">Related news</div>
           {related_article_list.map((id: string) => {
             const related_article = articleState.articles.find(
               (value: any) => value.id === Number(id)
@@ -203,14 +218,15 @@ const NewsDetailPage = () => {
                   key={`${related_article.id}_relate`}
                   url={"/news/" + related_article.id}
                   id={related_article.id}
+                  article_type="relatedNews"
                   datetime_str={related_article.datetime_str}
                   detail_link_postfix={related_article.detail_link_postfix}
                   preview_prologue={related_article.preview_prologue}
                   journal_name={related_article.journal_name}
                   preview_img_path={related_article.preview_img_path}
                   detail_img_path={related_article.detail_img_path}
-                  width={190}
-                  height={150}
+                  width={100}
+                  height={70}
                   title={related_article.title}
                   detail_text={related_article.content}
                 />
