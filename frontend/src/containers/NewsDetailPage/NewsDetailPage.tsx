@@ -1,22 +1,15 @@
-import NavBar from "../../components/NavBar/NavBar";
-import React from "react";
-import "./NewsDetailPage.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
 import { useParams } from "react-router";
-import { AppDispatch } from "../../store";
-import axios from "axios";
-import {
-  fetchArticles,
-  fetchArticle,
-  selectArticle,
-  ArticleType,
-} from "../../store/slices/article";
+import { useNavigate } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 import NewsArticle, {
   NewsArticleType,
 } from "../../components/NewsArticle/NewsArticle";
-import { Identity } from "@mui/base";
+import { AppDispatch } from "../../store";
+import { fetchArticles, selectArticle } from "../../store/slices/article";
+import "./NewsDetailPage.css";
+import axios from "axios";
 
 const NewsDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -160,7 +153,6 @@ const NewsDetailPage = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="whole_article">
         <div id="article_detail">
           <div id="img_div">

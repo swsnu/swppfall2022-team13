@@ -1,11 +1,10 @@
-import { useNavigate, Link, Navigate } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar'
-import { useState, useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import Petition, {PetitionType,} from "../../components/Petition/Petition";
-import { fetchPetitions, selectPetition, deletePetition, postPetition } from "../../store/slices/petition";
-import { AppDispatch } from "../../store";
 import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Petition, { PetitionType, } from "../../components/Petition/Petition";
+import { AppDispatch } from "../../store";
+import { fetchPetitions, selectPetition } from "../../store/slices/petition";
 
   
 const PetitionListPage = () => {
@@ -63,8 +62,8 @@ const PetitionListPage = () => {
 
   return (
     <>
-    <div className = "background_list">
-    <NavBar />
+    <div>
+    {/* <NavBar /> */}
       <h1>PETITIONS LIST</h1>
 
           <p>

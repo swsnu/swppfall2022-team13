@@ -1,23 +1,15 @@
-import NavBar from '../../components/NavBar/NavBar'
-import React from 'react';
+import axios from 'axios';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Navigate } from 'react-router-dom';
 import { useParams } from "react-router";
-import { AppDispatch } from "../../store";
-import axios from 'axios';
-import { fetchQuoras, selectQuora, deleteQuora } from "../../store/slices/quora";
-import { selectPolitician } from "../../store/slices/politician";
-import NumberInfo from "../../components/NumberInfo/NumberInfo";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  fetchPolitician,
-  PoliticianType,
-  fetchPoliticians,
-} from "../../store/slices/politician";
-import Quora, { QuoraType,} from "../../components/Quora/Quora";
+import { useNavigate } from 'react-router-dom';
 import Comment from "../../components/Comment/Comment";
-import { selectComment, postComment, fetchComments} from "../../store/slices/comment";
+import NumberInfo from "../../components/NumberInfo/NumberInfo";
+import { AppDispatch } from "../../store";
+import { fetchComments, postComment, selectComment } from "../../store/slices/comment";
+import { fetchPoliticians, selectPolitician } from "../../store/slices/politician";
+import { deleteQuora, fetchQuoras, selectQuora } from "../../store/slices/quora";
 
 
 
@@ -165,7 +157,7 @@ const QuoraDetailPage = () => {
   return ( //POLITICIAN LIST랑 연동하여 사진, 정보 등 가져오기!!!
   
     <div className = "background_red">
-        <NavBar/>
+        {/* <NavBar/> */}
 
         <div className="PoliticianDetailPage">
       <div>

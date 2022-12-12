@@ -1,12 +1,7 @@
-.background_list {
-  background-color: #f1f2f5;
-  width: 100vw;
-}
-
 #header-left {
   background-color: white;
   width: 350px;
-  margin-left: 150px;
+  margin-left: 100px;
   font-size: 18px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -16,7 +11,7 @@
 #header-right {
   background-color: white;
   width: 350px;
-  margin-left: 50px;
+  margin-left: 20px;
   font-size: 18px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -24,9 +19,9 @@
 }
 
 .LeftNews {
-  margin-left: 150px;
+  margin-left: 100px;
 }
 
 .RightNews {
-  margin-left: 50px;
+  margin-left: 20px;
 }

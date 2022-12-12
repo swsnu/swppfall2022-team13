@@ -1,19 +1,8 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import axios from "axios";
 import { MemoryRouter, Navigate, Route, Routes } from "react-router";
 import { renderWithProviders } from "../../test-utils/mock";
-import { ArticleState } from "../../store/slices/article";
-import { PoliticianState } from "../../store/slices/politician";
-import { PetitionState } from "../../store/slices/petition";
-import { QuoraState } from "../../store/slices/quora";
-import { getMockStore } from "../../test-utils/mock";
 import PetitionDetailPage from "./PetitionDetailPage";
-import {
-  fetchPetitions,
-  fetchPetition,
-  selectPetition,
-} from "../../store/slices/petition";
-import Petition, { PetitionType } from "../../components/Petition/Petition";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router", () => ({

@@ -1,13 +1,10 @@
-import NavBar from '../../components/NavBar/NavBar'
-import React from 'react';
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Navigate } from 'react-router-dom';
-import { useParams } from "react-router";
-import { AppDispatch } from "../../store";
-import { fetchPetitions, voteUp, voteDown, selectPetition, deletePetition } from "../../store/slices/petition";
-import Petition, { PetitionType,} from "../../components/Petition/Petition";
 import axios from 'axios';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { useNavigate } from 'react-router-dom';
+import { AppDispatch } from "../../store";
+import { deletePetition, fetchPetitions, selectPetition, voteDown, voteUp } from "../../store/slices/petition";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -99,7 +96,7 @@ const PetitionDetailPage = () => {
   
   return (
     <div className = "background_red">
-        <NavBar/>
+        {/* <NavBar/> */}
       <div className="card">
         
       

@@ -24,8 +24,6 @@ const NewsListPage = () => {
   return (
     <>
       <div className="background_list">
-        <NavBar />
-
         <div className="row">
           <div className="col-sm-6">
             <div id="header-left">

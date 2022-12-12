@@ -23,19 +23,19 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/main" element={<MainPage content={<NewsListPage />} />} />
+          <Route path="/login" element={<MainPage content={<LoginPage></LoginPage>} />} />
           <Route path="/user/:id" element={<UserPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/petition" element={<PetitionListPage />} />
-          <Route path="/petition/create" element={<PetitionCreatePage />} />
-          <Route path="/petition/:id" element={<PetitionDetailPage />} />
-          <Route path="/news" element={<NewsListPage />} />
-          <Route path="/news/:id" element={<NewsDetailPage />} />
-          <Route path="/quora" element={<QuoraListPage />} />
-          <Route path="/quora/:id" element={<QuoraDetailPage />} />
-          <Route path="/politician" element={<PoliticianListPage />} />
-          <Route path="/politician/:id" element={<PoliticianDetailPage />} />
+          <Route path="/signup" element={<MainPage content={<SignUpPage />} />} />
+          <Route path="/petition" element={<MainPage content={<PetitionListPage />} />} />
+          <Route path="/petition/create" element={<MainPage content={<PetitionCreatePage />}/>} />
+          <Route path="/petition/:id" element={<MainPage content={<PetitionDetailPage />}/>} />
+          <Route path="/news" element={<MainPage content={<NewsListPage />}/>} />
+          <Route path="/news/:id" element={<MainPage content={<NewsDetailPage />}/>} />
+          <Route path="/quora" element={<MainPage content={<QuoraListPage />}/>} />
+          <Route path="/quora/:id" element={<MainPage content={<QuoraDetailPage />}/>} />
+          <Route path="/politician" element={<MainPage content={<PoliticianListPage />}/>} />
+          <Route path="/politician/:id" element={<MainPage content={<PoliticianDetailPage />}/>} />
           <Route path="/" element={<Navigate replace to={"/main"} />} />
           <Route path="*" element={<h1> Odiro Gaya Hajo Ajossi? </h1>} />
         </Routes> 

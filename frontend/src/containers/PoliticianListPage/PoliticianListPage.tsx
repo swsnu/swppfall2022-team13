@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PoliticianSummaryType } from "../../components/PoliticianSummary/PoliticianSummary";
-import "./PoliticianListPage.css";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
-import NavBar from "../../components/NavBar/NavBar";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { AppDispatch } from "../../store";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {
   fetchPoliticians,
   selectPolitician,
 } from "../../store/slices/politician";
+import "./PoliticianListPage.css";
+import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined';
 
 const PoliticianListPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,10 +25,6 @@ const PoliticianListPage = () => {
   const [filter, setFilter] = useState("name");
   const onSearchBarChangeHandler = (e: any) => {
     setSearch(e.target.value);
-  };
-
-  const onFilterChangeHandler = (e: any) => {
-    setFilter(e.target.value);
   };
 
   useEffect(() => {
@@ -44,18 +46,52 @@ const PoliticianListPage = () => {
   if (filterElect.length > 6) {
     filterElect = filterElect.slice(0, 6);
   }
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setFilter(event.target.value as string);
+  };
+
   return (
     <div className="PoliticianListPage">
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="FilterAndSearchBar">
-        <select onChange={onFilterChangeHandler} placeholder="filter">
+          <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            '& > :not(style)': {
+              m: 1,
+              width: 1000,
+              height: 100,
+            },
+          }}
+        >
+          <Paper className="Search-paper" elevation={1} variant="outlined">
+              <PersonSearchOutlinedIcon className="Search-Icon" sx={{ fontSize: 50 }}></PersonSearchOutlinedIcon>
+              <FormControl className="Search-option">
+              <InputLabel id="demo-simple-select-label">검색 기준</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={filter}
+                  label="정치인 검색"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"name"}>이름으로 검색</MenuItem>
+                  <MenuItem value={"area"}>선거구로 검색</MenuItem>
+                </Select>
+            </FormControl>
+            <SearchBar onChange={onSearchBarChangeHandler} search={search} />
+          </Paper>
+        </Box>
+
+        {/* <select onChange={onFilterChangeHandler} placeholder="filter">
           <option value="name">이름으로 검색</option>
           <option value="elect-precinct">선거구로 검색</option>
-        </select>
-        <SearchBar onChange={onSearchBarChangeHandler} search={search} />
+        </select> */}
       </div>
       <div className="PoliticianSummarys">
-        {filter == "name"
+        {filter === "name"
           ? filterName.map((data) => {
               return (
                 <div className="SummaryComponent" key={data.id}>
