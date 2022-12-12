@@ -1,49 +1,90 @@
-.NewsArticleLeft {
-    position: relative;
-    cursor: pointer;
-    float: left;
-    margin: 0px 20px;
-    height: 250px;
-    width: 680px;
-    border: 2px solid #f1f8f1;
-    background-color: rgb(254, 166, 166);
-  }
+/* .NewsArticleLeft {
+  position: relative;
+  cursor: pointer;
+  float: left;
+  margin: 0px 20px;
+  height: 250px;
+  width: 680px;
+  border: 2px solid #f1f8f1;
+  background-color: rgb(254, 166, 166);
+}
 
-  .NewsArticleRight {
-    position: relative;
-    cursor: pointer;
-    float: right;
-    margin: 0px 20px;
-    height: 250px;
-    width: 680px;
-    border: 2px solid #f1f8f1;
-    background-color: rgb(182, 219, 254);
-  }
+.NewsArticleRight {
+  position: relative;
+  cursor: pointer;
+  float: right;
+  margin: 0px 20px;
+  height: 250px;
+  width: 680px;
+  border: 2px solid #f1f8f1;
+  background-color: rgb(182, 219, 254);
+} */
 
-  .NewsArticleLeft:hover {
+#NewsArticleLeft:hover {
+  box-shadow: 0 10px 20px rgb(254, 166, 166), 0 6px 4px rgba(0, 0, 0, 0.2);
+}
 
-    box-shadow: 0 10px 20px rgb(254, 166, 166), 0 6px 4px rgba(0, 0, 0, 0.2);
-  }
+#NewsArticleRight:hover {
+  box-shadow: 0 10px 20px rgb(182, 219, 254), 0 6px 4px rgba(0, 0, 0, 0.2);
+}
 
-  .NewsArticleRight:hover {
+#NewsArticleLeft {
+  width: 510px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+  background-color: white;
+}
 
-    box-shadow: 0 10px 20px rgb(182, 219, 254), 0 6px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .leftContent {
-    float: left;
-  }
-  
-  .rightContent {
-    margin-left: 0px;
-    height: 220px;
-    width: 676px;
-    background-color: rgb(255, 255, 255);
-    
-  }
+#NewsArticleRight {
+  width: 510px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+  background-color: white;
+}
 
+#ArticleHeader {
+  text-align: left;
+}
 
-  .dateContent {
+#leftContent {
+  float: left;
+}
+
+#rightContent {
+  margin-left: 0px;
+  height: 160px;
+  width: 510px;
+  border-radius: 10px;
+  border-width: 2px;
+}
+
+#header_image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+#title {
+  font-size: 19px;
+  padding-top: 5px;
+  text-align: left;
+}
+
+#content {
+  font-size: 14px;
+  text-align: left;
+  margin-top: 5px;
+}
+
+#image {
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+#journal_name {
+  font-weight: 800;
+}
+
+/* .dateContent {
     float: right;
     font-size: 14px;
     position: absolute;  
@@ -74,6 +115,4 @@
 
   .card_left_contents {
     background-color: rgb(254, 166, 166);
-  }
-
-  
+  } */
