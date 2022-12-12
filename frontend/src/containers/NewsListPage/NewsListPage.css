@@ -22,3 +22,11 @@
   border-radius: 5px;
   font-weight: 700;
 }
+
+.LeftNews {
+  margin-left: 150px;
+}
+
+.RightNews {
+  margin-left: 50px;
+}
