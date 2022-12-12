@@ -1,15 +1,12 @@
+import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
-import NewsArticle, {
-  NewsArticleType,
-} from "../../components/NewsArticle/NewsArticle";
+import { useNavigate } from 'react-router-dom';
+import NewsArticle, { NewsArticleType, } from "../../components/NewsArticle/NewsArticle";
 import { AppDispatch } from "../../store";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsDetailPage.css";
-import axios from "axios";
 
 const NewsDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,6 +15,7 @@ const NewsDetailPage = () => {
   const { id } = useParams(); //fetch number from current url
   //const relatedArticleContents: NewsArticleType[] = []
   const [related_article_list, set_related_article_list] = useState([]);
+  const [err, setErr] = useState(false);
   var length = 0;
 
   var currArticleId: number = 1;

@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/react,django
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,django
 
+embedder.pkl
+
 ### Django ###
 *.log
 *.pot

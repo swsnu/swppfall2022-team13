@@ -33,7 +33,7 @@ const initialState: PoliticianState = {
 };
 
 const politician_url =
-  "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/politician/";
+  "/api/politician/";
 
 export const fetchPoliticians = createAsyncThunk(
   "politician/fetchPoliticians",
@@ -55,7 +55,7 @@ export const isPolitician = createAsyncThunk(
   "politician/isPolician",
   async (td: Pick<PoliticianType, "name" | "email">, { dispatch }) => {
     const response = await axios.post(
-      "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/petition/",
+      "/api/petition/",
       td
     );
     return response.data;
