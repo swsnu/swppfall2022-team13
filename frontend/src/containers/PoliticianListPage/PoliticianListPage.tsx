@@ -74,11 +74,11 @@ const PoliticianListPage = () => {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={filter}
-                  label="검색 기준"
+                  label="정치인 검색"
                   onChange={handleChange}
                 >
-                  <MenuItem value={10}>이름으로 검색</MenuItem>
-                  <MenuItem value={20}>선거구로 검색</MenuItem>
+                  <MenuItem value={"name"}>이름으로 검색</MenuItem>
+                  <MenuItem value={"area"}>선거구로 검색</MenuItem>
                 </Select>
             </FormControl>
             <SearchBar onChange={onSearchBarChangeHandler} search={search} />
