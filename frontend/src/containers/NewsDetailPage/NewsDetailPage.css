@@ -49,4 +49,7 @@
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 10px;
+  text-decoration: underline;
+  text-underline-position: under;
+  font-weight: bold;
 }
