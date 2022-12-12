@@ -30,14 +30,12 @@
 
 #NewsArticleLeft {
   width: 510px;
-  margin-left: 150px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
   background-color: white;
 }
 
 #NewsArticleRight {
   width: 510px;
-  margin-left: 50px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
   background-color: white;
 }

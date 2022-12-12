@@ -70,6 +70,11 @@ export default function NewsArticle(props: NewsArticleType) {
       image_url:
         "https://imgnews.pstatic.net/image/upload/spubs/FyG0000020/logo/2021/02/16/A_164244113.jpg?type=u144_144",
     },
+    {
+      journal_name: "프레시안",
+      image_url:
+        "https://mimgnews.pstatic.net/image/upload/office_logo/002/2017/12/21/logo_002_41_20171221154621.jpg?type=u144_144",
+    },
   ];
   const target_url: string = image_urls.find(
     (url) => url.journal_name === props.journal_name
