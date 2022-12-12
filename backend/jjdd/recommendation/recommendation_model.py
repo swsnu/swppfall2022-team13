@@ -2,6 +2,7 @@ from collections import defaultdict
 from sentence_transformers import SentenceTransformer, util
 import numpy as np
 import pickle
+import os
 
 class Recommendation_Model:
     def __init__(self):
@@ -20,7 +21,9 @@ class Recommendation_Model:
         
         
     def set_embedder(self):
-        self.embedder = pickle.load(open('./embedder.pkl', 'rb'))
+        # print('🚀🚀🚀', os.getcwd())
+        # Need to edit while in server
+        self.embedder = pickle.load(open('/Users/gyeongmokim/Documents/third-two/소개원실/swppfall2022-team13/backend/jjdd/recommendation/embedder.pkl', 'rb'))
         
         
     def update_embedding(self):

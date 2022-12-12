@@ -18,7 +18,9 @@ def article(request):
                      'detail_text': article['detail_text'],
                      'created_at': article['created_at'],
                      'updated_at': article['updated_at'],
-                     'related_articlees': article['related_articles']
+                     'bias' : article['bias'],
+                     'topic_id' : article['topic_id'],
+                     'related_articles': article['related_articles']
                      }
                     for article in Article.objects.all().values()]
     return JsonResponse(article_list, safe=False)
@@ -35,7 +37,9 @@ def article(request):
                              preview_img_path = article['preview_img_path'],
                              detail_img_path = article['detail_img_path'],
                              journal_name = article['journal_name'],
-                             detail_text = article['detail_text']
+                             detail_text = article['detail_text'],
+                             bias = article['bias'],
+                             topic_id = article['topic_id']
                              )
       
     return HttpResponse(status=201)
