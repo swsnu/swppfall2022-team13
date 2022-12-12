@@ -2,22 +2,23 @@ import os
 import sys
 
 DIR_PATH = os.path.dirname(sys.path[0])
-print(DIR_PATH);
-sys.path.append(os.path.join(DIR_PATH, "recommendation"))
-sys.path.append(os.path.join(DIR_PATH, "crawler"))
+sys.path.append(os.path.join(DIR_PATH, "jjdd/recommendation"))
+sys.path.append(os.path.join(DIR_PATH, "jjdd/crawler"))
 
-from ..article.models import Article
+from .models import Article
 from news_crawler import NaverCrawler
 from recommendation_model import Recommendation_Model
 
-# crawling_result = NaverCrawler.crawl(3)
-# print('🔥🔥🔥', crawling_result);
-
 def crawl_and_recommend():
+  
     crawling_result = NaverCrawler.crawl(5)
 
     # crawling_result 를 DB 에 추가해야합니다.
     for article in crawling_result:
+      print('🔥', article)
+      if None in article.values():
+        continue
+      
       Article.objects.create(title = article['title'],
                              datetime = article['datetime'],
                              preview_prologue = article['preview_prologue'],

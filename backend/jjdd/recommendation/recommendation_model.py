@@ -20,7 +20,7 @@ class Recommendation_Model:
         
         
     def set_embedder(self):
-        self.embedder = pickle.load(open('embedder.pkl', 'rb'))
+        self.embedder = pickle.load(open('./embedder.pkl', 'rb'))
         
         
     def update_embedding(self):
