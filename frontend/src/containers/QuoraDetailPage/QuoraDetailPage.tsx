@@ -167,7 +167,7 @@ const QuoraDetailPage = () => {
           alert (msg)
           //dispatch(fetchUser(data.author_id));
           //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
-          window.location.reload()
+          //window.location.reload()
         } else {
           console.log("오류가 발생하였습니다.");
         }
@@ -313,9 +313,11 @@ const QuoraDetailPage = () => {
         </div>
         <br></br>
         <div className="text2">
-          당신의 목소리를 {quora?.title}에게 들려주세요.
-          <br></br>
           오늘 하루는 어떠셨나요?
+          <br></br>
+          걱정 마세요. 
+          <br></br>
+          모든 소식을 익명으로 기록할게요.
          
         </div>
         
@@ -355,7 +357,7 @@ const QuoraDetailPage = () => {
         </label>
         
           &nbsp; &nbsp;
-        <button type="button" id="confirm-create-comment-button" disabled={!text} onClick={() => postCommentHandler()}>Post Remark</button>
+          <button className="btn btn-outline-info" id="delete-comment-button" disabled={!text} onClick={() => postCommentHandler()}>내 소식 남기기</button>
           <p></p>
         </div>
 

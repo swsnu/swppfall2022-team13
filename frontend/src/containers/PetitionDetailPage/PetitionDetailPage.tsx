@@ -45,19 +45,19 @@ const PetitionDetailPage = () => {
       const user_id = response['data']['id'];
 
       if(petition.author === user_id) {
-        if (window.confirm("Are you sure? This is irreversible!")) {
+        if (window.confirm("정말 청원을 지우시겠어요?\n사람들이 이곳에 남긴 소중한 한표가 모두 사라집니다.\n이는 돌이킬 수 없습니다.")) {
           if(petition !== null && petition !== undefined) {
             dispatch(deletePetition(petition.id));
           }
         } else {
         }
       } else {
-        const msg = ['Access denied! : not an author']
+        const msg = ['앗, 당신은 이 청원의 소유자가 아니시군요!']
       alert(msg)
 
       }
     } else{
-      const msg = ['Login Required']
+      const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
       alert(msg)
       navigate('/login');
     }
@@ -78,18 +78,18 @@ const PetitionDetailPage = () => {
         if (!localStorage.getItem("vote" + petition.id)) {
           dispatch(voteUp(petition.id));
           localStorage.setItem("vote" + petition.id, "true")
-          const msg = ['Voting Successful!']
+          const msg = ['변화를 향한 소중한 한표에 감사드립니다.']
           alert(msg)
         } else {
           dispatch(voteDown(petition.id));
           localStorage.removeItem("vote" + petition.id)
-          const msg = ['Unvote Successful!']
+          const msg = ['투표를 취소했어요.\n누구나에게나 말할 수 없는 이유는 존재하니까요.\n언제든 다시 돌아오길 기다릴게요.']
           alert(msg)
         }
         
       }
     } else{
-      const msg = ['Login Required']
+      const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
       alert(msg)
       navigate('/login');
     }

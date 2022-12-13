@@ -54,7 +54,7 @@ const PetitionListPage = () => {
       const user_id = response['data']['id'];
       navigate("/petition/create");
     } else{
-      const msg = ['Login Required']
+      const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
       alert(msg)
       navigate('/login');
     }
