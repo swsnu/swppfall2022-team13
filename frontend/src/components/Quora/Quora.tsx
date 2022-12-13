@@ -1,6 +1,7 @@
 import "./Quora.css";
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPoliticians, selectPolitician } from "../../store/slices/politician";
 import { AppDispatch } from "../../store";
@@ -38,7 +39,7 @@ export default function Quora(props: QuoraType) {
       
         <div className="QuorasEach">
 
-            <div className="card w-50" >
+            <div className="card" >
               <div className="QuorasImage" id="QuorasImage">
                 <img src={politician?.image_src} width={200} height={250} />
               </div>
@@ -48,10 +49,7 @@ export default function Quora(props: QuoraType) {
               </div>
             </div>
 
-          
-          
-          <p></p>
-          
+
         </div>
       );
 

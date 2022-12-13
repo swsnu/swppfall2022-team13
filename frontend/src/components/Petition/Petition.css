@@ -1,5 +1,7 @@
 .PetitionsEach {
   width: 18rem;
+  float: left;
+  margin:20px 20px;
 }
 .petition-img-top {
   height: 200px;
