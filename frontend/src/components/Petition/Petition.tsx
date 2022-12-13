@@ -29,8 +29,8 @@ export default function Petition(props: PetitionType) {
     };
 
     return (
-      <Card style={{ width: '18rem', height: '25rem', float: 'left'}}>
-        <Card.Img style={{ width: '18rem', height: '10rem', display: 'inline-block'}} variant="top" src={props.photo_url} />
+      <Card style={{ width: '18rem', height: '25rem', float: 'left', margin: '20px 20px'}}>
+        <Card.Img style={{ width: '17.9rem', height: '10rem', display: 'inline-block'}} variant="top" src={props.photo_url} />
         <Card.Body>
           <Card.Title>우리는 {props.vote} 표를 받았어요</Card.Title>
           <Card.Text>
