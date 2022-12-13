@@ -10,7 +10,7 @@ from news_crawler import NaverCrawler
 from recommendation_model import Recommendation_Model
 
 def crawl_and_recommend():
-  
+    print("==================================================")
     crawling_result = NaverCrawler.crawl(5)
 
     # crawling_result 를 DB 에 추가해야합니다.
@@ -61,4 +61,7 @@ def crawl_and_recommend():
       article = Article.objects.get(pk=key)
       article.related_articles = recommendation_DB[key]
       article.save()
+    
+    print("🎉🎉🎉Done CRON JOB!!")
+    print("==================================================")
     

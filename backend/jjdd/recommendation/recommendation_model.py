@@ -23,7 +23,7 @@ class Recommendation_Model:
     def set_embedder(self):
         # print('🚀🚀🚀', os.getcwd())
         # Need to edit while in server
-        self.embedder = pickle.load(open('/Users/gyeongmokim/Documents/third-two/소개원실/swppfall2022-team13/backend/jjdd/recommendation/embedder.pkl', 'rb'))
+        self.embedder = pickle.load(open('/home/ubuntu/swppfall2022-team13/backend/jjdd/recommendation/embedder.pkl', 'rb'))
         
         
     def update_embedding(self):
@@ -70,7 +70,7 @@ class Recommendation_Model:
             print("you should update articles_DB!")
             return None
             
-        if not self.article_embeddings:
+        if self.article_embeddings == None:
             print("updating article_embeddings...")
             self.update_embedding()
         
