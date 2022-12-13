@@ -17,6 +17,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'quora',
     'corsheaders',
     'rest_framework',
+    'django_crontab'
 ]
 
 MIDDLEWARE = [
@@ -85,6 +88,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://jungjungdangdang.shop"
 ]
 
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000'
+                         ,'http://localhost:3000']
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'jjdd.urls'
@@ -159,3 +164,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#CRONTAB
+CRONJOBS = [
+    ('*/30 * * * *', 'article.cron.crawl_and_recommend', '>> ' + os.path.join(BASE_DIR, 'jjdd/log/cron.log') + ' 2>&1 ')
+]

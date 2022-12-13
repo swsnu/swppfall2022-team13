@@ -28,6 +28,10 @@ const NewsDetailPage = () => {
   console.log("curr id is: " + currArticleId);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
+
     //fetch all articles and save them to articleState
     dispatch(fetchArticles());
     const getRelatedArticle = async () => {

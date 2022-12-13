@@ -18,6 +18,8 @@ def article(request):
                      'detail_text': article['detail_text'],
                      'created_at': article['created_at'],
                      'updated_at': article['updated_at'],
+                     'bias' : article['bias'],
+                     'topic_id' : article['topic_id'],
                      'related_articles': article['related_articles']
                      }
                     for article in Article.objects.all().values()]
@@ -36,8 +38,8 @@ def article(request):
                              detail_img_path = article['detail_img_path'],
                              journal_name = article['journal_name'],
                              detail_text = article['detail_text'],
-                             created_at = article['created_at'],
-                             updated_at = article['updated_at'],
+                             bias = article['bias'],
+                             topic_id = article['topic_id']
                              )
       
     return HttpResponse(status=201)

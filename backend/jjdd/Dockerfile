@@ -8,6 +8,7 @@ COPY . .
 
 RUN pip install django-cors-headers
 RUN pip install djangorestframework
+RUN pip install django_crontab
 
 # Environment variables for django deployment
 ENV DEBUG=False

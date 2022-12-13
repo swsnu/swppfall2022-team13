@@ -116,17 +116,17 @@ class NaverCrawler(NewsCrawler):
 
 
 
-if __name__ == "__main__":
-  try:
-    number_of_articles = int(sys.argv[1])
-  except:
-    print("인자로 받을 개수를 적어야 합니다.")
-    quit()
+# if __name__ == "__main__":
+#   try:
+#     number_of_articles = int(sys.argv[1])
+#   except:
+#     print("인자로 받을 개수를 적어야 합니다.")
+#     quit()
   
-  crawling_result = NaverCrawler.crawl(number_of_articles)
-#   pprint.pprint(crawling_result)
-  url = "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/"
-  response = requests.post(url, data = json.dumps({"articles" : crawling_result}))
+#   crawling_result = NaverCrawler.crawl(number_of_articles)
+# #   pprint.pprint(crawling_result)
+#   url = "http://ec2-13-209-0-212.ap-northeast-2.compute.amazonaws.com:8000/api/article/"
+#   response = requests.post(url, data = json.dumps({"articles" : crawling_result}))
   
-#   print("\n" * 5)
-  print(response)
+# #   print("\n" * 5)
+#   print(response)
