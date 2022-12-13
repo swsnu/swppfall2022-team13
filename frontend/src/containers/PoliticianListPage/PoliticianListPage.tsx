@@ -114,17 +114,19 @@ const PoliticianListPage = () => {
               })
             : filterElect.map((data) => {
                 return (
-                  <div className="SummaryComponent" key={data.id}>
-                    <PoliticianSummary
-                      id={data.id}
-                      image_src={data.image_src}
-                      name={data.name}
-                      elect={data.election_precinct}
-                      birthdate={data.birth_date}
-                      politicalParty={data.political_party}
-                      position={data.job}
-                    />
-                  </div>
+                  <Col>
+                    <div className="SummaryComponent" key={data.id}>
+                      <PoliticianSummary
+                        id={data.id}
+                        image_src={data.image_src}
+                        name={data.name}
+                        elect={data.election_precinct}
+                        birthdate={data.birth_date}
+                        politicalParty={data.political_party}
+                        position={data.job}
+                      />
+                    </div>
+                  </Col>
                 );
               })}
         </Row>

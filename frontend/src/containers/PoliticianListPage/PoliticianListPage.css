@@ -1,7 +1,6 @@
 .PoliticianSummarys {
-  justify-content: center;
+  justify-content: left;
   display: flex;
-  flex-direction: row;
 }
 
 .PoliticianListPage {
@@ -21,7 +20,7 @@
 
 .Search-paper {
   display: flex;
-  justify-content:baseline;
+  justify-content: baseline;
   align-items: center;
 }
 
@@ -33,7 +32,7 @@
   margin-left: 20px;
 }
 
-.Search-Icon{
+.Search-Icon {
   margin-left: 25px;
   margin-right: 20px;
   /* font-size: 100px; */
