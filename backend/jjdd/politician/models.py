@@ -16,6 +16,8 @@ class Politician(models.Model):
     career_summary = models.TextField(null=True, blank=True)
     mona_code = models.TextField(null=True, blank=True)
     proposals = models.TextField(null=True, blank=True)
+    like_users = models.TextField(null=True, default="")
+    
     
 
 
