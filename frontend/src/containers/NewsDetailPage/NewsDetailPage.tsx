@@ -46,7 +46,8 @@ const NewsDetailPage = () => {
       });
       setLike(!like);
     } else {
-      return -1;
+      alert("로그인하면 좋아하는 기사를 모아볼 수 있어요!");
+      navigate("/login/");
     }
   };
 

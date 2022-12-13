@@ -15,6 +15,7 @@ import NewsArticle from "../../components/NewsArticle/NewsArticle";
 import NumberInfo from "../../components/NumberInfo/NumberInfo";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { AppDispatch } from "../../store";
+import { useNavigate } from "react-router-dom";
 import {
   fetchPolitician,
   fetchPoliticians,
@@ -23,6 +24,7 @@ import {
 import "./PoliticianDetailPage.css";
 
 const PoliticianDetailPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
   const { id } = useParams();
@@ -61,7 +63,8 @@ const PoliticianDetailPage = () => {
       });
       setLike(!like);
     } else {
-      return -1;
+      alert("로그인하면 좋아하는 정치인을 모아볼 수 있어요!");
+      navigate("/login/");
     }
   };
 
