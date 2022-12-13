@@ -55,6 +55,10 @@ const QuoraDetailPage = () => {
 
   const politicianState = useSelector(selectPolitician);
   useEffect(() => {
+    // Scroll goes up
+    window.scrollTo({
+      top: 0,
+    });
     dispatch(fetchPoliticians());
   }, []); 
   
