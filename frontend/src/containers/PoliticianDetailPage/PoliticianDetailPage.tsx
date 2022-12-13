@@ -27,9 +27,6 @@ const PoliticianDetailPage = () => {
 
   const { id } = useParams();
   const [like, setLike] = useState(false);
-  const onClickLike = () => {
-    setLike(!like);
-  };
   useEffect(() => {
     // Scroll goes up
     window.scrollTo({
@@ -55,6 +52,17 @@ const PoliticianDetailPage = () => {
       console.log(res.data);
       set_politician_related_articles(res.data);
     });
+  };
+  const postLike = async () => {
+    const isLogin = await axios.get("/api/user/islogin/");
+    if (isLogin.data.status === true) {
+      await axios.post("/api/politician/like/" + isLogin.data.id + "/", {
+        article_id: id,
+      });
+      setLike(!like);
+    } else {
+      return -1;
+    }
   };
 
   useEffect(() => {
@@ -89,7 +97,7 @@ const PoliticianDetailPage = () => {
                 id="hello"
                 style={like ? { color: "#965727" } : { color: "#DCC4B2" }}
                 aria-label="like"
-                onClick={onClickLike}
+                onClick={postLike}
               >
                 <FavoriteIcon />
               </Fab>
