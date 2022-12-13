@@ -12,6 +12,6 @@ class Article(models.Model):
   detail_text = models.TextField()
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  bias = models.TextField(default=None)
-  topic_id = models.TextField(default=None)
+  bias = models.TextField(null=True)
+  topic_id = models.TextField(null=True)
   related_articles = models.TextField(null=True, default="[]")
