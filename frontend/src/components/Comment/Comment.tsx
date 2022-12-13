@@ -5,9 +5,11 @@ import { selectUser} from "../../store/slices/user";
 import { deleteComment } from "../../store/slices/comment";
 import { fetchQuora, selectQuora, deleteQuora, fetchQuoras } from "../../store/slices/quora";
 import axios from 'axios';
+import "./Comment.css";
 import { SystemSecurityUpdate } from "@mui/icons-material";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 
 export interface IProps {
     id: number
@@ -45,10 +47,12 @@ export interface IProps {
       }, []);
 
     const clickDelete = () => {   
-      if (user_id === props.author_id) {
-        dispatch(deleteComment(props.id));
+      if (user_id === props?.author_id) {
+        const msg = ['소식을 지웠어요.\n누구나에게나 말할 수 없는 슬픔은 존재하니까요.\n언제든 돌아오길 기다릴게요.']
+        alert(msg)
+        dispatch(deleteComment(props?.id));
       } else {
-        const msg = ['access denied! : not your remark']
+        const msg = ['설마, 시민의 이야기를 멋대로 지우시려는 건가요?']
         alert(msg)
       }
         
@@ -57,21 +61,21 @@ export interface IProps {
     const quora = quoraState.quoras.find((value:any) => value.id === props.quora_id);
 
 
-    if(user_id === props.author_id && quora.author === props.author_id) {
+    if(user_id === props.author_id && quora?.author === props.author_id) {
       return (
         <div className="CommentsEach">
-          <b><div className="commentorName" id="comment-author">QUORA OWNER: {quora.title}</div></b>
+          <b><div className="commentorName" id="comment-author">{quora?.title} - 이 쿼라의 정치인</div></b>
           <b><div className="commentContent" id="comment-content">{commentDisplay}</div></b>
           <p></p>
-          <button type="button" id="delete-comment-button" onClick={clickDelete}>delete remark</button>
+          <button className="btn btn-outline-info" id="delete-comment-button" onClick={clickDelete}>이 소식 지우기</button>
           <p></p>
   
         </div>
       );
-    } else if (quora.author === props.author_id) {
+    } else if (quora?.author === props.author_id) {
       return (
         <div className="CommentsEach">
-          <div className="commentorName" id="comment-author">{quora.title}</div>
+          <div className="commentorName" id="comment-author">{quora?.title} - 이 쿼라의 정치인</div>
           <b><div className="commentContent" id="comment-content">{commentDisplay}</div></b>
           <p></p>
   
@@ -80,10 +84,10 @@ export interface IProps {
     } else {
       return (
         <div className="CommentsEach">
-          <div className="commentorName" id="comment-author">{props.author_id}</div>
+          <div className="commentorName" id="comment-author">익명의 시민 {props?.author_id}</div>
           <b><div className="commentContent" id="comment-content">{commentDisplay}</div></b>
           <p></p>
-          <button type="button" id="delete-comment-button" onClick={clickDelete}>delete remark</button>
+          <button className="btn btn-outline-info" id="delete-comment-button" onClick={clickDelete}>이 소식 지우기</button>
           <p></p>
         </div>
       );

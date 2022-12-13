@@ -6,6 +6,7 @@ import { useDispatch, } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { AppDispatch } from "../../store"
 import { postPetition } from "../../store/slices/petition"
+import "./PetitionCreatePage.css";
 
 const PetitionCreatePage = () => {
   const [title, setTitle] = useState('')
@@ -26,10 +27,10 @@ const PetitionCreatePage = () => {
       const user_id = response['data']['id'];
 
       const validationCheckList = [title, content]
-    const validationMessages = ['title', 'content']
+    const validationMessages = ['청원 제목', '청원 내용']
 
     if (validationCheckList.some(value => !value)) {
-      const msg = ['Invalid input for:']
+      const msg = ['앗, 다음 항목이 비어있어요:']
       validationCheckList.forEach((value, index) => {
         if (!value) {
           msg.push(validationMessages[index])
@@ -52,16 +53,17 @@ const PetitionCreatePage = () => {
     }
 
     const responsePetition = await dispatch(postPetition(petitionData))
+    const msg2 = ['청원을 올렸어요. 항상 당신을 응원할게요.']
+      alert(msg2)
 
     if (responsePetition.type === `${postPetition.typePrefix}/fulfilled`) {
-      const msg2 = ['Petition Created!']
-      alert(msg2)
+      
       navigate("/petition")
   }
   navigate("/petition")
 
     } else{
-      const msg = ['Login Required']
+      const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
       alert(msg)
       navigate('/login');
     }
@@ -76,7 +78,15 @@ const PetitionCreatePage = () => {
         <NavBar />
       </div> */}
       <p/>
-      <h1>Petition Create Page</h1>
+      <div id='petitionCreate_title'>
+      <h1>세상을 바꾸는 주인공이 될 수 있어요.</h1>
+      </div>
+      힘든 일 있으신가요? 주변에 도움이 필요한 사람이 있으신가요?
+      <br></br>
+      '정정당당'이 당신의 소중한 목소리를 전달해 드릴게요.
+      <br></br>
+      <br></br>
+      이곳에서 청원을 작성하여 큰 변화의 시작을 우리와 함께할 수 있습니다.
       <p/>
       <div className='petition-create'>
         <br />
@@ -87,7 +97,7 @@ const PetitionCreatePage = () => {
               <div>
                 <Form.Control
                   id='title-input'
-                  type="text" placeholder="fill in your petition title"
+                  type="text" placeholder="청원할 글의 제목을 작성해 주세요."
                   value={title} onChange={event => setTitle(event.target.value)}
                 />
               </div>
@@ -101,7 +111,7 @@ const PetitionCreatePage = () => {
               <div>
                 <Form.Control
                   id='url-input'
-                  type="text" placeholder="fill in your photo's URL"
+                  type="text" placeholder="게시할 사진의 URL을 붙여넣기 해주세요. 사진이 없으면 비워주세요. 기본 사진을 넣어 드릴게요."
                   value={photo_url} onChange={event => setURL(event.target.value)}
                 />
               </div>
@@ -118,7 +128,7 @@ const PetitionCreatePage = () => {
                 <div>
                   <Form.Control
                     id='content-input'
-                    type='text' placeholder="fill in your petition content"
+                    type='text' placeholder="청원 내용을 자세히 작성해 주세요."
                     value={content}
                     onChange={event => setContent(event.target.value)}
                   />
@@ -128,14 +138,11 @@ const PetitionCreatePage = () => {
  
         </Form>
 
-        <a href="/petition" className="btn btn-primary">Back</a>
+        <a href="/petition" className="btn btn-success">되돌아가기</a>
         &nbsp; &nbsp;
-        <Button
-          id='confirm-button'
-          type="button"
+          <button type="button" className="btn btn-success" id='confirm-button'
           onClick={() => clickCreateHanler()}>
-          Create
-        </Button>
+          청원하기</button>
       </div>
     </>
     )

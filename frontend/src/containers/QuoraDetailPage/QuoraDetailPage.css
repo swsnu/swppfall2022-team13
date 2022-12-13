@@ -1,0 +1,133 @@
+q_li {
+  list-style: none;
+}
+.q_left {
+  float: left;
+  margin-left: 10%;
+}
+.q_right {
+  float: left;
+  margin-left: 80px;
+  margin-right: 10%;
+}
+
+.q_intro {
+  width: 750px;
+  border-bottom: solid 1px black;
+}
+
+.q_education-and-career-header {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: solid 2px black;
+}
+
+.q_proposals-header {
+  margin-top: 30px;
+  display: flex;
+  text-align: left;
+  margin-bottom: 10px;
+  border-bottom: solid 2px black;
+}
+
+.q_education-and-career-body {
+  text-align: left;
+  height: 100%;
+}
+
+.q_none {
+  text-align: left;
+  height: 0px;
+  visibility: collapse;
+}
+
+.q_proposals-body {
+  text-align: left;
+}
+#q_na-image {
+  float: left;
+}
+
+#q_intro-title {
+  text-align: left;
+}
+
+#q_number-intro-header {
+  text-align: left;
+  margin-top: 15px;
+}
+
+#q_intro-education-and-career {
+  text-align: left;
+}
+
+#q_number-intro-body {
+  display: flex;
+  justify-content: left;
+}
+
+#q_mini-title {
+  margin-top: 20px;
+}
+
+#q_name {
+  text-align: left;
+  color: #580009;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+#q_birth-date {
+  text-align: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+#q_political-party-right {
+  text-align: left;
+  margin-left: 60px;
+}
+#q_political-party-title {
+  font-size: 14px;
+  color: chocolate;
+}
+#q_political-party-name {
+  margin-left: 15px;
+}
+
+#q_education-detail {
+  margin-top: 10px;
+  text-align: left;
+}
+
+#q_career-title {
+  margin-top: 30px;
+}
+
+#q_career-detail {
+  margin-top: 10px;
+  text-align: left;
+}
+
+#quoraDetail_text1 {
+  background-color: white;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+#quoraDetail_text2 {
+  background-color: white;
+  color: #dcc4b2;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+#quora_all {
+  margin-top: 50px;
+  text-align: center;
+}
