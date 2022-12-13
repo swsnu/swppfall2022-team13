@@ -19,6 +19,9 @@ const PoliticianDetailPage = () => {
 
   const { id } = useParams();
   useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
     dispatch(fetchPolitician(Number(id)));
   }, [id]);
   const [career, setCareer] = useState(false);

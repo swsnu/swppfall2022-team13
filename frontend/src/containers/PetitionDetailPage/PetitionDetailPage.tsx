@@ -24,7 +24,12 @@ const PetitionDetailPage = () => {
         }
   console.log("curr id is: " + currPetitionId)
 
-  useEffect(() => {  //fetch all articles and save them to articleState
+  useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
+    
+    //fetch all articles and save them to articleState
     dispatch(fetchPetitions());
   }, []); 
 

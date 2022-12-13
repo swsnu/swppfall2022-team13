@@ -1,19 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from "react";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Comment from "../../components/Comment/Comment";
 import NumberInfo from "../../components/NumberInfo/NumberInfo";
 import { AppDispatch } from "../../store";
 import { fetchComments, postComment, selectComment } from "../../store/slices/comment";
 import { fetchPoliticians, selectPolitician } from "../../store/slices/politician";
 import { deleteQuora, fetchQuoras, selectQuora } from "../../store/slices/quora";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import "./QuoraDetailPage.css";
+
 
 
 
@@ -32,20 +32,21 @@ const QuoraDetailPage = () => {
   var title: string;
   var content: string;
 
+  var currQuoraId: number = 1;
+  if (id !== undefined) {
+    currQuoraId = parseInt(id); //current url number is stored into currArticleId
+  }
+  console.log("curr id is: " + currQuoraId);
 
-  var currQuoraId:number = 1;
-      if(id !== undefined) {
-        currQuoraId = parseInt(id) //current url number is stored into currArticleId
-        }
-  console.log("curr id is: " + currQuoraId)
-
-  useEffect(() => {  //fetch all articles and save them to articleState
+  useEffect(() => {
+    //fetch all articles and save them to articleState
     dispatch(fetchQuoras());
     dispatch(fetchComments());
     dispatch(fetchPoliticians());
-  }, []); 
+  }, []);
 
   const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
+  console.log("author politician id: " + quora.author_politicianId)
 
   /*
   useEffect(() => {
@@ -55,50 +56,56 @@ const QuoraDetailPage = () => {
   const politicianState = useSelector(selectPolitician);
   useEffect(() => {
     dispatch(fetchPoliticians());
-  }, []); 
-  
+  }, []);
+
   const politician = politicianState.politicians.find((p) => {
     return p.id === quora?.author_politicianId; //quora.author <- politician id is stored
   });
-  
+
   /*
   const politician = politicianContents.find((p) => {
     return p.id === quora.author; //quora.author <- politician id is stored
   });*/
 
-
-  if(!quora) { //if there is no petition found with the id, go back to petitionList (wrong URL)
-    navigate ("/quora")
+  if (!quora) {
+    //if there is no petition found with the id, go back to petitionList (wrong URL)
+    navigate("/quora");
   }
 
-  const handleDelete = async () => { //When User Implemented, this should be ONLY FOR CREATOR
+  const handleDelete = async () => {
+    //When User Implemented, this should be ONLY FOR CREATOR
 
     if (window.confirm("정말 쿼라를 닫겠습니까?\n사람들이 이곳에 남긴 소중한 이야기들이 모두 사라집니다.\n이는 돌이킬 수 없습니다.")) {
       const response = await axios.get("/api/user/islogin/");
       console.log("Login status: ", response.data);
-      const isLogin = response['data']['status'];
+      const isLogin = response["data"]["status"];
 
-      if(isLogin && response.data.id !== 2){
-      //const user_email = response['data']['email'];
-      const user_id = response['data']['id'];
+      if (isLogin && response.data.id !== 2) {
+        //const user_email = response['data']['email'];
+        const user_id = response["data"]["id"];
 
-      if(user_id === quora.author) {
-          if(quora !== null && quora !== undefined) {
+        if (user_id === quora.author) {
+          if (quora !== null && quora !== undefined) {
             dispatch(deleteQuora(quora.id));
-            navigate("/quora")
+            navigate("/quora");
           }
+        } else {
+          const msg = ["Access denied! : you are not the owner of this quora"];
+          alert(msg);
+        }
       } else {
-        const msg = ['앗, 당신은 이 쿼라의 소유자가 아니시군요!']
+        const msg = ['Access denied! : you are not the owner of this quora']
         alert(msg)
       }
     } else {
-      const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
+      const msg = ['Login Required!']
             alert(msg)
             navigate("/login")
     }
   } else {
 
   }
+
 
   };
 
@@ -144,44 +151,50 @@ const QuoraDetailPage = () => {
     }
   };
 
-  const authorName = politician?.name //When User Implemented, this should be find names based on ID
+  const authorName = politician.name //When User Implemented, this should be find names based on ID
 
 
   const postCommentHandler = async () => {
+    const response = await axios.get("/api/user/islogin/");
+    console.log("Login status: ", response.data);
+    const isLogin = response["data"]["status"];
 
-      const response = await axios.get("/api/user/islogin/");
-      console.log("Login status: ", response.data);
-      const isLogin = response['data']['status'];
-
-      if(isLogin && response.data.id !== 2){
-      const user_email = response['data']['email'];
-      const user_id = response['data']['id'];
-      console.log("curr user id is: " + user_id)
-      const data = { author_id: user_id, quora_id: currQuoraId, content: newCommentContent };
+    if (isLogin && response.data.id !== 2) {
+      const user_email = response["data"]["email"];
+      const user_id = response["data"]["id"];
+      console.log("curr user id is: " + user_id);
+      const data = {
+        author_id: user_id,
+        quora_id: currQuoraId,
+        content: newCommentContent,
+      };
       const result = await dispatch(postComment(data));
 
         if (result.type === `${postComment.typePrefix}/fulfilled`) {
           //setPath
           //setSubmitted(true);
-          const msg = ["전해주신 소중한 이야기를 기록했어요."]
-          alert (msg)
+          console.log("Comment Submitted")
           //dispatch(fetchUser(data.author_id));
           //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
-          //window.location.reload()
+          navigate("/quora/" + currQuoraId)
         } else {
-          console.log("오류가 발생하였습니다.");
+          console.log("Error on posting comment");
         }
 
       } else {
-        const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
+        const msg = ['Login Required!']
         alert(msg)
         navigate("/login")
       }
-        
+    } else {
+      const msg = ["Login Required!"];
+      alert(msg);
+      navigate("/login");
+    }
   };
 
   useEffect(() => {
-    if(newCommentContent !== "") {
+    if (newCommentContent !== "") {
       enableButton(newCommentContent);
     } else {
       enableButton("");
@@ -191,45 +204,45 @@ const QuoraDetailPage = () => {
 
   return ( //POLITICIAN LIST랑 연동하여 사진, 정보 등 가져오기!!!
   
-    <div className = "background">
+    <div className = "background_red">
         {/* <NavBar/> */}
-    <div className = "polls">
-        <div className="q_PoliticianDetailPage">
+
+        <div className="PoliticianDetailPage">
       <div>
-        <div className="q_left">
-          <img src={politician?.image_src} width={200} height={250} />
-          <h4 id="q_name">{politician?.name + " " + politician?.job}</h4>
-          <p id="q_birth-date">{politician?.birth_date}</p>
-          <div className="q_political-party">
+        <div className="left">
+          <img src={politician.image_src} width={200} height={250} />
+          <h4 id="name">{politician.name + " " + politician.job}</h4>
+          <p id="birth-date">{politician.birth_date}</p>
+          <div className="political-party">
             <div>
               <img
-                id="q_na-image"
+                id="na-image"
                 src="http://www.mcnews.co.kr/imgdata/mcnews_kr/201404/20140408_161951_1f37cd4.jpg"
                 width={50}
                 height={50}
               ></img>
             </div>
-            <div id="q_political-party-right">
-              <span id="q_political-party-title">정당</span>
-              <p id="q_polticial-party-name">{politician?.political_party}</p>
+            <div id="political-party-right">
+              <span id="political-party-title">정당</span>
+              <p id="polticial-party-name">{politician.political_party}</p>
             </div>
           </div>
         </div>
-        <div className="q_right">
-          <div className="q_intro">
-            <h4 id="q_intro-title">먼저 간단한 정보를 읽고 시작하는건 어때요?</h4>
+        <div className="right">
+          <div className="intro">
+            <h2 id="intro-title">의원소개</h2>
           </div>
-          <div className="q_number-intro-header">
-            <h4 id="q_number-intro-header">숫자로 보는 정보</h4>
+          <div className="number-intro-header">
+            <h4 id="number-intro-header">숫자로 보는 정보</h4>
           </div>
-          <div id="q_number-intro-body">
+          <div id="number-intro-body">
             <NumberInfo
-              num={getElectedNumber(politician?.reelection)}
+              num={getElectedNumber(politician.reelection)}
               category="당선횟수"
-              detail={politician?.election_units}
+              detail={politician.election_units}
             ></NumberInfo>
             <NumberInfo
-              num={politician?.proposals.split("\n").length}
+              num={politician.proposals.split("\n").length}
               category="법안발의수"
               detail="21대 국회내 통계"
             ></NumberInfo>
@@ -239,19 +252,23 @@ const QuoraDetailPage = () => {
               detail="관심의원등록수"
             ></NumberInfo>
           </div>
-          <div className="q_education-and-career-header">
-            <h4 id="q_intro-education-and-career">학력 및 경력</h4>
-            {career ? (
-              <ArrowDropUpIcon onClick={onCareerClickHandler}></ArrowDropUpIcon>
-            ) : (
-              <ArrowDropDownIcon
-                onClick={onCareerClickHandler}
-              ></ArrowDropDownIcon>
-            )}
+          <div className="education-and-career-header">
+            <h4 id="intro-education-and-career">학력 및 경력</h4>
+            <img
+              src={
+                career
+                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
+                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
+              }
+              width={30}
+              height={30}
+              onClick={onCareerClickHandler}
+              alt="career"
+            ></img>
           </div>
           <div className={career ? "education-and-career-body" : "none"}>
             <p>
-              {politician?.career_summary
+              {politician.career_summary
                 .replaceAll("&middot;", ", ")
                 .replaceAll("&#039", ", ")
                 .replaceAll("&bull;", ", ")
@@ -259,26 +276,30 @@ const QuoraDetailPage = () => {
                 .map((td) => {
                   if (td === "") return;
                   if (td.includes("학력") || td.includes("경력")) {
-                    return <p id="q_mini-title">{td}</p>;
+                    return <p id="mini-title">{td}</p>;
                   } else {
                     return <li>{td}</li>;
                   }
                 })}
             </p>
           </div>
-          <div className="q_proposals-header">
-            <h4 id="q_proposals-header">발의안</h4>
-            {prop ? (
-              <ArrowDropUpIcon onClick={onPropClickHandler}></ArrowDropUpIcon>
-            ) : (
-              <ArrowDropDownIcon
-                onClick={onPropClickHandler}
-              ></ArrowDropDownIcon>
-            )}
+          <div className="proposals-header">
+            <h4 id="proposals-header">발의안</h4>
+            <img
+              src={
+                prop
+                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
+                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
+              }
+              width={30}
+              height={30}
+              alt="props"
+              onClick={onPropClickHandler}
+            ></img>
           </div>
           <div className={prop ? "proposals-body" : "none"}>
             <p>
-              {politician?.proposals.split("\n").map((td) => {
+              {politician.proposals.split("\n").map((td) => {
                 if (td != "") return <li>- {td}</li>;
               })}
             </p>
@@ -286,67 +307,49 @@ const QuoraDetailPage = () => {
         </div>
       </div>
     </div>
-    </div>
 
-    
-    <div className = "quora_all" id = "quora_all">
 
-        <div className="quoraDetail_text1" id= "quoraDetail_text1">
-          <p></p>
-            Current Quora: {authorName}
-            <br></br>
-            hi
-          
-
-          <div className="text2">
-            <h5>{quora?.title}</h5>
-          </div>
-
-        </div>
-        <Button className= "btn btn-info" variant="primary" href="/quora" >되돌아가기</Button>
-        <br></br>
-        <br></br>
-
-        <div className="quoraDetail_text2" id= "quoraDetail_text2">
-        <p></p>
-          정치인 {authorName}의 쿼라입니다.
-        </div>
-        <br></br>
-        <div className="text2">
-          오늘 하루는 어떠셨나요?
-          <br></br>
-          걱정 마세요. 
-          <br></br>
-          모든 소식을 익명으로 기록할게요.
-         
-        </div>
+      <div className="card">
         
-        
-        <br></br>
+      
+      <div className="card-header text-bg-danger mb-3">
+        Current Quora: {authorName}
+      </div>
+
+      <div className="card-body">
+        <h5 className="card-title">{quora?.title}</h5>
+      </div>
+
+      <div className="card-body">
+        <p className="card-text">{quora?.content}</p>
+        <p>
+        <a href="/petition" className="btn btn-primary">Back</a>
+        &nbsp; &nbsp;
+        <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={handleDelete}>Close Quora</button>
+        </p>
+      </div>
 
 
       {commentState.comments.map((td: any) => {
           //console.log("comment's article id is:" + td.article_id)
-          if(id !== undefined) {
-            if (td.quora_id === currQuoraId ) {
-            console.log('MATCH ID FOUND')
-            return (
-              <Comment
-                key={`${td.id}_todo`}
-                id={td.id}
-                quora_id={td.quora_id}
-                author_id = {td.author_id}
-                content={td.content}
-                //clickDetail={() => clickTodoHandler(td)}
-                //clickDone={() => dispatch(toggleDone(td.id))}
-                //clickDelete={() => dispatch(deleteArticle(td.id))}
-              />
-              
-            );
+          if (id !== undefined) {
+            if (td.quora_id === currQuoraId) {
+              console.log("MATCH ID FOUND");
+              return (
+                <Comment
+                  key={`${td.id}_todo`}
+                  id={td.id}
+                  quora_id={td.quora_id}
+                  author_id={td.author_id}
+                  content={td.content}
+                  //clickDetail={() => clickTodoHandler(td)}
+                  //clickDone={() => dispatch(toggleDone(td.id))}
+                  //clickDelete={() => dispatch(deleteArticle(td.id))}
+                />
+              );
+            }
           }
-          }
-        
-          })}
+        })}
 
         <div className="NewComment">
         <p></p>
@@ -355,25 +358,15 @@ const QuoraDetailPage = () => {
           &nbsp; &nbsp;
           <input type="text" id ="new-comment-content-input" value={title} onChange={(event) => setCommentContent(event.target.value)} />
         </label>
-        
           &nbsp; &nbsp;
-          <button className="btn btn-outline-info" id="delete-comment-button" disabled={!text} onClick={() => postCommentHandler()}>내 소식 남기기</button>
-          <p></p>
+        <button type="button" id="confirm-create-comment-button" disabled={!text} onClick={() => postCommentHandler()}>Post Remark</button>
+        <p></p>
         </div>
 
-        <p>
-          <Button className= "btn btn-info" variant="primary" href="/quora" >되돌아가기</Button>
-          &nbsp; &nbsp;
-          <Button className= "btn btn-info" variant="primary" onClick={handleHurray} >응원하기</Button>
-          &nbsp; &nbsp;
-          <Button className= "btn btn-info" variant="primary" onClick={handleDelete} >쿼라를 닫을래요</Button>
-          </p>
 
-
-      
       </div>
     </div>
-    );
-  }
-  
-  export default QuoraDetailPage
+  );
+};
+
+export default QuoraDetailPage;
