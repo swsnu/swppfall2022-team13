@@ -150,7 +150,7 @@ export default function NewsArticle(props: NewsArticleType) {
             </div>
             <div id="rightContent">
               <div id="title">{props.title}</div>
-              <p id="content">{props.preview_prologue}</p>
+              <div id="content">{props.preview_prologue}</div>
 
               {/* <div id="dateContent">
             <text id="card-text">
@@ -190,7 +190,7 @@ export default function NewsArticle(props: NewsArticleType) {
             </div>
             <div id="rightContent">
               <div id="title">{props.title}</div>
-              <p id="content">{props.preview_prologue}</p>
+              <div id="content">{props.preview_prologue}</div>
             </div>
           </div>
         </div>
