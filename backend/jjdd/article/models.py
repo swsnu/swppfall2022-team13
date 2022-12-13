@@ -15,3 +15,4 @@ class Article(models.Model):
   bias = models.TextField(null=True)
   topic_id = models.TextField(null=True)
   related_articles = models.TextField(null=True, default="[]")
+  like_users = models.TextField(null=True, default="")
