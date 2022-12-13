@@ -220,7 +220,7 @@ const NewsDetailPage = () => {
               </button>
               <Fab
                 id="hello"
-                style={like ? { color: "#DCC4B2" } : { color: "#965727" }}
+                style={like ? { color: "#965727" } : { color: "#DCC4B2" }}
                 aria-label="like"
                 onClick={postLike}
               >
