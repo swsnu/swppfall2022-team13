@@ -109,11 +109,25 @@ q_li {
   text-align: left;
 }
 
-#qoraDetail_text1 {
+#quoraDetail_text1 {
+  background-color: white;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+#quoraDetail_text2 {
   background-color: white;
   color: #dcc4b2;
   text-align: center;
   font-size: 24px;
   border-radius: 5px;
   font-weight: 700;
+}
+
+#quora_all {
+  margin-top: 50px;
+  text-align: center;
 }
