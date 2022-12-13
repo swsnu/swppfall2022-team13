@@ -116,6 +116,12 @@ const QuoraListPage = () => {
     <div id="petitionList_title">
       <p></p><h1>'쿼라'를 열다. '국회'를 열다.</h1>
               </div>
+
+              <img
+                id="parliamentImg"
+                src="https://open.assembly.go.kr/images/intro_img01.png"
+              ></img>
+              <br></br>
               <br></br>
             <b><h4>"좋은 세상을 바라는 평범한 시민이 모일 때 세상은 바뀐다”</h4></b>
             -Yuri Andreavich Zhivago
@@ -152,7 +158,7 @@ const QuoraListPage = () => {
           </div>
           아래에서 원하는 정치인과 이야기를 시작해 보세요.
           <br></br>
-          언제든 당신의 목소리를 들어줄 정치인들 이랍니다.
+          언제든 당신의 목소리를 전할 수 있답니다.
           <p></p>
 
         <div className="row">

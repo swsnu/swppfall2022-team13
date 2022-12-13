@@ -112,7 +112,7 @@ const PetitionListPage = () => {
           <p></p>
 
           <div id="petitionList_next">
-          <p>아래에서 많은 청원이 당신을 기다립니다</p>
+          <p>▼ 아래에서 많은 청원이 당신을 기다립니다 ▼</p>
           </div>
           당신이 가져올 수 있는 세상의 변화를 확인하세요.
           <p></p>
