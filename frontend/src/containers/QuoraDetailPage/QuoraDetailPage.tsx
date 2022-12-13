@@ -296,9 +296,9 @@ const QuoraDetailPage = () => {
 
         <div className="quoraDetail_text1" id= "quoraDetail_text1">
           <p></p>
-            Current Quora: {authorName}
+            Current Quora: {authorName}, This isn't easter egg
             <br></br>
-            hi
+            This is here for CSS reason sorry hehe
           
 
           <div className="text2">
@@ -306,9 +306,6 @@ const QuoraDetailPage = () => {
           </div>
 
         </div>
-        <Button className= "btn btn-info" variant="primary" href="/quora" >되돌아가기</Button>
-        <br></br>
-        <br></br>
 
         <div className="quoraDetail_text2" id= "quoraDetail_text2">
         <br></br>
