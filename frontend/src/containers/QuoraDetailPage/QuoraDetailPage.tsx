@@ -1,9 +1,9 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import Comment from "../../components/Comment/Comment";
@@ -259,7 +259,6 @@ const QuoraDetailPage = () => {
           </div>
         </div>
       </div>
-
       <div className="card">
         <div className="card-header text-bg-danger mb-3">
           Current Quora: {authorName}
