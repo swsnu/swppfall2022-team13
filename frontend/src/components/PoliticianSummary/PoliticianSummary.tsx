@@ -1,3 +1,4 @@
+import "./PoliticianSummary.css"
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
@@ -22,11 +23,12 @@ function PoliticianSummary(props: PoliticianSummaryType) {
   return (
     <div onClick={() => onClickHandler()}>
       <Card
-        style={{ width: "13rem", height: "26rem" }}
+        style={{ width: "13rem", height: "26rem"}}
         bg="light"
-        border="dark"
+        border="gray"
         body={true}
         text="primary"
+        className="card"
       >
         <img src={props.image_src} width={160} height={190} />
         <Card.Body>
