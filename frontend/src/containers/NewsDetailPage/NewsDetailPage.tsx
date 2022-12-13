@@ -25,9 +25,26 @@ const NewsDetailPage = () => {
   //const relatedArticleContents: NewsArticleType[] = []
   const [related_article_list, set_related_article_list] = useState([]);
   const [err, setErr] = useState(false);
+  const [like, setLike] = useState(false);
+
   var length = 0;
 
+  const postLike = async () => {
+    const isLogin = await axios.get("/api/user/islogin/");
+    if (isLogin.data.status === true) {
+      await axios.post("/api/article/like/" + isLogin.data.id + "/", {
+        article_id: id,
+      });
+      setLike(!like);
+    } else {
+      return -1;
+    }
+  };
+
   var currArticleId: number = 1;
+  // const postLike = async () => {
+  //   await axios.post("/api/article/like/" + getId(), { article_id: id });
+  // };
   if (id !== undefined) {
     currArticleId = parseInt(id); //current url number is stored into currArticleId
   }
@@ -138,10 +155,6 @@ const NewsDetailPage = () => {
   */
 
   const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
-  const [like, setLike] = useState(false);
-  const onClickLike = () => {
-    setLike(!like);
-  };
   // const target_url: string = image_urls.find(
   //   (url) => url.journal_name === article.journal_name
   // ).image_url;
@@ -209,7 +222,7 @@ const NewsDetailPage = () => {
                 id="hello"
                 style={like ? { color: "#DCC4B2" } : { color: "#965727" }}
                 aria-label="like"
-                onClick={onClickLike}
+                onClick={postLike}
               >
                 <FavoriteIcon />
               </Fab>
