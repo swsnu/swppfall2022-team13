@@ -65,7 +65,30 @@ def related_articles(request, article_id):
     
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
+
+@csrf_exempt
+def article_filter_by_politician(request, politician_name):
+  if request.method == "GET":
+    result_list = [{ 'id': article['id'],
+                     'title': article['title'],
+                     'datetime': article['datetime'],
+                     'preview_prologue': article['preview_prologue'],
+                     'detail_link_postfix': article['detail_link_postfix'],
+                     'preview_img_path': article['preview_img_path'],
+                     'detail_img_path': article['detail_img_path'],
+                     'journal_name': article['journal_name'],
+                     'detail_text': article['detail_text'],
+                     'created_at': article['created_at'],
+                     'updated_at': article['updated_at'],
+                     'bias' : article['bias'],
+                     'topic_id' : article['topic_id'],
+                     'related_articles': article['related_articles']
+                     }
+                    for article in Article.objects.filter(detail_text__contains=politician_name).values()]
+    return JsonResponse(result_list, safe=False)
   
+  else:
+    return HttpResponseNotAllowed(["GET"])
   
 def article_detail(request, article_id):
   pass
