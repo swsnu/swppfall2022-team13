@@ -30,6 +30,7 @@ const QuoraDetailPage = () => {
   const [newCommentContent, setCommentContent] = useState<string>("");
   const [text, enableButton] = useState("");
   var title: string;
+  const [titleInput, setTitleContent] = useState<string>("");
   var content: string;
 
 
@@ -45,7 +46,7 @@ const QuoraDetailPage = () => {
     dispatch(fetchPoliticians());
   }, []); 
 
-  const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
+  var quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
 
   /*
   useEffect(() => {
@@ -68,7 +69,12 @@ const QuoraDetailPage = () => {
 
 
   if(!quora) { //if there is no petition found with the id, go back to petitionList (wrong URL)
-    navigate ("/quora")
+    dispatch(fetchQuoras());
+    quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
+    if(!quora) {
+      navigate ("/quora")
+    }
+    
   }
 
   const handleDelete = async () => { //When User Implemented, this should be ONLY FOR CREATOR
@@ -82,9 +88,9 @@ const QuoraDetailPage = () => {
       //const user_email = response['data']['email'];
       const user_id = response['data']['id'];
 
-      if(user_id === quora.author) {
+      if(user_id === quora?.author) {
           if(quora !== null && quora !== undefined) {
-            dispatch(deleteQuora(quora.id));
+            dispatch(deleteQuora(quora?.id));
             navigate("/quora")
           }
       } else {
@@ -112,20 +118,18 @@ const QuoraDetailPage = () => {
     const user_email = response['data']['email'];
     const user_id = response['data']['id'];
     console.log("curr user id is: " + user_id)
-    const data = { author_id: user_id, quora_id: currQuoraId, content: "당신을 응원합니다!" };
-    const result = await dispatch(postComment(data));
 
-      if (result.type === `${postComment.typePrefix}/fulfilled`) {
-        //setPath
-        //setSubmitted(true);
-        const msg = ["소중한 응원을 기록했어요."]
-        alert (msg)
-        //dispatch(fetchUser(data.author_id));
-        //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
-        window.location.reload()
-      } else {
-        console.log("오류가 발생하였습니다.");
-      }
+    if (!localStorage.getItem("hurray" + quora?.id)) {
+      localStorage.setItem("hurray" + quora?.id, "true")
+      const data = { author_id: user_id, quora_id: currQuoraId, content: "당신을 응원합니다!" };
+      const result = await dispatch(postComment(data));
+      const msg = ["소중한 응원을 기록했어요."]
+      alert (msg)
+    } else {
+      const msg = ['당신의 따뜻한 응원은 우리가 이미 한번 게시했어요!\n다른 소식을 전하는건 어떨까요?']
+      alert(msg)
+    }
+
 
     } else {
       const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
@@ -163,11 +167,14 @@ const QuoraDetailPage = () => {
         if (result.type === `${postComment.typePrefix}/fulfilled`) {
           //setPath
           //setSubmitted(true);
+          
           const msg = ["전해주신 소중한 이야기를 기록했어요."]
           alert (msg)
+          title = ""
+          window.location.reload()
           //dispatch(fetchUser(data.author_id));
           //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
-          //window.location.reload()
+          
         } else {
           console.log("오류가 발생하였습니다.");
         }
@@ -308,7 +315,7 @@ const QuoraDetailPage = () => {
         <br></br>
 
         <div className="quoraDetail_text2" id= "quoraDetail_text2">
-        <p></p>
+        <br></br>
           정치인 {authorName}의 쿼라입니다.
         </div>
         <br></br>
@@ -349,25 +356,26 @@ const QuoraDetailPage = () => {
           })}
 
         <div className="NewComment">
-        <p></p>
+        <br></br>
         <label>
-          Add a Remark:
+          당신의 소식이 궁금해요:
           &nbsp; &nbsp;
-          <input type="text" id ="new-comment-content-input" value={title} onChange={(event) => setCommentContent(event.target.value)} />
+          <input type="text" placeholder="우리가 들어줄게요" id ="new-comment-content-input" value={title} onChange={(event) => setCommentContent(event.target.value)} />
         </label>
         
           &nbsp; &nbsp;
           <button className="btn btn-outline-info" id="delete-comment-button" disabled={!text} onClick={() => postCommentHandler()}>내 소식 남기기</button>
-          <p></p>
+          <br></br>
         </div>
 
-        <p>
+
+        <br></br>
           <Button className= "btn btn-info" variant="primary" href="/quora" >되돌아가기</Button>
           &nbsp; &nbsp;
           <Button className= "btn btn-info" variant="primary" onClick={handleHurray} >응원하기</Button>
           &nbsp; &nbsp;
           <Button className= "btn btn-info" variant="primary" onClick={handleDelete} >쿼라를 닫을래요</Button>
-          </p>
+          <br></br>
 
 
       
