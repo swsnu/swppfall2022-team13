@@ -133,3 +133,13 @@ def like_politicians(request, user_id):
     
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
+
+@csrf_exempt
+def like_state(request, user_id, politician_id):
+  if request.method == "GET":
+    politician = Politician.objects.get(pk=politician_id)
+    user_id_with_comma = "," + str(user_id) + ","
+    return JsonResponse(user_id_with_comma in politician.like_users, safe=False)
+  
+  else:
+    return HttpResponseNotAllowed(["GET"])

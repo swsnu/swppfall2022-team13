@@ -172,6 +172,7 @@ const NewsDetailPage = () => {
       //if there is no article found with the id, go back to newsList (wrong URL)
       navigate("/news");
     }
+    
   }, []);
   const handleCopyClipBoard = async (text: any) => {
     try {

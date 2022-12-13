@@ -57,7 +57,7 @@ const PoliticianDetailPage = () => {
     const isLogin = await axios.get("/api/user/islogin/");
     if (isLogin.data.status === true) {
       await axios.post("/api/politician/like/" + isLogin.data.id + "/", {
-        article_id: id,
+        politician_id: id,
       });
       setLike(!like);
     } else {
@@ -67,7 +67,16 @@ const PoliticianDetailPage = () => {
 
   useEffect(() => {
     response_articles();
+    setLikeInit();
   }, []);
+  
+  const setLikeInit = async () => {
+    const user_id = await axios.get("/api/user/islogin/");
+    await axios.get(`/api/politician/like/${user_id.data.id}/${id}/`).then((res) => {
+      setLike(res.data);
+    })
+  }
+
 
   const getElectedNumber = (elected: string) => {
     if (elected == "초선") {
