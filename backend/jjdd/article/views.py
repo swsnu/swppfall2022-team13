@@ -118,9 +118,16 @@ def like_articles(request, user_id):
     # request format => {"article_id" : "1"}
     req_data = json.loads(request.body.decode())
     like_article = Article.objects.get(pk=req_data['article_id'])
-    like_article.like_users += "," + str(user_id) + ","
+    
+    user_id_with_comma = "," + str(user_id) + ","
+    if user_id_with_comma in like_article.like_users:
+      result = like_article.like_users.replace(user_id_with_comma, '')
+      like_article.like_users = result
+    else:  
+      like_article.like_users += user_id_with_comma
+    
     like_article.save()
-    return HttpResponse(status=201)        
+    return HttpResponse(status=201)
     
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
