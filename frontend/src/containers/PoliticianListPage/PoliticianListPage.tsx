@@ -30,6 +30,9 @@ const PoliticianListPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
     dispatch(fetchPoliticians());
   }, []);
   const dummyPolitician = {

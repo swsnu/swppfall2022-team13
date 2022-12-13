@@ -14,6 +14,9 @@ const PetitionListPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
     dispatch(fetchPetitions());
     console.log("this is state: " + petitionState)
   }, []);  
