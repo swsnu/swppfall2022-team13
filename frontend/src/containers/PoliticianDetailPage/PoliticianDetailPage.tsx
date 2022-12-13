@@ -1,10 +1,14 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { resolve } from "node:path/win32";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import NewsArticle from "../../components/NewsArticle/NewsArticle";
 import NumberInfo from "../../components/NumberInfo/NumberInfo";
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { AppDispatch } from "../../store";
 import {
   fetchPolitician,
@@ -19,19 +23,36 @@ const PoliticianDetailPage = () => {
 
   const { id } = useParams();
   useEffect(() => {
+    // Scroll goes up
     window.scrollTo({
       top: 0
     });
+
+    // dispatch redux
     dispatch(fetchPolitician(Number(id)));
   }, [id]);
   const [career, setCareer] = useState(false);
   const [prop, setProp] = useState(false);
+  const [politician_related_articles, set_politician_related_articles] = useState([]);
   const onCareerClickHandler = () => setCareer(!career);
   const onPropClickHandler = () => setProp(!prop);
   const politicianState = useSelector(selectPolitician);
   const politician = politicianState.politicians.find((p) => {
     return p.id === Number(id);
   });
+  
+  const response_articles = async () => {
+    await axios.get(`/api/article/${politician.name}`).then((res) => {
+      console.log(res.data);
+      set_politician_related_articles(res.data);
+    });
+  }
+
+  useEffect(() => {
+    response_articles();
+  }, []);
+
+
   const getElectedNumber = (elected: string) => {
     if (elected == "초선") {
       return 1;
@@ -41,9 +62,9 @@ const PoliticianDetailPage = () => {
       return elected.replace("선", "");
     }
   };
-  useEffect(() => {
-    dispatch(fetchPoliticians());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchPoliticians());
+  // }, []);
   return (
     <div className="PoliticianDetailPage">
       {/* <NavBar /> */}
@@ -86,50 +107,89 @@ const PoliticianDetailPage = () => {
               detail="21대 국회내 통계"
             ></NumberInfo>
           </div>
-          <div className="education-and-career-header">
-            <h4 id="intro-education-and-career">학력 및 경력</h4>
-            {career ? (
-              <ArrowDropUpIcon onClick={onCareerClickHandler}></ArrowDropUpIcon>
-            ) : (
-              <ArrowDropDownIcon
-                onClick={onCareerClickHandler}
-              ></ArrowDropDownIcon>
-            )}
+
+          <div>
+            <div className="education-and-career-header">
+              <h4 id="intro-education-and-career">학력 및 경력</h4>
+              {career ? (
+                <ArrowDropUpIcon onClick={onCareerClickHandler}></ArrowDropUpIcon>
+              ) : (
+                <ArrowDropDownIcon
+                  onClick={onCareerClickHandler}
+                ></ArrowDropDownIcon>
+              )}
+            </div>
+            <div className={career ? "education-and-career-body" : "none"}>
+              <p>
+                {politician.career_summary
+                  .replaceAll("&middot;", ", ")
+                  .replaceAll("&#039", ", ")
+                  .replaceAll("&bull;", ", ")
+                  .split("\r\n")
+                  .map((td) => {
+                    if (td === "") return;
+                    if (td.includes("학력") || td.includes("경력")) {
+                      return <p id="mini-title">{td}</p>;
+                    } else {
+                      return <li>{td}</li>;
+                    }
+                  })}
+              </p>
+            </div>
           </div>
-          <div className={career ? "education-and-career-body" : "none"}>
-            <p>
-              {politician.career_summary
-                .replaceAll("&middot;", ", ")
-                .replaceAll("&#039", ", ")
-                .replaceAll("&bull;", ", ")
-                .split("\r\n")
-                .map((td) => {
-                  if (td === "") return;
-                  if (td.includes("학력") || td.includes("경력")) {
-                    return <p id="mini-title">{td}</p>;
-                  } else {
-                    return <li>{td}</li>;
-                  }
+
+          <div>
+            <div className="proposals-header">
+              <h4 id="proposals-header">발의안</h4>
+              {prop ? (
+                <ArrowDropUpIcon onClick={onPropClickHandler}></ArrowDropUpIcon>
+              ) : (
+                <ArrowDropDownIcon
+                  onClick={onPropClickHandler}
+                ></ArrowDropDownIcon>
+              )}
+            </div>
+            <div className={prop ? "proposals-body" : "none"}>
+              <p>
+                {politician.proposals.split("\n").map((td) => {
+                  if (td != "") return <li>- {td}</li>;
                 })}
-            </p>
+              </p>
+            </div>
           </div>
-          <div className="proposals-header">
-            <h4 id="proposals-header">발의안</h4>
-            {prop ? (
-              <ArrowDropUpIcon onClick={onPropClickHandler}></ArrowDropUpIcon>
-            ) : (
-              <ArrowDropDownIcon
-                onClick={onPropClickHandler}
-              ></ArrowDropDownIcon>
-            )}
+
+          <div className="education-and-career-header">
+            <h4 id="intro-education-and-career">해당 정치인 관련 뉴스</h4>
           </div>
-          <div className={prop ? "proposals-body" : "none"}>
-            <p>
-              {politician.proposals.split("\n").map((td) => {
-                if (td != "") return <li>- {td}</li>;
-              })}
-            </p>
-          </div>
+            {
+              politician_related_articles.length === 0
+              ? (
+                  <div className="no-article">
+                    <WarningAmberIcon/>
+                    <p>아직 해당 정치인과 관련된 뉴스가 없습니다!</p>
+                  </div>
+                )
+              : politician_related_articles.map((td) => {
+                return(
+                  <NewsArticle
+                    key={td.id}
+                    url={td.url}
+                    id={td.id}
+                    datetime_str={td.datetime_str}
+                    detail_link_postfix={td.detail_link_postfix}
+                    preview_prologue={td.preview_prologue}
+                    journal_name={td.journal_name}
+                    preview_img_path={td.preview_img_path}
+                    detail_img_path={td.detail_img_path}
+                    width={190}
+                    height={150}
+                    title={td.title}
+                    detail_text={td.content}
+                  />
+                )
+              })
+            }
+
         </div>
       </div>
     </div>
