@@ -27,7 +27,16 @@ const NewsDetailPage = () => {
   const [err, setErr] = useState(false);
   const [like, setLike] = useState(false);
 
-  var length = 0;
+  useEffect(() => {
+    setLikeInit()
+  }, []);
+
+  const setLikeInit = async () => {
+    const user_id = await axios.get("/api/user/islogin/");
+    await axios.get(`/api/article/like/${user_id.data.id}/${id}/`).then((res) => {
+      setLike(res.data);
+    })
+  }
 
   const postLike = async () => {
     const isLogin = await axios.get("/api/user/islogin/");

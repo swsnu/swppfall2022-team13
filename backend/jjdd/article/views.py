@@ -131,6 +131,16 @@ def like_articles(request, user_id):
     
   else:
     return HttpResponseNotAllowed(["GET", "POST"])
+
+@csrf_exempt
+def like_state(request, user_id, article_id):
+  if request.method == "GET":
+    article = Article.objects.get(pk=article_id)
+    user_id_with_comma = "," + str(user_id) + ","
+    return JsonResponse(user_id_with_comma in article.like_users, safe=False)
+  
+  else:
+    return HttpResponseNotAllowed(["GET"])
   
 def article_detail(request, article_id):
   pass
