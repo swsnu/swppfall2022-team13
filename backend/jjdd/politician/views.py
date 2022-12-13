@@ -120,8 +120,15 @@ def like_politicians(request, user_id):
     # request format => {"politician_id" : "1"}
     req_data = json.loads(request.body.decode())
     like_politician = Politician.objects.get(pk=req_data['politician_id'])
-    like_politician.like_users += "," + str(user_id) + ","
+    
+    user_id_with_comma = "," + str(user_id) + ","
+    if user_id_with_comma in like_politician.like_users:
+      result = like_politician.like_users.replace(user_id_with_comma, '')
+      like_politician.like_users = result
+    else:  
+      like_politician.like_users += user_id_with_comma
     like_politician.save()
+    
     return HttpResponse(status=201)        
     
   else:
