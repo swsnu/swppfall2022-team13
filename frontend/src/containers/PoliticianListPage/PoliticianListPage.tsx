@@ -17,6 +17,7 @@ import {
 } from "../../store/slices/politician";
 import "./PoliticianListPage.css";
 import PersonSearchOutlinedIcon from "@mui/icons-material/PersonSearchOutlined";
+import { getAllJSDocTagsOfKind } from "typescript";
 
 const PoliticianListPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,14 +32,44 @@ const PoliticianListPage = () => {
   useEffect(() => {
     dispatch(fetchPoliticians());
   }, []);
+  const dummyPolitician = {
+    "id": -1,
+    "name": "",
+    "birth_date": "",
+    "job": "",
+    "image_src": "",
+    "political_party": "",
+    "election_precinct": "",
+    "committee": "",
+    "committees": "",
+    "reelection": "",
+    "election_units": "",
+    "email": "",
+    "career_summary": "",
+    "mona_code": "",
+    "proposals": ""
+}
+
   const filterName = politicianState.politicians.filter((p) => {
     return p.name.replace(" ", "").includes(search.replace(" ", ""));
   });
+  if(filterName.length%5 !== 0){
+    const length = filterName.length;
+    for(let i=0; i<5-length%5; i++){
+      filterName.push(dummyPolitician);
+    }
+  }
   const filterElect = politicianState.politicians.filter((p) => {
     return p.election_precinct
       .replace(" ", "")
       .includes(search.replace(" ", ""));
   });
+  if(filterElect.length%5 !== 0){
+    const length = filterElect.length;
+    for(let i=0; i<5-length%5; i++){
+      filterElect.push(dummyPolitician);
+    }
+  }
   // if (filterName.length > 6) {
   //   filterName = filterName.slice(0, 6);
   // }
@@ -49,6 +80,10 @@ const PoliticianListPage = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setFilter(event.target.value as string);
   };
+
+  const getAlign = () => {
+    return <Col></Col>
+  }
 
   return (
     <div className="PoliticianListPage">
@@ -97,6 +132,7 @@ const PoliticianListPage = () => {
           {filter === "name"
             ? filterName.map((data) => {
                 return (
+                  data.id === -1 ?<Col></Col>:
                   <Col>
                     <div className="SummaryComponent" key={data.id}>
                       <PoliticianSummary
@@ -114,6 +150,7 @@ const PoliticianListPage = () => {
               })
             : filterElect.map((data) => {
                 return (
+                  data.id === -1 ?<Col></Col>:
                   <Col>
                     <div className="SummaryComponent" key={data.id}>
                       <PoliticianSummary
@@ -128,7 +165,8 @@ const PoliticianListPage = () => {
                     </div>
                   </Col>
                 );
-              })}
+              })
+          }
         </Row>
       </div>
     </div>
