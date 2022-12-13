@@ -77,13 +77,15 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
+    "https://jungjungdangdang.shop"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:8000",
     "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "https://jungjungdangdang.shop"
 ]
 
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000'
@@ -165,5 +167,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #CRONTAB
 CRONJOBS = [
-    ('10 * * * *', 'article.cron.crawl_and_recommend', '>> ' + os.path.join(BASE_DIR, 'jjdd/log/cron.log') + ' 2>&1 ')
+    ('*/30 * * * *', 'article.cron.crawl_and_recommend', '>> ' + os.path.join(BASE_DIR, 'jjdd/log/cron.log') + ' 2>&1 ')
 ]
