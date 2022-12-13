@@ -165,5 +165,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #CRONTAB
 CRONJOBS = [
-    ('* * * * *', 'article.cron.crawl_and_recommend', '>> ' + os.path.join(BASE_DIR, 'jjdd/log/cron.log') + ' 2>&1 ')
+    ('10 * * * *', 'article.cron.crawl_and_recommend', '>> ' + os.path.join(BASE_DIR, 'jjdd/log/cron.log') + ' 2>&1 ')
 ]
