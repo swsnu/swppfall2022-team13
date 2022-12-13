@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { resolve } from 'node:path/win32';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -28,18 +29,14 @@ const NewsDetailPage = () => {
     //fetch all articles and save them to articleState
     dispatch(fetchArticles());
     const getRelatedArticle = async () => {
-      const related_article_json = await axios.get(
+      await axios.get(
         "/api/article/related/" +
           currArticleId +
           "/"
-      );
-      set_related_article_list(
-        related_article_json.data.replaceAll("'", "").slice(1, -1).split(",")
-      );
-      // if (related_article_list.length === 0) {
-      //   set_related_article_list([1]);
-      //   setErr(true);
-      // }
+      ).then((res) => {
+        const result = res.data.replaceAll("'", "").slice(1, -1).split(",");
+        set_related_article_list(result.filter((item: string) => item !== id));
+      });
     };
 
     getRelatedArticle();
