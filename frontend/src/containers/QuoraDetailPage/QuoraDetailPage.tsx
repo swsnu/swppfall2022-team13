@@ -10,6 +10,9 @@ import { AppDispatch } from "../../store";
 import { fetchComments, postComment, selectComment } from "../../store/slices/comment";
 import { fetchPoliticians, selectPolitician } from "../../store/slices/politician";
 import { deleteQuora, fetchQuoras, selectQuora } from "../../store/slices/quora";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import "./QuoraDetailPage.css";
 
 
 
@@ -42,7 +45,6 @@ const QuoraDetailPage = () => {
   }, []); 
 
   const quora = quoraState.quoras.find((value:any) => value.id === currQuoraId);
-  console.log("author politician id: " + quora.author_politicianId)
 
   /*
   useEffect(() => {
@@ -55,7 +57,7 @@ const QuoraDetailPage = () => {
   }, []); 
   
   const politician = politicianState.politicians.find((p) => {
-    return p.id === quora.author_politicianId; //quora.author <- politician id is stored
+    return p.id === quora?.author_politicianId; //quora.author <- politician id is stored
   });
   
   /*
@@ -106,11 +108,11 @@ const QuoraDetailPage = () => {
     } else if (elected == "재선") {
       return 2;
     } else {
-      return elected.replace("선", "");
+      return elected?.replace("선", "");
     }
   };
 
-  const authorName = politician.name //When User Implemented, this should be find names based on ID
+  const authorName = politician?.name //When User Implemented, this should be find names based on ID
 
 
   const postCommentHandler = async () => {
@@ -129,16 +131,16 @@ const QuoraDetailPage = () => {
         if (result.type === `${postComment.typePrefix}/fulfilled`) {
           //setPath
           //setSubmitted(true);
-          console.log("Comment Submitted")
+          console.log("전해주신 소중한 이야기를 기록했어요.")
           //dispatch(fetchUser(data.author_id));
           //navigate("/articles/" + id, {state: {author_id: data.author_id, passedUserState: userState}});
-          navigate("/quora/" + currQuoraId)
+          window.location.reload()
         } else {
-          console.log("Error on posting comment");
+          console.log("오류가 발생하였습니다.");
         }
 
       } else {
-        const msg = ['Login Required!']
+        const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
         alert(msg)
         navigate("/login")
       }
@@ -156,45 +158,45 @@ const QuoraDetailPage = () => {
 
   return ( //POLITICIAN LIST랑 연동하여 사진, 정보 등 가져오기!!!
   
-    <div className = "background_red">
+    <div className = "background">
         {/* <NavBar/> */}
 
-        <div className="PoliticianDetailPage">
+        <div className="q_PoliticianDetailPage">
       <div>
-        <div className="left">
-          <img src={politician.image_src} width={200} height={250} />
-          <h4 id="name">{politician.name + " " + politician.job}</h4>
-          <p id="birth-date">{politician.birth_date}</p>
-          <div className="political-party">
+        <div className="q_left">
+          <img src={politician?.image_src} width={200} height={250} />
+          <h4 id="q_name">{politician?.name + " " + politician?.job}</h4>
+          <p id="q_birth-date">{politician?.birth_date}</p>
+          <div className="q_political-party">
             <div>
               <img
-                id="na-image"
+                id="q_na-image"
                 src="http://www.mcnews.co.kr/imgdata/mcnews_kr/201404/20140408_161951_1f37cd4.jpg"
                 width={50}
                 height={50}
               ></img>
             </div>
-            <div id="political-party-right">
-              <span id="political-party-title">정당</span>
-              <p id="polticial-party-name">{politician.political_party}</p>
+            <div id="q_political-party-right">
+              <span id="q_political-party-title">정당</span>
+              <p id="q_polticial-party-name">{politician?.political_party}</p>
             </div>
           </div>
         </div>
-        <div className="right">
-          <div className="intro">
-            <h2 id="intro-title">의원소개</h2>
+        <div className="q_right">
+          <div className="q_intro">
+            <h2 id="q_intro-title">의원소개</h2>
           </div>
-          <div className="number-intro-header">
-            <h4 id="number-intro-header">숫자로 보는 정보</h4>
+          <div className="q_number-intro-header">
+            <h4 id="q_number-intro-header">숫자로 보는 정보</h4>
           </div>
-          <div id="number-intro-body">
+          <div id="q_number-intro-body">
             <NumberInfo
-              num={getElectedNumber(politician.reelection)}
+              num={getElectedNumber(politician?.reelection)}
               category="당선횟수"
-              detail={politician.election_units}
+              detail={politician?.election_units}
             ></NumberInfo>
             <NumberInfo
-              num={politician.proposals.split("\n").length}
+              num={politician?.proposals.split("\n").length}
               category="법안발의수"
               detail="21대 국회내 통계"
             ></NumberInfo>
@@ -204,23 +206,19 @@ const QuoraDetailPage = () => {
               detail="관심의원등록수"
             ></NumberInfo>
           </div>
-          <div className="education-and-career-header">
-            <h4 id="intro-education-and-career">학력 및 경력</h4>
-            <img
-              src={
-                career
-                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
-                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
-              }
-              width={30}
-              height={30}
-              onClick={onCareerClickHandler}
-              alt="career"
-            ></img>
+          <div className="q_education-and-career-header">
+            <h4 id="q_intro-education-and-career">학력 및 경력</h4>
+            {career ? (
+              <ArrowDropUpIcon onClick={onCareerClickHandler}></ArrowDropUpIcon>
+            ) : (
+              <ArrowDropDownIcon
+                onClick={onCareerClickHandler}
+              ></ArrowDropDownIcon>
+            )}
           </div>
           <div className={career ? "education-and-career-body" : "none"}>
             <p>
-              {politician.career_summary
+              {politician?.career_summary
                 .replaceAll("&middot;", ", ")
                 .replaceAll("&#039", ", ")
                 .replaceAll("&bull;", ", ")
@@ -228,30 +226,26 @@ const QuoraDetailPage = () => {
                 .map((td) => {
                   if (td === "") return;
                   if (td.includes("학력") || td.includes("경력")) {
-                    return <p id="mini-title">{td}</p>;
+                    return <p id="q_mini-title">{td}</p>;
                   } else {
                     return <li>{td}</li>;
                   }
                 })}
             </p>
           </div>
-          <div className="proposals-header">
-            <h4 id="proposals-header">발의안</h4>
-            <img
-              src={
-                prop
-                  ? "https://png.pngtree.com/element_our/20190531/ourlarge/pngtree-up-arrow-image_1287479.jpg"
-                  : "https://cdn.icon-icons.com/icons2/2098/PNG/512/arrow_down_icon_128951.png"
-              }
-              width={30}
-              height={30}
-              alt="props"
-              onClick={onPropClickHandler}
-            ></img>
+          <div className="q_proposals-header">
+            <h4 id="q_proposals-header">발의안</h4>
+            {prop ? (
+              <ArrowDropUpIcon onClick={onPropClickHandler}></ArrowDropUpIcon>
+            ) : (
+              <ArrowDropDownIcon
+                onClick={onPropClickHandler}
+              ></ArrowDropDownIcon>
+            )}
           </div>
           <div className={prop ? "proposals-body" : "none"}>
             <p>
-              {politician.proposals.split("\n").map((td) => {
+              {politician?.proposals.split("\n").map((td) => {
                 if (td != "") return <li>- {td}</li>;
               })}
             </p>
@@ -259,27 +253,26 @@ const QuoraDetailPage = () => {
         </div>
       </div>
     </div>
+    <br></br>
+    <br></br>
+              
+        <div className="qoraDetail_text1" id= "qoraDetail_text1">
+          <br></br>
+          Current Quora: {authorName}
+        </div>
 
+        <div className="card-body">
+          <h5 className="card-title">{quora?.title}</h5>
+        </div>
 
-      <div className="card">
-        
-      
-      <div className="card-header text-bg-danger mb-3">
-        Current Quora: {authorName}
-      </div>
-
-      <div className="card-body">
-        <h5 className="card-title">{quora?.title}</h5>
-      </div>
-
-      <div className="card-body">
-        <p className="card-text">{quora?.content}</p>
-        <p>
-        <a href="/petition" className="btn btn-primary">Back</a>
-        &nbsp; &nbsp;
-        <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={handleDelete}>Close Quora</button>
-        </p>
-      </div>
+        <div className="card-body">
+          <p className="card-text">{quora?.content}</p>
+          <p>
+          <a href="/petition" className="btn btn-primary">Back</a>
+          &nbsp; &nbsp;
+          <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={handleDelete}>Close Quora</button>
+          </p>
+        </div>
 
 
       {commentState.comments.map((td: any) => {
@@ -318,7 +311,7 @@ const QuoraDetailPage = () => {
         </div>
 
 
-      </div>
+      
     </div>
     );
   }

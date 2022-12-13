@@ -9,6 +9,8 @@ import {
   selectPolitician,
 } from "../../store/slices/politician";
 import { fetchQuoras, postQuora, selectQuora } from "../../store/slices/quora";
+import "./QuoraListPage.css";
+
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -51,7 +53,7 @@ const QuoraListPage = () => {
   ]);
 
   const clickOpenQuoraHandler = async () => {
-    if (window.confirm("Are you sure?")) { 
+    if (window.confirm("반가워요! 쿼라를 열까요?")) { 
 
       const response = await axios.get("/api/user/islogin/");
       console.log("Login status: ", response.data);
@@ -86,18 +88,19 @@ const QuoraListPage = () => {
       
           if (responseQuora.type === `${postQuora.typePrefix}/fulfilled`) {
             
-            const msg2 = ['Quora Opened!']
-            alert(msg2)
-            navigate("/quora")
+            
           } 
 
+          const msg2 = ['잘 하셨어요. 이제 목소리를 들을 준비가 되었답니다.']
+          alert(msg2)
+          window.location.reload()
+
         } else {
-          const msg = ['Politician ID Required']
+          const msg = ['앗, 정치인이 아니시군요! 이미 존재하는 쿼라에 참여해 주세요.']
           alert(msg)
-          navigate("/quora")
         }
       } else {
-        const msg = ['Login Required']
+        const msg = ['앗, 로그인이 필요합니다! 저희가 이동시켜 드릴게요.']
         alert(msg)
         navigate("/login")
       }
@@ -110,13 +113,48 @@ const QuoraListPage = () => {
     <>
     <div>
     {/* <NavBar /> */}
-      <h1>QUORA LIST</h1>
-
+    <div id="petitionList_title">
+      <p></p><h1>'쿼라'를 열다. '국회'를 열다.</h1>
+              </div>
+              <br></br>
+            <b><h4>"좋은 세상을 바라는 평범한 시민이 모일 때 세상은 바뀐다”</h4></b>
+            -Yuri Andreavich Zhivago
+            
+            <br></br>
+            <br></br>
+            <br></br>
+            
           <p>
-          This is our list of Opened Quoras!
+          '정정당당'의 쿼라는 시민이 진짜 주인이 되는 나라를 위해 만들어 졌습니다.
+          <br></br>
+          <br></br>
+          <div id="petitionList_next">
+          <p>국민이 물으면, 정치인이 답한다.</p>
+          </div>
+          쿼라를 통해 우리는 시민과 함께 약자와 소수자의 목소리에 귀 기울입니다.
           </p>
-          <button className="quoraTitle" type="button" onClick={clickOpenQuoraHandler}><b>Open Quora</b></button>
+          이곳에서 시민은 합리적이고 타당한 비판 뿐 아니라 실현 가능한 대안까지 제시합니다. 
+           <br></br>
+           또 정치인은 국회 안에만 머무르지 않고 시민의 삶 가까이 필요한 각종 방안을 연구하고 제시합니다. 
+          <br></br>
+          <br></br>
+          <br></br>
+          정치인이신가요? 아래를 눌러 목소리를 들어 보세요.
+          <p></p>
+          <button className="btn btn-outline-info" type="button" onClick={clickOpenQuoraHandler}><b>목소리 듣기</b></button>
           
+          <p></p>
+          <p></p>
+          <br></br>
+
+          <div id="petitionList_next">
+          <p>왜요? 혹시 무슨 일이 있나요?</p>
+          </div>
+          아래에서 원하는 정치인과 이야기를 시작해 보세요.
+          <br></br>
+          언제든 당신의 목소리를 들어줄 정치인들 이랍니다.
+          <p></p>
+
         <div className="row">
                 <div className="col-sm-6">
                   <div className="LeftNews">
