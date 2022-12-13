@@ -5,6 +5,8 @@ import { useParams } from "react-router";
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from "../../store";
 import { deletePetition, fetchPetitions, selectPetition, voteDown, voteUp } from "../../store/slices/petition";
+import "./PetitionDetailPage.css";
+
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -100,28 +102,36 @@ const PetitionDetailPage = () => {
       <div className="card">
         
       
-      <div className="card-header text-bg-danger mb-3">
-        Current Vote Counts: {petition?.vote}
+      <div id = "petiton-card-header" className="card-header">
+        이 청원은 지금까지 {petition?.vote} 명이 동의했어요
       </div>
 
-      <img src={petition?.photo_url} 
+      <br></br> 
+      당신의 작은 참여가 온 세상을 바꿉니다.
+      <br></br> 
+      이 청원은 정정당당이 가져온 {petition?.id} 번째 변화입니다.
+      <p></p>
+      <p></p>
+      <p><img src={petition?.photo_url} 
           width = "600px"
           height = "300px" 
           object-fit = "cover"
-          className="rounded mx-auto d-block" alt="..."></img>
+          className="rounded mx-auto d-block" alt="..."></img></p>
 
       <div className="card-body">
-        <h5 className="card-title">{petition?.title}</h5>
+        <b><h5 className="card-title">{petition?.title}</h5></b>
       </div>
 
       <div className="card-body">
-        <p className="card-text">{petition?.content}</p>
+
+
+        <p id = "petition-card-text" className="card-text" >{petition?.content}</p>
         <p>
-        <a href="/petition" className="btn btn-primary">Back</a>
+        <a href="/petition" className="btn btn-success">되돌아가기</a>
         &nbsp; &nbsp;
-        <button type="button" className="btn btn-primary" id="liveAlertBtn" onClick={handleDelete}>Delete Petition</button>
+        <button type="button" className="btn btn-success" id="liveAlertBtn" onClick={handleDelete}>청원 삭제</button>
         &nbsp; &nbsp;
-        <button type="button" className="btn btn-primary" id="voteBtn" onClick={handleVote}>Vote!</button>
+        <button type="button" className="btn btn-success" id="voteBtn" onClick={handleVote}>동의해요!</button>
         </p>
       </div>
       </div>

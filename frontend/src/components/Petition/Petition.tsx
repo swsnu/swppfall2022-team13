@@ -32,11 +32,11 @@ export default function Petition(props: PetitionType) {
       <Card style={{ width: '18rem', height: '25rem', float: 'left'}}>
         <Card.Img style={{ width: '18rem', height: '10rem', display: 'inline-block'}} variant="top" src={props.photo_url} />
         <Card.Body>
-          <Card.Title>Current Vote: {props.vote}</Card.Title>
+          <Card.Title>우리는 {props.vote} 표를 받았어요</Card.Title>
           <Card.Text>
           {props?.title}
           </Card.Text>
-          <Button id= "detail-button" variant="primary" onClick={onClickHandler} >Details</Button>
+          <Button className= "btn btn-success" variant="primary" onClick={onClickHandler} >더 알아보기</Button>
         </Card.Body>
       </Card>
       
