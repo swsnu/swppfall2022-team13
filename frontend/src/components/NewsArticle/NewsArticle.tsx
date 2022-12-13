@@ -131,73 +131,69 @@ export default function NewsArticle(props: NewsArticleType) {
       props.journal_name === "프레시안"
     ) {
       return (
-        <p>
-          <div id="NewsArticleLeft" onClick={onClickHandler}>
-            <div id="ArticleHeader">
-              <div id="journal_name">
-                <img id="header_image" src={target_url}></img>
-                {props.journal_name}
-              </div>
-            </div>
-            <div id="contents">
-              <div id="leftContent">
-                <img
-                  id="image"
-                  src={props.detail_img_path}
-                  alt="Hmm"
-                  width={props.width}
-                  height={props.height}
-                />
-              </div>
-              <div id="rightContent">
-                <div id="title">{props.title}</div>
-                <p id="content">{props.preview_prologue}</p>
-
-                {/* <div id="dateContent">
-              <text id="card-text">
-                <small id="text-muted">
-                  Created: {props?.datetime_str}
-                </small>
-              </text>
-              &nbsp; &nbsp;
-              <text id="card-text">
-                <small id="text-muted">
-                  Last updated: {props?.updated_at}
-                </small>
-              </text>
-            </div> */}
-              </div>
+        <div id="NewsArticleLeft" onClick={onClickHandler}>
+          <div id="ArticleHeader">
+            <div id="journal_name">
+              <img id="header_image" src={target_url}></img>
+              {props.journal_name}
             </div>
           </div>
-        </p>
+          <div id="contents">
+            <div id="leftContent">
+              <img
+                id="image"
+                src={props.detail_img_path}
+                alt="Hmm"
+                width={props.width}
+                height={props.height}
+              />
+            </div>
+            <div id="rightContent">
+              <div id="title">{props.title}</div>
+              <p id="content">{props.preview_prologue}</p>
+
+              {/* <div id="dateContent">
+            <text id="card-text">
+              <small id="text-muted">
+                Created: {props?.datetime_str}
+              </small>
+            </text>
+            &nbsp; &nbsp;
+            <text id="card-text">
+              <small id="text-muted">
+                Last updated: {props?.updated_at}
+              </small>
+            </text>
+          </div> */}
+            </div>
+          </div>
+        </div>
       );
     } else {
       return (
-        <p>
-          <div id="NewsArticleRight" onClick={onClickHandler}>
-            <div id="ArticleHeader">
-              <div id="journal_name">
-                <img id="header_image" src={target_url}></img>
-                {props.journal_name}
-              </div>
-            </div>
-            <div id="contents">
-              <div id="leftContent">
-                <img
-                  id="image"
-                  src={props.detail_img_path}
-                  alt="Hmm"
-                  width={props.width}
-                  height={props.height}
-                />
-              </div>
-              <div id="rightContent">
-                <div id="title">{props.title}</div>
-                <p id="content">{props.preview_prologue}</p>
-              </div>
+        <div id="NewsArticleRight" onClick={onClickHandler}>
+          <div id="ArticleHeader">
+            <div id="journal_name">
+              <img id="header_image" src={target_url}></img>
+              {props.journal_name}
             </div>
           </div>
-        </p>
+          <div id="contents">
+            <div id="leftContent">
+              <img
+                id="image"
+                src={props.detail_img_path}
+                alt="Hmm"
+                width={props.width}
+                height={props.height}
+              />
+            </div>
+            <div id="rightContent">
+              <div id="title">{props.title}</div>
+              <p id="content">{props.preview_prologue}</p>
+            </div>
+          </div>
+        </div>
       );
     }
   }
