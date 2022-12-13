@@ -5,10 +5,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { resolve } from "node:path/win32";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import NavigationIcon from "@mui/icons-material/Navigation";
 import { useParams } from "react-router";
 import NewsArticle from "../../components/NewsArticle/NewsArticle";
 import NumberInfo from "../../components/NumberInfo/NumberInfo";
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { AppDispatch } from "../../store";
 import {
   fetchPolitician,
@@ -17,15 +22,18 @@ import {
 } from "../../store/slices/politician";
 import "./PoliticianDetailPage.css";
 
-
 const PoliticianDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { id } = useParams();
+  const [like, setLike] = useState(false);
+  const onClickLike = () => {
+    setLike(!like);
+  };
   useEffect(() => {
     // Scroll goes up
     window.scrollTo({
-      top: 0
+      top: 0,
     });
 
     // dispatch redux
@@ -33,25 +41,25 @@ const PoliticianDetailPage = () => {
   }, [id]);
   const [career, setCareer] = useState(false);
   const [prop, setProp] = useState(false);
-  const [politician_related_articles, set_politician_related_articles] = useState([]);
+  const [politician_related_articles, set_politician_related_articles] =
+    useState([]);
   const onCareerClickHandler = () => setCareer(!career);
   const onPropClickHandler = () => setProp(!prop);
   const politicianState = useSelector(selectPolitician);
   const politician = politicianState.politicians.find((p) => {
     return p.id === Number(id);
   });
-  
+
   const response_articles = async () => {
     await axios.get(`/api/article/${politician.name}`).then((res) => {
       console.log(res.data);
       set_politician_related_articles(res.data);
     });
-  }
+  };
 
   useEffect(() => {
     response_articles();
   }, []);
-
 
   const getElectedNumber = (elected: string) => {
     if (elected == "초선") {
@@ -71,8 +79,22 @@ const PoliticianDetailPage = () => {
       <div>
         <div className="left">
           <img src={politician.image_src} width={200} height={250} />
-          <h4 id="name">{politician.name + " " + politician.job}</h4>
-          <p id="birth-date">{politician.birth_date}</p>
+          <div id="name_and_like">
+            <div>
+              <h4 id="name">{politician.name + " " + politician.job}</h4>
+              <p id="birth-date">{politician.birth_date}</p>
+            </div>
+            <div id="like">
+              <Fab
+                id="hello"
+                style={like ? { color: "#DCC4B2" } : { color: "#965727" }}
+                aria-label="like"
+                onClick={onClickLike}
+              >
+                <FavoriteIcon />
+              </Fab>
+            </div>
+          </div>
           <div className="political-party">
             <div>
               <img
@@ -112,7 +134,9 @@ const PoliticianDetailPage = () => {
             <div className="education-and-career-header">
               <h4 id="intro-education-and-career">학력 및 경력</h4>
               {career ? (
-                <ArrowDropUpIcon onClick={onCareerClickHandler}></ArrowDropUpIcon>
+                <ArrowDropUpIcon
+                  onClick={onCareerClickHandler}
+                ></ArrowDropUpIcon>
               ) : (
                 <ArrowDropDownIcon
                   onClick={onCareerClickHandler}
@@ -161,35 +185,32 @@ const PoliticianDetailPage = () => {
           <div className="education-and-career-header">
             <h4 id="intro-education-and-career">해당 정치인 관련 뉴스</h4>
           </div>
-            {
-              politician_related_articles.length === 0
-              ? (
-                  <div className="no-article">
-                    <WarningAmberIcon/>
-                    <p>아직 해당 정치인과 관련된 뉴스가 없습니다!</p>
-                  </div>
-                )
-              : politician_related_articles.map((td) => {
-                return(
-                  <NewsArticle
-                    key={td.id}
-                    url={td.url}
-                    id={td.id}
-                    datetime_str={td.datetime_str}
-                    detail_link_postfix={td.detail_link_postfix}
-                    preview_prologue={td.preview_prologue}
-                    journal_name={td.journal_name}
-                    preview_img_path={td.preview_img_path}
-                    detail_img_path={td.detail_img_path}
-                    width={190}
-                    height={150}
-                    title={td.title}
-                    detail_text={td.content}
-                  />
-                )
-              })
-            }
-
+          {politician_related_articles.length === 0 ? (
+            <div className="no-article">
+              <WarningAmberIcon />
+              <p>아직 해당 정치인과 관련된 뉴스가 없습니다!</p>
+            </div>
+          ) : (
+            politician_related_articles.map((td) => {
+              return (
+                <NewsArticle
+                  key={td.id}
+                  url={td.url}
+                  id={td.id}
+                  datetime_str={td.datetime_str}
+                  detail_link_postfix={td.detail_link_postfix}
+                  preview_prologue={td.preview_prologue}
+                  journal_name={td.journal_name}
+                  preview_img_path={td.preview_img_path}
+                  detail_img_path={td.detail_img_path}
+                  width={190}
+                  height={150}
+                  title={td.title}
+                  detail_text={td.content}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </div>
