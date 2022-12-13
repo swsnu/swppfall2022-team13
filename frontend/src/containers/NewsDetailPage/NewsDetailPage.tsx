@@ -7,6 +7,12 @@ import { useNavigate } from "react-router-dom";
 import NewsArticle, {
   NewsArticleType,
 } from "../../components/NewsArticle/NewsArticle";
+import * as React from "react";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import NavigationIcon from "@mui/icons-material/Navigation";
 import { AppDispatch } from "../../store";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsDetailPage.css";
@@ -29,7 +35,7 @@ const NewsDetailPage = () => {
 
   useEffect(() => {
     window.scrollTo({
-      top: 0
+      top: 0,
     });
 
     //fetch all articles and save them to articleState
@@ -132,7 +138,10 @@ const NewsDetailPage = () => {
   */
 
   const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
-
+  const [like, setLike] = useState(false);
+  const onClickLike = () => {
+    setLike(!like);
+  };
   // const target_url: string = image_urls.find(
   //   (url) => url.journal_name === article.journal_name
   // ).image_url;
@@ -157,14 +166,16 @@ const NewsDetailPage = () => {
       <div className="whole_article">
         <div id="article_detail">
           <div id="img_div">
-            <img
-              id="journal_img"
-              src={
-                image_urls.find(
-                  (url) => url.journal_name === article.journal_name
-                ).image_url
-              }
-            ></img>
+            <div>
+              <img
+                id="journal_img"
+                src={
+                  image_urls.find(
+                    (url) => url.journal_name === article.journal_name
+                  ).image_url
+                }
+              ></img>
+            </div>
           </div>
           <div id="article_title">{article.title}</div>
           <img
@@ -181,18 +192,27 @@ const NewsDetailPage = () => {
           </div>
           <div id="btns">
             <p>
-              <a href="/news" className="btn btn-primary">
+              <a href="/news" className="btn btn-light">
                 Back
               </a>
               &nbsp; &nbsp;
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-light"
                 id="liveAlertBtn"
+                color="red"
                 onClick={() => handleCopyClipBoard(article?.detail_text)}
               >
                 Copy Content
               </button>
+              <Fab
+                id="hello"
+                style={like ? { color: "#DCC4B2" } : { color: "#965727" }}
+                aria-label="like"
+                onClick={onClickLike}
+              >
+                <FavoriteIcon />
+              </Fab>
             </p>
           </div>
         </div>

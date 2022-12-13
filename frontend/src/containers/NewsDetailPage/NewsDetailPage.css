@@ -10,6 +10,15 @@
   border-right: 1px solid #efeff0;
 }
 
+#article_header {
+  display: flex;
+}
+
+#likes {
+  margin-top: -5px;
+  margin-left: 630px;
+}
+
 #journal_img {
   width: 50px;
   height: 50px;
@@ -18,6 +27,7 @@
 
 #img_div {
   text-align: left;
+  display: flex;
 }
 #main_img {
   margin-top: 15px;
@@ -27,6 +37,10 @@
 
 #btns {
   margin-right: 80px;
+}
+
+.btn {
+  background-color: red;
 }
 #detail_text {
   width: 700px;
@@ -52,4 +66,8 @@
   text-underline-position: under;
   font-weight: bold;
   color: #b9a595;
+}
+
+#hello {
+  margin-left: 15px;
 }

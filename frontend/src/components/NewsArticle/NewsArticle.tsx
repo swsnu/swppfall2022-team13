@@ -1,7 +1,11 @@
 import "./NewsArticle.css";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import * as React from "react";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import NavigationIcon from "@mui/icons-material/Navigation";
 
 export interface NewsArticleType {
   id?: number;
@@ -124,7 +128,7 @@ export default function NewsArticle(props: NewsArticleType) {
   } else {
     if (
       props.journal_name === "한겨레" ||
-      props.journal_name === "매일경제" ||
+      props.journal_name === "이데일리" ||
       props.journal_name === "머니투데이" ||
       props.journal_name === "경향신문" ||
       props.journal_name === "오마이뉴스" ||
