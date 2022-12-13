@@ -3,19 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { AppDispatch } from "../../store";
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Card from "react-bootstrap/Card";
+import { Row, Col } from "react-bootstrap";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import {
   fetchPoliticians,
   selectPolitician,
 } from "../../store/slices/politician";
 import "./PoliticianListPage.css";
-import PersonSearchOutlinedIcon from '@mui/icons-material/PersonSearchOutlined';
+import PersonSearchOutlinedIcon from "@mui/icons-material/PersonSearchOutlined";
 
 const PoliticianListPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,22 +31,20 @@ const PoliticianListPage = () => {
   useEffect(() => {
     dispatch(fetchPoliticians());
   }, []);
-  let filterName = politicianState.politicians.filter((p) => {
-    if (search != "")
-      return p.name.replace(" ", "").includes(search.replace(" ", ""));
+  const filterName = politicianState.politicians.filter((p) => {
+    return p.name.replace(" ", "").includes(search.replace(" ", ""));
   });
-  let filterElect = politicianState.politicians.filter((p) => {
-    if (search != "")
-      return p.election_precinct
-        .replace(" ", "")
-        .includes(search.replace(" ", ""));
+  const filterElect = politicianState.politicians.filter((p) => {
+    return p.election_precinct
+      .replace(" ", "")
+      .includes(search.replace(" ", ""));
   });
-  if (filterName.length > 6) {
-    filterName = filterName.slice(0, 6);
-  }
-  if (filterElect.length > 6) {
-    filterElect = filterElect.slice(0, 6);
-  }
+  // if (filterName.length > 6) {
+  //   filterName = filterName.slice(0, 6);
+  // }
+  // if (filterElect.length > 6) {
+  //   filterElect = filterElect.slice(0, 6);
+  // }
 
   const handleChange = (event: SelectChangeEvent) => {
     setFilter(event.target.value as string);
@@ -55,11 +54,11 @@ const PoliticianListPage = () => {
     <div className="PoliticianListPage">
       {/* <NavBar /> */}
       <div className="FilterAndSearchBar">
-          <Box
+        <Box
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            '& > :not(style)': {
+            display: "flex",
+            flexWrap: "wrap",
+            "& > :not(style)": {
               m: 1,
               width: 1000,
               height: 100,
@@ -67,19 +66,22 @@ const PoliticianListPage = () => {
           }}
         >
           <Paper className="Search-paper" elevation={1} variant="outlined">
-              <PersonSearchOutlinedIcon className="Search-Icon" sx={{ fontSize: 50 }}></PersonSearchOutlinedIcon>
-              <FormControl className="Search-option">
+            <PersonSearchOutlinedIcon
+              className="Search-Icon"
+              sx={{ fontSize: 50 }}
+            ></PersonSearchOutlinedIcon>
+            <FormControl className="Search-option">
               <InputLabel id="demo-simple-select-label">검색 기준</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={filter}
-                  label="정치인 검색"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={"name"}>이름으로 검색</MenuItem>
-                  <MenuItem value={"area"}>선거구로 검색</MenuItem>
-                </Select>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={filter}
+                label="정치인 검색"
+                onChange={handleChange}
+              >
+                <MenuItem value={"name"}>이름으로 검색</MenuItem>
+                <MenuItem value={"area"}>선거구로 검색</MenuItem>
+              </Select>
             </FormControl>
             <SearchBar onChange={onSearchBarChangeHandler} search={search} />
           </Paper>
@@ -91,37 +93,41 @@ const PoliticianListPage = () => {
         </select> */}
       </div>
       <div className="PoliticianSummarys">
-        {filter === "name"
-          ? filterName.map((data) => {
-              return (
-                <div className="SummaryComponent" key={data.id}>
-                  <PoliticianSummary
-                    id={data.id}
-                    image_src={data.image_src}
-                    name={data.name}
-                    elect={data.election_precinct}
-                    birthdate={data.birth_date}
-                    politicalParty={data.political_party}
-                    position={data.job}
-                  />
-                </div>
-              );
-            })
-          : filterElect.map((data) => {
-              return (
-                <div className="SummaryComponent" key={data.id}>
-                  <PoliticianSummary
-                    id={data.id}
-                    image_src={data.image_src}
-                    name={data.name}
-                    elect={data.election_precinct}
-                    birthdate={data.birth_date}
-                    politicalParty={data.political_party}
-                    position={data.job}
-                  />
-                </div>
-              );
-            })}
+        <Row>
+          {filter === "name"
+            ? filterName.map((data) => {
+                return (
+                  <Col>
+                    <div className="SummaryComponent" key={data.id}>
+                      <PoliticianSummary
+                        id={data.id}
+                        image_src={data.image_src}
+                        name={data.name}
+                        elect={data.election_precinct}
+                        birthdate={data.birth_date}
+                        politicalParty={data.political_party}
+                        position={data.job}
+                      />
+                    </div>
+                  </Col>
+                );
+              })
+            : filterElect.map((data) => {
+                return (
+                  <div className="SummaryComponent" key={data.id}>
+                    <PoliticianSummary
+                      id={data.id}
+                      image_src={data.image_src}
+                      name={data.name}
+                      elect={data.election_precinct}
+                      birthdate={data.birth_date}
+                      politicalParty={data.political_party}
+                      position={data.job}
+                    />
+                  </div>
+                );
+              })}
+        </Row>
       </div>
     </div>
   );

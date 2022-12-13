@@ -1,10 +1,12 @@
-import axios from 'axios';
-import { resolve } from 'node:path/win32';
+import axios from "axios";
+import { resolve } from "node:path/win32";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { useNavigate } from 'react-router-dom';
-import NewsArticle, { NewsArticleType, } from "../../components/NewsArticle/NewsArticle";
+import { useNavigate } from "react-router-dom";
+import NewsArticle, {
+  NewsArticleType,
+} from "../../components/NewsArticle/NewsArticle";
 import { AppDispatch } from "../../store";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsDetailPage.css";
@@ -33,14 +35,14 @@ const NewsDetailPage = () => {
     //fetch all articles and save them to articleState
     dispatch(fetchArticles());
     const getRelatedArticle = async () => {
-      await axios.get(
-        "/api/article/related/" +
-          currArticleId +
-          "/"
-      ).then((res) => {
-        const result = res.data.replaceAll("'", "").slice(1, -1).split(",");
-        set_related_article_list(result.filter((item: string) => item !== id));
-      });
+      await axios
+        .get("/api/article/related/" + currArticleId + "/")
+        .then((res) => {
+          const result = res.data.replaceAll("'", "").slice(1, -1).split(",");
+          set_related_article_list(
+            result.filter((item: string) => item !== id)
+          );
+        });
     };
 
     getRelatedArticle();
@@ -169,7 +171,7 @@ const NewsDetailPage = () => {
             id="main_img"
             src={article?.detail_img_path}
             width="700px"
-            height="350px"
+            height="400px"
             object-fit="cover"
             alt="..."
           ></img>
