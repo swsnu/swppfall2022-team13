@@ -15,10 +15,10 @@ const UserPage = () => {
 
     return (
         <>
-          <h1>This is JJDD UserPage</h1>
-          <h2>USER_ID: {id}</h2>
+          <h1>UserPage</h1>
+          <h3>USER_ID: {id}</h3>
               <p>
-              so what
+              Hi welcome to JJDD!
               </p>
           <button onClick={logoutHandler}>Logout</button>
         </>

@@ -23,6 +23,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../asset/image/logo1_cropped.png';
 import './MainPage.css';
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -112,6 +113,16 @@ export default function MiniDrawer(props: iProps) {
     setOpen(false);
   };
 
+  const handleAccountClick = async () => {
+    const isLogin = await axios.get("/api/user/islogin/");
+    if(isLogin.data.status === true){
+      navigate(`/user/${isLogin.data.id}`);
+    }
+    else{
+      navigate('/login/')
+    }    
+  }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -173,7 +184,7 @@ export default function MiniDrawer(props: iProps) {
         <Divider />
         <List>
           {['Account'].map((text) => (
-            <ListItem onClick={() => navigate('/login/')} key={text} disablePadding sx={{ display: 'block' }}>
+            <ListItem onClick={handleAccountClick} key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

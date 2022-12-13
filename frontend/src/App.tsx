@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/main" element={<MainPage content={<NewsListPage />} />} />
           <Route path="/login" element={<MainPage content={<LoginPage></LoginPage>} />} />
-          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/user/:id" element={<MainPage content={<UserPage />} />} />
           <Route path="/signup" element={<MainPage content={<SignUpPage />} />} />
           <Route path="/petition" element={<MainPage content={<PetitionListPage />} />} />
           <Route path="/petition/create" element={<MainPage content={<PetitionCreatePage />}/>} />
