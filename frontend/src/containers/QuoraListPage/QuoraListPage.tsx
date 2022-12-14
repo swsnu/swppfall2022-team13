@@ -141,8 +141,7 @@ const QuoraListPage = () => {
           <p></p>
 
         <div className="row">
-                <div className="col-sm-6">
-                  <div className="LeftNews">
+                  <div className="petitionsMap">
 
                       {quoraState.quoras.map((td: any) => {
                             return (
@@ -161,7 +160,6 @@ const QuoraListPage = () => {
                     </div>
                   </div>
 
-          </div>
     </div>
 
     
