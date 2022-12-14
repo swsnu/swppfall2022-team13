@@ -24,3 +24,17 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
+.title{
+  color: #976d4a;
+}
+
+.description{
+  color: #976d4a;
+  font-style: italic;
+}
+
+.btn-logout{
+  margin-top: 80px;
+}
+

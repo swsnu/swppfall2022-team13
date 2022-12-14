@@ -8,6 +8,8 @@ import { Col, Row } from "react-bootstrap";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PoliticianSummary from "../../components/PoliticianSummary/PoliticianSummary";
 import { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import "./UserPage.css";
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -71,14 +73,21 @@ const UserPage = () => {
   return (
     <>
       <div>
-        <h1>UserPage</h1>
-        <p>Hi welcome to JJDD!</p>
+        <h1 className="title">MyPage</h1>
+        <p className="description">이 페이지에서는 좋아요 누른 기사와 정치인을 모아볼 수 있습니다!</p>
       </div>
       <div id="myPage">
         <div id="likedArticle">
           <div id="header">Liked News</div>
           <div>
-            {likeArticles.map((td) => {
+            {likeArticles.length === 0
+            ? (
+              <div>
+                <WarningAmberIcon />
+                <p>아직 좋아요를 누른 기사가 없어요!</p>
+              </div>
+              )
+            : likeArticles.map((td) => {
               return (
                 <NewsArticle
                   key={td.id}
@@ -104,7 +113,14 @@ const UserPage = () => {
           <div id="header">Liked Politicians</div>
           <div className="PoliticianSummarys">
             <Row>
-              {likePoliticians.map((data) => {
+              {likePoliticians.length === 0
+                ? (
+                  <div>
+                    <WarningAmberIcon />
+                    <p>아직 좋아요를 누른 정치인이 없어요!</p>
+                  </div>
+                  )
+                :likePoliticians.map((data) => {
                 return data.id === -1 ? (
                   <Col></Col>
                 ) : (
@@ -127,9 +143,10 @@ const UserPage = () => {
           </div>
         </div>
       </div>
-      <button onClick={logoutHandler}>Logout</button>
+      <Button className="btn-logout" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick={logoutHandler}>👋🏻 Log out</Button>
     </>
   );
 };
 
 export default UserPage;
+
