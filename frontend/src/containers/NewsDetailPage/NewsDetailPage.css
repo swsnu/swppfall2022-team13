@@ -26,13 +26,19 @@
 }
 
 #img_div {
-  text-align: left;
   display: flex;
 }
 #main_img {
   margin-top: 15px;
   margin-right: 620px;
   margin-bottom: 15px;
+}
+
+#article_journal_name {
+  font-weight: 700;
+  margin-left: 10px;
+  margin-top: 12px;
+  font-size: 17px;
 }
 
 #btns {
