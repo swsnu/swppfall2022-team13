@@ -44,11 +44,9 @@ export default function Quora(props: QuoraType) {
               </div>
               <div className="card-body">
                 <p className="card-text">정치인 <b>{props?.title}</b></p>
-                <Button sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" className="btn" id={props.title} onClick={onClickHandler}>참여할게요</Button>
+                <Button sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" className="btn" id={props.title} onClick={onClickHandler}>💬 참여할게요</Button>
               </div>
             </div>
-
-
         </div>
       );
 

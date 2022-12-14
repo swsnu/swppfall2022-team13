@@ -133,11 +133,9 @@ const PetitionDetailPage = () => {
 
         <p id = "petition-card-text" className="card-text" >{petition?.content}</p>
         <p>
-        <a href="/petition" className="btn btn-success">되돌아가기</a>
+        <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="liveAlertBtn" onClick={handleDelete}>🗑️ 청원 삭제</Button>
         &nbsp; &nbsp;
-        <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="liveAlertBtn" onClick={handleDelete}>청원 삭제</Button>
-        &nbsp; &nbsp;
-        <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="voteBtn" onClick={handleVote}>동의해요!</Button>
+        <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="voteBtn" onClick={handleVote}>✅ 동의해요!</Button>
         </p>
       </div>
       </div>
