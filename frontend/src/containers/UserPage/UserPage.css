@@ -1,3 +1,7 @@
+#btn-logout{
+  margin-top: 80px;
+}
+
 #likedArticle {
   border-right: 1px solid #efeff0;
   width: 390px;
@@ -34,7 +38,5 @@
   font-style: italic;
 }
 
-.btn-logout{
-  margin-top: 80px;
-}
+
 

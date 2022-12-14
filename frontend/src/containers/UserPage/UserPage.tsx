@@ -143,7 +143,7 @@ const UserPage = () => {
           </div>
         </div>
       </div>
-      <Button className="btn-logout" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick={logoutHandler}>👋🏻 Log out</Button>
+      <Button id="btn-logout" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick={logoutHandler}>👋🏻 Log out</Button>
     </>
   );
 };
