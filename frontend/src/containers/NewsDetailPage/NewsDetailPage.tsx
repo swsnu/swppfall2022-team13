@@ -16,6 +16,7 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import { AppDispatch } from "../../store";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsDetailPage.css";
+import { PropaneSharp } from "@mui/icons-material";
 
 const NewsDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,15 +29,17 @@ const NewsDetailPage = () => {
   const [like, setLike] = useState(false);
 
   useEffect(() => {
-    setLikeInit()
+    setLikeInit();
   }, []);
 
   const setLikeInit = async () => {
     const user_id = await axios.get("/api/user/islogin/");
-    await axios.get(`/api/article/like/${user_id.data.id}/${id}/`).then((res) => {
-      setLike(res.data);
-    })
-  }
+    await axios
+      .get(`/api/article/like/${user_id.data.id}/${id}/`)
+      .then((res) => {
+        setLike(res.data);
+      });
+  };
 
   const postLike = async () => {
     const isLogin = await axios.get("/api/user/islogin/");
@@ -173,7 +176,6 @@ const NewsDetailPage = () => {
       //if there is no article found with the id, go back to newsList (wrong URL)
       navigate("/news");
     }
-    
   }, []);
   const handleCopyClipBoard = async (text: any) => {
     try {
@@ -200,6 +202,7 @@ const NewsDetailPage = () => {
                 }
               ></img>
             </div>
+            <div id="article_journal_name">{article.journal_name}</div>
           </div>
           <div id="article_title">{article.title}</div>
           <img
