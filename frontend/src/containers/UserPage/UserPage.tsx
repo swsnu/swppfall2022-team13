@@ -82,7 +82,7 @@ const UserPage = () => {
           <div>
             {likeArticles.length === 0
             ? (
-              <div>
+              <div className="no-article">
                 <WarningAmberIcon />
                 <p>아직 좋아요를 누른 기사가 없어요!</p>
               </div>
@@ -115,7 +115,7 @@ const UserPage = () => {
             <Row>
               {likePoliticians.length === 0
                 ? (
-                  <div>
+                  <div className="no-politician">
                     <WarningAmberIcon />
                     <p>아직 좋아요를 누른 정치인이 없어요!</p>
                   </div>

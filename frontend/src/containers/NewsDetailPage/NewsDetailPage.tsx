@@ -17,6 +17,7 @@ import { AppDispatch } from "../../store";
 import { fetchArticles, selectArticle } from "../../store/slices/article";
 import "./NewsDetailPage.css";
 import { PropaneSharp } from "@mui/icons-material";
+import Button from '@mui/material/Button';
 
 const NewsDetailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -181,7 +182,7 @@ const NewsDetailPage = () => {
     try {
       await navigator.clipboard.writeText(text);
 
-      alert("copied into your clipboard");
+      alert("복사되었습니다!");
     } catch (error) {
       alert("COPYING FAILED");
     }
@@ -219,19 +220,15 @@ const NewsDetailPage = () => {
           </div>
           <div id="btns">
             <p>
-              <a href="/news" className="btn btn-light">
-                Back
-              </a>
-              &nbsp; &nbsp;
-              <button
-                type="button"
-                className="btn btn-light"
+              <Button
+                sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}}
+                variant="contained"
+                className="btn"
                 id="liveAlertBtn"
-                color="red"
                 onClick={() => handleCopyClipBoard(article?.detail_text)}
               >
                 Copy Content
-              </button>
+              </Button>
               <Fab
                 id="hello"
                 style={like ? { color: "#965727" } : { color: "#DCC4B2" }}

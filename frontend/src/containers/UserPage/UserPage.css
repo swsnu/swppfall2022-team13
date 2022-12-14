@@ -2,6 +2,15 @@
   margin-top: 80px;
 }
 
+.no-article{
+  margin-top: 20px;
+}
+
+.no-politician{
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
 #likedArticle {
   border-right: 1px solid #efeff0;
   width: 390px;
