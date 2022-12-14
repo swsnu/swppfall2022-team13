@@ -156,10 +156,12 @@ const PoliticianDetailPage = () => {
               {career ? (
                 <ArrowDropUpIcon
                   onClick={onCareerClickHandler}
+                  className='hover-mouse-cursor'
                 ></ArrowDropUpIcon>
               ) : (
                 <ArrowDropDownIcon
                   onClick={onCareerClickHandler}
+                  className='hover-mouse-cursor'
                 ></ArrowDropDownIcon>
               )}
             </div>
@@ -186,9 +188,10 @@ const PoliticianDetailPage = () => {
             <div className="proposals-header">
               <h4 id="proposals-header">발의안</h4>
               {prop ? (
-                <ArrowDropUpIcon onClick={onPropClickHandler}></ArrowDropUpIcon>
+                <ArrowDropUpIcon className='hover-mouse-cursor' onClick={onPropClickHandler}></ArrowDropUpIcon>
               ) : (
                 <ArrowDropDownIcon
+                  className='hover-mouse-cursor'
                   onClick={onPropClickHandler}
                 ></ArrowDropDownIcon>
               )}
