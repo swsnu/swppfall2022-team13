@@ -4,4 +4,23 @@
 }
 
 #likedPoliticians {
+  margin-left: 20px;
+  width: 800px;
+}
+
+#myPage {
+  display: flex;
+}
+
+#likedArticleHeader {
+  display: flex;
+}
+
+#likedPoliticianHeader {
+  display: flex;
+}
+
+#likeN {
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
