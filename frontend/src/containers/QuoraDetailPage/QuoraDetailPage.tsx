@@ -1,6 +1,6 @@
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -361,17 +361,17 @@ const QuoraDetailPage = () => {
         </label>
         
           &nbsp; &nbsp;
-          <button className="btn btn-outline-info" id="delete-comment-button" disabled={!text} onClick={() => postCommentHandler()}>내 소식 남기기</button>
+          <Button className="btn" id="delete-comment-button" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" disabled={!text} onClick={() => postCommentHandler()}>내 소식 남기기</Button>
           <br></br>
         </div>
 
 
         <br></br>
-          <Button className= "btn btn-info" variant="primary" href="/quora" >되돌아가기</Button>
+          <Button className= "btn btn-info" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" href="/quora" >🔙 되돌아가기</Button>
           &nbsp; &nbsp;
-          <Button className= "btn btn-info" variant="primary" onClick={handleHurray} >응원하기</Button>
+          <Button className= "btn btn-info" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick={handleHurray} >👍🏻 응원하기</Button>
           &nbsp; &nbsp;
-          <Button className= "btn btn-info" variant="primary" onClick={handleDelete} >쿼라를 닫을래요</Button>
+          <Button className= "btn btn-info" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick={handleDelete} >❌ 쿼라를 닫을래요</Button>
           <br></br>
 
 

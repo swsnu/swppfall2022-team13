@@ -1,6 +1,6 @@
 import "./Petition.css";
 import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { useState, useEffect} from "react";
@@ -36,7 +36,7 @@ export default function Petition(props: PetitionType) {
           <Card.Text>
           {props?.title}
           </Card.Text>
-          <Button className= "btn btn-success" variant="primary" onClick={onClickHandler} >더 알아보기</Button>
+          <Button className= "btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick={onClickHandler} >더 알아보기</Button>
         </Card.Body>
       </Card>
       

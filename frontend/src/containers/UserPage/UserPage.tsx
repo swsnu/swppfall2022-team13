@@ -17,6 +17,7 @@ const UserPage = () => {
   const navigate = useNavigate();
   const [likeArticles, setLikeArticles] = useState([]);
   const [likePoliticians, setLikePoliticians] = useState([]);
+  const [userinfo, setUserinfo] = useState();
 
   async function logoutHandler() {
     await axios.get("/api/user/signout");
@@ -42,6 +43,7 @@ const UserPage = () => {
 
   const getLikeArticles = async () => {
     const user_id = await axios.get("/api/user/islogin/");
+    setUserinfo(user_id.data);
     await axios.get(`/api/article/like/${user_id.data.id}/`).then((res) => {
       setLikeArticles(res.data);
     });
@@ -64,12 +66,15 @@ const UserPage = () => {
     getLikeArticles();
     getLikePoliticians();
   }, []);
+
+  console.log(userinfo);
   return (
     <>
+      <div>
+        <h1>UserPage</h1>
+        <p>Hi welcome to JJDD!</p>
+      </div>
       <div id="myPage">
-        {/* <h1>UserPage</h1>
-      <h3>USER_ID: {id}</h3>
-      <p>Hi welcome to JJDD!</p> */}
         <div id="likedArticle">
           <div id="header">Liked News</div>
           <div>

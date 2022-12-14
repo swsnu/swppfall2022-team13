@@ -10,6 +10,7 @@ import {
 } from "../../store/slices/politician";
 import { fetchQuoras, postQuora, selectQuora } from "../../store/slices/quora";
 import "./QuoraListPage.css";
+import Button from '@mui/material/Button';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -29,28 +30,6 @@ const QuoraListPage = () => {
   }, []);  
   
   //AFTER PROPER BACKEND
-
-  const [quoras, setLeftContents] = useState<
-    QuoraType[]
-  >([
-    {
-      id: 1,
-      title:
-        "앙 기모찌",
-      content:
-        "앙앙 기모찌",
-      author: 1,
-    },
-    {
-      id: 2,
-      title:
-        "this is test 2",
-      content:
-        "hello world!",
-      author: 2,
-    },
-
-  ]);
 
   const clickOpenQuoraHandler = async () => {
     if (window.confirm("반가워요! 쿼라를 열까요?")) { 
@@ -147,7 +126,7 @@ const QuoraListPage = () => {
           <br></br>
           정치인이신가요? 아래를 눌러 목소리를 들어 보세요.
           <p></p>
-          <button className="btn btn-outline-info" type="button" onClick={clickOpenQuoraHandler}><b>목소리 듣기</b></button>
+          <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick={clickOpenQuoraHandler}><b>목소리 듣기</b></Button>
           
           <p></p>
           <p></p>

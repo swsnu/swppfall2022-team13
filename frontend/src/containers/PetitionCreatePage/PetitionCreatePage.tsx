@@ -1,11 +1,12 @@
 
 import axios from 'axios'
 import { useState } from 'react'
-import { Button, Form, Row } from 'react-bootstrap'
+import { Form, Row } from 'react-bootstrap'
 import { useDispatch, } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { AppDispatch } from "../../store"
 import { postPetition } from "../../store/slices/petition"
+import Button from '@mui/material/Button';
 import "./PetitionCreatePage.css";
 
 const PetitionCreatePage = () => {
@@ -138,11 +139,9 @@ const PetitionCreatePage = () => {
  
         </Form>
 
-        <a href="/petition" className="btn btn-success">되돌아가기</a>
-        &nbsp; &nbsp;
-          <button type="button" className="btn btn-success" id='confirm-button'
+          <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id='confirm-button'
           onClick={() => clickCreateHanler()}>
-          청원하기</button>
+          청원하기</Button>
       </div>
     </>
     )

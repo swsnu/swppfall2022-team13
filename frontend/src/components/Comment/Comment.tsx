@@ -7,6 +7,7 @@ import { fetchQuora, selectQuora, deleteQuora, fetchQuoras } from "../../store/s
 import axios from 'axios';
 import "./Comment.css";
 import { SystemSecurityUpdate } from "@mui/icons-material";
+import Button from '@mui/material/Button';
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -67,7 +68,7 @@ export interface IProps {
           <b><div className="commentorName" id="comment-author">{quora?.title} - 이 쿼라의 정치인</div></b>
           <b><div className="commentContent" id="comment-content">{commentDisplay}</div></b>
           <p></p>
-          <button className="btn btn-outline-info" id="delete-comment-button" onClick={clickDelete}>이 소식 지우기</button>
+          <Button className="btn" sx={{color:"gray", bgcolor: '#FFFFFF', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="delete-comment-button" onClick={clickDelete}>🗑️ 지우기</Button>
           <p></p>
   
         </div>
@@ -87,7 +88,7 @@ export interface IProps {
           <div className="commentorName" id="comment-author">익명의 시민 {props?.author_id}</div>
           <b><div className="commentContent" id="comment-content">{commentDisplay}</div></b>
           <p></p>
-          <button className="btn btn-outline-info" id="delete-comment-button" onClick={clickDelete}>이 소식 지우기</button>
+          <Button className="btn" sx={{color:"gray", bgcolor: '#FFFFFF', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="delete-comment-button" onClick={clickDelete}>🗑️ 지우기</Button>
           <p></p>
         </div>
       );

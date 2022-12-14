@@ -6,6 +6,7 @@ import Petition, { PetitionType, } from "../../components/Petition/Petition";
 import { AppDispatch } from "../../store";
 import { fetchPetitions, selectPetition } from "../../store/slices/petition";
 import "./PetitionListPage.css";
+import Button from '@mui/material/Button';
 
   
 const PetitionListPage = () => {
@@ -108,7 +109,7 @@ const PetitionListPage = () => {
           <br></br>
           아래를 눌러, 정부와 사회가, 그리고 우리가 다시 한번 각종 의제들을 살펴보고, 개선 필요성을 검토하는 중요한 계기를 만들어주세요.
           <p></p>
-          <button className="btn btn-outline-success" type="submit" onClick = {onClickRaise}>청원 올리기</button>
+          <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" onClick = {onClickRaise}>청원 올리기</Button>
           <div id="Petitions">
           
           <p></p>

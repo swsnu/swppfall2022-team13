@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from "../../store";
 import { deletePetition, fetchPetitions, selectPetition, voteDown, voteUp } from "../../store/slices/petition";
 import "./PetitionDetailPage.css";
+import Button from '@mui/material/Button';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -134,9 +135,9 @@ const PetitionDetailPage = () => {
         <p>
         <a href="/petition" className="btn btn-success">되돌아가기</a>
         &nbsp; &nbsp;
-        <button type="button" className="btn btn-success" id="liveAlertBtn" onClick={handleDelete}>청원 삭제</button>
+        <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="liveAlertBtn" onClick={handleDelete}>청원 삭제</Button>
         &nbsp; &nbsp;
-        <button type="button" className="btn btn-success" id="voteBtn" onClick={handleVote}>동의해요!</button>
+        <Button className="btn" sx={{bgcolor: '#b68763', ':hover': {bgcolor: '#e8bb98'}}} variant="contained" id="voteBtn" onClick={handleVote}>동의해요!</Button>
         </p>
       </div>
       </div>
