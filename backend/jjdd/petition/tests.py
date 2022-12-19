@@ -20,7 +20,9 @@ class ArticleTestCase(TestCase):
                                                   {"title": "test", 
                                                   "content": "test", 
                                                   "author": 1, 
-                                                  "vote": 1}
+                                                  "vote": 1,
+                                                  "photo_url":"test",
+                                                  }
                                                   ]
                                               }),
                                     content_type="application/json")

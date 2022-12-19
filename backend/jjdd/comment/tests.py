@@ -19,6 +19,7 @@ class ArticleTestCase(TestCase):
                                     json.dumps({"quoras": [
                                                   {"title": "test", 
                                                   "content": "test", 
+                                                  "author_politicianId":'1',
                                                   "author": 1, }
                                                   ]
                                               }),
@@ -26,7 +27,7 @@ class ArticleTestCase(TestCase):
         self.assertEqual(response.status_code, 201)
 
         # GET
-        response = self.client.get("/api/petquoraition/")
+        response = self.client.get("/api/quora/")
         data = json.loads(response.content.decode())[0]
         self.assertEqual(data['title'], "test")
         self.assertEqual(data['content'], "test")

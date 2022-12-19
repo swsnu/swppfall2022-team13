@@ -24,7 +24,10 @@ class ArticleTestCase(TestCase):
                                                   "preview_img_path": "test", 
                                                   "journal_name": "test", 
                                                   "detail_img_path": "test", 
-                                                  "detail_text": "test"}
+                                                  "bias":"test",
+                                                  "detail_text": "test",
+                                                  "topic_id" : "test",
+                                                  }
                                                   ]
                                               }),
                                     content_type="application/json")

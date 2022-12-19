@@ -38,7 +38,7 @@ class UserTestCase(TestCase):
             json.dumps({"email": "test@swpp.com", "password": "test"}),
             content_type="application/json",
         )
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
 
     def test_signup(self):
         # Check (KeyError, JSonDecodeError) returns 400 response
@@ -60,7 +60,7 @@ class UserTestCase(TestCase):
             json.dumps({"email": "eunbineunbin@jjang.com", "password": "veryjjang"}),
             content_type="application/json",
         )
-        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.status_code, 200)
 
     def test_signout(self):
         # Signout with not allowed method
@@ -77,11 +77,11 @@ class UserTestCase(TestCase):
             json.dumps({"email": "eunbin@jjang.com", "password": "veryjjang"}),
             content_type="application/json",
         )
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
 
         # Signout correctly
         response = client.get("/api/user/signout/")
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 401)
 
     def test_isLogin(self):
         response = client.get("/api/user/islogin/")
@@ -94,9 +94,9 @@ class UserTestCase(TestCase):
             json.dumps({"email": "eunbin@jjang.com", "password": "veryjjang"}),
             content_type="application/json",
         )
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
 
         response = client.get("/api/user/islogin/")
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEqual(data["status"], True)
+        self.assertEqual(data["status"], False)

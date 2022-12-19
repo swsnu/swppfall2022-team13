@@ -46,6 +46,7 @@ def politician(request):
                              career_summary=politician['career_summary'],
                              mona_code=politician['mona_code'],
                              proposals=politician['proposals'],
+                             like_users=politician['like_users'],
                              )
     return HttpResponse(status=201)
   else:

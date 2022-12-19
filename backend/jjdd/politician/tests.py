@@ -27,6 +27,7 @@ class PoliticianTestCase(TestCase):
                      'career_summary': 'test',
                      'mona_code': 'test',
                      'proposals' : 'test',
+                     'like_users' :'test',
                      },]}),content_type="application/json")
         self.assertEqual(response.status_code, 201)
 
@@ -54,6 +55,7 @@ class PoliticianTestCase(TestCase):
                      'career_summary': 'test',
                      'mona_code': 'test',
                      'proposals' : 'test',
+                     'like_users' : 'test',
                      },]}),content_type="application/json")
 
         response = client.get('/api/politician/1/')

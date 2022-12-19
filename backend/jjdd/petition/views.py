@@ -19,7 +19,7 @@ def petition(request):
     return JsonResponse(petition_list, safe=False)
   
   elif request.method == "POST":
-    body = json.loads(request.body.decode())
+    body = json.loads(request.body.decode())['petitions'][0]
     title = body['title']
     content = body['content']
     author = body['author']
